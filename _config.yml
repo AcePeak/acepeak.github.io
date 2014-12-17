@@ -1,0 +1,14 @@
+# Site settings
+title: 西山居
+email: 86056701@qq.com
+description: > # this means to ignore newlines until "baseurl:"
+  巍巍乎志在高山，洋洋乎志在流水.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://www.lilifeng.net" # the base hostname & protocol for your site
+twitter_username: AcePeak
+github_username:  AcePeak
+encode: UTF-8
+lsi: true
+
+# Build settings
+markdown: kramdown
