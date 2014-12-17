@@ -27,4 +27,14 @@
     ga('send', 'pageview');
 
   </script>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic,900">
+{% endif %}
+
+{% if site.cnzz_id %}
+	<script type="text/javascript">
+		var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_{{ site.cnzz_id }}'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D{{ site.cnzz_id }}' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <style>
+		#cnzz_stat_icon_{{ site.cnzz_id }} { display:none;}
+	</style>
 {% endif %}
