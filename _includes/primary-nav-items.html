@@ -1,17 +1,14 @@
 <ul>
   <li class="{% if page.overview %}current{% endif %}">
-    <a href="/">Home</a>
+    <a href="/">首页</a>
   </li>
   <li class="{% if page.url contains '/docs/' %}current{% endif %}">
-    <a href="/docs/home/">Doc<span class="show-on-mobiles">s</span><span class="hide-on-mobiles">umentation</span></a>
+    <a href="/docs/home/">专题</span></a>
   </li>
   <li class="{% if page.author %}current{% endif %}">
-    <a href="/news/">News</a>
+    <a href="/news/">博文</a>
   </li>
   <li>
-    <a href="{{ site.help_url }}">Help</a>
-  </li>
-  <li>
-    <a href="{{ site.repository }}"><span class="hide-on-mobiles">View on </span>GitHub</a>
+    <a href="{{ site.repository }}">源码<span class="hide-on-mobiles">@GitHub</span></a>
   </li>
 </ul>
