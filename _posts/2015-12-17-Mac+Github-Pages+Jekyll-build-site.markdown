@@ -49,7 +49,7 @@ categories: [Mac Github Jekyll Internet Website Domain]
 `提交网站`
 由于在Jekyll体系中，_site文件夹是本地服务器Jekyll生成最终html的地方，.sass-cache文件夹是本地的sass缓存文件，都不需要作为代码文件上传到服务器上，因此可以在Github For Mac中设置ignored files为
 
-{% highlight shell %}
+{% highlight PowerShell %}
 _site/
 .sass-cache/
 {% endhighlight %}

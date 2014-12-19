@@ -11,8 +11,8 @@
     <title xml:lang="en">Jekyll • Simple, blog-aware, static sites</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://jekyllrb.com/</link>
-    <pubDate>Thu, 18 Dec 2014 17:10:00 +0800</pubDate>
-    <lastBuildDate>Thu, 18 Dec 2014 17:10:00 +0800</lastBuildDate>
+    <pubDate>Fri, 19 Dec 2014 11:11:16 +0800</pubDate>
+    <lastBuildDate>Fri, 19 Dec 2014 11:11:16 +0800</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v2.5.2</generator>
     <description>Transform your plain text into static websites and blogs.</description>
@@ -47,8 +47,6 @@
 
 &lt;p&gt;&lt;a href=&quot;http://segmentfault.com/q/1010000002169878&quot;&gt;前往此贴查看changsj的回答&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;excerpt&lt;/p&gt;
-
 &lt;p&gt;&lt;code&gt;使用Jekyll&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.365dw.cn/616.html&quot;&gt;首先更换GEM源&lt;/a&gt;&lt;/p&gt;
@@ -72,6 +70,12 @@
 &lt;p&gt;&lt;code&gt;编写网站吧&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://jekyllrb.com/docs/home/&quot;&gt;Jekyll官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;提交网站&lt;/code&gt;
+由于在Jekyll体系中，_site文件夹是本地服务器Jekyll生成最终html的地方，.sass-cache文件夹是本地的sass缓存文件，都不需要作为代码文件上传到服务器上，因此可以在Github For Mac中设置ignored files为&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;n&quot;&gt;_site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sass-cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Enjoy(Painful)!&lt;/p&gt;
 
