@@ -11,8 +11,8 @@
     <title xml:lang="en">Jekyll • Simple, blog-aware, static sites</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://jekyllrb.com/</link>
-    <pubDate>Fri, 19 Dec 2014 11:11:16 +0800</pubDate>
-    <lastBuildDate>Fri, 19 Dec 2014 11:11:16 +0800</lastBuildDate>
+    <pubDate>Sat, 20 Dec 2014 13:40:13 +0800</pubDate>
+    <lastBuildDate>Sat, 20 Dec 2014 13:40:13 +0800</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v2.5.2</generator>
     <description>Transform your plain text into static websites and blogs.</description>
@@ -35,25 +35,25 @@
       <category>mac github jekyll internet website domain</category>
       
       <guid isPermaLink="true">http://jekyllrb.com/news/2015/12/17/Mac+Github-Pages+Jekyll-build-site/</guid>
-      <description>&lt;p&gt;&lt;code&gt;Github官网注册账号&lt;/code&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;code&gt;1 Github官网注册账号&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/&quot;&gt;Github.com官网&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;下载Github For Mac并登录&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;2 下载Github For Mac并登录&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://mac.github.com/&quot;&gt;Mac版Github下载页面&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;设置Git方式同步并使用SSH Keys&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;3 设置Git方式同步并使用SSH Keys&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://segmentfault.com/q/1010000002169878&quot;&gt;前往此贴查看changsj的回答&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;使用Jekyll&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;4 使用Jekyll&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.365dw.cn/616.html&quot;&gt;首先更换GEM源&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://jekyllrb.com/&quot;&gt;按照Jekyll首页所列的代码指令开始吧&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;从Jekyll建立主页&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;5 从Jekyll建立主页&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Fork Jekyll并clone到桌面吧&lt;/a&gt;&lt;/p&gt;
 
@@ -61,23 +61,24 @@
 
 &lt;p&gt;然后通过Github For Mac将&lt;username&gt;.github.io和jekyll代码库下载到你的电脑上，把Jekyll代码库中的sites文件夹内所有文件拷贝到&lt;username&gt;.github.io代码库根目录下&lt;/username&gt;&lt;/username&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;绑定域名&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;6 绑定域名&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/&quot;&gt;官方绑定攻略&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;要(很)注(坑)意(爹)的是，在&lt;a href=&quot;https://help.github.com/articles/tips-for-configuring-an-a-record-with-your-dns-provider/&quot;&gt;绑定根域名&lt;/a&gt;时, 网页上列出的两个IP地址(192.30.252.XXX)都不是你的IP，你需要在命令行知道你自己的http://&lt;username&gt;.github.io的IP是多少，ping之吧。&lt;/username&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;编写网站吧&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;7 编写网站吧&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://jekyllrb.com/docs/home/&quot;&gt;Jekyll官方文档&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;提交网站&lt;/code&gt;
-由于在Jekyll体系中，_site文件夹是本地服务器Jekyll生成最终html的地方，.sass-cache文件夹是本地的sass缓存文件，都不需要作为代码文件上传到服务器上，因此可以在Github For Mac中设置ignored files为&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;8 提交网站&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;由于在Jekyll体系中，_site文件夹是本地服务器Jekyll生成最终html的地方，.sass-cache文件夹是本地的sass缓存文件，都不需要作为代码文件上传到服务器上，因此可以在Github For Mac中设置ignored files为&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;n&quot;&gt;_site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sass-cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Enjoy(Painful)!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;9 Enjoy(Painful)!&lt;/code&gt;&lt;/p&gt;
 
 </description>
     </item>
