@@ -3,7 +3,11 @@ layout: news_item
 title: 'Mac+GithubPages+Jekyll配置个人网站'
 author: AcePeak
 categories: [Jekyll]
-tags: [Mac Github Jekyll WebSite]
+tags: 
+- Mac
+- Github
+- Jekyll
+- WebSite
 ---
 
 `1 Github官网注册账号`

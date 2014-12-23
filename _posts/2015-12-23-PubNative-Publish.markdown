@@ -3,7 +3,9 @@ layout: news_item
 title: PubNative发布世界上首个满足专业需求的“原生广告适配器”
 author: AcePeak
 categories: [adplatform]
-tags: [adplatform Marketing]
+tags: 
+- adplatform
+- Marketing
 ---
 
 原文  [http://www.adexchanger.cn/tech-company/9903.html](http://www.adexchanger.cn/tech-company/9903.html)
