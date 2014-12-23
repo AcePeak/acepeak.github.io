@@ -24,6 +24,7 @@ tags:
 
 [前往此贴查看changsj的回答](http://segmentfault.com/q/1010000002169878)
 
+
 `4 使用Jekyll`
 
 [首先更换GEM源](http://www.365dw.cn/616.html)
@@ -50,6 +51,7 @@ tags:
 `7 编写网站吧`
 
 [Jekyll官方文档](http://jekyllrb.com/docs/home/)
+
 
 `8 提交网站`
 
