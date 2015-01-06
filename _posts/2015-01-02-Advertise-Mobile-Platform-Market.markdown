@@ -2,10 +2,10 @@
 layout: news_item
 title: '2014年移动广告平台界投融资整理'
 author: AcePeak
-categories: [adplatform]
+categories: [广告平台]
 tags: 
-- adplatform
-- Marketing
+- 原生
+- 市场
 ---
 
 

@@ -2,10 +2,10 @@
 layout: news_item
 title: '广告平台术语'
 author: AcePeak
-categories: [adplatform]
+categories: [广告平台]
 tags: 
-- adplatform
-- Marketing
+- 市场
+- 术语
 ---
 
 `Campaign: 广告活动`

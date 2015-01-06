@@ -2,8 +2,9 @@
 layout: news_item
 title: 'Mac+GithubPages+Jekyll配置个人网站'
 author: AcePeak
-categories: [Jekyll]
+categories: [Internet]
 tags: 
+- 原生
 - Mac
 - Github
 - Jekyll

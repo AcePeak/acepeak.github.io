@@ -81,6 +81,10 @@
       
       <option value="/news/2014/12/17/Mac+GithubPages+Jekyll-site/">Mac+GithubPages+Jekyll配置个人网站</option>
       
+      <option value="/news/2006/05/10/ActiveX-Safety/">剖析ActiveX控件安全问题</option>
+      
+      <option value="/news/2006/04/30/Universe-Think/">西山居士的宇宙模型遐想</option>
+      
     </optgroup>
   </select>
 </div>
@@ -96,7 +100,7 @@
   </h2>
   <span class="post-category">
     <span class="label">
-      adplatform
+      广告平台
     </span>
   </span>
   <div class="post-meta">
@@ -205,7 +209,7 @@ Max传漾
   </h2>
   <span class="post-category">
     <span class="label">
-      adplatform
+      广告平台
     </span>
   </span>
   <div class="post-meta">
@@ -292,7 +296,7 @@ eCPM = 收入/网页展示次数×1000</p>
   </h2>
   <span class="post-category">
     <span class="label">
-      adplatform
+      广告平台
     </span>
   </span>
   <div class="post-meta">
@@ -337,7 +341,7 @@ eCPM = 收入/网页展示次数×1000</p>
   </h2>
   <span class="post-category">
     <span class="label">
-      jekyll
+      internet
     </span>
   </span>
   <div class="post-meta">
@@ -400,6 +404,432 @@ eCPM = 收入/网页展示次数×1000</p>
 </article>
 
 
+  <article>
+  <h2>
+    <a href="/news/2006/05/10/ActiveX-Safety/">
+      剖析ActiveX控件安全问题
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      internet
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      10 May 2006
+    </span>
+    <a href="https://github.com/AcePeak" class="post-author">
+      <img src="https://github.com/AcePeak.png" class="avatar" alt="AcePeak" width="24" height="24">
+      AcePeak
+    </a>
+  </div>
+  <div class="post-content">
+    <h2 id="section">1、介绍</h2>
+
+<p>如果你曾经在网页或者ASP中使用过com对象，你可能会发现，有时候会出现这样讨厌的对话框</p>
+
+<p><img src="/img/060510_1.jpg" alt="对话框" /></p>
+
+<p>这是因为你的控件没有被标记为安全的，对于初始化不安全或者对于脚本不安全，甚至兼而有之。你每打开一次这样的网页，这种情况就会发生一次，你怎么办？当然，这可以通过设置IE本身的安全等级为low来解决这样的问题，但是如果你要制作一个可发布的控件，你能想象到每一位用户在使用你制作的控件时都要且列抱怨这种强制行为；或者如果你是其中一个使用者，当你同样遇到这种情况之后不得不将自己的IE安全等级设置为low，与此同时你平时上网过程中那些行为不轨的控件有时也会悄然而至，你的灾难来了！作为一个聪明的程序员，你不能要求任何用户做一些不切实际或者不够安全的改变来适应你的产品，因为你知道那只会使你的控件被逐渐打入冷宫，到最后销声匿迹，那不是你想要的。我们要消灭掉这样的对话框而且还不让用户发现丝毫安全上和使用上的失望。本文就是横向探讨在C++编程环境下如何消除这些问题的。</p>
+
+<h2 id="section-1">2、原理</h2>
+
+<p>ActiveX控件是一种极其危险的提供功能的方法（目前正在被MS逐渐冷落），因为它是一种组建对象模型（COM）的对象，只要电脑的用户可以完成的任务，它都可以完成。比如它可以存取注册表，可以随意访问本地文件系统等等。一个网页上面的控件一般有2种不安全的状态，一种是脚本的不安全，一种是初始化的不安全。当用户将一个压缩解压缩控件指向一个远程被压缩的包含特洛伊木马的系统文件并且需要控件来解压缩这个文件时，系统安全会被打破。这个状态就是初始化的不安全。从代码的角度来讲，如果控件从IPersist派生，也就是说控件实现了永久性，那么就会触发unsafe for initializing。而在脚本程序安全执行以前，一个控件依赖于特定的系统设置，那么在允许这段代码运行之前，控件的开发人员需要提供一些必要的代码。从代码的角度来讲，如果控件从IDispatch派生，也就是说控件支持脚本，那么就会触发unsafe for scripting。</p>
+
+<p>从用户下载一个ActiveX控件开始，这个控件甚至可能很容易被攻击，因为网络上任何网络程序都可以使用它，无论是出于友好的目的还是恶意的目的。因此IE浏览器（本文只探讨IE内核的浏览器）总是试图弹出一个对话框来告诉你，这个控件可能是不安全的。这几乎总是一个很好的预防网络攻击的好方法，但是对于那些我们认为总是安全的控件，我们仍然要总是接受这种IE产生的干扰，这就使人厌烦了。其实当身为程序员的你写这样的安全控件时，这样的问题是很容易解决的。 </p>
+
+<h2 id="section-2">3、解决方法</h2>
+
+<p>目前，对这个问题的解决方法主要有几种：使用数字签名，继承IObjectSafety接口，修改注册表等。</p>
+
+<h3 id="section-3">3.1、使用数字签名</h3>
+<p>数字签名是一种使控件足够安全的方法，它通过特定的密钥来加密控件的使用，使得使用控件的对象能够根据密钥是否相符来检测控件是否足够安全。通常，拥有自己的可发布的数字签名是要Money的，本文是一篇技术文章，对此并不深入探讨，下面主要介绍代码方面的安全化。</p>
+
+<h3 id="iobjectsafety">3.2、继承IObjectSafety接口</h3>
+<p>IObjectSafety接口是在头文件”objsafe.h”中定义的接口，定义如下： </p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="nl">IObjectSafety</span> <span class="p">:</span> <span class="k">public</span> <span class="n">IUnknown</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="n">HRESULT</span> <span class="n">STDMETHODCALLTYPE</span> <span class="n">GetInterfaceSafetyOptions</span><span class="p">(</span> 
+    <span class="cm">/* [in] */</span> <span class="n">REFIID</span> <span class="n">riid</span><span class="p">,</span>
+    <span class="cm">/* [out] */</span> <span class="n">DWORD</span> <span class="o">*</span><span class="n">pdwSupportedOptions</span><span class="p">,</span>
+    <span class="cm">/* [out] */</span> <span class="n">DWORD</span> <span class="o">*</span><span class="n">pdwEnabledOptions</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="n">HRESULT</span> <span class="n">STDMETHODCALLTYPE</span> <span class="n">SetInterfaceSafetyOptions</span><span class="p">(</span> 
+    <span class="cm">/* [in] */</span> <span class="n">REFIID</span> <span class="n">riid</span><span class="p">,</span>
+    <span class="cm">/* [in] */</span> <span class="n">DWORD</span> <span class="n">dwOptionSetMask</span><span class="p">,</span>
+    <span class="cm">/* [in] */</span> <span class="n">DWORD</span> <span class="n">dwEnabledOptions</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span></code></pre></div>
+
+<p>其中参数意义如下：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//riid                Interface identifier for the object to be made safe. </span>
+<span class="c1">//</span>
+<span class="c1">//dwOptionSetMask     Options to be changed. </span>
+<span class="c1">//</span>
+<span class="c1">//dwEnabledOptions    Settings for the options that are to be changed. This can be one of the following values. </span>
+<span class="c1">//                    INTERFACESAFE_FOR_UNTRUSTED_CALLER</span>
+<span class="c1">//                        Indicates the interface identified by riid should be made safe for scripting. </span>
+<span class="c1">//                    INTERFACESAFE_FOR_UNTRUSTED_DATA</span>
+<span class="c1">//                        Indicates the interface identified by riid should be made safe for untrusted data during initialization.</span></code></pre></div>
+
+<p>这个接口允许容器询问控件是否安全或者改变控件的安全属性。目前IObjectSafety支持四种安全属性，但是一般我们只使用前两个：脚本安全和初始化安全。这些属性定义如下：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// Option bit definitions for IObjectSafety:</span>
+<span class="cp">#define    INTERFACESAFE_FOR_UNTRUSTED_CALLER        0x00000001    </span><span class="c1">// Caller of interface may be untrusted</span>
+<span class="cp">#define    INTERFACESAFE_FOR_UNTRUSTED_DATA          0x00000002    </span><span class="c1">// Data passed into interface may be untrusted</span>
+<span class="cp">#define    INTERFACE_USES_DISPEX                     0x00000004    </span><span class="c1">// Object knows to use IDispatchEx</span>
+<span class="cp">#define    INTERFACE_USES_SECURITY_MANAGER           0x00000008    </span><span class="c1">// Object knows to use IInternetHostSecurityManager</span></code></pre></div>
+
+<h4 id="section-4">3.2.1、实现方法</h4>
+
+<p>首先包含头文件</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &quot;objsafe.h&quot;</span></code></pre></div>
+
+<p>然后是自己的控件类继承IObjectSafetyImpl</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">class</span> <span class="nc">YourClass</span> <span class="o">:</span>
+    <span class="k">public</span> <span class="n">IObjectSafetyImpl</span><span class="o">&lt;</span><span class="n">YourClass</span><span class="p">,</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_CALLER</span> <span class="o">|</span> <span class="n">INTERFACESAFE_FOR_UNTRUSTED_DATA</span><span class="o">&gt;</span>
+<span class="p">{</span></code></pre></div>
+
+<p>其中<code>INTERFACESAFE_FOR_UNTRUSTED_CALLER | INTERFACESAFE_FOR_UNTRUSTED_DATA</code>代表默认这个控件是脚本安全而且初始化安全的。然后在com接口表中添加接口名</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">BEGIN_COM_MAP</span><span class="p">(</span><span class="n">CCGrid</span><span class="p">)</span>
+    
+    <span class="n">COM_INTERFACE_ENTRY</span><span class="p">(</span><span class="n">IObjectSafety</span><span class="p">)</span>
+<span class="n">END_COM_MAP</span><span class="p">()</span></code></pre></div>
+
+<p>OK，大功告成。这也是一种很简单的方法。</p>
+
+<h3 id="section-5">3.3、修改注册表</h3>
+
+<p>修改注册表项使控件支持安全类别的原理，归根到底其实就是下面的第三个方法，另外两个方法都是对这个方法的外围包装和更加安全的处理。修改注册表在不同的工程中有着不同的表现：</p>
+
+<h4 id="atlcom">3.3.1、用于ATL属性工程的com接口</h4>
+
+<p>因为VC的属性工程已经加入了安全控件的注册表支持，并且直接加入了关键字implements_category，因此我们仅仅象下面这样既可完成安全属性设置：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="p">[</span>
+    <span class="n">coclass</span><span class="o">/</span><span class="n">progid</span><span class="o">/</span><span class="n">vi_prgid</span><span class="p">,</span>            <span class="c1">//必须至少有其中一个</span>
+    
+    <span class="n">implements_category</span><span class="p">(</span><span class="s">&quot;CATID_SafeForScripting&quot;</span><span class="p">),</span>
+    <span class="n">implements_category</span><span class="p">(</span><span class="s">&quot;CATID_SafeForInitializing&quot;</span><span class="p">),</span>
+    
+<span class="p">]</span></code></pre></div>
+
+<p>不过要注意的是，对于类似下面的代码（往往是非属性工程的）是不能添加的：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="p">[</span>
+    <span class="n">uuid</span><span class="p">(),</span>
+    <span class="n">helpstring</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">coclass</span> <span class="n">YourCtrl</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="k">default</span><span class="p">]</span> <span class="n">interface</span> <span class="p">,</span>
+        <span class="p">[</span><span class="k">default</span><span class="p">,</span><span class="n">source</span><span class="p">]</span> <span class="n">dispinterface</span> 
+<span class="p">}</span></code></pre></div>
+
+<p>因为这种coclass是IDL的属性，而IDL本身并没有安全功能。</p>
+
+<p>而上面的那种coclass是VC的属性，MS提供了对安全控件的支持。</p>
+
+<h4 id="section-6">3.3.2、主要用于非属性工程的通用方法</h4>
+
+<p>在类声明文件中加入头文件</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &quot;objsafe.h&quot;</span></code></pre></div>
+
+<p>在类声明中添加如下代码：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">BEGIN_CATEGORY_MAP</span><span class="p">(</span> <span class="n">YourCtrlClassName</span> <span class="p">)</span>
+       <span class="n">IMPLEMENTED_CATEGORY</span><span class="p">(</span> <span class="n">CATID_SafeForScripting</span> <span class="p">)</span>
+       <span class="n">IMPLEMENTED_CATEGORY</span><span class="p">(</span> <span class="n">CATID_SafeForInitializing</span> <span class="p">)</span>
+   <span class="n">END_CATEGORY_MAP</span><span class="p">()</span></code></pre></div>
+
+<p>即可使其支持safety属性，当然你也可以选择性的只支持一种安全属性。</p>
+
+<h4 id="mfc-activex-control">3.3.3、主要用于MFC ActiveX Control的通用方法</h4>
+
+<p>在$project.cpp文件中添加以下代码：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &quot;comcat.h&quot;</span>
+<span class="cp">#include &quot;Objsafe.h&quot;</span>
+
+<span class="c1">// 控件的CLSID,注册表用（一定要是实际使用的控件的）</span>
+<span class="k">const</span> <span class="n">GUID</span> <span class="n">CDECL</span> <span class="n">CLSID_SafeItem</span> <span class="o">=</span><span class="p">{</span> <span class="mh">0x7AE7497B</span><span class="p">,</span> <span class="mh">0xCAD8</span><span class="p">,</span> <span class="mh">0x4E66</span><span class="p">,</span> <span class="p">{</span> <span class="mh">0xA5</span><span class="p">,</span><span class="mh">0x8B</span><span class="p">,</span><span class="mh">0xDD</span><span class="p">,</span><span class="mh">0xE9</span><span class="p">,</span><span class="mh">0xBC</span><span class="p">,</span><span class="mh">0xAF</span><span class="p">,</span><span class="mh">0x6B</span><span class="p">,</span><span class="mh">0x61</span> <span class="p">}</span> <span class="p">};</span>
+
+<span class="c1">// 版本控制</span>
+<span class="k">const</span> <span class="n">WORD</span> <span class="n">_wVerMajor</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// 次版本号</span>
+<span class="k">const</span> <span class="n">WORD</span> <span class="n">_wVerMinor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="c1">//////////////////////////////////////////////////////////////////////</span>
+<span class="c1">// 创建组件种类</span>
+<span class="n">HRESULT</span> <span class="nf">CreateComponentCategory</span><span class="p">(</span><span class="n">CATID</span> <span class="n">catid</span><span class="p">,</span> <span class="n">WCHAR</span><span class="o">*</span> <span class="n">catDescription</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ICatRegister</span><span class="o">*</span> <span class="n">pcr</span> <span class="o">=</span> <span class="nb">NULL</span> <span class="p">;</span>
+    <span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">S_OK</span> <span class="p">;</span>
+
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_StdComponentCategoriesMgr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CLSCTX_INPROC_SERVER</span><span class="p">,</span> <span class="n">IID_ICatRegister</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pcr</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="c1">// Make sure the HKCR\Component Categories\{..catid}</span>
+    <span class="c1">// key is registered.</span>
+    <span class="n">CATEGORYINFO</span> <span class="n">catinfo</span><span class="p">;</span>
+    <span class="n">catinfo</span><span class="p">.</span><span class="n">catid</span> <span class="o">=</span> <span class="n">catid</span><span class="p">;</span>
+    <span class="n">catinfo</span><span class="p">.</span><span class="n">lcid</span> <span class="o">=</span> <span class="mh">0x0409</span> <span class="p">;</span> <span class="c1">// english</span>
+
+    <span class="c1">// Make sure the provided description is not too long.</span>
+    <span class="c1">// Only copy the first 127 characters if it is.</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">wcslen</span><span class="p">(</span><span class="n">catDescription</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">len</span><span class="o">&gt;</span><span class="mi">127</span><span class="p">)</span>
+        <span class="n">len</span> <span class="o">=</span> <span class="mi">127</span><span class="p">;</span>
+    <span class="n">wcsncpy</span><span class="p">(</span><span class="n">catinfo</span><span class="p">.</span><span class="n">szDescription</span><span class="p">,</span> <span class="n">catDescription</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+
+    <span class="c1">// Make sure the description is null terminated.</span>
+    <span class="n">catinfo</span><span class="p">.</span><span class="n">szDescription</span><span class="p">[</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">pcr</span><span class="o">-&gt;</span><span class="n">RegisterCategories</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">catinfo</span><span class="p">);</span>
+    <span class="n">pcr</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 注册组件种类</span>
+<span class="n">HRESULT</span> <span class="nf">RegisterCLSIDInCategory</span><span class="p">(</span><span class="n">REFCLSID</span> <span class="n">clsid</span><span class="p">,</span> <span class="n">CATID</span> <span class="n">catid</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="c1">// Register your component categories information.</span>
+    <span class="n">ICatRegister</span><span class="o">*</span> <span class="n">pcr</span> <span class="o">=</span> <span class="nb">NULL</span> <span class="p">;</span>
+    <span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">S_OK</span> <span class="p">;</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_StdComponentCategoriesMgr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CLSCTX_INPROC_SERVER</span><span class="p">,</span> <span class="n">IID_ICatRegister</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pcr</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+    <span class="p">{</span>
+
+        <span class="c1">// Register this category as being implemented by the class.</span>
+        <span class="n">CATID</span> <span class="n">rgcatid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">;</span>
+        <span class="n">rgcatid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">catid</span><span class="p">;</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="n">pcr</span><span class="o">-&gt;</span><span class="n">RegisterClassImplCategories</span><span class="p">(</span><span class="n">clsid</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rgcatid</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">pcr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="n">pcr</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 卸载组件种类</span>
+<span class="n">HRESULT</span> <span class="nf">UnRegisterCLSIDInCategory</span><span class="p">(</span><span class="n">REFCLSID</span> <span class="n">clsid</span><span class="p">,</span> <span class="n">CATID</span> <span class="n">catid</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ICatRegister</span><span class="o">*</span> <span class="n">pcr</span> <span class="o">=</span> <span class="nb">NULL</span> <span class="p">;</span>
+    <span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">S_OK</span> <span class="p">;</span>
+
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_StdComponentCategoriesMgr</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">CLSCTX_INPROC_SERVER</span><span class="p">,</span> <span class="n">IID_ICatRegister</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pcr</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+    <span class="p">{</span>
+
+        <span class="c1">// Unregister this category as being implemented by the class.</span>
+        <span class="n">CATID</span> <span class="n">rgcatid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">;</span>
+        <span class="n">rgcatid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">catid</span><span class="p">;</span>
+        <span class="n">hr</span> <span class="o">=</span> <span class="n">pcr</span><span class="o">-&gt;</span><span class="n">UnRegisterClassImplCategories</span><span class="p">(</span><span class="n">clsid</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rgcatid</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">pcr</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="n">pcr</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>修改以下函数：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// DllRegisterServer - Adds entries to the system registry</span>
+<span class="n">STDAPI</span> <span class="nf">DllRegisterServer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">HRESULT</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="n">AFX_MANAGE_STATE</span><span class="p">(</span><span class="n">_afxModuleAddrThis</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">AfxOleRegisterTypeLib</span><span class="p">(</span><span class="n">AfxGetInstanceHandle</span><span class="p">(),</span> <span class="n">_tlid</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ResultFromScode</span><span class="p">(</span><span class="n">SELFREG_E_TYPELIB</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">COleObjectFactoryEx</span><span class="o">::</span><span class="n">UpdateRegistryAll</span><span class="p">(</span><span class="n">TRUE</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ResultFromScode</span><span class="p">(</span><span class="n">SELFREG_E_CLASS</span><span class="p">);</span>
+
+    <span class="c1">// 标记控件初始化安全.</span>
+    <span class="c1">// 创建初始化安全组件种类</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">CreateComponentCategory</span><span class="p">(</span><span class="n">CATID_SafeForInitializing</span><span class="p">,</span> <span class="s">L&quot;Controls safely initializable from persistent data!&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="c1">// 注册初始化安全</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">RegisterCLSIDInCategory</span><span class="p">(</span><span class="n">CLSID_SafeItem</span><span class="p">,</span> <span class="n">CATID_SafeForInitializing</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="c1">// 标记控件脚本安全</span>
+    <span class="c1">// 创建脚本安全组件种类 </span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">CreateComponentCategory</span><span class="p">(</span><span class="n">CATID_SafeForScripting</span><span class="p">,</span> <span class="s">L&quot;Controls safely scriptable!&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="c1">// 注册脚本安全组件种类</span>
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">RegisterCLSIDInCategory</span><span class="p">(</span><span class="n">CLSID_SafeItem</span><span class="p">,</span> <span class="n">CATID_SafeForScripting</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">NOERROR</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//////////////////////////////////////////////////////////////////</span>
+<span class="c1">// DllUnregisterServer - Removes entries from the system registry</span>
+<span class="n">STDAPI</span> <span class="nf">DllUnregisterServer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">HRESULT</span> <span class="n">hr</span><span class="p">;</span>
+    <span class="n">AFX_MANAGE_STATE</span><span class="p">(</span><span class="n">_afxModuleAddrThis</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">AfxOleUnregisterTypeLib</span><span class="p">(</span><span class="n">_tlid</span><span class="p">,</span> <span class="n">_wVerMajor</span><span class="p">,</span> <span class="n">_wVerMinor</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ResultFromScode</span><span class="p">(</span><span class="n">SELFREG_E_TYPELIB</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">COleObjectFactoryEx</span><span class="o">::</span><span class="n">UpdateRegistryAll</span><span class="p">(</span><span class="n">FALSE</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ResultFromScode</span><span class="p">(</span><span class="n">SELFREG_E_CLASS</span><span class="p">);</span>
+
+    <span class="c1">// 删除控件初始化安全入口.</span>
+    <span class="n">hr</span><span class="o">=</span><span class="n">UnRegisterCLSIDInCategory</span><span class="p">(</span><span class="n">CLSID_SafeItem</span><span class="p">,</span> <span class="n">CATID_SafeForInitializing</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="c1">// 删除控件脚本安全入口</span>
+    <span class="n">hr</span><span class="o">=</span><span class="n">UnRegisterCLSIDInCategory</span><span class="p">(</span><span class="n">CLSID_SafeItem</span><span class="p">,</span> <span class="n">CATID_SafeForScripting</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">hr</span><span class="p">;</span>
+
+    <span class="c1">//////////////////////////</span>
+    <span class="k">return</span> <span class="n">NOERROR</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>至此对工程的修改完成了，现在控件就可以在自注册时就注册为安全控件了！</p>
+
+<h4 id="section-7">3.3.4、手动修改注册表</h4>
+
+<p>我们可以自己手动为控件在注册表中添加安全支持，实际上我们所需要的两个项（Key）就是这样的形式：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="err">\</span><span class="n">HKEY_LOCAL_MACHINE</span><span class="err">\</span><span class="n">SOFTWARE</span><span class="err">\</span><span class="n">Classes</span><span class="err">\</span><span class="n">CLSID</span><span class="err">\</span><span class="o">&lt;</span><span class="n">GUID</span> <span class="n">of</span> <span class="n">control</span> <span class="n">class</span><span class="o">&gt;</span><span class="err">\</span><span class="n">Implemented</span> <span class="n">Categories</span><span class="err">\</span><span class="o">&lt;</span><span class="n">GUID</span> <span class="n">of</span> <span class="n">category</span><span class="o">&gt;</span></code></pre></div>
+
+<p>ActiveX SDK头文件ObjSafe.H 已经为类别CATID_SafeForInitializing和CATID_SafeForScripting定义了GUID值。因此对于特定的工程，如果控件类的GUID是{20048BB3-DB68-11CF-9CAF-00AA006CB425}，那么我们就只需要添加两个注册表项：  </p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">REGEDIT4</span>
+       
+   <span class="p">[</span><span class="n">HKEY_CLASSES_ROOT</span><span class="err">\</span><span class="n">CLSID</span><span class="err">\</span><span class="p">{</span><span class="mi">20048</span><span class="n">BB3</span><span class="o">-</span><span class="n">DB68</span><span class="o">-</span><span class="mi">11</span><span class="n">CF</span><span class="o">-</span><span class="mi">9</span><span class="n">CAF</span><span class="o">-</span><span class="mo">00</span><span class="n">AA006CB425</span><span class="p">}</span><span class="err">\</span><span class="n">Implemented</span> <span class="n">Categories</span><span class="p">]</span>
+       
+   <span class="p">[</span><span class="n">HKEY_CLASSES_ROOT</span><span class="err">\</span><span class="n">CLSID</span><span class="err">\</span><span class="p">{</span><span class="mi">20048</span><span class="n">BB3</span><span class="o">-</span><span class="n">DB68</span><span class="o">-</span><span class="mi">11</span><span class="n">CF</span><span class="o">-</span><span class="mi">9</span><span class="n">CAF</span><span class="o">-</span><span class="mo">00</span><span class="n">AA006CB425</span><span class="p">}</span><span class="err">\</span><span class="n">Implemented</span> <span class="n">Categories</span><span class="err">\</span><span class="p">{</span><span class="mi">7</span><span class="n">DD95801</span><span class="o">-</span><span class="mi">9882</span><span class="o">-</span><span class="mi">11</span><span class="n">CF</span><span class="o">-</span><span class="mf">9F</span><span class="n">A9</span><span class="o">-</span><span class="mo">00</span><span class="n">AA006C42C4</span><span class="p">}]</span>
+       
+   <span class="p">[</span><span class="n">HKEY_CLASSES_ROOT</span><span class="err">\</span><span class="n">CLSID</span><span class="err">\</span><span class="p">{</span><span class="mi">20048</span><span class="n">BB3</span><span class="o">-</span><span class="n">DB68</span><span class="o">-</span><span class="mi">11</span><span class="n">CF</span><span class="o">-</span><span class="mi">9</span><span class="n">CAF</span><span class="o">-</span><span class="mo">00</span><span class="n">AA006CB425</span><span class="p">}</span><span class="err">\</span><span class="n">Implemented</span> <span class="n">Categories</span><span class="err">\</span><span class="p">{</span><span class="mi">7</span><span class="n">DD95802</span><span class="o">-</span><span class="mi">9882</span><span class="o">-</span><span class="mi">11</span><span class="n">CF</span><span class="o">-</span><span class="mf">9F</span><span class="n">A9</span><span class="o">-</span><span class="mo">00</span><span class="n">AA006C42C4</span><span class="p">}]</span></code></pre></div>
+
+<p>将以上代码拷贝到一个*.reg中去，保存后执行就可以将GUID为{20048BB3-DB68-11CF-9CAF-00AA006CB425}的控件类注册为安全控件。有时候注册表中不一定有那两个类别，因此我们还需要自己来描述这两个重要的类别： </p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">REGEDIT4</span>
+
+<span class="p">[</span><span class="n">HKEY_CLASSES_ROOT</span><span class="err">\</span><span class="n">Component</span> <span class="n">Categories</span><span class="p">]</span>
+
+<span class="p">[</span><span class="n">HKEY_CLASSES_ROOT</span><span class="err">\</span><span class="n">Component</span> <span class="n">Categories</span><span class="err">\</span><span class="p">{</span><span class="mi">7</span><span class="n">DD95801</span><span class="o">-</span><span class="mi">9882</span><span class="o">-</span><span class="mi">11</span><span class="n">CF</span><span class="o">-</span><span class="mf">9F</span><span class="n">A9</span><span class="o">-</span><span class="mo">00</span><span class="n">AA006C42C4</span><span class="p">}]</span>
+<span class="s">&quot;409&quot;</span><span class="o">=</span><span class="s">&quot;Controls that are safely scriptable&quot;</span>
+
+<span class="p">[</span><span class="n">HKEY_CLASSES_ROOT</span><span class="err">\</span><span class="n">Component</span> <span class="n">Categories</span><span class="err">\</span><span class="p">{</span><span class="mi">7</span><span class="n">DD95802</span><span class="o">-</span><span class="mi">9882</span><span class="o">-</span><span class="mi">11</span><span class="n">CF</span><span class="o">-</span><span class="mf">9F</span><span class="n">A9</span><span class="o">-</span><span class="mo">00</span><span class="n">AA006C42C4</span><span class="p">}]</span>
+<span class="s">&quot;409&quot;</span><span class="o">=</span><span class="s">&quot;Controls safely initializable from persistent data&quot;</span></code></pre></div>
+
+<p>同样，将以上代码拷贝到*.reg文件中执行后，就可以生成这两个类别。以后就可以使用这两个类别来注册安全控件了。注意：除非你没有别的办法，千万不要使用这个方法，也不要使用这个方法来标记实际上并不安全的控件为安全控件。</p>
+
+<p>那么方法3和方法1和2有什么不同的呢？其实他们最大的不同就是方法1和2实际上都加入各种判断代码在修改注册表之前和之后，实际上也防止了不安全控件注册为安全控件的行为。因此除非万不得已，不要用方法3。就算是方法1和方法2，也要在确定自己控件足够安全的情况下才使用。</p>
+
+<h3 id="section-8">3.4、另一个问题</h3>
+
+<p>在施行了这些方法后，那个讨厌的对话框没了，但是对于window XP SP2及以上版本来说，用默认安全级别的IE打开任何包括了控件或者脚本的网页时，在运行代码前都会弹出一个这样的条框:</p>
+
+<p><img src="/img/060510_2.jpg" alt="对话框" /></p>
+
+<p><img src="/img/060510_3.jpg" alt="对话框" /></p>
+
+<p><img src="/img/060510_4.jpg" alt="对话框" /></p>
+
+<p>这也是为了不断提醒用户这样的操作可能会有安全上的危险，可是这样也会影响用户的操作，对于一个频繁访问的某一个页面来说，这个横条和对话框都是不易忍受的，如果你正在编写这样包括脚本和控件的页面，那么这里有一个窍门来解决这样的问题。请把下面这句加在网页文件源代码的&lt;html&gt;和&lt;head&gt;之间：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="o">&lt;!--</span> <span class="n">saved</span> <span class="n">from</span> <span class="n">url</span><span class="o">=</span><span class="p">(</span><span class="mo">0017</span><span class="p">)</span><span class="nl">http</span><span class="p">:</span><span class="c1">//localhost/ --&gt;</span></code></pre></div>
+
+<p>在你做网页时，如果网页需要运行ActiveX或脚本，并且他们位于客户端以外的地方，那么可以添加这个注释语句，IE当然不会不理他， IE会按照他指出的URL去找脚本的位置。 这句话的作用是让Internet Explorer 使用 Internet 区域的安全设置，而不是本地计算机区域的设置。其中0017代表后面网址的字符个数，后面的网址字符串要指向注册了这个组件或脚本的地方。如果是象上面那样，就表明是在自己的电脑上。把这句话删除，有些脚本就不执行了。</p>
+
+<h3 id="section-9">3.5、什么是足够安全的控件</h3>
+
+<p>我怎么知道我的控件是不是足够安全呢？请好好看看这一节。一旦标注出现在控件上而非网页上时，那些标注为安全的控件就一定要在所有可能的网页上是安全的。因此一个控件被标注为安全的就表示它能够保护自己并与网页制作者可能在初始化或脚本过程中做的不愉快的东西隔离。实际上很容易检验当被用于网页时一个控件是否安全的：当你标注你的控件为初始化安全时，相当于你在发誓无论用什么样的值来初始化你的控件，都不可能发生伤害用户的系统或者威胁到用户的安全；当你标注你的控件为脚本安全时，那就是说你有把握说无论控件的函数和属性如何被网页的脚本操作，控件本身都不会做出危及用户安全的行为。换句话说，它必须接受任何脚本中任何顺序的函数和/或属性调用而不会发生危险。　在设计控件过程中，下面是一些表明此控件是安全的条款：</p>
+
+<blockquote>
+  <ul>
+    <li>不要操作用户的文件系统；</li>
+    <li>不要操作注册表（除非是注册和注销它本身）；</li>
+    <li>不要数组越界或其他的内存错误；</li>
+    <li>验证（或更正）所有的输入，包括初始化，方法的参数和属性的Set函数；</li>
+    <li>不要滥用与用户有关的活是用户提供的数据；</li>
+    <li>做大量的测试。</li>
+  </ul>
+</blockquote>
+
+<p>这份表还远没有结束，但这些至少都是必要的。还有一点很重要，就是千万不要把本来实际上不安全的控件注册为安全的，尽管这很诱人（比如说你没有控件的源代码）。无论控件做什么事情的，一旦控件被标注为安全的，那么所有的网页都会省略对这个控件的安全检测。到目前为止，还没有方法能把一个控件标注为仅对特定网页是安全的。标注不安全控件为安全空间的一个简单安全的选择就是写一个包含了不安全控件的新安全控件。只要确保新安全控件的初始化，方法和属性都是安全的就行了。 </p>
+
+<h2 id="section-10">4、总结</h2>
+
+<p>控件的安全问题可以通过各种各样的方法来巧妙的解决，但是对于一个负责的程序员来说，一定要确保控件本身是绝对安全的。一个欲发布的控件往往是要有用户使用的，如果本身不安全的控件被当成安全的控件流传出去，那就是恶意行为了。为了对用户负责，也为了对自己负责，程序员一定要再三检查自己的控件是否足够安全，而后再决定是否发布及以何种方式发布。</p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    <a href="/news/2006/04/30/Universe-Think/">
+      西山居士的宇宙模型遐想
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      博文
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      30 Apr 2006
+    </span>
+    <a href="https://github.com/AcePeak" class="post-author">
+      <img src="https://github.com/AcePeak.png" class="avatar" alt="AcePeak" width="24" height="24">
+      AcePeak
+    </a>
+  </div>
+  <div class="post-content">
+    <p>以前学习了物理中原子等知识的时候我就有这种想法了，后来不时又在这么想，现在有了blog那就放上来好了：</p>
+
+<p>空间无限大,时间无限长。</p>
+
+<p>太阳系由一颗太阳和九大行星组成，银河系由非常多太阳系这样的星系组成，而更远更大的星系团等由许多的银河系这样的星系组成。</p>
+
+<p>生物由不同的细胞组成，这些细胞都很像，细胞里面又有很多结构，每个结构又由许多的分子等组成。</p>
+
+<p>分子由原子组成，原子由原子核和电子组成，原子核又可逐渐往下细分。</p>
+
+<p>根据量子物理学原理，质量越大时间越慢,质量越小时间越快。用我们的眼光看宇宙的运行速度(相对)，几乎每天晚上的星座方位变化不大；但是用我们的眼光看分子内电子等的运动，又觉得非常快,其轨迹甚至不明所以。</p>
+
+<p>当我们有一天可以用10的20次方frames/sec的摄像机拍摄电子表面及其活动时，也许会惊奇的发现，真的是天下没有完全相同的物质，每个电子都不同，而且越看越觉得很熟悉，像极了现实中的星球。也许电子表面也在不停的变化，前后两桢显示的是不同的时代，也许也存在着昙花一现的生物。但是那一定只是一瞬间而且他们的力量不足以动摇整个原子。</p>
+
+<p>换一个角度，我们，太阳系，银河系共同组成了更庞大物质的一个小部分，也许宇宙的膨胀与收缩只是那个物质的一呼吸间，一次“心跳”（如果它也会的话）。也许有一天那个物质被同一个维的智能生物使用我上面说的那种方法在观察我们的太阳系（对于他们，也许只是一个分子甚至更小），当然，他们的一秒相当于我们的非常长的时间，也许是10的10次，也许是10的20次，甚至更多。</p>
+
+<p>不同的维度物质不能跨越自己的维度。我们如果要向高一维的物质发出信号，那么也许到地球毁灭的时候它才可以看到，太阳系毁灭的时候它才能知道这是信号，银河系毁灭的时候才能研究出来如何给我们发消息，它每说一个字，我们就要死掉100代。这也许只是个笑话，但是这也许可以很好的解释了其中的关系。</p>
+
+<p>没错，一切都是时间搞的鬼。</p>
+
+  </div>
+</article>
+
+
 
       </div>
 
@@ -424,20 +854,40 @@ eCPM = 收入/网页展示次数×1000</p>
       <li class=""> <a href="/news/2014/12/17/Mac+GithubPages+Jekyll-site/">Mac+GithubPages+Jekyll配置个人网站</a> </li>
       <br/>
       
+      <li class=""> <a href="/news/2006/05/10/ActiveX-Safety/">剖析ActiveX控件安全问题</a> </li>
+      <br/>
+      
+      <li class=""> <a href="/news/2006/04/30/Universe-Think/">西山居士的宇宙模型遐想</a> </li>
+      <br/>
+      
     </ul>
     
     <h4>分类索引</h4>
     <ul>
     
-    <li class="category_list_item"><a href="\cat.html">jekyll</a> (1) </li>
+    <li class="category_list_item"><a href="\cat.html">博文</a> (1) </li>
       
-    <li class="category_list_item"><a href="\cat.html">adplatform</a> (3) </li>
+    <li class="category_list_item"><a href="\cat.html">internet</a> (2) </li>
+      
+    <li class="category_list_item"><a href="\cat.html">广告平台</a> (3) </li>
       
     </ul>
     
     <h4>标签云</h4>
     <ul>
     
+    <li class="category_list_item"><a href="\tags.html">原生</a> (4) </li>
+      
+    <li class="category_list_item"><a href="\tags.html">宇宙</a> (1) </li>
+      
+    <li class="category_list_item"><a href="\tags.html">遐想</a> (1) </li>
+      
+    <li class="category_list_item"><a href="\tags.html">C++</a> (1) </li>
+      
+    <li class="category_list_item"><a href="\tags.html">ActiveX</a> (1) </li>
+      
+    <li class="category_list_item"><a href="\tags.html">Safety</a> (1) </li>
+      
     <li class="category_list_item"><a href="\tags.html">Mac</a> (1) </li>
       
     <li class="category_list_item"><a href="\tags.html">Github</a> (1) </li>
@@ -446,9 +896,9 @@ eCPM = 收入/网页展示次数×1000</p>
       
     <li class="category_list_item"><a href="\tags.html">WebSite</a> (1) </li>
       
-    <li class="category_list_item"><a href="\tags.html">adplatform</a> (3) </li>
+    <li class="category_list_item"><a href="\tags.html">市场</a> (3) </li>
       
-    <li class="category_list_item"><a href="\tags.html">Marketing</a> (3) </li>
+    <li class="category_list_item"><a href="\tags.html">术语</a> (1) </li>
       
     </ul>
     </aside>

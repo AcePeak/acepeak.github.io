@@ -2,14 +2,12 @@
 layout: news_item
 title: PubNative发布世界上首个满足专业需求的“原生广告适配器”
 author: AcePeak
-categories: [adplatform]
+categories: [广告平台]
 tags: 
-- adplatform
-- Marketing
+- 市场
 ---
 
 原文  [http://www.adexchanger.cn/tech-company/9903.html](http://www.adexchanger.cn/tech-company/9903.html)
-
 
 
 前Motility Ads GM 兼Co-Founder 加入原生 SSP 管理团队
