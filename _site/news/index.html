@@ -73,6 +73,8 @@
     <option value="/news/">所有博文</option>
     <optgroup label="v1.x">
       
+      <option value="/news/2015/01/07/Jekyll-Date/">GithubPages+Jekyll模板中各类型对象的方法介绍</option>
+      
       <option value="/news/2015/01/02/Advertise-Mobile-Platform-Market/">2014年移动广告平台界投融资整理</option>
       
       <option value="/news/2014/12/28/Advertise-glossary/">广告平台术语</option>
@@ -80,6 +82,10 @@
       <option value="/news/2014/12/23/PubNative-Publish/">PubNative发布世界上首个满足专业需求的“原生广告适配器”</option>
       
       <option value="/news/2014/12/17/Mac+GithubPages+Jekyll-site/">Mac+GithubPages+Jekyll配置个人网站</option>
+      
+      <option value="/news/2006/05/19/CPP-Test-English/">C++ STL 习题</option>
+      
+      <option value="/news/2006/05/17/Template-Test-English/">C++ STL 习题</option>
       
       <option value="/news/2006/05/10/ActiveX-Safety/">剖析ActiveX控件安全问题</option>
       
@@ -92,6 +98,883 @@
 
       <div class="unit four-fifths">
         
+  <article>
+  <h2>
+    <a href="/news/2015/01/07/Jekyll-Date/">
+      GithubPages+Jekyll模板中各类型对象的方法介绍
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      internet
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      07 Jan 2015
+    </span>
+    <a href="https://github.com/AcePeak" class="post-author">
+      <img src="https://github.com/AcePeak.png" class="avatar" alt="AcePeak" width="24" height="24">
+      AcePeak
+    </a>
+  </div>
+  <div class="post-content">
+    <p>Jekyll 使用Liquid来处理模板数据。在建立中文博客的过程中，常常会苦于无法在文章中显示中文或阿拉伯数字形式日期的问题，而网上绝大多数给出的方案都只是官方的文档给出的 07 Jan 2015。为了能够了解Jekyll模板中不同对象究竟有哪些可以使用的方法，写下此文。</p>
+
+<p>在Liquid中，以上面的语句为例，page为object对象，page.date为attribute属性，后面的date_to_string叫做filter过滤器。请参考Liquid官网<a href="http://docs.shopify.com/themes/liquid-documentation/objects">关于Objects的介绍</a>。而在Jekyll中page被叫做Global Variables全局变量，而每个全局变量拥有的多个属性被称为子变量，如Site全局变量的子变量为Site Variables。 请参考官网的<a href="http://jekyllrb.com/docs/variables/">变量介绍一页</a>。</p>
+
+<p>不同的属性拥有不同的类型，有的属于数组，有的属于字符，有的属于日期时间等等，下面分别介绍不同类型属性的过滤器：</p>
+
+<h1 id="section">数组过滤器</h1>
+
+<p>主要包括以下对象：</p>
+
+<blockquote>
+  <ul>
+    <li>site.pages</li>
+    <li>site.posts</li>
+    <li>site.related_posts</li>
+    <li>site.static_files</li>
+    <li>site.html_pages</li>
+    <li>site.collections</li>
+    <li>site.data</li>
+    <li>site.documents</li>
+    <li>site.categories</li>
+    <li>site.categories.CATEGORY</li>
+    <li>site.tags</li>
+    <li>site.tags.TAG</li>
+    <li>site.[CONFIGURATION_DATA]</li>
+    <li>page.categories</li>
+    <li>page.tags</li>
+    <li>paginator.posts</li>
+  </ul>
+</blockquote>
+
+<h3 id="join">join</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">tags</span> <span class="o">|</span> <span class="ss">join</span><span class="p">:</span> <span class="s1">&#39;, &#39;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">tag1</span><span class="p">,</span> <span class="n">tag2</span><span class="p">,</span> <span class="n">tag3</span></code></pre></div>
+
+<h3 id="first">first</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="s2">&quot;sale&quot;</span><span class="p">,</span> <span class="s2">&quot;mens&quot;</span><span class="p">,</span> <span class="s2">&quot;womens&quot;</span><span class="p">,</span> <span class="s2">&quot;awesome&quot;</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">tags</span> <span class="o">|</span> <span class="n">first</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">sale</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">first</span> <span class="o">==</span> <span class="s2">&quot;sale&quot;</span> <span class="sx">%}</span>
+<span class="sx">    This product is on sale!</span>
+<span class="sx">{% endif %}</span></code></pre></div>
+
+<h3 id="last">last</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="s2">&quot;sale&quot;</span><span class="p">,</span> <span class="s2">&quot;mens&quot;</span><span class="p">,</span> <span class="s2">&quot;womens&quot;</span><span class="p">,</span> <span class="s2">&quot;awesome&quot;</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">tags</span> <span class="o">|</span> <span class="n">last</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">awesome</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">last</span> <span class="o">==</span> <span class="s2">&quot;sale&quot;</span> <span class="sx">%}</span>
+<span class="sx">    This product is on sale!</span>
+<span class="sx">{% endif %}</span></code></pre></div>
+
+<h3 id="map">map</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">collection</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Spring&quot;</span><span class="p">,</span> <span class="s2">&quot;Summer&quot;</span><span class="p">,</span> <span class="s2">&quot;Fall&quot;</span><span class="p">,</span> <span class="s2">&quot;Winter&quot;</span> <span class="o">--&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">assign</span> <span class="n">collection_titles</span> <span class="o">=</span> <span class="n">collections</span> <span class="o">|</span> <span class="ss">map</span><span class="p">:</span> <span class="s1">&#39;title&#39;</span> <span class="sx">%}</span>
+<span class="sx">{{ collection_titles }</span><span class="p">}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">SpringSummerFallWinter</span></code></pre></div>
+
+<h3 id="size">size</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;is this a 30 character string?&#39;</span> <span class="o">|</span> <span class="n">size</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">30</span></code></pre></div>
+
+<h3 id="sort">sort</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">products</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span> <span class="o">--&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">assign</span> <span class="n">products</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">products</span> <span class="o">|</span> <span class="ss">sort</span><span class="p">:</span> <span class="s1">&#39;title&#39;</span> <span class="sx">%}</span>
+<span class="sx">{% for product in products %}</span>
+   <span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">title</span> <span class="p">}}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">A</span> <span class="n">B</span> <span class="n">a</span> <span class="n">b</span></code></pre></div>
+
+<h1 id="html">HTML标签过滤器</h1>
+
+<h3 id="imgtag">img_tag</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;smirking_gnome.gif&#39;</span> <span class="o">|</span> <span class="n">asset_url</span> <span class="o">|</span> <span class="ss">img_tag</span><span class="p">:</span> <span class="s1">&#39;Smirking Gnome&#39;</span><span class="p">,</span> <span class="s1">&#39;cssclass1 cssclass2&#39;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;//cdn.shopify.com/s/files/1/0147/8382/t/15/assets/smirking_gnome.gif?v=1384022871&quot;</span> <span class="n">alt</span><span class="o">=</span><span class="s2">&quot;Smirking Gnome&quot;</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;cssclass1 cssclass2&quot;</span> <span class="sr">/&gt;</span></code></pre></div>
+
+<h3 id="scripttag">script_tag</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;shop.js&#39;</span> <span class="o">|</span> <span class="n">asset_url</span> <span class="o">|</span> <span class="n">script_tag</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;//cdn.shopify.com/s/files/1/0087/0462/t/394/assets/shop.js?28178&quot;</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt;</span></code></pre></div>
+
+<h3 id="stylesheettag">stylesheet_tag</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;shop.css&#39;</span> <span class="o">|</span> <span class="n">asset_url</span> <span class="o">|</span> <span class="n">stylesheet_tag</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">link</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;//cdn.shopify.com/s/files/1/0087/0462/t/394/assets/shop.css?28178&quot;</span> <span class="n">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="n">type</span><span class="o">=</span><span class="s2">&quot;text/css&quot;</span> <span class="n">media</span><span class="o">=</span><span class="s2">&quot;all&quot;</span> <span class="sr">/&gt;</span></code></pre></div>
+
+<h1 id="section-1">数学函数过滤器</h1>
+
+<blockquote>
+  <p>主要包括以下对象：
+* paginator.per_page
+* paginator.total_posts
+* paginator.total_pages
+* paginator.page
+* paginator.previous_page
+* paginator.previous_page_path
+* paginator.next_page
+* paginator.next_page_path</p>
+</blockquote>
+
+<h3 id="ceil">ceil</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="mi">4</span><span class="o">.</span><span class="mi">6</span> <span class="o">|</span> <span class="n">ceil</span> <span class="p">}}</span> 
+<span class="p">{{</span> <span class="mi">4</span><span class="o">.</span><span class="mi">3</span> <span class="o">|</span> <span class="n">ceil</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">5</span>
+<span class="mi">5</span></code></pre></div>
+
+<h3 id="dividedby">divided_by</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">|</span> <span class="ss">divided_by</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">20</span></code></pre></div>
+
+<h3 id="floor">floor</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="mi">4</span><span class="o">.</span><span class="mi">6</span> <span class="o">|</span> <span class="n">floor</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="mi">4</span><span class="o">.</span><span class="mi">3</span> <span class="o">|</span> <span class="n">floor</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">4</span>
+<span class="mi">4</span></code></pre></div>
+
+<h3 id="minus">minus</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">|</span> <span class="ss">minus</span><span class="p">:</span> <span class="mi">15</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">185</span></code></pre></div>
+
+<h3 id="plus">plus</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">|</span> <span class="ss">plus</span><span class="p">:</span> <span class="mi">15</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">215</span></code></pre></div>
+
+<h3 id="round">round</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="mi">4</span><span class="o">.</span><span class="mi">6</span> <span class="o">|</span> <span class="n">round</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="mi">4</span><span class="o">.</span><span class="mi">3</span> <span class="o">|</span> <span class="n">round</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="mi">4</span><span class="o">.</span><span class="mi">5612</span> <span class="o">|</span> <span class="ss">round</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">5</span>
+<span class="mi">4</span>
+<span class="mi">4</span><span class="o">.</span><span class="mi">56</span></code></pre></div>
+
+<h3 id="times">times</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">price</span> <span class="o">|</span> <span class="ss">times</span><span class="p">:</span> <span class="mi">1</span><span class="o">.</span><span class="mi">15</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">230</span></code></pre></div>
+
+<h3 id="modulo">modulo</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="mi">12</span> <span class="o">|</span> <span class="ss">modulo</span><span class="p">:</span><span class="mi">5</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">2</span></code></pre></div>
+
+<h1 id="section-2">货币函数过滤器</h1>
+
+<h3 id="money">money</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="mi">145</span> <span class="o">|</span> <span class="n">money</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="k">if</span> <span class="s2">&quot;HTML without currency&quot;</span> <span class="n">is</span> <span class="err">$</span><span class="p">{{</span> <span class="n">amount</span> <span class="p">}}</span> <span class="o">--&gt;</span>
+<span class="vg">$1</span><span class="o">.</span><span class="mi">45</span>
+<span class="o">&lt;!--</span> <span class="k">if</span> <span class="s2">&quot;HTML without currency&quot;</span> <span class="n">is</span> <span class="err">€</span><span class="p">{{</span> <span class="n">amount_no_decimals</span> <span class="p">}}</span> <span class="o">--&gt;</span>
+<span class="err">€</span><span class="mi">1</span></code></pre></div>
+
+<h3 id="moneywithcurrency">money_with_currency</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="mi">1</span><span class="o">.</span><span class="mi">45</span> <span class="o">|</span> <span class="n">money_with_currency</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="k">if</span> <span class="s2">&quot;HTML with currency&quot;</span> <span class="n">is</span> <span class="err">$</span><span class="p">{{</span> <span class="n">amount</span> <span class="p">}}</span> <span class="no">CAD</span> <span class="o">--&gt;</span>
+<span class="vg">$1</span><span class="o">.</span><span class="mi">45</span> <span class="no">CAD</span></code></pre></div>
+
+<h3 id="moneywithoutcurrency">money_without_currency</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="mi">145</span> <span class="o">|</span> <span class="n">money_without_currency</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">1</span><span class="o">.</span><span class="mi">45</span></code></pre></div>
+
+<h1 id="section-3">字符串过滤器</h1>
+
+<blockquote>
+  <p>主要包括以下对象：
+* page.content
+* page.title
+* page.excerpt
+* page.url
+* page.id
+* page.path</p>
+</blockquote>
+
+<h3 id="append">append</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;sales&#39;</span> <span class="o">|</span> <span class="ss">append</span><span class="p">:</span> <span class="s1">&#39;.jpg&#39;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">sales</span><span class="o">.</span><span class="n">jpg</span></code></pre></div>
+
+<h3 id="camelcase">camelcase</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;coming-soon&#39;</span> <span class="o">|</span> <span class="n">camelcase</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">ComingSoon</span></code></pre></div>
+
+<h3 id="capitalize">capitalize</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;capitalize me&#39;</span> <span class="o">|</span> <span class="n">capitalize</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Capitalize</span> <span class="n">me</span></code></pre></div>
+
+<h3 id="downcase">downcase</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;UPPERCASE&#39;</span> <span class="o">|</span> <span class="n">downcase</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">uppercase</span></code></pre></div>
+
+<h3 id="escape">escape</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;&lt;p&gt;test&lt;/p&gt;&quot;</span> <span class="o">|</span> <span class="n">escape</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">The</span> <span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span> <span class="n">tags</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">rendered</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="nb">test</span><span class="o">&lt;</span><span class="sr">/p&gt;</span></code></pre></div>
+
+<h3 id="handlehandleize">handle/handleize</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;100% M &amp; Ms!!!&#39;</span> <span class="o">|</span> <span class="n">handleize</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">100</span><span class="o">-</span><span class="n">m</span><span class="o">-</span><span class="n">ms</span></code></pre></div>
+
+<h3 id="md5">md5</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;http://www.gravatar.com/avatar/{{ comment.email | remove: &#39; &#39; | strip_newlines | downcase | md5 }}&quot;</span> <span class="sr">/&gt;</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;http://www.gravatar.com/avatar/2a95ab7c950db9693c2ceb767784c201&quot;</span> <span class="sr">/&gt;</span></code></pre></div>
+
+<h3 id="newlinetobr">newline_to_br</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="n">capture</span> <span class="n">var</span> <span class="sx">%}</span>
+<span class="sx">One </span>
+<span class="sx">Two</span>
+<span class="sx">Three</span>
+<span class="sx">{% endcapture %}</span>
+<span class="p">{{</span> <span class="n">var</span> <span class="o">|</span> <span class="n">newline_to_br</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">One</span> <span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+<span class="no">Two</span><span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span>
+<span class="no">Three</span><span class="o">&lt;</span><span class="n">br</span><span class="o">&gt;</span></code></pre></div>
+
+<h3 id="pluralize">pluralize</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">cart</span><span class="o">.</span><span class="n">item_count</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="n">cart</span><span class="o">.</span><span class="n">item_count</span> <span class="o">|</span> <span class="ss">pluralize</span><span class="p">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">3</span> <span class="n">items</span></code></pre></div>
+
+<h3 id="prepend">prepend</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;sale&#39;</span> <span class="o">|</span> <span class="ss">prepend</span><span class="p">:</span> <span class="s1">&#39;Made a great &#39;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Made</span> <span class="n">a</span> <span class="n">great</span> <span class="n">sale</span></code></pre></div>
+
+<h3 id="remove">remove</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;Hello, world. Goodbye, world.&quot;</span> <span class="o">|</span> <span class="ss">remove</span><span class="p">:</span> <span class="s2">&quot;world&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Made</span> <span class="n">a</span> <span class="n">great</span> <span class="n">saleHello</span><span class="p">,</span> <span class="o">.</span> <span class="no">Goodbye</span><span class="p">,</span> <span class="o">.</span></code></pre></div>
+
+<h3 id="removefirst">remove_first</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;Hello, world. Goodbye, world.&quot;</span> <span class="o">|</span> <span class="ss">remove_first</span><span class="p">:</span> <span class="s2">&quot;world&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Hello</span><span class="p">,</span> <span class="o">.</span> <span class="no">Goodbye</span><span class="p">,</span> <span class="n">world</span><span class="o">.</span></code></pre></div>
+
+<h3 id="replace">replace</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Awesome Shoes&quot;</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">title</span> <span class="o">|</span> <span class="ss">replace</span><span class="p">:</span> <span class="s1">&#39;Awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;Mega&#39;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Mega</span> <span class="no">Shoes</span></code></pre></div>
+
+<h3 id="replacefirst">replace_first</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">product</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Awesome Awesome Shoes&quot;</span> <span class="o">--&gt;</span>
+<span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">title</span> <span class="o">|</span> <span class="ss">replace_first</span><span class="p">:</span> <span class="s1">&#39;Awesome&#39;</span><span class="p">,</span> <span class="s1">&#39;Mega&#39;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Mega</span> <span class="no">Awesome</span> <span class="no">Shoes</span></code></pre></div>
+
+<h3 id="slice">slice</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;hello&quot;</span> <span class="o">|</span> <span class="ss">slice</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}}</span>
+<span class="p">{{</span> <span class="s2">&quot;hello&quot;</span> <span class="o">|</span> <span class="ss">slice</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">e</span>
+<span class="n">ell</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;hello&quot;</span> <span class="o">|</span> <span class="ss">slice</span><span class="p">:</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span>  <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">el</span></code></pre></div>
+
+<h3 id="split">split</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="n">assign</span> <span class="n">words</span> <span class="o">=</span> <span class="s2">&quot;Uses cheat codes, calls the game boring.&quot;</span> <span class="o">|</span> <span class="nb">split</span><span class="p">:</span> <span class="s1">&#39; &#39;</span> <span class="sx">%}</span>
+<span class="sx">First word: {{ words.first }</span><span class="p">}</span>
+<span class="no">First</span> <span class="ss">word</span><span class="p">:</span> <span class="p">{{</span> <span class="n">words</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="p">}}</span>
+<span class="no">Second</span> <span class="ss">word</span><span class="p">:</span> <span class="p">{{</span> <span class="n">words</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">}}</span>
+<span class="no">Last</span> <span class="ss">word</span><span class="p">:</span> <span class="p">{{</span> <span class="n">words</span><span class="o">.</span><span class="n">last</span> <span class="p">}}</span>
+<span class="no">All</span> <span class="ss">words</span><span class="p">:</span> <span class="p">{{</span> <span class="n">words</span> <span class="o">|</span> <span class="ss">join</span><span class="p">:</span> <span class="s1">&#39;, &#39;</span> <span class="p">}}</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">word</span> <span class="k">in</span> <span class="n">words</span> <span class="sx">%}</span>
+<span class="sx">{{ word }</span><span class="p">}</span> 
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">First</span> <span class="ss">word</span><span class="p">:</span> <span class="no">Uses</span>
+<span class="no">First</span> <span class="ss">word</span><span class="p">:</span> <span class="no">Uses</span>
+<span class="no">Second</span> <span class="ss">word</span><span class="p">:</span> <span class="n">cheat</span>
+<span class="no">Last</span> <span class="ss">word</span><span class="p">:</span> <span class="n">boring</span><span class="o">.</span>
+<span class="no">All</span> <span class="ss">words</span><span class="p">:</span> <span class="no">Uses</span><span class="p">,</span> <span class="n">cheat</span><span class="p">,</span> <span class="n">codes</span><span class="p">,,</span> <span class="n">calls</span><span class="p">,</span> <span class="n">the</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">boring</span><span class="o">.</span>
+
+<span class="no">Uses</span> <span class="n">cheat</span> <span class="n">codes</span><span class="p">,</span> <span class="n">calls</span> <span class="n">the</span> <span class="n">game</span> <span class="n">boring</span><span class="o">.</span></code></pre></div>
+
+<h3 id="strip">strip</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;   too many spaces      &#39;</span> <span class="o">|</span> <span class="n">strip</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">too</span> <span class="n">many</span> <span class="n">spaces</span></code></pre></div>
+
+<h3 id="lstrip">lstrip</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;   too many spaces           &#39;</span> <span class="o">|</span> <span class="n">lstrip</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">Notice</span> <span class="n">the</span> <span class="n">empty</span> <span class="n">spaces</span> <span class="n">to</span> <span class="n">the</span> <span class="n">right</span> <span class="n">of</span> <span class="n">the</span> <span class="n">string</span> <span class="o">--&gt;</span>
+<span class="n">too</span> <span class="n">many</span> <span class="n">spaces</span></code></pre></div>
+
+<h3 id="rstrip">rstrip</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;   too many spaces      &#39;</span> <span class="o">|</span> <span class="n">rstrip</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">too</span> <span class="n">many</span> <span class="n">spaces</span></code></pre></div>
+
+<h3 id="striphtml">strip_html</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;&lt;h1&gt;Hello&lt;/h1&gt; World&quot;</span> <span class="o">|</span> <span class="n">strip_html</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Hello</span> <span class="no">World</span></code></pre></div>
+
+<h3 id="stripnewlines">strip_newlines</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">description</span> <span class="o">|</span> <span class="n">strip_newlines</span> <span class="p">}}</span></code></pre></div>
+
+<h3 id="truncate">truncate</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;The cat came back the very next day&quot;</span> <span class="o">|</span> <span class="ss">truncate</span><span class="p">:</span> <span class="mi">10</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">The</span> <span class="n">cat</span><span class="o">.</span><span class="n">.</span><span class="o">.</span></code></pre></div>
+
+<h3 id="truncatewords">truncatewords</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;The cat came back the very next day&quot;</span> <span class="o">|</span> <span class="ss">truncatewords</span><span class="p">:</span> <span class="mi">4</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">The</span> <span class="n">cat</span> <span class="n">came</span> <span class="n">back</span><span class="o">.</span><span class="n">.</span><span class="o">.</span></code></pre></div>
+
+<h3 id="uniq">uniq</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="n">assign</span> <span class="n">fruits</span> <span class="o">=</span> <span class="s2">&quot;orange apple banana apple orange&quot;</span> <span class="sx">%}</span>
+<span class="sx">{{ fruits | split: &#39; &#39; | uniq | join: &#39; &#39; }</span><span class="p">}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">orange</span> <span class="n">apple</span> <span class="n">banana</span></code></pre></div>
+
+<h3 id="upcase">upcase</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s1">&#39;i want this to be uppercase&#39;</span> <span class="o">|</span> <span class="n">upcase</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">I</span> <span class="no">WANT</span> <span class="no">THIS</span> <span class="no">TO</span> <span class="no">BE</span> <span class="no">UPPERCASE</span></code></pre></div>
+
+<h3 id="urlescape">url_escape</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;&lt;hello&gt; &amp; &lt;shopify&gt;&quot;</span> <span class="o">|</span> <span class="n">url_escape</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">%</span><span class="mi">3</span><span class="no">Chello</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span><span class="o">%</span><span class="mi">20</span><span class="o">&amp;%</span><span class="mi">20</span><span class="o">%</span><span class="mi">3</span><span class="no">Cshopify</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span></code></pre></div>
+
+<h3 id="urlparamescape">url_param_escape</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="s2">&quot;&lt;hello&gt; &amp; &lt;shopify&gt;&quot;</span> <span class="o">|</span> <span class="n">url_param_escape</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">%</span><span class="mi">3</span><span class="no">Chello</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span><span class="o">%</span><span class="mi">20</span><span class="o">%</span><span class="mi">26</span><span class="o">%</span><span class="mi">20</span><span class="o">%</span><span class="mi">3</span><span class="no">Cshopify</span><span class="o">%</span><span class="mi">3</span><span class="n">E</span></code></pre></div>
+
+<h3 id="numberofwords">number_of_words</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">page</span><span class="o">.</span><span class="n">content</span> <span class="o">|</span> <span class="n">number_of_words</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">1337</span></code></pre></div>
+
+<h3 id="arraytosentencestring">array_to_sentence_string</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">page</span><span class="o">.</span><span class="n">tags</span> <span class="o">|</span> <span class="n">array_to_sentence_string</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">foo</span><span class="p">,</span><span class="n">bar</span><span class="p">,</span><span class="ow">and</span> <span class="n">baz</span></code></pre></div>
+
+<h1 id="section-4">日期过滤器</h1>
+
+<blockquote>
+  <p>主要包括以下对象：
+* site.time
+* page.date</p>
+</blockquote>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%a, %b %d, %y&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Tue</span><span class="p">,</span> <span class="no">Apr</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">14</span></code></pre></div>
+
+<h3 id="aabbreviated-weekday">%a:Abbreviated weekday.</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%a&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">Sat</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="afull-weekday-name">%A:Full weekday name.</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%A&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">Tuesday</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="babbreviated-month-name">%b:Abbreviated month name.</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%b&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">Jan</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="bfull-month-name">%B:Full month name</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%B&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">January</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="cpreferred-local-date-and-time-representation">%c:Preferred local date and time representation</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%c&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">Tue</span> <span class="no">Apr</span> <span class="mi">22</span> <span class="mi">11</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">09</span> <span class="mi">2014</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="dday-of-the-month-zero-padded-01-02-03-etc">%d:Day of the month, zero-padded (01, 02, 03, etc.).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%d&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mo">04</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="dday-of-the-month-not-zero-padded-123-etc">%-d:Day of the month, not zero-padded (1,2,3, etc.).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%-d&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">4</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="dformats-the-date-ddmmyy">%D:Formats the date (dd/mm/yy).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%D&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mo">04</span><span class="o">/</span><span class="mi">22</span><span class="o">/</span><span class="mi">14</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="eday-of-the-month-blank-padded--1-2-3-etc">%e:Day of the month, blank-padded ( 1, 2, 3, etc.).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%e&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">3</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="freturns-the-date-in-iso-8601-format-yyyy-mm-dd">%F:Returns the date in ISO 8601 format (yyyy-mm-dd).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%F&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">2014</span><span class="o">-</span><span class="mo">04</span><span class="o">-</span><span class="mi">22</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="hhour-of-the-day-24-hour-clock-00---23">%H:Hour of the day, 24-hour clock (00 - 23).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%H&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">15</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="ihour-of-the-day-12-hour-clock-1---12">%I:Hour of the day, 12-hour clock (1 - 12).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%I&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">7</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="jday-of-the-year-001---366">%j:Day of the year (001 - 366).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%j&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">245</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="khour-of-the-day-24-hour-clock-1---24">%k:Hour of the day, 24-hour clock (1 - 24).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%k&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">14</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="mmonth-of-the-year-01---12">%m:Month of the year (01 - 12).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%m&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mo">04</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="mminute-of-the-hour-00---59">%M:Minute of the hour (00 - 59).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%M&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span><span class="mi">53</span><span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="pmeridian-indicator-ampm">%p:Meridian indicator (AM/PM).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%p&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">PM</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="r12-hour-time-ims-p">%r:12-hour time (%I:%M:%S %p)</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%r&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mo">03</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mo">07</span> <span class="no">PM</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="r24-hour-time-hm">%R:24-hour time (%H:%M)</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%R&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">15</span><span class="p">:</span><span class="mi">21</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="t24-hour-time-hms">%T:24-hour time (%H:%M:%S)</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%T&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">15</span><span class="p">:</span><span class="mi">22</span><span class="p">:</span><span class="mi">13</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="uthe-number-of-the-week-in-the-current-year-starting-with-the-first-sunday-as-the-first-day-of-the-first-week">%U:The number of the week in the current year, starting with the first Sunday as the first day of the first week.</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%U&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">16</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="wthe-number-of-the-week-in-the-current-year-starting-with-the-first-monday-as-the-first-day-of-the-first-week">%W:The number of the week in the current year, starting with the first Monday as the first day of the first week.</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%W&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">16</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="wday-of-the-week-0---6-with-sunday-being-0">%w:Day of the week (0 - 6, with Sunday being 0).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%w&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">2</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="xpreferred-representation-for-the-date-alone-no-time-mmddyy">%x:Preferred representation for the date alone, no time. (mm/dd/yy).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%x&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mo">04</span><span class="o">/</span><span class="mi">22</span><span class="o">/</span><span class="mi">14</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="xpreferred-representation-for-the-time-hhmmss">%X:Preferred representation for the time. (hh:mm:ss).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%X&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">13</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">24</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="yyear-without-a-century-0099">%y:Year without a century (00.99).</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%y&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">14</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="yyear-with-a-century">%Y:Year with a century.</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%Y&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="mi">2014</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="ztime-zone-name">%Z:Time zone name.</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">article</span><span class="o">.</span><span class="n">published_at</span> <span class="o">|</span> <span class="ss">date</span><span class="p">:</span> <span class="s2">&quot;%Z&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">EDT</span> <span class="o">--&gt;</span></code></pre></div>
+
+<h3 id="datetoxmlschema">date_to_xmlschema</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">site</span><span class="o">.</span><span class="n">time</span> <span class="o">|</span> <span class="n">date_to_xmlschema</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">2008</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">17</span><span class="ss">T13</span><span class="p">:</span><span class="mo">07</span><span class="p">:</span><span class="mi">54</span><span class="o">-</span><span class="mi">08</span><span class="p">:</span><span class="mo">00</span></code></pre></div>
+
+<h3 id="datetostring">date_to_string</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">site</span><span class="o">.</span><span class="n">time</span> <span class="o">|</span> <span class="n">date_to_string</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">17</span> <span class="no">Nov</span> <span class="mi">2008</span></code></pre></div>
+
+<h3 id="datetolongstring">date_to_long_string</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">site</span><span class="o">.</span><span class="n">time</span> <span class="o">|</span> <span class="n">date_to_long_string</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">17</span> <span class="no">November</span> <span class="mi">2008</span></code></pre></div>
+
+<h1 id="section-5">其他过滤器</h1>
+
+<h3 id="default">default</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Dear</span> <span class="p">{{</span> <span class="n">customer</span><span class="o">.</span><span class="n">name</span> <span class="o">|</span> <span class="ss">default</span><span class="p">:</span> <span class="s2">&quot;customer&quot;</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="k">if</span> <span class="n">customer</span><span class="o">.</span><span class="n">name</span> <span class="n">is</span> <span class="kp">nil</span> <span class="o">--&gt;</span>
+<span class="no">Dear</span> <span class="n">customer</span></code></pre></div>
+
+<h3 id="defaulterrors">default_errors</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">errors</span> <span class="sx">%}</span>
+<span class="sx">      {{ form.errors | default_errors }</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">errors</span> <span class="n">returned</span> <span class="s2">&quot;email&quot;</span> <span class="o">--&gt;</span>
+<span class="no">Please</span> <span class="n">enter</span> <span class="n">a</span> <span class="n">valid</span> <span class="n">email</span> <span class="n">address</span><span class="o">.</span></code></pre></div>
+
+<h3 id="defaultpagination">default_pagination</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">paginate</span> <span class="o">|</span> <span class="n">default_pagination</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;page current&quot;</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;</span><span class="sr">/span&gt;</span>
+<span class="sr">&lt;span class=&quot;page&quot;&gt;&lt;a href=&quot;/</span><span class="n">collections</span><span class="o">/</span><span class="n">all?page</span><span class="o">=</span><span class="mi">2</span><span class="s2">&quot; title=&quot;&quot;&gt;2&lt;/a&gt;&lt;/span&gt;</span>
+<span class="s2">&lt;span class=&quot;</span><span class="n">page</span><span class="s2">&quot;&gt;&lt;a href=&quot;</span><span class="o">/</span><span class="n">collections</span><span class="o">/</span><span class="n">all?page</span><span class="o">=</span><span class="mi">3</span><span class="s2">&quot; title=&quot;&quot;&gt;3&lt;/a&gt;&lt;/span&gt; </span>
+<span class="s2">&lt;span class=&quot;</span><span class="n">deco</span><span class="s2">&quot;&gt;&amp;hellip;&lt;/span&gt;</span>
+<span class="s2">&lt;span class=&quot;</span><span class="n">page</span><span class="s2">&quot;&gt;&lt;a href=&quot;</span><span class="o">/</span><span class="n">collections</span><span class="o">/</span><span class="n">all?page</span><span class="o">=</span><span class="mi">17</span><span class="s2">&quot; title=&quot;&quot;&gt;17&lt;/a&gt;&lt;/span&gt;</span>
+<span class="s2">&lt;span class=&quot;</span><span class="k">next</span><span class="s2">&quot;&gt;&lt;a href=&quot;</span><span class="o">/</span><span class="n">collections</span><span class="o">/</span><span class="n">all?page</span><span class="o">=</span><span class="mi">2</span><span class="s2">&quot; title=&quot;&quot;&gt;Next &amp;raquo;&lt;/a&gt;&lt;/span&gt;</span></code></pre></div>
+
+<h3 id="highlight">highlight</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">item</span><span class="o">.</span><span class="n">content</span> <span class="o">|</span> <span class="ss">highlight</span><span class="p">:</span> <span class="n">search</span><span class="o">.</span><span class="n">terms</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="no">If</span> <span class="n">the</span> <span class="n">search</span> <span class="n">term</span> <span class="n">was</span> <span class="s2">&quot;Yellow&quot;</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="n">strong</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;highlight&quot;</span><span class="o">&gt;</span><span class="no">Yellow</span><span class="o">&lt;</span><span class="sr">/strong&gt; shirts are the best!</span></code></pre></div>
+
+<h3 id="highlightactivetag">highlight_active_tag</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;!--</span> <span class="n">collection</span><span class="o">.</span><span class="n">tags</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Cotton&quot;</span><span class="p">,</span> <span class="s2">&quot;Crew Neck&quot;</span><span class="p">,</span> <span class="s2">&quot;Jersey&quot;</span><span class="o">]</span> <span class="o">--&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">tag</span> <span class="k">in</span> <span class="n">collection</span><span class="o">.</span><span class="n">tags</span> <span class="sx">%}</span>
+<span class="sx">    {{ tag | highlight_active | link_to_tag: tag }</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">a</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Show products matching tag Cotton&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/collections/all/cotton&quot;</span><span class="o">&gt;&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;active&quot;</span><span class="o">&gt;</span><span class="no">Cotton</span><span class="o">&lt;</span><span class="sr">/span&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Show products matching tag Crew Neck&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/collections/all/crew-neck&quot;</span><span class="o">&gt;</span><span class="no">Crew</span> <span class="no">Neck</span><span class="o">&lt;</span><span class="sr">/a&gt;</span>
+<span class="sr">&lt;a title=&quot;Show products matching tag Jersey&quot; href=&quot;/</span><span class="n">collections</span><span class="o">/</span><span class="n">all</span><span class="o">/</span><span class="n">jersey</span><span class="s2">&quot;&gt;Jersey&lt;/a&gt;</span></code></pre></div>
+
+<h3 id="json">json</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">var</span> <span class="n">content</span> <span class="o">=</span> <span class="p">{{</span> <span class="n">pages</span><span class="o">.</span><span class="n">page</span><span class="o">-</span><span class="n">handle</span><span class="o">.</span><span class="n">content</span> <span class="o">|</span> <span class="n">json</span> <span class="p">}};</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">var</span> <span class="n">content</span> <span class="o">=</span> <span class="s2">&quot;\u003Cp\u003E\u003Cstrong\u003EYou made it! Congratulations on starting your own e-commerce store!\u003C/strong\u003E\u003C/p\u003E</span><span class="se">\n</span><span class="s2">\u003Cp\u003EThis is your shop\u0026#8217;s \u003Cstrong\u003Efrontpage\u003C/strong\u003E, and it\u0026#8217;s the first thing your customers will see when they arrive. You\u0026#8217;ll be able to organize and style this page however you like.\u003C/p\u003E</span><span class="se">\n</span><span class="s2">\u003Cp\u003E\u003Cstrong\u003ETo get started adding products to your shop, head over to the \u003Ca href=</span><span class="se">\&quot;</span><span class="s2">/admin</span><span class="se">\&quot;</span><span class="s2">\u003EAdmin Area\u003C/a\u003E.\u003C/strong\u003E\u003C/p\u003E</span><span class="se">\n</span><span class="s2">\u003Cp\u003EEnjoy the software,  \u003Cbr /\u003E</span><span class="se">\n</span><span class="s2">Your Shopify Team.\u003C/p\u003E&quot;</span><span class="p">;</span></code></pre></div>
+
+<h3 id="weightwithunit">weight_with_unit</h3>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="n">product</span><span class="o">.</span><span class="n">variants</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">weight</span> <span class="o">|</span> <span class="n">weight_with_unit</span> <span class="p">}}</span></code></pre></div>
+
+<p>=&gt;</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="mi">24</span><span class="o">.</span><span class="mi">0</span> <span class="n">kg</span></code></pre></div>
+
+
+  </div>
+</article>
+
+
   <article>
   <h2>
     <a href="/news/2015/01/02/Advertise-Mobile-Platform-Market/">
@@ -398,6 +1281,690 @@ eCPM = 收入/网页展示次数×1000</p>
 <span class="p">.</span><span class="n">sass-cache</span><span class="p">/</span></code></pre></div>
 
 <p><code>9 Enjoy(Painful)!</code></p>
+
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    <a href="/news/2006/05/19/CPP-Test-English/">
+      C++ STL 习题
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      internet
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      19 May 2006
+    </span>
+    <a href="https://github.com/AcePeak" class="post-author">
+      <img src="https://github.com/AcePeak.png" class="avatar" alt="AcePeak" width="24" height="24">
+      AcePeak
+    </a>
+  </div>
+  <div class="post-content">
+    <h1 id="questions">Questions:</h1>
+
+<h2 id="base">BASE:</h2>
+
+<ol>
+  <li>which are wrong?</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">ia</span><span class="p">[</span> <span class="mi">7</span> <span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span> <span class="p">};</span>
+<span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span> <span class="n">vector</span><span class="o">&lt;</span> <span class="kt">int</span> <span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">ivec</span><span class="p">;</span>
+<span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span> <span class="kt">int</span> <span class="o">&gt;</span> <span class="n">ivec</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span> <span class="p">};</span>
+<span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span> <span class="kt">int</span> <span class="o">&gt;</span> <span class="n">ivec</span><span class="p">(</span> <span class="n">ia</span><span class="p">,</span> <span class="n">ia</span><span class="o">+</span><span class="mi">7</span> <span class="p">);</span>
+<span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span> <span class="n">string</span> <span class="o">&gt;</span> <span class="n">svec</span> <span class="o">=</span> <span class="n">ivec</span><span class="p">;</span>
+<span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span> <span class="n">string</span> <span class="o">&gt;</span> <span class="n">svec</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="n">string</span><span class="p">(</span> <span class="s">&quot;null&quot;</span> <span class="p">));</span></code></pre></div>
+
+<ol>
+  <li>Change code style to STL and compare their efficiency.</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// ***** C-style character string implementation *****</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">errors</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pc</span> <span class="o">=</span> <span class="s">&quot;a very long literal string&quot;</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">ix</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ix</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="o">++</span><span class="n">ix</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span> <span class="n">pc</span> <span class="p">);</span>
+        <span class="kt">char</span> <span class="o">*</span><span class="n">pc2</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span> <span class="n">len</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">];</span>
+        <span class="n">strcpy</span><span class="p">(</span> <span class="n">pc2</span><span class="p">,</span> <span class="n">pc</span> <span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">strcmp</span><span class="p">(</span> <span class="n">pc2</span><span class="p">,</span> <span class="n">pc</span> <span class="p">))</span>
+            <span class="o">++</span><span class="n">errors</span><span class="p">;</span>
+        <span class="k">delete</span> <span class="p">[]</span> <span class="n">pc2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;C-style character strings: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">errors</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; errors occurred.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>3.accept some ints from standard input, then sort them and output to standard output. Please use STL as far as possible.</p>
+
+<h2 id="advanced">ADVANCED:</h2>
+
+<p>1.What are the types of std::cin and std::cout? Write a console program ECHO that can be invoked by the following ways:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">ECHO</span> <span class="o">[</span><span class="n">infile</span><span class="o">]</span> <span class="o">[</span><span class="n">outfile</span><span class="o">]</span>                             <span class="sr">//</span><span class="o">[]</span> <span class="n">indicates</span> <span class="n">the</span> <span class="n">infile</span> <span class="n">is</span> <span class="ow">not</span> <span class="n">necessary</span><span class="o">.</span>
+                                                        <span class="sr">//</span><span class="n">there</span> <span class="n">must</span> <span class="n">be</span> <span class="n">one</span> <span class="ow">and</span> <span class="n">only</span> <span class="n">one</span> <span class="n">between</span> <span class="o">-</span><span class="n">i</span> <span class="ow">and</span> <span class="o">-</span><span class="n">s</span><span class="o">.</span>
+<span class="no">The</span> <span class="nb">test</span> <span class="k">case</span> <span class="n">are</span> <span class="p">:</span>
+
+    <span class="no">ECHO</span> <span class="n">infile</span><span class="o">.</span><span class="n">txt</span> <span class="n">outfile</span><span class="o">.</span><span class="n">txt</span>                         <span class="sr">//</span><span class="n">read</span> <span class="n">from</span> <span class="n">infile</span><span class="o">.</span><span class="n">txt</span> <span class="ow">and</span> <span class="n">write</span> <span class="n">to</span> <span class="n">outfile</span><span class="o">.</span><span class="n">txt</span><span class="o">.</span>
+    <span class="no">ECHO</span> <span class="n">infile</span><span class="o">.</span><span class="n">txt</span>                                     <span class="sr">//</span><span class="n">read</span> <span class="n">from</span> <span class="n">infile</span><span class="o">.</span><span class="n">txt</span> <span class="ow">and</span> <span class="n">write</span> <span class="n">to</span> <span class="n">screen</span><span class="o">.</span>
+    <span class="no">ECHO</span>                                                <span class="sr">//</span><span class="n">read</span> <span class="n">from</span> <span class="n">standard</span> <span class="n">input</span> <span class="ow">and</span> <span class="n">write</span> <span class="n">to</span> <span class="n">standard</span> <span class="n">output</span><span class="o">.</span>
+    
+<span class="sr">//</span><span class="ss">related</span><span class="p">:</span><span class="n">ofstream</span><span class="p">,</span> <span class="n">ifstream</span><span class="p">,</span> <span class="n">ostream</span><span class="p">,</span> <span class="n">istream</span><span class="o">.</span></code></pre></div>
+
+<p>2.Try your best to write a class to implement two-dimensional arrays like built-in type.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">][</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    
+    <span class="n">YourClass</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">yc</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">yc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span></code></pre></div>
+
+<p>3.write a program to process students’ scores table(by using map/multimap).
+    a.student infomation is like this:
+            name, C++ basic score, C++ OOP score, C++ template score, C++ STL score, C++ MFC score
+    b.sort by name.
+    d.traverse infotable and generate the total score and average score to another table.
+    e.output name, total score, average score and place for each student sorting by place.</p>
+
+<ol>
+  <li>write a program to read words and calculate every word’s frequency from a file. Output the 20 words and frequency with most high frequency.</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//</span>
+<span class="c1">//Note:</span>
+<span class="c1">//token - a set of characters bound on either side by spaces, the beginning of</span>
+<span class="c1">//the input string parameter or the end of the input String parameter.</span>
+<span class="c1">//word - a token that contains only letters (a-z or A-Z) and may end with a</span>
+<span class="c1">//single period or a single comma. A word must have at least one letter. </span>
+<span class="c1">//</span>
+<span class="c1">//  this is a word.</span>
+<span class="c1">//          //token(4) : this is a word.</span>
+<span class="c1">//          //words(4) : this is a word</span></code></pre></div>
+
+<h2 id="exploration">EXPLORATION:</h2>
+
+<ol>
+  <li>
+    <p>How and when is std::auto_ptr used? can std::auto_ptr be put on argument list? why?</p>
+  </li>
+  <li>
+    <p>Compare vector with deque. When do we use each?</p>
+  </li>
+  <li>
+    <p>What does the following code do? write a better method.</p>
+  </li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span> <span class="mi">10000</span> <span class="p">);</span>
+    <span class="n">c</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span> <span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">c</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span> <span class="mi">10</span> <span class="p">);</span></code></pre></div>
+
+<p>4.what does the std::remove() algorithm do? Does the algorithm remove what should be removed really? What’s the difference in size and capacity between before and after? Write the right remove method.</p>
+
+<p>5.write a file_iterator，and 3 functors，to make the following code work：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// count of file entries in the directory</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Total count: &quot;</span>
+       <span class="o">&lt;&lt;</span> <span class="n">count_if</span><span class="p">(</span><span class="n">file_iterator</span><span class="p">(),</span> <span class="n">file_iterator</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                   <span class="n">always_true</span><span class="o">&lt;</span><span class="n">file_iterator</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span><span class="p">())</span>
+       <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="c1">// for_each() to display all entries</span>
+  <span class="n">for_each</span><span class="p">(</span><span class="n">file_iterator</span><span class="p">(),</span> <span class="n">file_iterator</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">display_file_entry</span><span class="p">());</span>
+
+  <span class="c1">// accumulate() to add up the size of all file entries</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Total: &quot;</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">file_iterator</span><span class="p">(),</span> <span class="n">file_iterator</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span>
+                     <span class="n">file_size</span><span class="p">())</span>
+       <span class="o">&lt;&lt;</span> <span class="s">&quot;bytes.&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>the test case(the program name is mydir)：</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">c</span><span class="p">:\</span><span class="o">&gt;</span> <span class="n">mydir</span>
+<span class="no">Total</span> <span class="ss">count</span><span class="p">:</span> <span class="mi">3</span>
+<span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="ss">Total</span><span class="p">:</span> <span class="mi">102487</span> <span class="n">bytes</span><span class="o">.</span></code></pre></div>
+
+<h2 id="fun">FUN:</h2>
+
+<p>1.you want to write a class template C that can be instantiated only on types that have a member function named Clone() that takes no parameters and returns a pointer to the same kind of object.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//T must provide T* T::Clone() const</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">C</span>
+<span class="p">{</span>
+  <span class="c1">//</span>
+<span class="p">}</span></code></pre></div>
+
+<blockquote>
+  <p>Note: It’s obvious that if C writes code that just tries to invoke T::Clone() without parameters, then such code will fail to compile if there isn’t a T::Clone() that can be called without parameters.</p>
+</blockquote>
+
+<p>2.try the following code in VC6 and VC.net 2003 seperately:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;string&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">str1</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">);</span>
+    <span class="n">string</span> <span class="n">str2</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">c</span> <span class="o">=</span> <span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span> <span class="p">(</span><span class="n">str1</span><span class="p">.</span><span class="n">c_str</span><span class="p">())</span> <span class="p">;</span>
+    <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="sc">&#39;h&#39;</span><span class="p">;</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">str1</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">str2</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Why are the results different?</p>
+
+  </div>
+</article>
+
+
+  <article>
+  <h2>
+    <a href="/news/2006/05/17/Template-Test-English/">
+      C++ STL 习题
+    </a>
+  </h2>
+  <span class="post-category">
+    <span class="label">
+      internet
+    </span>
+  </span>
+  <div class="post-meta">
+    <span class="post-date">
+      17 May 2006
+    </span>
+    <a href="https://github.com/AcePeak" class="post-author">
+      <img src="https://github.com/AcePeak.png" class="avatar" alt="AcePeak" width="24" height="24">
+      AcePeak
+    </a>
+  </div>
+  <div class="post-content">
+    
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//</span>
+<span class="c1">//因为这次公司培训机制改变为先发布题目，由学员看书做题，再由教员专向辅导。</span>
+<span class="c1">//因此这次没有准备讲义，只把题目贴上来，朋友们也可以练练手，过几天把部分答案上传。</span>
+<span class="c1">//本套题分为四个难度：BASE, ADVANCED, EXPLORATION, FUN. 思考难度指数分别大概是</span>
+<span class="c1">//2，5，7，9（满分10）。其中BASE和ADVANCED是要求学员一定要做的。EXPLORATION</span>
+<span class="c1">//是探索题目，FUN是探索题目做完后还有余力的一些很有意思有嚼头的题目。</span>
+<span class="c1">//</span>
+<span class="c1">//PS:自我感觉题目总体难度有些高，不知道学员能不能坚持下来...</span>
+
+<span class="c1">//这里想要放一个目录链接到一下各个section的，但是不知道怎么做，有朋友知道的能说说吗？</span></code></pre></div>
+
+<p>BASE:
+1． write the output.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Func</span><span class="p">(</span><span class="n">Type</span> <span class="o">&amp;</span><span class="n">x</span> <span class="p">,</span> <span class="n">Type</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Type</span> <span class="n">a</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#include &lt;iostream&gt;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+    <span class="n">Func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;a:&quot;</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="o">&lt;&lt;</span><span class="s">&quot;b:&quot;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>2． With the function Template:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">size</span> <span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Show</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">d</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span> <span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">size</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span> 
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>What is the template function prototype invoked by Show&lt;10&gt;(“abcdefghijklmn”)? What’s the output?</p>
+
+<ol>
+  <li>the program’s output is not right, please correct the following program with right semantics:</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">maxEx</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span><span class="n">T</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+ <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+ <span class="kt">int</span> <span class="n">nFirst</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">nSecond</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+ <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">maxEx</span><span class="p">(</span><span class="n">nFirst</span><span class="p">,</span> <span class="n">nSecond</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>            <span class="c1">//should be 16</span>
+
+    <span class="kt">char</span> <span class="o">*</span><span class="n">c1</span> <span class="o">=</span> <span class="s">&quot;a&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">c2</span> <span class="o">=</span> <span class="s">&quot;zoo&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">c3</span> <span class="o">=</span> <span class="s">&quot;ZOO&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">c4</span> <span class="o">=</span> <span class="s">&quot;A&quot;</span><span class="p">;</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">maxEx</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>                       <span class="c1">//should be zoo</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">maxEx</span><span class="p">(</span><span class="n">c3</span><span class="p">,</span><span class="n">c4</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>                       <span class="c1">//should be ZOO</span>
+
+ <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>4.write the output of the following code.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>                    <span class="c1">// (d)</span>
+<span class="p">{</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;d&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="kt">double</span><span class="p">)</span>       <span class="c1">// (e)</span>
+<span class="p">{</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;e&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="p">)</span>                   <span class="c1">// (f)</span>
+<span class="p">{</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;f&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span> 
+<span class="kt">void</span> <span class="n">f</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span>                         <span class="c1">// (g)</span>
+<span class="p">{</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;g&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span>                                  <span class="c1">// (h)</span>
+<span class="p">{</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;h&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>                   
+    <span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="n">d</span><span class="p">)</span> <span class="p">;</span>             
+    <span class="n">f</span><span class="p">(</span><span class="o">&amp;</span><span class="n">i</span><span class="p">)</span> <span class="p">;</span>                 
+    <span class="n">f</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>                   
+
+ <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>5.Case:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span> 
+<span class="k">class</span> <span class="nc">TwoNum</span>
+<span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">Type</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">Type</span> <span class="n">b</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">TwoNum</span><span class="p">(){}</span>
+    <span class="n">TwoNum</span><span class="p">(</span><span class="n">Type</span> <span class="n">aa</span> <span class="p">,</span> <span class="n">Type</span> <span class="n">bb</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="nf">Compare</span><span class="p">();</span> <span class="c1">//比较a 和b的大小</span>
+
+    <span class="n">Type</span> <span class="nf">Max</span><span class="p">()</span> <span class="c1">// 求a 和b的最大值</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span><span class="o">?</span><span class="nl">a</span><span class="p">:</span><span class="n">b</span><span class="p">;</span> 
+    <span class="p">}</span>
+    <span class="n">Type</span> <span class="nf">Min</span><span class="p">()</span> <span class="c1">// 求a 和b的最小值</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span><span class="o">?</span><span class="nl">b</span><span class="p">:</span><span class="n">a</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">Setab</span><span class="p">(</span><span class="n">Type</span><span class="o">&amp;</span> <span class="n">aa</span> <span class="p">,</span> <span class="n">Type</span><span class="o">&amp;</span> <span class="n">bb</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">a</span><span class="o">=</span><span class="n">aa</span><span class="p">;</span> <span class="n">b</span><span class="o">=</span><span class="n">bb</span><span class="p">;</span> 
+    <span class="p">}</span>
+
+    <span class="n">Type</span> <span class="nf">geta</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="n">Type</span> <span class="nf">getb</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="k">return</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span>
+<span class="n">TwoNum</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">TwoNum</span><span class="p">(</span><span class="n">Type</span> <span class="n">aa</span> <span class="p">,</span><span class="n">Type</span> <span class="n">bb</span><span class="p">)</span>
+                   <span class="o">:</span> <span class="n">a</span><span class="p">(</span><span class="n">aa</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">bb</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span>
+<span class="kt">int</span> <span class="n">TwoNum</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;::</span><span class="n">Compare</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">&gt;</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+    
+<span class="cp">#include &lt;iostream.h&gt;</span>
+<span class="kt">void</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">TwoNum</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">.</span><span class="n">Compare</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="err">’</span> <span class="err">‘</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">.</span><span class="n">Max</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="err">’</span> <span class="err">‘</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">.</span><span class="n">Min</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="kt">char</span> <span class="n">ch</span><span class="o">=</span><span class="err">’</span><span class="n">x</span><span class="err">’</span><span class="p">;</span>
+    <span class="n">TwoNum</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">y</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="err">’</span><span class="n">x</span><span class="err">’</span><span class="p">);</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="p">.</span><span class="n">Compare</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="err">’</span> <span class="err">‘</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="p">.</span><span class="n">Max</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="err">’</span> <span class="err">‘</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="p">.</span><span class="n">Min</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>Please write the output：</p>
+
+<p>6．Which of the following templates are illegal? Why?</p>
+
+<p>(1)</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Container1</span><span class="p">;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Container1</span><span class="p">;</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Container1</span><span class="p">(</span><span class="n">Type</span> <span class="n">t</span><span class="p">);</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">Container1</span><span class="p">(</span><span class="n">Type</span> <span class="n">t</span><span class="p">);</span></code></pre></div>
+
+<p>(2)</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="k">class</span> <span class="nc">V</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Container2</span><span class="p">;</span></code></pre></div>
+
+<p>(3)</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">myT</span><span class="p">,</span> <span class="k">class</span> <span class="nc">myT</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Container3</span><span class="p">;</span></code></pre></div>
+
+<p>(4)</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Container4</span><span class="p">;</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Container4</span><span class="p">;</span></code></pre></div>
+
+<p>(5)</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Container6</span><span class="p">;</span></code></pre></div>
+
+<p>7．correct the class CList declaration (No need to implement the members.)</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">elementType</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">ListItem</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">elemType</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">CList</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">CList</span><span class="p">()</span><span class="o">:</span> <span class="n">front</span><span class="p">(</span><span class="nb">NULL</span><span class="p">),</span> <span class="n">end</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">CList</span> <span class="p">(</span><span class="k">const</span> <span class="n">List</span> <span class="o">&amp;</span><span class="p">);</span>
+    <span class="o">~</span><span class="n">CList</span><span class="p">();</span>
+
+    <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">ListItem</span><span class="o">&lt;</span><span class="n">elemType</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="n">elemType</span><span class="o">&lt;</span><span class="n">elemType</span><span class="o">&gt;</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">remove</span><span class="p">(</span><span class="n">elemType</span><span class="o">&lt;</span><span class="n">elemType</span><span class="o">&gt;</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kt">size_t</span> <span class="nf">size</span><span class="p">(</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_size</span><span class="p">;</span> 
+    <span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">ListItem</span><span class="o">&lt;</span><span class="n">elemType</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">front</span><span class="p">;</span>
+    <span class="n">ListItem</span><span class="o">&lt;</span><span class="n">elemType</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">end</span><span class="p">;</span>
+<span class="p">};</span></code></pre></div>
+
+<p>8.write the output for overload class template</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">mvector</span>                <span class="c1">// (a)</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">f</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;a&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">mvector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">*&gt;</span>            <span class="c1">// (b)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">t</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">f</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;b&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>  
+<span class="k">template</span> <span class="o">&lt;&gt;</span>   <span class="k">class</span> <span class="nc">mvector</span> <span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span>             <span class="c1">// (c)</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">f</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;c&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="n">mvector</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span>  <span class="n">vpm</span><span class="p">;</span>
+    <span class="n">mvector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span>   <span class="n">ipm</span><span class="p">;</span>
+    <span class="n">mvector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>    <span class="n">im</span><span class="p">;</span>
+
+    <span class="n">vpm</span><span class="p">.</span><span class="n">f</span><span class="p">();</span>
+    <span class="n">ipm</span><span class="p">.</span><span class="n">f</span><span class="p">();</span>
+    <span class="n">im</span><span class="p">.</span><span class="n">f</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+<p>ADVANCED:
+1．Write a class template CVar<typename> which has following methods:</typename></p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Operator</span> <span class="o">+</span> <span class="p">(</span><span class="n">CVar</span><span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;&amp;</span> <span class="p">)</span>  <span class="c1">//plus</span>
+     <span class="n">Operator</span> <span class="err">–</span><span class="p">(</span><span class="n">CVar</span><span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;&amp;</span> <span class="p">)</span>  <span class="c1">//division</span>
+     <span class="n">Operator</span> <span class="o">=</span><span class="p">(</span><span class="n">CVar</span><span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;&amp;</span> <span class="p">)</span>  <span class="c1">//assign</span>
+     <span class="n">Operator</span> <span class="o">==</span><span class="p">(</span><span class="n">CVar</span><span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;&amp;</span> <span class="p">)</span>  <span class="c1">//equal</span>
+     <span class="n">Operator</span> <span class="k">typename</span><span class="p">()</span>        <span class="c1">//cast</span>
+     <span class="n">Output</span><span class="p">();</span>       <span class="c1">//output it’s data;</span></code></pre></div>
+
+<p>And other necessary members.</p>
+
+<ol>
+  <li>Write some global function template:</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="n">Operator</span> <span class="o">+</span><span class="p">(</span> <span class="n">CVar</span><span class="o">&lt;</span><span class="n">Typename</span><span class="o">&gt;&amp;</span> <span class="p">,</span> <span class="n">CVar</span><span class="o">&lt;</span><span class="n">Typename</span><span class="o">&gt;&amp;</span><span class="p">)</span>
+     <span class="n">Operator</span> <span class="o">-</span><span class="p">(</span> <span class="n">CVar</span><span class="o">&lt;</span><span class="n">Typename</span><span class="o">&gt;&amp;</span> <span class="p">,</span> <span class="n">CVar</span><span class="o">&lt;</span><span class="n">Typename</span><span class="o">&gt;&amp;</span><span class="p">)</span></code></pre></div>
+
+<p>You can try to comment CVar class operator +/- to test whether your global function is enable.</p>
+
+<ol>
+  <li>Write a specialized template class CVar&lt;char*&gt; and CVar<bool>.</bool></li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">//Note: Using your semantics to implement the algorithm.</span>
+<span class="c1">// such as :            CVar&lt;char*1&gt; + CVar&lt;char*2&gt; : strcat();</span>
+<span class="c1">//                          CVar&lt;char*1&gt; - CVar&lt;char*2&gt; : find all char*2 and delete them in char*1.</span>
+<span class="c1">//                          CVar&lt;bool&gt;   + CVar&lt;bool&gt;   : &amp;</span>
+<span class="c1">//                          CVar&lt;bool&gt;   - CVar&lt;bool&gt;   : ^</span></code></pre></div>
+
+<ol>
+  <li>Write a template function my_sort as following:</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+    <span class="n">Void</span> <span class="n">my_sort</span><span class="p">(</span><span class="n">Type</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">);</span>
+<span class="c1">//NOTE: </span>
+<span class="c1">//* Maybe you have to implement another 2 function templates:</span>
+
+     <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+     <span class="kt">bool</span> <span class="n">my_max</span><span class="p">(</span><span class="n">Type</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">Type</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+     <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+     <span class="n">Void</span> <span class="n">my_swap</span><span class="p">(</span><span class="n">Type</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">Type</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+<span class="c1">//* you can decide your concrete sort algorithm.</span></code></pre></div>
+
+<p>EXPLORATION:
+1． Design a template queue class and implement the following members:</p>
+
+<p>(1) method void add(Type elem).     //add an element to tail.
+(2) method Type remove().           //remove element from head, and return the element.
+(3) method Type head().             //return the head value of queue.
+(4) method void clear().            //clear all queue.
+(5) method bool is_empty().         //indicate whether the queue is empty.
+(6) method size_t count().          //return the count.
+(7) nested class Iterator to traverse the queue.
+(8) method operator+=(Type elem).    //The same to add();
+(9) method operator–().             //The same to remove();
+(10) method Iterator begin().        //Return the begin of the queue.
+(11) method Iterator end().          //Return the end of the queue.</p>
+
+<p>Besides, define an global overload operator:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">;</span></code></pre></div>
+
+<p>to directly output all the values of queue item.</p>
+
+<p>the following is the test of your queue：</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;iostream.h&gt;</span>
+<span class="cp">#include &quot;queue.h&quot;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iq</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">iq</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">iq</span><span class="o">--</span><span class="p">;</span>
+    <span class="n">iq</span> <span class="o">+=</span> <span class="mi">50</span><span class="p">;</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">iq</span><span class="p">.</span><span class="n">is_empty</span><span class="p">())</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Removed : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">iq</span><span class="p">.</span><span class="n">remove</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; Current Head : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">iq</span><span class="p">.</span><span class="n">head</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">iq</span><span class="p">.</span><span class="n">is_empty</span><span class="p">())</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">iq</span><span class="p">;</span>
+    <span class="n">Queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">Iterator</span> <span class="n">iQueue</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">iQueue</span> <span class="o">=</span> <span class="n">iq</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">iQueue</span> <span class="o">!=</span> <span class="n">iq</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">iQueue</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">iQueue</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">iq</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">iq</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>The ourput is：
+Removed : 5 Current Head : 10
+There are 9 queue items: &lt; 10 15 20 25 30 35 40 45 50 &gt;
+10 15 20 25 30 35 40 45 50 
+There are 0 queue items: &lt; &gt;</p>
+
+<p>2.design a class template CHash which algorithm is besed on buckets:</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span> <span class="k">typename</span> <span class="n">Key</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Value</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">CHash</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">class</span> <span class="nc">Iterator</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="n">CHash</span><span class="p">(</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="n">nMax</span><span class="p">,</span>
+           <span class="n">ULONG</span>        <span class="p">(</span> <span class="o">*</span><span class="n">hashFunc</span> <span class="p">)(</span> <span class="k">const</span> <span class="n">Key</span> <span class="n">tKey</span> <span class="p">),</span>
+           <span class="kt">bool</span>         <span class="n">bAutoSize</span> <span class="o">=</span> <span class="nb">false</span> <span class="p">);</span>
+ <span class="n">CHash</span><span class="p">(</span> <span class="k">const</span> <span class="n">CHash</span><span class="o">&amp;</span> <span class="n">hash</span> <span class="p">);</span>
+ <span class="o">~</span><span class="n">CHash</span><span class="p">();</span>
+ <span class="n">CHash</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span> <span class="p">(</span> <span class="k">const</span> <span class="n">CHash</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span> <span class="n">Value</span><span class="o">&gt;&amp;</span> <span class="n">hash</span> <span class="p">);</span>
+    <span class="k">operator</span><span class="p">[];</span>
+    <span class="n">Iterator</span> <span class="nf">begin</span><span class="p">();</span>
+    <span class="n">Iterator</span> <span class="nf">end</span><span class="p">();</span>
+ <span class="kt">size_t</span> <span class="nf">size</span><span class="p">();</span>
+ <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span> <span class="k">const</span> <span class="n">Key</span> <span class="n">tKey</span><span class="p">,</span> <span class="n">Value</span><span class="o">&amp;</span> <span class="n">rValue</span> <span class="p">);</span>
+ <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+<span class="p">}</span></code></pre></div>
+
+<p>FUN:</p>
+
+<p>1.Write the output of the following code.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;IOSTREAM&gt;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">CalculateCycle</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">enum</span> <span class="p">{</span> <span class="n">count</span> <span class="o">=</span> <span class="n">CalculateCycle</span><span class="o">&lt;</span> <span class="n">N</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">?</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&gt;::</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">CalculateCycle</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">enum</span> <span class="p">{</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">iNo</span> <span class="o">=</span> <span class="mi">22</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Cycle length of &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">iNo</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; is = &quot;</span> 
+        <span class="o">&lt;&lt;</span> <span class="n">CalculateCycle</span><span class="o">&lt;</span><span class="n">iNo</span><span class="o">&gt;::</span><span class="n">count</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+
+<p>2.The following is a smart list. Please add other necessary implements to make it work.</p>
+
+<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">CListTemplate</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">T</span><span class="o">*</span> <span class="n">left</span><span class="p">;</span>
+    <span class="n">T</span><span class="o">*</span> <span class="n">right</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">elem</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">CMyList</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CListTemplate</span><span class="o">&lt;</span><span class="n">CMyList</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">size_t</span> <span class="n">size</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">CList</span> <span class="o">:</span> <span class="k">public</span> <span class="n">T</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+ <span class="n">T</span><span class="o">*</span> <span class="n">Head</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">CList</span><span class="o">&lt;</span><span class="n">CMyList</span><span class="o">&gt;</span> <span class="n">my_List</span><span class="p">;</span>
+
+    <span class="c1">//my_List.left-&gt;left-&gt;right-&gt;elem = 10;</span>
+ <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
 
 
   </div>
@@ -842,6 +2409,9 @@ eCPM = 收入/网页展示次数×1000</p>
     <h4>博文索引</h4>
     <ul>
       
+      <li class=""> <a href="/news/2015/01/07/Jekyll-Date/">GithubPages+Jekyll模板中各类型对象的方法介绍</a> </li>
+      <br/>
+      
       <li class=""> <a href="/news/2015/01/02/Advertise-Mobile-Platform-Market/">2014年移动广告平台界投融资整理</a> </li>
       <br/>
       
@@ -852,6 +2422,12 @@ eCPM = 收入/网页展示次数×1000</p>
       <br/>
       
       <li class=""> <a href="/news/2014/12/17/Mac+GithubPages+Jekyll-site/">Mac+GithubPages+Jekyll配置个人网站</a> </li>
+      <br/>
+      
+      <li class=""> <a href="/news/2006/05/19/CPP-Test-English/">C++ STL 习题</a> </li>
+      <br/>
+      
+      <li class=""> <a href="/news/2006/05/17/Template-Test-English/">C++ STL 习题</a> </li>
       <br/>
       
       <li class=""> <a href="/news/2006/05/10/ActiveX-Safety/">剖析ActiveX控件安全问题</a> </li>
@@ -867,7 +2443,7 @@ eCPM = 收入/网页展示次数×1000</p>
     
     <li class="category_list_item"><a href="\cat.html">博文</a> (1) </li>
       
-    <li class="category_list_item"><a href="\cat.html">internet</a> (2) </li>
+    <li class="category_list_item"><a href="\cat.html">internet</a> (5) </li>
       
     <li class="category_list_item"><a href="\cat.html">广告平台</a> (3) </li>
       
@@ -876,29 +2452,35 @@ eCPM = 收入/网页展示次数×1000</p>
     <h4>标签云</h4>
     <ul>
     
-    <li class="category_list_item"><a href="\tags.html">原生</a> (4) </li>
+    <li class="category_list_item"><a href="\tags.html">原生</a> (7) </li>
       
     <li class="category_list_item"><a href="\tags.html">宇宙</a> (1) </li>
       
     <li class="category_list_item"><a href="\tags.html">遐想</a> (1) </li>
       
-    <li class="category_list_item"><a href="\tags.html">C++</a> (1) </li>
+    <li class="category_list_item"><a href="\tags.html">C++</a> (3) </li>
       
     <li class="category_list_item"><a href="\tags.html">ActiveX</a> (1) </li>
       
     <li class="category_list_item"><a href="\tags.html">Safety</a> (1) </li>
       
+    <li class="category_list_item"><a href="\tags.html">STL</a> (2) </li>
+      
+    <li class="category_list_item"><a href="\tags.html">试题</a> (2) </li>
+      
     <li class="category_list_item"><a href="\tags.html">Mac</a> (1) </li>
       
     <li class="category_list_item"><a href="\tags.html">Github</a> (1) </li>
       
-    <li class="category_list_item"><a href="\tags.html">Jekyll</a> (1) </li>
+    <li class="category_list_item"><a href="\tags.html">Jekyll</a> (2) </li>
       
     <li class="category_list_item"><a href="\tags.html">WebSite</a> (1) </li>
       
     <li class="category_list_item"><a href="\tags.html">市场</a> (3) </li>
       
     <li class="category_list_item"><a href="\tags.html">术语</a> (1) </li>
+      
+    <li class="category_list_item"><a href="\tags.html">Liquid</a> (1) </li>
       
     </ul>
     </aside>
