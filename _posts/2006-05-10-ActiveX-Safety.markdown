@@ -2,7 +2,7 @@
 layout: news_item
 title: 剖析ActiveX控件安全问题
 author: AcePeak
-categories: [Internet]
+categories: [Desktop]
 tags: 
 - 原生
 - C++

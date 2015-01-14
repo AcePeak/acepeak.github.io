@@ -2,7 +2,7 @@
 layout: news_item
 title: C++ STL 习题
 author: AcePeak
-categories: [Internet]
+categories: [Desktop]
 tags: 
 - 原生
 - C++
