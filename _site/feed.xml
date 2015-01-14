@@ -8,26 +8,26 @@
   xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
   >
   <channel>
-    <title xml:lang="en">Jekyll • Simple, blog-aware, static sites</title>
+    <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
-    <link>http://jekyllrb.com/</link>
-    <pubDate>Wed, 14 Jan 2015 14:09:05 +0800</pubDate>
-    <lastBuildDate>Wed, 14 Jan 2015 14:09:05 +0800</lastBuildDate>
-    <language>en-US</language>
+    <link>http://lilifeng.net/</link>
+    <pubDate>Wed, 14 Jan 2015 14:33:48 +0800</pubDate>
+    <lastBuildDate>Wed, 14 Jan 2015 14:33:48 +0800</lastBuildDate>
+    <language>cn-CH</language>
     <generator>Jekyll v2.5.2</generator>
-    <description>Transform your plain text into static websites and blogs.</description>
+    <description>巍巍乎志在高山 洋洋乎志在流水</description>
     <image>
-      <description>Transform your plain text into static websites and blogs.</description>
-      <url>http://jekyllrb.com/img/logo-rss.png</url>
-      <title>Jekyll • Simple, blog-aware, static sites</title>
-      <link>http://jekyllrb.com/</link>
-      <width>144</width>
-      <height>73</height>
+      <description>巍巍乎志在高山 洋洋乎志在流水</description>
+      <url>http://lilifeng.net/img/thumbnail.png</url>
+      <title>西山居士</title>
+      <link>http://lilifeng.net/</link>
+      <width>456</width>
+      <height>545</height>
     </image>
     
     <item>
       <title>GithubPages+Jekyll模板中各类型对象的方法介绍</title>
-      <link>http://jekyllrb.com/blogs/2015/01/07/Jekyll-Date/</link>
+      <link>http://lilifeng.net/blogs/2015/01/07/Jekyll-Date/</link>
       <pubDate>Wed, 07 Jan 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -40,7 +40,7 @@
       
       <category>internet</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2015/01/07/Jekyll-Date/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/07/Jekyll-Date/</guid>
       <description>&lt;p&gt;Jekyll 使用Liquid来处理模板数据。在建立中文博客的过程中，常常会苦于无法在文章中显示中文或阿拉伯数字形式日期的问题，而网上绝大多数给出的方案都只是官方的文档给出的 07 Jan 2015。为了能够了解Jekyll模板中不同对象究竟有哪些可以使用的方法，写下此文。&lt;/p&gt;
 
 &lt;p&gt;在Liquid中，以上面的语句为例，page为object对象，page.date为attribute属性，后面的date_to_string叫做filter过滤器。请参考Liquid官网&lt;a href=&quot;http://docs.shopify.com/themes/liquid-documentation/objects&quot;&gt;关于Objects的介绍&lt;/a&gt;。而在Jekyll中page被叫做Global Variables全局变量，而每个全局变量拥有的多个属性被称为子变量，如Site全局变量的子变量为Site Variables。 请参考官网的&lt;a href=&quot;http://jekyllrb.com/docs/variables/&quot;&gt;变量介绍一页&lt;/a&gt;。&lt;/p&gt;
@@ -897,7 +897,7 @@
     
     <item>
       <title>2014年移动广告平台界投融资整理</title>
-      <link>http://jekyllrb.com/blogs/2015/01/02/Advertise-Mobile-Platform-Market/</link>
+      <link>http://lilifeng.net/blogs/2015/01/02/Advertise-Mobile-Platform-Market/</link>
       <pubDate>Fri, 02 Jan 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -908,7 +908,7 @@
       
       <category>广告平台</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2015/01/02/Advertise-Mobile-Platform-Market/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/02/Advertise-Mobile-Platform-Market/</guid>
       <description>&lt;pre&gt;&lt;code&gt;domob多盟
     2014.09.16已完成C轮
     2011.07.09 B轮 启明创投、红点投资投资超1000万美元
@@ -997,7 +997,7 @@ Max传漾
     
     <item>
       <title>广告平台术语</title>
-      <link>http://jekyllrb.com/blogs/2014/12/28/Advertise-glossary/</link>
+      <link>http://lilifeng.net/blogs/2014/12/28/Advertise-glossary/</link>
       <pubDate>Sun, 28 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1008,7 +1008,7 @@ Max传漾
       
       <category>广告平台</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2014/12/28/Advertise-glossary/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/28/Advertise-glossary/</guid>
       <description>&lt;p&gt;&lt;code&gt;Campaign: 广告活动&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Advertising Campaign(广告活动) 指在某一特定市场上为实现某一目标所集中进行的大规模的广告活动, 可以是通过平面印刷品、电视电台、落地活动、互联网及社交平台、移动端等作为载体进行传播更可以是组合, 是广告策略的一种体现。&lt;/p&gt;
@@ -1075,7 +1075,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>PubNative发布世界上首个满足专业需求的“原生广告适配器”</title>
-      <link>http://jekyllrb.com/blogs/2014/12/23/PubNative-Publish/</link>
+      <link>http://lilifeng.net/blogs/2014/12/23/PubNative-Publish/</link>
       <pubDate>Tue, 23 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1084,7 +1084,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>广告平台</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2014/12/23/PubNative-Publish/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/23/PubNative-Publish/</guid>
       <description>&lt;p&gt;原文  &lt;a href=&quot;http://www.adexchanger.cn/tech-company/9903.html&quot;&gt;http://www.adexchanger.cn/tech-company/9903.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;前Motility Ads GM 兼Co-Founder 加入原生 SSP 管理团队&lt;/p&gt;
@@ -1109,7 +1109,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>Mac+GithubPages+Jekyll配置个人网站</title>
-      <link>http://jekyllrb.com/blogs/2014/12/17/Mac+GithubPages+Jekyll-site/</link>
+      <link>http://lilifeng.net/blogs/2014/12/17/Mac+GithubPages+Jekyll-site/</link>
       <pubDate>Wed, 17 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1126,7 +1126,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>internet</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2014/12/17/Mac+GithubPages+Jekyll-site/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/17/Mac+GithubPages+Jekyll-site/</guid>
       <description>&lt;p&gt;&lt;code&gt;1 Github官网注册账号&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/&quot;&gt;Github.com官网&lt;/a&gt;&lt;/p&gt;
@@ -1177,7 +1177,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>你的观点正确吗?</title>
-      <link>http://jekyllrb.com/blogs/2010/06/08/What-Is-Correct-Thought/</link>
+      <link>http://lilifeng.net/blogs/2010/06/08/What-Is-Correct-Thought/</link>
       <pubDate>Tue, 08 Jun 2010 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1186,7 +1186,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2010/06/08/What-Is-Correct-Thought/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2010/06/08/What-Is-Correct-Thought/</guid>
       <description>&lt;p&gt;[Y] 我是个进化论者, 你相信进化论吗?&lt;/p&gt;
 
 &lt;p&gt;[A] 在目前这个认知阶段, 我相信. 其实人们任何时候都不可能知道真理本身, 而只是不断地迂回接近真理. 就好像牛顿发现了几大力学定律, 但是最后还是被爱因斯坦给推翻了. 但是在当时那个认知阶段, 牛顿力学定律是没有一点问题的, 只不过时过境迁我们的大环境和认知水平都有了提升, 于是那个不是很接近真理的理论被更接近真理的理论所替代了.&lt;/p&gt;
@@ -1211,7 +1211,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>据说是博弈论~~~</title>
-      <link>http://jekyllrb.com/blogs/2009/07/27/Game-Theory/</link>
+      <link>http://lilifeng.net/blogs/2009/07/27/Game-Theory/</link>
       <pubDate>Mon, 27 Jul 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1220,7 +1220,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/07/27/Game-Theory/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/07/27/Game-Theory/</guid>
       <description>&lt;p&gt;今天工作的时候看到桌上足球群的聊天记录,突然想到了这个问题:&lt;/p&gt;
 
 &lt;p&gt;如果有一个房间里面有4个人,2个人已经做到了桌子上要打麻将,另外两个人心里同时在想”如果3缺1,我就上”, 但都没有表态要去玩.&lt;/p&gt;
@@ -1251,7 +1251,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>巧合?</title>
-      <link>http://jekyllrb.com/blogs/2009/07/26/Coincidence/</link>
+      <link>http://lilifeng.net/blogs/2009/07/26/Coincidence/</link>
       <pubDate>Sun, 26 Jul 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1260,7 +1260,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/07/26/Coincidence/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/07/26/Coincidence/</guid>
       <description>&lt;p&gt;甲:我前几天想了一个哲学问题,思来想去不知道哪里想不明白&lt;/p&gt;
 
 &lt;p&gt;乙:不敢当啊，探讨探讨&lt;/p&gt;
@@ -1346,14 +1346,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>宁做创业狼，不做打工狗</title>
-      <link>http://jekyllrb.com/blogs/2009/07/02/Fighting-Wolf-Or-Working-Dog/</link>
+      <link>http://lilifeng.net/blogs/2009/07/02/Fighting-Wolf-Or-Working-Dog/</link>
       <pubDate>Thu, 02 Jul 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/07/02/Fighting-Wolf-Or-Working-Dog/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/07/02/Fighting-Wolf-Or-Working-Dog/</guid>
       <description>&lt;p&gt;宁做创业狼，不做打工狗中国温州人号称中国最富有的人群，最喜欢挂在嘴边的话就是：“宁愿睡地板，也要做老板”或者“宁愿做生意一个月只赚1000元，不愿打工一月赚3000元”。这些理念相信是他们的长辈在生活中告诫他们的，潜移默化中成为他们心中做事情的原则。&lt;/p&gt;
 
 &lt;p&gt;　　这些原则就是一些理念，这种理念与其他众多地方的思维理念有很大差别的，即便现在有类似的选择，我估计很多朋友恰恰与他们的选择相反。但是这种理念却是很先进的，正是这样的理念使得温州人与众不同，成为中国最富有的人群。&lt;/p&gt;
@@ -1456,7 +1456,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>怎么样一个人生活</title>
-      <link>http://jekyllrb.com/blogs/2009/05/23/How-Live-Alone/</link>
+      <link>http://lilifeng.net/blogs/2009/05/23/How-Live-Alone/</link>
       <pubDate>Sat, 23 May 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1465,7 +1465,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/05/23/How-Live-Alone/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/05/23/How-Live-Alone/</guid>
       <description>&lt;p&gt;下午在等待的时候,和同住的哥们去了附近新开张的台湾菜馆,全部55折可谓是相当的实惠啊,觉得目前55折的时候吃起来还是很爽的,两个人乐颠颠点了4个菜吃到撑爆,也才100块钱… 要是全价估计要200了…还好现在吃的…­&lt;/p&gt;
 
 &lt;p&gt;吃饭的时候说到现在的生活的时候,忽然略有所想…­&lt;/p&gt;
@@ -1490,7 +1490,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>奔跑续</title>
-      <link>http://jekyllrb.com/blogs/2009/05/07/Run-Run-Continue/</link>
+      <link>http://lilifeng.net/blogs/2009/05/07/Run-Run-Continue/</link>
       <pubDate>Thu, 07 May 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1499,7 +1499,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/05/07/Run-Run-Continue/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/05/07/Run-Run-Continue/</guid>
       <description>&lt;p&gt;“嘭~~~”，随着每天早上1楼施工发出的200分贝铁锤和电钻噪声在大概7点钟左右准时响起，我被从睡梦中赶了出来，躺在了一个狭小房间的床上。 &lt;/p&gt;
 
 &lt;p&gt;思考，辗转，回笼。无奈1楼施工是一个不间断的闹钟，而且是距离比较远，自己没有控制权的闹钟。于是，思考，辗转，回笼，死循环。。。
@@ -1525,14 +1525,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>相见恨晚的68句话，每句话可以品半辈子</title>
-      <link>http://jekyllrb.com/blogs/2009/04/25/Those-Words-Worth-Half-Life/</link>
+      <link>http://lilifeng.net/blogs/2009/04/25/Those-Words-Worth-Half-Life/</link>
       <pubDate>Sat, 25 Apr 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/04/25/Those-Words-Worth-Half-Life/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/04/25/Those-Words-Worth-Half-Life/</guid>
       <description>&lt;p&gt;1，绅士无非就是耐心的狼。 &lt;/p&gt;
 
 &lt;p&gt;2，老鼠嘲笑猫的时候，身旁必有一个洞。 &lt;/p&gt;
@@ -1673,14 +1673,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>《与空姐战斗的日子》——永垂西工大校史的报亭之战&lt;转载&gt;</title>
-      <link>http://jekyllrb.com/blogs/2009/04/13/NWPU-Airline-Lady-Event/</link>
+      <link>http://lilifeng.net/blogs/2009/04/13/NWPU-Airline-Lady-Event/</link>
       <pubDate>Mon, 13 Apr 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/04/13/NWPU-Airline-Lady-Event/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/04/13/NWPU-Airline-Lady-Event/</guid>
       <description>&lt;p&gt;转载语: 本来一直不打算转载别人的文章,但是文章好啊,好多同学都转了,为了表示我也是西工大的人,破格转一次吧. &lt;/p&gt;
 
 &lt;p&gt;卷首语：最近网上疯狂流传《飞机上偷摸空姐指南》一文，余闻之不禁窃笑。此文把我的思绪带回到了2001年那个血色的秋天，至今对空乘班的格斗水平记忆犹新。当MM们举起美丽的板砖时我的世界观瞬间崩塌，那横飞的板砖，华丽的粉拳绣腿，以及被轰至渣倒在地上哀号的西工大理科生们–仍然是历历在目，让我们打开这尘封的记忆吧···· &lt;/p&gt;
@@ -1801,7 +1801,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>奔跑，奔跑</title>
-      <link>http://jekyllrb.com/blogs/2009/04/11/Run-Run/</link>
+      <link>http://lilifeng.net/blogs/2009/04/11/Run-Run/</link>
       <pubDate>Sat, 11 Apr 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1810,7 +1810,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/04/11/Run-Run/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/04/11/Run-Run/</guid>
       <description>&lt;p&gt;有段时间没来写一段日志了，今天加班，天气良好，写一些最近的感受吧。&lt;/p&gt;
 
 &lt;p&gt;自从搬来浦东，每天早上7点左右被窗外路旁隆隆的运货卡车声，激动的孩提玩耍声，高亢的水果摊主吆喝声，震撼的楼下钻机声这类自然闹钟弄醒，然后试图用被子将我的五官全都蒙住，哪怕自己喘不上气也不想被搅了我的美梦。然而那些声响居然此起彼伏，错落有致，抑扬顿挫，无比和谐，使得我不得不对这些声音以及声音的主人，以及声音主人的祖先肃然起敬，也就只好肃然起床了。感觉就像是运动员赛跑时的哨声，别人已经跑出去了，我能傻站着不动吗？&lt;/p&gt;
@@ -1833,14 +1833,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>临汾方言</title>
-      <link>http://jekyllrb.com/blogs/2009/03/31/Linfen-Languages/</link>
+      <link>http://lilifeng.net/blogs/2009/03/31/Linfen-Languages/</link>
       <pubDate>Tue, 31 Mar 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/03/31/Linfen-Languages/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/03/31/Linfen-Languages/</guid>
       <description>&lt;p&gt;脸—-迷念&lt;/p&gt;
 
 &lt;p&gt;蹲下—–格九哈&lt;/p&gt;
@@ -1939,7 +1939,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>生产力VS生产关系</title>
-      <link>http://jekyllrb.com/blogs/2009/03/15/Productivity-And-Production-Relations/</link>
+      <link>http://lilifeng.net/blogs/2009/03/15/Productivity-And-Production-Relations/</link>
       <pubDate>Sun, 15 Mar 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -1948,7 +1948,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/03/15/Productivity-And-Production-Relations/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/03/15/Productivity-And-Production-Relations/</guid>
       <description>&lt;p&gt;丁：所以只能在美国人的公司里搞科研 &lt;/p&gt;
 
 &lt;p&gt;丁：给美国人打工 &lt;/p&gt;
@@ -2078,7 +2078,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>音乐串烧</title>
-      <link>http://jekyllrb.com/blogs/2009/03/13/Joke-Music-Strings/</link>
+      <link>http://lilifeng.net/blogs/2009/03/13/Joke-Music-Strings/</link>
       <pubDate>Fri, 13 Mar 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2087,7 +2087,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/03/13/Joke-Music-Strings/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/03/13/Joke-Music-Strings/</guid>
       <description>&lt;p&gt;1.王心凌《爱你》，S.H.E《我爱你》，Beyond《真的爱你》，李宗盛《我是真的爱你》，言承旭《我是真的真的很爱你》。 &lt;/p&gt;
 
 &lt;p&gt;点评：不用这么复杂吧！ &lt;/p&gt;
@@ -2138,7 +2138,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>这把伞是你的吗？</title>
-      <link>http://jekyllrb.com/blogs/2009/03/13/Joke-Is-This-Your-Umbrella/</link>
+      <link>http://lilifeng.net/blogs/2009/03/13/Joke-Is-This-Your-Umbrella/</link>
       <pubDate>Fri, 13 Mar 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2147,7 +2147,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/03/13/Joke-Is-This-Your-Umbrella/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/03/13/Joke-Is-This-Your-Umbrella/</guid>
       <description>&lt;p&gt;话说昨天晚上浦东看房子看得比较晚也比较累，在浦电路等地铁的时候把伞放地下玩了玩手机。&lt;/p&gt;
 
 &lt;p&gt;过了几分钟抬头突然发现地铁来了就赶紧冲了进去。坐过了几站以后才发现伞没拿然后又回去拿伞，回去以后转了一圈发现没有。&lt;/p&gt;
@@ -2162,14 +2162,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>好文分享－不错的短文《所谓职业》</title>
-      <link>http://jekyllrb.com/blogs/2009/02/27/About-Career/</link>
+      <link>http://lilifeng.net/blogs/2009/02/27/About-Career/</link>
       <pubDate>Fri, 27 Feb 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/02/27/About-Career/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/27/About-Career/</guid>
       <description>&lt;p&gt;所谓职业，无非是将自己变成一个聪明的勤快人。&lt;/p&gt;
 
 &lt;p&gt;2004年，集团下属科技公司改组，执行委员会找我谈话，决定派我去兼任科技公司的副总，负责整个公司的业务和人事安排。工作于是无厘头地增加了很多内容。 &lt;/p&gt;
@@ -2223,7 +2223,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>可能会有口蹄疫</title>
-      <link>http://jekyllrb.com/blogs/2009/02/19/Joke-Maybe-Cow-Sick/</link>
+      <link>http://lilifeng.net/blogs/2009/02/19/Joke-Maybe-Cow-Sick/</link>
       <pubDate>Thu, 19 Feb 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2232,7 +2232,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/02/19/Joke-Maybe-Cow-Sick/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/19/Joke-Maybe-Cow-Sick/</guid>
       <description>&lt;p&gt;昨天和杨J在原味吃饭，上了一道菜是红烧带鱼。&lt;/p&gt;
 
 &lt;p&gt;杨J，“这个会不会有禽流感啊？”&lt;/p&gt;
@@ -2245,7 +2245,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>没事，他也没有</title>
-      <link>http://jekyllrb.com/blogs/2009/02/17/Joke-No-Matters-Neither-Him/</link>
+      <link>http://lilifeng.net/blogs/2009/02/17/Joke-No-Matters-Neither-Him/</link>
       <pubDate>Tue, 17 Feb 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2254,7 +2254,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/02/17/Joke-No-Matters-Neither-Him/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/17/Joke-No-Matters-Neither-Him/</guid>
       <description>&lt;p&gt;今天打完球离开公司的时候和Steven，杨J一起走，因为公司有免费饮料所以他们一人拿了一瓶。&lt;/p&gt;
 
 &lt;p&gt;忽然Steven拿着手中的纸装橙汁大呼，“哎呀，我忘了拿吸管了。。。”&lt;/p&gt;
@@ -2267,7 +2267,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>情人节的绝活亮相！</title>
-      <link>http://jekyllrb.com/blogs/2009/02/14/Houseman-Lovers-Day/</link>
+      <link>http://lilifeng.net/blogs/2009/02/14/Houseman-Lovers-Day/</link>
       <pubDate>Sat, 14 Feb 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2276,7 +2276,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/02/14/Houseman-Lovers-Day/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/14/Houseman-Lovers-Day/</guid>
       <description>&lt;p&gt;今天情人节，对于咱孤家寡人，不想上街抢对对鸳鸯的戏，就宅在家了～，既然过节就要来点不同嘛，焖面！！！ &lt;/p&gt;
 
 &lt;p&gt;话说焖面可是我爸的绝学，做出来的那面，那豆角，那肉，都无法用语言表达那种酣畅淋漓的吃面快感，如果在我开吃焖面的第一口问我一个问题，我一定是吃完之后才有空来回答你～～～ &lt;/p&gt;
@@ -2313,7 +2313,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>推荐的WM手机软件</title>
-      <link>http://jekyllrb.com/blogs/2009/02/08/Introducing-WM-Softwares/</link>
+      <link>http://lilifeng.net/blogs/2009/02/08/Introducing-WM-Softwares/</link>
       <pubDate>Sun, 08 Feb 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2322,7 +2322,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/02/08/Introducing-WM-Softwares/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/08/Introducing-WM-Softwares/</guid>
       <description>&lt;p&gt;最近用了一个WM6.1 PPC手机，从网上搜罗了N多软件，好的不好的都拿来玩了一把，在这里列出一些我觉得WM系统必备的软件吧： &lt;/p&gt;
 
 &lt;p&gt;1,Resco Explorer &lt;/p&gt;
@@ -2416,14 +2416,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>回复失恋男的来信</title>
-      <link>http://jekyllrb.com/blogs/2009/02/02/Letter-To-Losing-Boy/</link>
+      <link>http://lilifeng.net/blogs/2009/02/02/Letter-To-Losing-Boy/</link>
       <pubDate>Mon, 02 Feb 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/02/02/Letter-To-Losing-Boy/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/02/Letter-To-Losing-Boy/</guid>
       <description>&lt;p&gt;老端注：这是我第一回收到感情方面的来信询问，发信人还是一位男性，由于本人非感情方面的专家，因此本不打算回复。但转念一想，用经济学和进化心理学知识是否也可以提供一些个人情感方面的帮助呢？毕竟这两方面我还稍微有点研究，说不定可以尝试一下。于是干脆隐去来信人姓名，贴上blog供大家共同研究。 &lt;/p&gt;
 
 &lt;p&gt;下面是来信内容： &lt;/p&gt;
@@ -2474,7 +2474,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>Feedback for &lt;The Sixth Sense&gt;/《第六感》影评</title>
-      <link>http://jekyllrb.com/blogs/2009/01/18/Yesterday-Today-Tomorrow/</link>
+      <link>http://lilifeng.net/blogs/2009/01/18/Yesterday-Today-Tomorrow/</link>
       <pubDate>Sun, 18 Jan 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2483,7 +2483,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/01/18/Yesterday-Today-Tomorrow/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/18/Yesterday-Today-Tomorrow/</guid>
       <description>&lt;p&gt;前几天的变化太突然太大太让人受不了，到现在仍然摆脱不了这些事情所引起的阴霾。这几天一直在思考。 &lt;/p&gt;
 
 &lt;p&gt;就在那些事发生前几天，我已经在思考我的未来。毕竟目前的工作非常没有前途，如果不是对产品一种慈父的爱和我们成功温馨的团队，我恐怕早就心灰意冷离开这里了。我曾和Samuel聊过，我们究竟未来可以做些什么。Samuel告诉我，我们现在所做的这个职业，这个产品，这份工作，是非常没有前途的，就算一年20万，30万，那又能如何？要想把自己的事业做好做大，必须要有人脉，你一个人再如何有才，再如何能干，你只是一个人，你影响的空间有限。当你有一个更广阔的圈子之后，你就可以依靠这些朋友去推广你以及你的理念，这才会创造更多的价值，回报当然也更大。当时我只想着这辈子找一个稳定些能做大做强的事业来在平时没事的时候来学习，准备；说实话，动机非常原始，下班无聊想找事情做。 &lt;/p&gt;
@@ -2504,14 +2504,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>08年流行语文</title>
-      <link>http://jekyllrb.com/blogs/2009/01/12/2008-Hot-Words/</link>
+      <link>http://lilifeng.net/blogs/2009/01/12/2008-Hot-Words/</link>
       <pubDate>Mon, 12 Jan 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/01/12/2008-Hot-Words/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/12/2008-Hot-Words/</guid>
       <description>&lt;p&gt;http://blogs.qq.com/a/20090112/000550.htm这个更详细。。。&lt;/p&gt;
 
 &lt;ol&gt;
@@ -2596,14 +2596,14 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>你一定能用上的生活小绝招～</title>
-      <link>http://jekyllrb.com/blogs/2009/01/10/Life-tricks/</link>
+      <link>http://lilifeng.net/blogs/2009/01/10/Life-tricks/</link>
       <pubDate>Sat, 10 Jan 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/01/10/Life-tricks/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/10/Life-tricks/</guid>
       <description>&lt;p&gt;天涯上看来的，大家分享一下吧～ &lt;/p&gt;
 
 &lt;p&gt;1.吃了辣的东西，感觉就要被辣死了，就往嘴里放上少许盐，含一下，吐掉，漱下口，就不辣了； &lt;/p&gt;
@@ -2730,7 +2730,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     
     <item>
       <title>Feedback for &lt;The Sixth Sense&gt;/《第六感》影评</title>
-      <link>http://jekyllrb.com/blogs/2009/01/03/Movie-Feedback-The-Sixth-Sense/</link>
+      <link>http://lilifeng.net/blogs/2009/01/03/Movie-Feedback-The-Sixth-Sense/</link>
       <pubDate>Sat, 03 Jan 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2739,7 +2739,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/01/03/Movie-Feedback-The-Sixth-Sense/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/03/Movie-Feedback-The-Sixth-Sense/</guid>
       <description>&lt;the sixth=&quot;&quot; sense=&quot;&quot;&gt; movie is defined as a psychological horror film which I thought is to scare people, but actually it is wrong. All I can see from this film is real love. 
 
 
@@ -2787,7 +2787,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
     
     <item>
       <title>日本鬼子来了也找不到！</title>
-      <link>http://jekyllrb.com/blogs/2009/01/01/Joke-Japanese-Cannot-Find/</link>
+      <link>http://lilifeng.net/blogs/2009/01/01/Joke-Japanese-Cannot-Find/</link>
       <pubDate>Thu, 01 Jan 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2796,7 +2796,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2009/01/01/Joke-Japanese-Cannot-Find/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/01/Joke-Japanese-Cannot-Find/</guid>
       <description>&lt;p&gt;今天和老妈聊天，老妈说起了一件事。 &lt;/p&gt;
 
 &lt;p&gt;我妈爱干净，经常勤奋的收拾厨房，对厨房每个物品都想有个理想的摆放地点，有一次老妈下定决心收拾了一天厨房，把所有的餐具什么的都摆到了她认为很合适的地方。 &lt;/p&gt;
@@ -2811,7 +2811,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
     
     <item>
       <title>关于缘分</title>
-      <link>http://jekyllrb.com/blogs/2008/12/28/About-Destiny/</link>
+      <link>http://lilifeng.net/blogs/2008/12/28/About-Destiny/</link>
       <pubDate>Sun, 28 Dec 2008 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2820,7 +2820,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2008/12/28/About-Destiny/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2008/12/28/About-Destiny/</guid>
       <description>&lt;p&gt;[甲]“结婚是靠缘分，没有缘分再好也走不到一块去”非诚勿扰的台词 &lt;/p&gt;
 
 &lt;p&gt;[甲]“如果一定要结婚，又不可以跟自己爱的人在一起，那起码要找个知己”台词 &lt;/p&gt;
@@ -2925,7 +2925,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
     
     <item>
       <title>关于投资的谈话</title>
-      <link>http://jekyllrb.com/blogs/2008/12/21/About-Investment/</link>
+      <link>http://lilifeng.net/blogs/2008/12/21/About-Investment/</link>
       <pubDate>Sun, 21 Dec 2008 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -2934,7 +2934,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2008/12/21/About-Investment/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2008/12/21/About-Investment/</guid>
       <description>&lt;p&gt;[甲]你炒股吗 &lt;/p&gt;
 
 &lt;p&gt;[乙]不 &lt;/p&gt;
@@ -3012,7 +3012,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
     
     <item>
       <title>C++ STL 习题</title>
-      <link>http://jekyllrb.com/blogs/2006/05/19/CPP-Test-English/</link>
+      <link>http://lilifeng.net/blogs/2006/05/19/CPP-Test-English/</link>
       <pubDate>Fri, 19 May 2006 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -3027,7 +3027,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       
       <category>desktop</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2006/05/19/CPP-Test-English/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2006/05/19/CPP-Test-English/</guid>
       <description>&lt;h1 id=&quot;questions&quot;&gt;Questions:&lt;/h1&gt;
 
 &lt;h2 id=&quot;base&quot;&gt;BASE:&lt;/h2&gt;
@@ -3197,7 +3197,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
     
     <item>
       <title>C++ Template 习题</title>
-      <link>http://jekyllrb.com/blogs/2006/05/17/Template-Test-English/</link>
+      <link>http://lilifeng.net/blogs/2006/05/17/Template-Test-English/</link>
       <pubDate>Wed, 17 May 2006 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -3212,7 +3212,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       
       <category>desktop</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2006/05/17/Template-Test-English/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2006/05/17/Template-Test-English/</guid>
       <description>
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;//因为这次公司培训机制改变为先发布题目，由学员看书做题，再由教员专向辅导。&lt;/span&gt;
@@ -3696,7 +3696,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
     
     <item>
       <title>剖析ActiveX控件安全问题</title>
-      <link>http://jekyllrb.com/blogs/2006/05/10/ActiveX-Safety/</link>
+      <link>http://lilifeng.net/blogs/2006/05/10/ActiveX-Safety/</link>
       <pubDate>Wed, 10 May 2006 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -3711,7 +3711,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       
       <category>desktop</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2006/05/10/ActiveX-Safety/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2006/05/10/ActiveX-Safety/</guid>
       <description>&lt;h2 id=&quot;section&quot;&gt;1、介绍&lt;/h2&gt;
 
 &lt;p&gt;如果你曾经在网页或者ASP中使用过com对象，你可能会发现，有时候会出现这样讨厌的对话框&lt;/p&gt;
@@ -4072,7 +4072,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
     
     <item>
       <title>西山居士的宇宙模型遐想</title>
-      <link>http://jekyllrb.com/blogs/2006/04/30/Universe-Think/</link>
+      <link>http://lilifeng.net/blogs/2006/04/30/Universe-Think/</link>
       <pubDate>Sun, 30 Apr 2006 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -4085,7 +4085,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       
       <category>博文</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2006/04/30/Universe-Think/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2006/04/30/Universe-Think/</guid>
       <description>&lt;p&gt;以前学习了物理中原子等知识的时候我就有这种想法了，后来不时又在这么想，现在有了blog那就放上来好了：&lt;/p&gt;
 
 &lt;p&gt;空间无限大,时间无限长。&lt;/p&gt;
@@ -4110,7 +4110,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
     
     <item>
       <title>【翻译】 对话：换个名字</title>
-      <link>http://jekyllrb.com/blogs/2005/12/20/Translation-Dialog-Change-Name/</link>
+      <link>http://lilifeng.net/blogs/2005/12/20/Translation-Dialog-Change-Name/</link>
       <pubDate>Tue, 20 Dec 2005 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -4125,7 +4125,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       
       <category>desktop</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2005/12/20/Translation-Dialog-Change-Name/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2005/12/20/Translation-Dialog-Change-Name/</guid>
       <description>&lt;p&gt;仅仅挂起100公里的距离，小行星就迅速占满了我们的视线。它的表面看起来就像碎过又用冰粘起来的杯子。很多的冰河在交错的小山脊间静静的流淌。木卫二，荒凉而美丽的地方。&lt;/p&gt;
 
 &lt;p&gt;这时喇叭响起，“请大家登机，三号舱和七号舱。”然后又安静下来了。&lt;/p&gt;
@@ -4329,7 +4329,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
     
     <item>
       <title>【翻译】 对话：接触指针</title>
-      <link>http://jekyllrb.com/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/</link>
+      <link>http://lilifeng.net/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/</link>
       <pubDate>Mon, 28 Nov 2005 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -4342,7 +4342,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       
       <category>desktop</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/</guid>
       <description>&lt;p&gt;“哎呀！”&lt;/p&gt;
 
 &lt;p&gt;这是我一小时内第七次受挫了。显然Wendy很讨厌我这样。“看就看吧，朋友，安静一会行不行？”她的声音飘出了隔间。貌似比她先前的反应好些。&lt;/p&gt;
@@ -4505,7 +4505,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
     
     <item>
       <title>【翻译】 对话：究竟谁才是可移植的程序员？</title>
-      <link>http://jekyllrb.com/blogs/2005/11/19/Translation-Dialog-Portable-Design/</link>
+      <link>http://lilifeng.net/blogs/2005/11/19/Translation-Dialog-Portable-Design/</link>
       <pubDate>Sat, 19 Nov 2005 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -4518,7 +4518,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       
       <category>desktop</category>
       
-      <guid isPermaLink="true">http://jekyllrb.com/blogs/2005/11/19/Translation-Dialog-Portable-Design/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2005/11/19/Translation-Dialog-Portable-Design/</guid>
       <description>&lt;p&gt;“嗨，小鬼。”Jeannine走过来坐在我对面，我现在很邋遢。“听说消息了吗？”&lt;/p&gt;
 
 &lt;p&gt;我扫了一眼时间确认一下，我并不打算再跟她聊半个小时以上。“嗨，二等公民。不，还不是。无论如何，他们仍在值班。你今天这么早就不值班了？”&lt;/p&gt;
