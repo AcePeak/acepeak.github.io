@@ -4,7 +4,10 @@ title: 博文
 permalink: /blogs/
 author: all
 ---
-
-{% for post in site.posts %}
-  {% include blogs_item.html %}
-{% endfor %}
+<article>
+  <ul style="list-style-type:none">
+    {% for post in site.posts %}
+    <li> {{ post.date | date: "%F"  }} <a href="{{ post.url }}">{{ post.title }}</a> </li>
+    {% endfor %}
+  </ul>
+</article>

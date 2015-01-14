@@ -2,7 +2,7 @@
   <select onchange="if (this.value) window.location.href=this.value">
     <option value="">浏览博文…</option>
     <option value="/blogs/">所有博文</option>
-    <optgroup label="v1.x">
+    <optgroup label="all">
       {% for post in site.posts %}
       <option value="{{ post.url }}">{{ post.title }}</option>
       {% endfor %}

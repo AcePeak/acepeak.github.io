@@ -11,8 +11,8 @@
     <title xml:lang="en">Jekyll • Simple, blog-aware, static sites</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://jekyllrb.com/</link>
-    <pubDate>Wed, 14 Jan 2015 11:03:32 +0800</pubDate>
-    <lastBuildDate>Wed, 14 Jan 2015 11:03:32 +0800</lastBuildDate>
+    <pubDate>Wed, 14 Jan 2015 14:09:05 +0800</pubDate>
+    <lastBuildDate>Wed, 14 Jan 2015 14:09:05 +0800</lastBuildDate>
     <language>en-US</language>
     <generator>Jekyll v2.5.2</generator>
     <description>Transform your plain text into static websites and blogs.</description>
@@ -2077,7 +2077,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     </item>
     
     <item>
-      <title>这把伞是你的吗？</title>
+      <title>音乐串烧</title>
       <link>http://jekyllrb.com/blogs/2009/03/13/Joke-Music-Strings/</link>
       <pubDate>Fri, 13 Mar 2009 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -2810,7 +2810,7 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
     </item>
     
     <item>
-      <title>关于投资的谈话</title>
+      <title>关于缘分</title>
       <link>http://jekyllrb.com/blogs/2008/12/28/About-Destiny/</link>
       <pubDate>Sun, 28 Dec 2008 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>

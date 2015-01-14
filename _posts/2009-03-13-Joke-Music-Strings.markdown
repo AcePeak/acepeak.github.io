@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 这把伞是你的吗？
+title: 音乐串烧
 author: AcePeak
 categories: [博文]
 tags: 
