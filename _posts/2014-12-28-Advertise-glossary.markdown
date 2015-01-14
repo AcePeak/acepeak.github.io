@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: '广告平台术语'
 author: AcePeak
 categories: [广告平台]

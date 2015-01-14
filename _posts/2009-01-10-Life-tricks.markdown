@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 你一定能用上的生活小绝招～
 author: AcePeak
 categories: [博文]

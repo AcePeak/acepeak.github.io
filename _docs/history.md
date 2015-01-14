@@ -628,7 +628,7 @@ prev_section: contributing
 - Add `jekyll-font-awesome` plugin to plugin list ([#1999]({{ site.repository }}/issues/1999))
 - Add `sublime-jekyll` to list of Editor plugins ([#2001]({{ site.repository }}/issues/2001))
 - Add `vim-jekyll` to the list of Editor plugins ([#2005]({{ site.repository }}/issues/2005))
-- Fix non-semantic nesting of `p` tags in `news_item` layout ([#2013]({{ site.repository }}/issues/2013))
+- Fix non-semantic nesting of `p` tags in `blogs_item` layout ([#2013]({{ site.repository }}/issues/2013))
 - Document destination folder cleaning ([#2016]({{ site.repository }}/issues/2016))
 - Updated instructions for NearlyFreeSpeech.NET installation ([#2015]({{ site.repository }}/issues/2015))
 - Update link to rack-jekyll on "Deployment Methods" page ([#2047]({{ site.repository }}/issues/2047))
@@ -652,7 +652,7 @@ prev_section: contributing
 - Some HTML tidying ([#2130]({{ site.repository }}/issues/2130))
 - Remove modernizr and use html5shiv.js directly for IE less than v9 ([#2131]({{ site.repository }}/issues/2131))
 - Remove unused images ([#2187]({{ site.repository }}/issues/2187))
-- Use `array_to_sentence_string` filter when outputting news item
+- Use `array_to_sentence_string` filter when outputting blogs item
     categories ([#2191]({{ site.repository }}/issues/2191))
 - Add link to Help repo in primary navigation bar ([#2177]({{ site.repository }}/issues/2177))
 - Switch to using an ico file for the shortcut icon ([#2193]({{ site.repository }}/issues/2193))
@@ -1064,7 +1064,7 @@ prev_section: contributing
 
 ### Site Enhancements
 {: #site-enhancements-v1-1-0}
-- Add "News" section for release notes, along with an RSS feed ([#1093]({{ site.repository }}/issues/1093), [#1285]({{ site.repository }}/issues/1285), [#1286]({{ site.repository }}/issues/1286))
+- Add "Blogs" section for release notes, along with an RSS feed ([#1093]({{ site.repository }}/issues/1093), [#1285]({{ site.repository }}/issues/1285), [#1286]({{ site.repository }}/issues/1286))
 - Add "History" page.
 - Restructured docs sections to include "Meta" section.
 - Add message to "Templates" page that specifies that Python must be installed in order

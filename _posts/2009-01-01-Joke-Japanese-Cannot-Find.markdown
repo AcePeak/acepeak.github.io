@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 日本鬼子来了也找不到！
 author: AcePeak
 categories: [博文]

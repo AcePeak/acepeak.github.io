@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 宁做创业狼，不做打工狗 
 author: AcePeak
 categories: [博文]

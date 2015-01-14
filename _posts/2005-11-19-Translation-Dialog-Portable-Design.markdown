@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 【翻译】 对话：究竟谁才是可移植的程序员？
 author: AcePeak
 categories: [Desktop]

@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 情人节的绝活亮相！
 author: AcePeak
 categories: [博文]

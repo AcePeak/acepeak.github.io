@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 你的观点正确吗?
 author: AcePeak
 categories: [博文]

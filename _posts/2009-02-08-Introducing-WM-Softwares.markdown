@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 推荐的WM手机软件
 author: AcePeak
 categories: [博文]

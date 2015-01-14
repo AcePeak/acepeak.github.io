@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 没事，他也没有
 author: AcePeak
 categories: [博文]

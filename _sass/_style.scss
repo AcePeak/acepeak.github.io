@@ -390,7 +390,7 @@ footer {
   }
 }
 
-/* Article - Used for both docs and news */
+/* Article - Used for both docs and blogs */
 
 
 article {
@@ -417,7 +417,7 @@ article {
   }
 }
 
-/* Right-side nav - used by both docs and news */
+/* Right-side nav - used by both docs and blogs */
 
 aside {
   padding-top: 30px;
@@ -536,7 +536,7 @@ aside {
   width: 100%;
 }
 
-/* News */
+/* Blogs */
 
 article h2:first-child { margin-top: 0; }
 
@@ -610,7 +610,7 @@ article h2:first-child { margin-top: 0; }
 .post-date,
 .post-author { margin-left: 10px; }
 
-.news article + article {
+.blogs article + article {
   margin-top: -10px;
   @include border-radius(0 0 10px 10px);
   border-top: 1px solid #555;

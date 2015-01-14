@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 'Mac+GithubPages+Jekyll配置个人网站'
 author: AcePeak
 categories: [Internet]

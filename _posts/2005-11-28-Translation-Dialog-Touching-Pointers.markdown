@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 【翻译】 对话：接触指针
 author: AcePeak
 categories: [Desktop]

@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 怎么样一个人生活
 author: AcePeak
 categories: [博文]

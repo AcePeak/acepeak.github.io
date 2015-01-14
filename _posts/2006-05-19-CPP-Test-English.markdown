@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: C++ STL 习题
 author: AcePeak
 categories: [Desktop]

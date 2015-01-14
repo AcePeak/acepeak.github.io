@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 回复失恋男的来信
 author: AcePeak
 categories: [博文]

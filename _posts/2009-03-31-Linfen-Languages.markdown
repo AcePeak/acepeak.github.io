@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 临汾方言
 author: AcePeak
 categories: [博文]

@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 相见恨晚的68句话，每句话可以品半辈子
 author: AcePeak
 categories: [博文]

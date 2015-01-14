@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 《与空姐战斗的日子》——永垂西工大校史的报亭之战<转载>
 author: AcePeak
 categories: [博文]

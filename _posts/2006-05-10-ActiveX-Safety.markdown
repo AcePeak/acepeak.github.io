@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 剖析ActiveX控件安全问题
 author: AcePeak
 categories: [Desktop]

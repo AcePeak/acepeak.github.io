@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 据说是博弈论~~~
 author: AcePeak
 categories: [博文]

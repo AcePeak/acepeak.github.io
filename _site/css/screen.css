@@ -865,7 +865,7 @@ footer {
     position: absolute;
     right: 0;
     bottom: -30px; } }
-/* Article - Used for both docs and news */
+/* Article - Used for both docs and blogs */
 article {
   background-color: #444;
   -webkit-border-radius: 10px;
@@ -888,7 +888,7 @@ article {
   article {
     padding: 40px 40px 30px;
     font-size: 21px; } }
-/* Right-side nav - used by both docs and news */
+/* Right-side nav - used by both docs and blogs */
 aside {
   padding-top: 30px; }
   aside h4 {
@@ -982,7 +982,7 @@ aside {
   color: #000;
   width: 100%; }
 
-/* News */
+/* Blogs */
 article h2:first-child {
   margin-top: 0; }
 
@@ -1055,7 +1055,7 @@ article h2:first-child {
 .post-author {
   margin-left: 10px; }
 
-.news article + article {
+.blogs article + article {
   margin-top: -10px;
   -webkit-border-radius: 0 0 10px 10px;
   -moz-border-radius: 0 0 10px 10px;

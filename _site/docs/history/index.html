@@ -34,7 +34,7 @@
     <a href="/docs/home/">专题</span></a>
   </li>
   <li class="">
-    <a href="/news/">博文</a>
+    <a href="/blogs/">博文</a>
   </li>
   <li>
     <a href="https://github.com/AcePeak">源码<span class="hide-on-mobiles">@GitHub</span></a>
@@ -52,7 +52,7 @@
     <a href="/docs/home/">专题</span></a>
   </li>
   <li class="">
-    <a href="/news/">博文</a>
+    <a href="/blogs/">博文</a>
   </li>
   <li>
     <a href="https://github.com/AcePeak">源码<span class="hide-on-mobiles">@GitHub</span></a>
@@ -2670,7 +2670,7 @@
   <li>Add <code>jekyll-font-awesome</code> plugin to plugin list (<a href="https://github.com/AcePeak/issues/1999">#1999</a>)</li>
   <li>Add <code>sublime-jekyll</code> to list of Editor plugins (<a href="https://github.com/AcePeak/issues/2001">#2001</a>)</li>
   <li>Add <code>vim-jekyll</code> to the list of Editor plugins (<a href="https://github.com/AcePeak/issues/2005">#2005</a>)</li>
-  <li>Fix non-semantic nesting of <code>p</code> tags in <code>news_item</code> layout (<a href="https://github.com/AcePeak/issues/2013">#2013</a>)</li>
+  <li>Fix non-semantic nesting of <code>p</code> tags in <code>blogs_item</code> layout (<a href="https://github.com/AcePeak/issues/2013">#2013</a>)</li>
   <li>Document destination folder cleaning (<a href="https://github.com/AcePeak/issues/2016">#2016</a>)</li>
   <li>Updated instructions for NearlyFreeSpeech.NET installation (<a href="https://github.com/AcePeak/issues/2015">#2015</a>)</li>
   <li>Update link to rack-jekyll on “Deployment Methods” page (<a href="https://github.com/AcePeak/issues/2047">#2047</a>)</li>
@@ -2694,7 +2694,7 @@
   <li>Some HTML tidying (<a href="https://github.com/AcePeak/issues/2130">#2130</a>)</li>
   <li>Remove modernizr and use html5shiv.js directly for IE less than v9 (<a href="https://github.com/AcePeak/issues/2131">#2131</a>)</li>
   <li>Remove unused images (<a href="https://github.com/AcePeak/issues/2187">#2187</a>)</li>
-  <li>Use <code>array_to_sentence_string</code> filter when outputting news item
+  <li>Use <code>array_to_sentence_string</code> filter when outputting blogs item
   categories (<a href="https://github.com/AcePeak/issues/2191">#2191</a>)</li>
   <li>Add link to Help repo in primary navigation bar (<a href="https://github.com/AcePeak/issues/2177">#2177</a>)</li>
   <li>Switch to using an ico file for the shortcut icon (<a href="https://github.com/AcePeak/issues/2193">#2193</a>)</li>
@@ -3119,7 +3119,7 @@
 
 <h3 id="site-enhancements-v1-1-0">Site Enhancements</h3>
 <ul>
-  <li>Add “News” section for release notes, along with an RSS feed (<a href="https://github.com/AcePeak/issues/1093">#1093</a>, <a href="https://github.com/AcePeak/issues/1285">#1285</a>, <a href="https://github.com/AcePeak/issues/1286">#1286</a>)</li>
+  <li>Add “Blogs” section for release notes, along with an RSS feed (<a href="https://github.com/AcePeak/issues/1093">#1093</a>, <a href="https://github.com/AcePeak/issues/1285">#1285</a>, <a href="https://github.com/AcePeak/issues/1286">#1286</a>)</li>
   <li>Add “History” page.</li>
   <li>Restructured docs sections to include “Meta” section.</li>
   <li>Add message to “Templates” page that specifies that Python must be installed in order
@@ -5989,7 +5989,7 @@
 
   document.onreadystatechange = function () {
     if (this.readyState === "complete") {
-      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
+      var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("blogs")[0];
       if (!contentBlock) {
         return;
       }

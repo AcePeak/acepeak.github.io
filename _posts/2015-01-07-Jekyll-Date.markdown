@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 'GithubPages+Jekyll模板中各类型对象的方法介绍'
 author: AcePeak
 categories: [Internet]

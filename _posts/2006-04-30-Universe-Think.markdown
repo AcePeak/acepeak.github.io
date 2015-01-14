@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 西山居士的宇宙模型遐想
 author: AcePeak
 categories: [博文]

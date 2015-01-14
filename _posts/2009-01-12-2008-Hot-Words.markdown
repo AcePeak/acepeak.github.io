@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 08年流行语文
 author: AcePeak
 categories: [博文]
@@ -7,7 +7,7 @@ tags:
 ---
 
 
-http://news.qq.com/a/20090112/000550.htm这个更详细。。。
+http://blogs.qq.com/a/20090112/000550.htm这个更详细。。。
 
 1. 成语 
 

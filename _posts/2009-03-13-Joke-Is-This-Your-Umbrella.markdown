@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 这把伞是你的吗？
 author: AcePeak
 categories: [博文]

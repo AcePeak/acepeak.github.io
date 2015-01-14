@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 奔跑续
 author: AcePeak
 categories: [博文]

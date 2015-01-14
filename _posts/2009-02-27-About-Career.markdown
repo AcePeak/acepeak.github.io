@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 好文分享－不错的短文《所谓职业》
 author: AcePeak
 categories: [博文]

@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 可能会有口蹄疫
 author: AcePeak
 categories: [博文]

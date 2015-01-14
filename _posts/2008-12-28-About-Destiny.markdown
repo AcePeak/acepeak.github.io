@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: 关于投资的谈话
 author: AcePeak
 categories: [博文]

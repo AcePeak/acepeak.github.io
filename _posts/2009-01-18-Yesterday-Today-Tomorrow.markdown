@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: Feedback for <The Sixth Sense>/《第六感》影评
 author: AcePeak
 categories: [博文]

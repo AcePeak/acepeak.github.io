@@ -1,5 +1,5 @@
 ---
-layout: news_item
+layout: blogs_item
 title: '2014年移动广告平台界投融资整理'
 author: AcePeak
 categories: [广告平台]
