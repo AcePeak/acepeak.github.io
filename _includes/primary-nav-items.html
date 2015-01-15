@@ -2,11 +2,14 @@
   <li class="{% if page.overview %}current{% endif %}">
     <a href="/">首页</a>
   </li>
-  <li class="{% if page.url contains '/docs/' %}current{% endif %}">
-    <a href="/docs/home/">专题</span></a>
+  <li class="{% if page.categories.'博文' %}current{% endif %}">
+    <a href="/blogs/journal/">生活</span></a>
   </li>
-  <li class="{% if page.author %}current{% endif %}">
-    <a href="/blogs/">博文</a>
+  <li class="{% if page.categories.'博文' == null %}{% if page.author %}current{% endif %}{% endif %}">
+    <a href="/blogs/career/">工作</a>
+  </li>
+  <li class="{% if page.url contains '/docs/' %}current{% endif %}">
+    <a href="/docs/home/">参考</span></a>
   </li>
   <li>
     <a href="{{ site.repository }}">源码<span class="hide-on-mobiles">@GitHub</span></a>
