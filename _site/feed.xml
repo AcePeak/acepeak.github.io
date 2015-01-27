@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Thu, 15 Jan 2015 18:51:23 +0800</pubDate>
-    <lastBuildDate>Thu, 15 Jan 2015 18:51:23 +0800</lastBuildDate>
+    <pubDate>Tue, 27 Jan 2015 16:47:30 +0800</pubDate>
+    <lastBuildDate>Tue, 27 Jan 2015 16:47:30 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.2</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -26,9 +26,215 @@
     </image>
     
     <item>
+      <title>iOS研发工程师面试题及答案</title>
+      <link>http://lilifeng.net/blogs/2015/01/15/iOS-Test/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>iOS</category>
+      
+      <category>Objective-C</category>
+      
+      <category>XCode</category>
+      
+      <category>试题</category>
+      
+      
+      <category>mobile</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/15/iOS-Test/</guid>
+      <description>&lt;p&gt;1.Difference between shallow copy and deep copy?
+浅复制和深复制的区别？&lt;/p&gt;
+
+&lt;p&gt;答案：浅层复制：只复制指向对象的指针，而不复制引用对象本身。
+深层复制：复制引用对象本身。
+意思就是说我有个A对象，复制一份后得到A_copy对象后，对于浅复制来说，A和A_copy指向的是同一个内存资源，复制的只不过是是一个指针，对象本身资源
+还是只有一份，那如果我们对A_copy执行了修改操作,那么发现A引用的对象同样被修改，这其实违背了我们复制拷贝的一个思想。深复制就好理解了,内存中存在了
+两份独立对象本身。
+用网上一哥们通俗的话将就是：
+浅复制好比你和你的影子，你完蛋，你的影子也完蛋
+深复制好比你和你的克隆人，你完蛋，你的克隆人还活着。&lt;/p&gt;
+
+&lt;p&gt;2.What is advantage of categories? What is difference between implementing a category and inheritance?
+类别的作用？继承和类别在实现中有何区别？
+答案：category 可以在不获悉，不改变原来代码的情况下往里面添加新的方法，只能添加，不能删除修改。
+并且如果类别和原来类中的方法产生名称冲突，则类别将覆盖原来的方法，因为类别具有更高的优先级。
+类别主要有3个作用：
+(1)将类的实现分散到多个不同文件或多个不同框架中。
+(2)创建对私有方法的前向引用。 
+(3)向对象添加非正式协议。
+ 继承可以增加，修改或者删除方法，并且可以增加属性。&lt;/p&gt;
+
+&lt;p&gt;3.Difference between categories and extensions?
+类别和类扩展的区别。
+答案：category和extensions的不同在于 后者可以添加属性。另外后者添加的方法是必须要实现的。
+extensions可以认为是一个私有的Category。&lt;/p&gt;
+
+&lt;p&gt;4.Difference between protocol in objective c and interfaces in java?
+obc中的协议和java中的接口概念有何不同？&lt;/p&gt;
+
+&lt;p&gt;答案：OBC中的代理有2层含义，官方定义为 formal和informal protocol。前者和Java接口一样。
+informal protocol中的方法属于设计模式考虑范畴，不是必须实现的，但是如果有实现，就会改变类的属性。
+其实关于正式协议，类别和非正式协议我很早前学习的时候大致看过，也写在了学习教程里
+“非正式协议概念其实就是类别的另一种表达方式“这里有一些你可能希望实现的方法，你可以使用他们更好的完成工作”。
+这个意思是，这些是可选的。比如我门要一个更好的方法，我们就会申明一个这样的类别去实现。然后你在后期可以直接使用这些更好的方法。
+这么看，总觉得类别这玩意儿有点像协议的可选协议。”
+现在来看，其实protocal已经开始对两者都统一和规范起来操作，因为资料中说“非正式协议使用 interface修饰“，
+现在我们看到协议中两个修饰词：“必须实现(@requied)”和“可选实现(@optional)”。&lt;/p&gt;
+
+&lt;p&gt;5.What are KVO and KVC?&lt;/p&gt;
+
+&lt;p&gt;答案：kvc:键 - 值编码是一种间接访问对象的属性使用字符串来标识属性，而不是通过调用存取方法，直接或通过实例变量访问的机制。
+很多情况下可以简化程序代码。 apple文档其实给了一个很好的例子。
+kvo:键值观察机制，他提供了观察某一属性变化的方法，极大的简化了代码。
+具体用看到嗯哼用到过的一个地方是对于按钮点击变化状态的的监控。
+比如我自定义的一个button
+[cpp] 
+[self addObserver:self forKeyPath:@”highlighted” options:0 context:nil]; &lt;/p&gt;
+
+&lt;h1 id=&quot;pragma-mark-kvo&quot;&gt;pragma mark KVO&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context 
+{ 
+ if ([keyPath isEqualToString:@”highlighted”] ) { 
+ [self setNeedsDisplay]; 
+ } 
+}
+对于系统是根据keypath去取的到相应的值发生改变，理论上来说是和kvc机制的道理是一样的。
+对于kvc机制如何通过key寻找到value：
+ “当通过KVC调用对象时，比如：[self valueForKey:@”someKey”]时，程序会自动试图通过几种不同的方式解析这个调用。首先查找对象是否带有 someKey 这个方法，如果没找到，会继续查找对象是否带有someKey这个实例变量（iVar），如果还没有找到，程序会继续试图调用 -(id) valueForUndefinedKey:这个方法。如果这个方法还是没有被实现的话，程序会抛出一个NSUndefinedKeyException 异常错误。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(cocoachina.com注：Key-Value Coding查找方法的时候，不仅仅会查找someKey这个方法，还会查找getsomeKey这个方法，前面加一个get，或者_someKey以及 _getsomeKey这几种形式。同时，查找实例变量的时候也会不仅仅查找someKey这个变量，也会查找_someKey这个变量是否存在。）&lt;/p&gt;
+
+&lt;p&gt;设计valueForUndefinedKey:方法的主要目的是当你使用-(id)valueForKey方法从对象中请求值时，对象能够在错误发生前，有最后的机会响应这个请求。这样做有很多好处，下面的两个例子说明了这样做的好处。“
+来至cocoa，这个说法应该挺有道理。
+因为我们知道 button却是存在一个highlighted实例变量.因此为何上面我们只是add一个相关的keypath就行了，
+可以按照kvc查找的逻辑理解，就说的过去了。&lt;/p&gt;
+
+&lt;p&gt;6.What is purpose of delegates?
+代理的作用？
+答案：代理的目的是改变或传递控制链。允许一个类在某些特定时刻通知到其他类，而不需要获取到那些类的指针。可以减少框架复杂度。
+另外一点，代理可以理解为java中的回调监听机制的一种类似。&lt;/p&gt;
+
+&lt;p&gt;7.What are mutable and immutable types in Objective C?
+obc中可修改和不可以修改类型。&lt;/p&gt;
+
+&lt;p&gt;答案：可修改不可修改的集合类。这个我个人简单理解就是可动态添加修改和不可动态添加修改一样。
+比如NSArray和NSMutableArray。前者在初始化后的内存控件就是固定不可变的，后者可以添加等，可以动态申请新的内存空间。&lt;/p&gt;
+
+&lt;p&gt;8.When we call objective c is runtime language what does it mean?
+我们说的obc是动态运行时语言是什么意思？&lt;/p&gt;
+
+&lt;p&gt;答案：多态。 主要是将数据类型的确定由编译时，推迟到了运行时。
+这个问题其实浅涉及到两个概念，运行时和多态。
+简单来说，运行时机制使我们直到运行时才去决定一个对象的类别，以及调用该类别对象指定方法。
+多态：不同对象以自己的方式响应相同的消息的能力叫做多态。意思就是假设生物类（life）都用有一个相同的方法-eat;
+那人类属于生物，猪也属于生物，都继承了life后，实现各自的eat，但是调用是我们只需调用各自的eat方法。
+也就是不同的对象以自己的方式响应了相同的消息（响应了eat这个选择器）。
+因此也可以说，运行时机制是多态的基础？~~~&lt;/p&gt;
+
+&lt;p&gt;9.what is difference between NSNotification and protocol?
+通知和协议的不同之处？&lt;/p&gt;
+
+&lt;p&gt;答案：协议有控制链(has-a)的关系，通知没有。
+首先我一开始也不太明白，什么叫控制链（专业术语了~）。但是简单分析下通知和代理的行为模式，我们大致可以有自己的理解
+简单来说，通知的话，它可以一对多，一条消息可以发送给多个消息接受者。
+代理按我们的理解，到不是直接说不能一对多，比如我们知道的明星经济代理人，很多时候一个经济人负责好几个明星的事务。
+只是对于不同明星间，代理的事物对象都是不一样的，一一对应，不可能说明天要处理A明星要一个发布会，代理人发出处理发布会的消息后，别称B的
+发布会了。但是通知就不一样，他只关心发出通知，而不关心多少接收到感兴趣要处理。
+因此控制链（has-a从英语单词大致可以看出，单一拥有和可控制的对应关系。&lt;/p&gt;
+
+&lt;p&gt;10.What is push notification?
+什么是推送消息？&lt;/p&gt;
+
+&lt;p&gt;11.Polymorphism？
+关于多态性&lt;/p&gt;
+
+&lt;p&gt;答案：多态，子类指针可以赋值给父类。
+这个题目其实可以出到一切面向对象语言中，
+因此关于多态，继承和封装基本最好都有个自我意识的理解，也并非一定要把书上资料上写的能背出来。
+最重要的是转化成自我理解。&lt;/p&gt;
+
+&lt;p&gt;12.Singleton?
+对于单例的理解&lt;/p&gt;
+
+&lt;p&gt;答案：11，12题目其实出的有点泛泛的感觉了，可能说是编程语言需要或是必备的基础。
+基本能用熟悉的语言写出一个单例，以及可以运用到的场景或是你编程中碰到过运用的此种模式的框架类等。
+进一步点，考虑下如何在多线程访问单例时的安全性。&lt;/p&gt;
+
+&lt;p&gt;13.What is responder chain?
+说说响应链&lt;/p&gt;
+
+&lt;p&gt;答案： 事件响应链。包括点击事件，画面刷新事件等。在视图栈内从上至下，或者从下之上传播。
+可以说点事件的分发，传递以及处理。具体可以去看下touch事件这块。因为问的太抽象化了
+严重怀疑题目出到越后面就越笼统。&lt;/p&gt;
+
+&lt;p&gt;14.Difference between frame and bounds?
+frame和bounds有什么不同？&lt;/p&gt;
+
+&lt;p&gt;答案:frame指的是：该view在父view坐标系统中的位置和大小。（参照点是父亲的坐标系统）
+bounds指的是：该view在本身坐标系统中 的位置和大小。（参照点是本身坐标系统）&lt;/p&gt;
+
+&lt;p&gt;15.Difference between method and selector?
+方法和选择器有何不同？&lt;/p&gt;
+
+&lt;p&gt;答案：selector是一个方法的名字，method是一个组合体，包含了名字和实现.
+详情可以看apple文档。&lt;/p&gt;
+
+&lt;p&gt;16.Is there any garbage collection mechanism in Objective C.?
+OBC的垃圾回收机制？&lt;/p&gt;
+
+&lt;p&gt;答案： OBC2.0有Garbage collection，但是iOS平台不提供。
+一般我们了解的objective-c对于内存管理都是手动操作的，但是也有自动释放池。
+但是差了大部分资料，貌似不要和arc机制搞混就好了。
+求更多~~&lt;/p&gt;
+
+&lt;p&gt;17.NSOperation queue?&lt;/p&gt;
+
+&lt;p&gt;答案：存放NSOperation的集合类。
+操作和操作队列，基本可以看成java中的线程和线程池的概念。用于处理ios多线程开发的问题。
+网上部分资料提到一点是，虽然是queue，但是却并不是带有队列的概念，放入的操作并非是按照严格的先进现出。
+这边又有个疑点是，对于队列来说，先进先出的概念是Afunc添加进队列，Bfunc紧跟着也进入队列，Afunc先执行这个是必然的，
+但是Bfunc是等Afunc完全操作完以后，B才开始启动并且执行，因此队列的概念离乱上有点违背了多线程处理这个概念。
+但是转念一想其实可以参考银行的取票和叫号系统。
+因此对于A比B先排队取票但是B率先执行完操作，我们亦然可以感性认为这还是一个队列。
+但是后来看到一票关于这操作队列话题的文章，其中有一句提到
+“因为两个操作提交的时间间隔很近，线程池中的线程，谁先启动是不定的。”
+瞬间觉得这个queue名字有点忽悠人了，还不如pool~
+综合一点，我们知道他可以比较大的用处在于可以帮组多线程编程就好了。&lt;/p&gt;
+
+&lt;p&gt;18.What is lazy loading?&lt;/p&gt;
+
+&lt;p&gt;答案：懒汉模式，只在用到的时候才去初始化。
+也可以理解成延时加载。
+我觉得最好也最简单的一个列子就是tableView中图片的加载显示了。
+一个延时载，避免内存过高，一个异步加载，避免线程堵塞。&lt;/p&gt;
+
+&lt;p&gt;19.Can we use two tableview controllers on one viewcontroller?
+是否在一个视图控制器中嵌入两个tableview控制器？&lt;/p&gt;
+
+&lt;p&gt;答案：一个视图控制只提供了一个View视图，理论上一个tableViewController也不能放吧，
+只能说可以嵌入一个tableview视图。当然，题目本身也有歧义，如果不是我们定性思维认为的UIViewController，
+而是宏观的表示视图控制者，那我们倒是可以把其看成一个视图控制者，它可以控制多个视图控制器，比如TabbarController
+那样的感觉。&lt;/p&gt;
+
+&lt;p&gt;20.Can we use one tableview with two different datasources? How you will achieve this?
+一个tableView是否可以关联两个不同的数据源？你会怎么处理？&lt;/p&gt;
+
+&lt;p&gt;答案：首先我们从代码来看，数据源如何关联上的，其实是在数据源关联的代理方法里实现的。
+因此我们并不关心如何去关联他，他怎么关联上，方法只是让我返回根据自己的需要去设置如相关的数据源。
+因此，我觉得可以设置多个数据源啊，但是有个问题是，你这是想干嘛呢？想让列表如何显示，不同的数据源分区块显示？&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Web前端研发工程师面试题及答案</title>
-      <link>http://lilifeng.net/blogs/2015/01/07/WEB-Test/</link>
-      <pubDate>Wed, 07 Jan 2015 00:00:00 +0800</pubDate>
+      <link>http://lilifeng.net/blogs/2015/01/15/WEB-Test/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
       <category>原生</category>
@@ -52,7 +258,7 @@
       
       <category>internet</category>
       
-      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/07/WEB-Test/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/15/WEB-Test/</guid>
       <description>&lt;h2 id=&quot;htmlcss&quot;&gt;HTML+CSS&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;1.对WEB标准以及W3C的理解与认识&lt;/code&gt;&lt;/p&gt;
@@ -214,35 +420,9 @@ Title 为该属性提供信息&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;7.IE和标准下有哪些兼容性的写法&lt;/code&gt;&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Var ev = ev&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;window.event&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;document.documentElement.clientWidth&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;document.body.clientWidth&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Var target = ev.srcElement&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;ev.target&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;event&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;documentElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientWidth&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;srcElement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;target&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;8.ajax请求的时候get 和post方式的区别&lt;/code&gt;&lt;/p&gt;
 
@@ -256,9 +436,8 @@ Title 为该属性提供信息&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;9.call和apply的区别&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Object.call(this,obj1,obj2,obj3)&lt;/p&gt;
-
-&lt;p&gt;Object.apply(this,arguments)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;10.ajax请求时，如何解释json数据&lt;/code&gt;&lt;/p&gt;
 
@@ -1530,6 +1709,157 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sass-cache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;9 Enjoy(Painful)!&lt;/code&gt;&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>在国内配置Yum源的方法</title>
+      <link>http://lilifeng.net/blogs/2013/01/15/Configure-YUM-In-China/</link>
+      <pubDate>Tue, 15 Jan 2013 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Linux</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2013/01/15/Configure-YUM-In-China/</guid>
+      <description>&lt;p&gt;系统默认的yum 源速度往往不尽人意，为了达到快速安装的目的，在这里修改yum源为国内源。&lt;/p&gt;
+
+&lt;p&gt;上海交通大学yum源&lt;/p&gt;
+
+&lt;p&gt;a. 修改/etc/yum.repos.d/CentOS-Base.repo为：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;# CentOS-Base.repo&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# The mirror system uses the connecting IP address of the client and the&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# update status of each mirror to pick mirrors that are updated to and&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# geographically close to the client.  You should use this for CentOS updates&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# unless you are manually picking other mirrors.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# If the mirrorlist= does not work for you, as a fall back you can try the &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# remarked out baseurl= line instead.&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Base&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;amp;arch=$basearch&amp;amp;repo=os&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sjtu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basearch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgcheck&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgkey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;///&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rpm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RPM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GPG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#released updates &lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Updates&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;amp;arch=$basearch&amp;amp;repo=updates&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sjtu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updates&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basearch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgcheck&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgkey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;///&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rpm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RPM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GPG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#additional packages that may be useful&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extras&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Extras&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;amp;arch=$basearch&amp;amp;repo=extras&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sjtu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extras&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basearch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgcheck&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgkey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;///&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rpm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RPM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GPG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#additional packages that extend functionality of existing packages&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centosplus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Plus&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;amp;arch=$basearch&amp;amp;repo=centosplus&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sjtu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centosplus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basearch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgcheck&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgkey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;///&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rpm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RPM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GPG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#contrib - packages by Centos Users&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contrib&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Contrib&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;amp;arch=$basearch&amp;amp;repo=contrib&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ftp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sjtu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;releasever&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contrib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basearch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgcheck&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;enabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gpgkey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;///&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;etc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pki&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rpm&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gpg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RPM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GPG&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CentOS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;或者可以到这个链接下载：
+&lt;a href=&quot;/file/CentOS-Base.repo&quot;&gt;CentOS-Base.repo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;关于变量&lt;/p&gt;
+
+&lt;p&gt;$releasever：代表发行版的版本，从[main]部分的distroverpkg获取，如果没有，则根据redhat-release包进行判断。&lt;/p&gt;
+
+&lt;p&gt;$arch：cpu体系，如i686,athlon等&lt;/p&gt;
+
+&lt;p&gt;$basearch：cpu的基本体系组，如i686和athlon同属i386，alpha和alphaev6同属alpha。&lt;/p&gt;
+
+&lt;p&gt;b. 导入GPG KEY&lt;/p&gt;
+
+&lt;p&gt;yum 可以使用gpg 对包进行校验，确保下载包的完整性，所以我们先要到各个repository 站点找到gpg key，一般都会放在首页的醒目位置，一些名字诸如RPM-GPG-KEY-CentOS-5 之类的纯文本文件，把它们下载下来，然后用rpm –import RPM-GPG-KEY-CentOS-5 命令将key 导入。&lt;/p&gt;
+
+&lt;p&gt;c. 执行yum 命令&lt;/p&gt;
+
+&lt;p&gt;其他国内yum源列表如下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;企业贡献：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;搜狐开源镜像站：http://mirrors.sohu.com/&lt;/p&gt;
+
+&lt;p&gt;网易开源镜像站：http://mirrors.163.com/&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;大学教学：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;北京理工大学：&lt;/p&gt;
+
+&lt;p&gt;http://mirror.bit.edu.cn (IPv4 only)&lt;/p&gt;
+
+&lt;p&gt;http://mirror.bit6.edu.cn (IPv6 only)&lt;/p&gt;
+
+&lt;p&gt;北京交通大学：&lt;/p&gt;
+
+&lt;p&gt;http://mirror.bjtu.edu.cn (IPv4 only)&lt;/p&gt;
+
+&lt;p&gt;http://mirror6.bjtu.edu.cn (IPv6 only)&lt;/p&gt;
+
+&lt;p&gt;http://debian.bjtu.edu.cn (IPv4+IPv6)&lt;/p&gt;
+
+&lt;p&gt;兰州大学：http://mirror.lzu.edu.cn/&lt;/p&gt;
+
+&lt;p&gt;厦门大学：http://mirrors.xmu.edu.cn/&lt;/p&gt;
+
+&lt;p&gt;清华大学：&lt;/p&gt;
+
+&lt;p&gt;http://mirrors.tuna.tsinghua.edu.cn/ (IPv4+IPv6)&lt;/p&gt;
+
+&lt;p&gt;http://mirrors.6.tuna.tsinghua.edu.cn/ (IPv6 only)&lt;/p&gt;
+
+&lt;p&gt;http://mirrors.4.tuna.tsinghua.edu.cn/ (IPv4 only)&lt;/p&gt;
+
+&lt;p&gt;天津大学：http://mirror.tju.edu.cn/&lt;/p&gt;
+
+&lt;p&gt;中国科学技术大学：&lt;/p&gt;
+
+&lt;p&gt;http://mirrors.ustc.edu.cn/ (IPv4+IPv6)&lt;/p&gt;
+
+&lt;p&gt;http://mirrors4.ustc.edu.cn/&lt;/p&gt;
+
+&lt;p&gt;http://mirrors6.ustc.edu.cn/&lt;/p&gt;
+
+&lt;p&gt;东北大学：&lt;/p&gt;
+
+&lt;p&gt;http://mirror.neu.edu.cn/ (IPv4 only)&lt;/p&gt;
+
+&lt;p&gt;http://mirror.neu6.edu.cn/ (IPv6 only)&lt;/p&gt;
+
+&lt;p&gt;电子科技大学：http://ubuntu.uestc.edu.cn/&lt;/p&gt;
 
 </description>
     </item>
