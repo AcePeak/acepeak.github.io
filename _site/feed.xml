@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Tue, 27 Jan 2015 16:47:30 +0800</pubDate>
-    <lastBuildDate>Tue, 27 Jan 2015 16:47:30 +0800</lastBuildDate>
+    <pubDate>Tue, 03 Feb 2015 15:53:01 +0800</pubDate>
+    <lastBuildDate>Tue, 03 Feb 2015 15:53:01 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.2</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,638 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>【转】SEO经验-工具类</title>
+      <link>http://lilifeng.net/blogs/2015/01/29/Website-SEO-Tools/</link>
+      <pubDate>Thu, 29 Jan 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Website</category>
+      
+      <category>SEO</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/29/Website-SEO-Tools/</guid>
+      <description>&lt;p&gt;SEO工作者经常需要一些SEO工具的辅助，比如网站收录查询、PR查询等等，以便节省自己的时间，让SEO变得更加轻松。那么，常用的SEO工具都有哪些呢？月光博客今天就介绍一些常用的SEO工具网址，并将其进行分类，希望对大家的SEO工作有所帮助。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;网站管理员工具&lt;/h1&gt;
+
+&lt;p&gt;网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加META或者修改网站DNS来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。&lt;/p&gt;
+
+&lt;p&gt;1、 &lt;a href=&quot;http://www.google.com/webmasters/&quot;&gt;Google Webmaster Tools&lt;/a&gt;：谷歌网站管理员工具，可以获取到谷歌抓取、编入索引和搜索流量的数据，同时接收关于用户网站上所存在的问题的通知。&lt;/p&gt;
+
+&lt;p&gt;2、 &lt;a href=&quot;http://www.bing.com/toolbox/webmaster&quot;&gt;Bing Webmaster Tools&lt;/a&gt; ：微软必应网站管理员工具，获取到必应的搜索查询、索引和搜索流量的数据，Yahoo Site Explorer关闭之后，很多功能也整合进了Bing Webmaster Tools里。&lt;/p&gt;
+
+&lt;p&gt;3、 &lt;a href=&quot;http://zhanzhang.baidu.com/&quot;&gt;百度站长平台&lt;/a&gt;：百度站长工具，提供了用户提交Sitemap的功能，Ping服务，并给出了一些URL优化建议、网站安全检测工具。&lt;/p&gt;
+
+&lt;p&gt;4、 &lt;a href=&quot;http://zhanzhang.so.com/&quot;&gt;360站长平台&lt;/a&gt;：360站长工具，提供Sitemap提交、URL收录、索引量查询、关键字分析等功能。&lt;/p&gt;
+
+&lt;p&gt;5、 &lt;a href=&quot;http://zhanzhang.sogou.com/&quot;&gt;搜狗站长平台&lt;/a&gt;：搜狗的站长工具，提供Sitemap提交、死链提交、URL提交、域名变更、抓取压力反馈等功能。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;外链检查工具&lt;/h1&gt;
+
+&lt;p&gt;外链检查工具用于查询各个（特别是竞争对手）网站的外链情况，通常不需要登录即可使用。&lt;/p&gt;
+
+&lt;p&gt;1、 &lt;a href=&quot;http://siteexplorer.search.yahoo.com/&quot;&gt;Yahoo Site Explorer&lt;/a&gt;：Yahoo的外链数据公认是最准确的，所以该工具也有很大参考意义，可惜这个本来很不错的一个工具，却被Yahoo给关闭了。&lt;/p&gt;
+
+&lt;p&gt;2、 &lt;a href=&quot;http://www.opensiteexplorer.org/&quot;&gt;Open Site Explorer&lt;/a&gt;：这个工具和Yahoo Site Explorer非常类似，可以分析出链接网站的域名数，链接按照权重进行排序。不过其分析的链接对中文网站不太准，无法识别百度搜索引擎，费用较高，PRO版每月要99美元。&lt;/p&gt;
+
+&lt;p&gt;3、 &lt;a href=&quot;http://www.majesticseo.com/&quot;&gt;Majestic SEO&lt;/a&gt;：好用的外链查询工具，可以索引相当多的链接，可惜不是免费的。自己管理的网站可以免费查询，不过需要上传一个文件进行校验。竞争对手的网站可以查询出链接总数和头五个链接，更多查询链接需要收费。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;流量查询工具&lt;/h1&gt;
+
+&lt;p&gt;流量查询工具用于粗略估算各个网站的流量情况，通常不需要登录即可使用。&lt;/p&gt;
+
+&lt;p&gt;1、 &lt;a href=&quot;http://www.alexa.com/&quot;&gt;Alexa&lt;/a&gt;：Alexa做为较具权威性的排名统计平台，能够提供各个网站排名信息、网络流量数据、关键词搜索分析、网站用户统计等功能。Alexa提供了简体中文网站服务。&lt;/p&gt;
+
+&lt;p&gt;2、 &lt;a href=&quot;http://trends.google.com/websites&quot;&gt;Google Website Trends&lt;/a&gt;：Google Trends提供的网站流量查询服务，可以分析所有网站的流量和受欢迎程度，还可以用图表的方式比较同类相关网站的流量。和Alexa的界面相比，Google Trends for Websites的界面显得较为简单，提供的数据信息也很少，但Google趋势提供的信息具有较高的权威度，准确度也较高，可以大致比较两个不同网站的流量大小。&lt;/p&gt;
+
+&lt;p&gt;3、 &lt;a href=&quot;http://www.google.com/adplanner/&quot;&gt;DoubleClick Ad Planner&lt;/a&gt; ：DoubleClick Ad Planner的前身是Google Ad Planner，通过DoubleClick Ad Planner这一免费的媒体规划工具可以优化用户的在线广告，该工具提供了各种网站的访问量统计，以便广告商能根据访问量知道投放广告的最佳选择。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;关键字查询工具&lt;/h1&gt;
+
+&lt;p&gt;1、 &lt;a href=&quot;http://trends.google.com/&quot;&gt;Google Trends&lt;/a&gt;：Google Trends(谷歌趋势)是一款基于搜索日志分析的应用产品，通过分析Google数据库中的搜索结果，告诉用户某一搜索关键词在Google中被搜索的频率和相关统计数据。在Google Trends中的每一关键词的趋势记录图形显示分为搜索量和新闻引用量两部分，用户可直观的分别看到每一关键词在Google全球的搜索量和相关新闻的引用情况的变化走势，并有详细的城市、国家/地区、语言柱状图显示。&lt;/p&gt;
+
+&lt;p&gt;2、 &lt;a href=&quot;http://www.google.com/insights/search/&quot;&gt;Google Insights Search&lt;/a&gt;：Google Insights Search（谷歌搜索解析）实际上和Google Trends的功能差不多，但是细节方面比Google Trends多，显得更为专业。Google Insights Search可以比较特定区域、类别、时间范围以及搜索资源之间的搜索量。&lt;/p&gt;
+
+&lt;p&gt;3、 &lt;a href=&quot;http://index.baidu.com/&quot;&gt;百度指数&lt;/a&gt;：百度指数和Google Trends的功能差不多，不过其搜索数据是基于百度搜索引擎的，这个工具是以百度网页搜索和百度新闻搜索为基础的数据分析服务，用来分析不同关键词在过去一段时间里的“用户关注度”和“媒体关注度”，对于中国用户来说，这个关键字分析工具很有用。&lt;/p&gt;
+
+&lt;p&gt;4、 &lt;a href=&quot;https://adwords.google.com/select/KeywordToolExternal&quot;&gt;Google AdWords关键字工具&lt;/a&gt;：Google AdWords关键字工具可以帮助用户选择关键字并跟踪关键字效果。可以根据用户指定的关键字自动生成最常用同义词及相关词组列表，并为用户提供关键字的点击量估算。其“流量估算工具”还可以估算指定关键字的全球每月搜索量以及本地每月搜索量，适合于挖掘信息量很大的垂直型门户网站的长尾关键词。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-4&quot;&gt;关键字排行工具&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;http://top.baidu.com/&quot;&gt;百度搜索风云榜&lt;/a&gt;：百度发布的每日关键词排行榜，根据前一天的百度搜索量统计自动计算生成，每天早上自动更新，实时更新当前网友最关注，搜索最热门的内容。&lt;/p&gt;
+
+&lt;p&gt;2、 &lt;a href=&quot;http://www.google.com/zeitgeist&quot;&gt;Google Zeitgeist&lt;/a&gt;：Google Zeitgeist是Google发布的年度关键词排行榜，针对每年Google查询进行统计，收集人们最关心的关键词，Google Zeitgeist提供热点关键字的年度列表，还提供不同主题和国家的列表。每日的排行列表目前只有英文版，由Google Trends提供。&lt;/p&gt;
+
+&lt;p&gt;3、 &lt;a href=&quot;http://top.sogou.com/&quot;&gt;搜狗热搜榜&lt;/a&gt;：搜狗发布的每日关键词排行榜，根据搜狗的搜索数据生成。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-5&quot;&gt;网站统计工具&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;http://www.google.com/analytics/&quot;&gt;Google Analytics&lt;/a&gt;：Google推出的免费分析服务，对市场营销和内容优化上提供很多专业报表。&lt;/p&gt;
+
+&lt;p&gt;2、&lt;a href=&quot;http://tongji.baidu.com/&quot;&gt;百度统计&lt;/a&gt;：百度推出的免费专业网站流量分析工具，功能和Google Analytics差不多。&lt;/p&gt;
+
+&lt;p&gt;3、&lt;a href=&quot;http://www.cnzz.com/&quot;&gt;CNZZ统计&lt;/a&gt;：国内站长用的较多的统计工具，功能简单实用，适合草根站长。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-6&quot;&gt;网站联盟&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;https://www.google.com/adsense/&quot;&gt;Google Adsense&lt;/a&gt;：谷歌联盟，站长投放最多的联盟广告，单价高，分成高，美元结算，申请方便，管理十分严格，一旦作弊永久封杀帐号。&lt;/p&gt;
+
+&lt;p&gt;2、&lt;a href=&quot;http://union.baidu.com/&quot;&gt;百度联盟&lt;/a&gt;：国内站长使用较多的联盟，审核较严格，需要备案，人民币结算，付款方便，需要扣除个人所得税。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-7&quot;&gt;网站广告管家&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;https://www.google.com/dfp&quot;&gt;Google DFP 广告管理系统&lt;/a&gt;：功能强大，但使用起来较为复杂，和Google Adsense完美整合。&lt;/p&gt;
+
+&lt;p&gt;2、&lt;a href=&quot;http://adm.baidu.com/&quot;&gt;百度广告管家&lt;/a&gt;：百度的广告管家工具，操作简单、容易上手，和百度联盟完美整合。&lt;/p&gt;
+
+&lt;p&gt;3、&lt;a href=&quot;http://adm.cnzz.com/&quot;&gt;CNZZ广告管家&lt;/a&gt;：免费托管的智能广告管理系统，依托于数据统计，在国内的用户量也不小，功能与百度广告管家差不多。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-8&quot;&gt;网站安全检测&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;http://www.anquan.org/&quot;&gt;安全联盟&lt;/a&gt;：第三方安全组织，已与百度、腾讯、招商银行等近800家机构、企业等官方网站达成合作。&lt;/p&gt;
+
+&lt;p&gt;2、&lt;a href=&quot;http://webscan.360.cn/&quot;&gt;360网站安全检测&lt;/a&gt;：360网站安全检测，我认为是功能最全的系统了，提供免费的网站漏洞检测、网页挂马检测、网页篡改监控服务。&lt;/p&gt;
+
+&lt;p&gt;3、&lt;a href=&quot;http://zhanzhang.baidu.com/safe&quot;&gt;百度网站安全检测工具&lt;/a&gt;：很重要，引用腾讯、金山、瑞星、小红伞、知道创宇的数据库，如果你的网站已在搜索结果中被标示不安全，可以提交申诉。&lt;/p&gt;
+
+&lt;p&gt;4、&lt;a href=&quot;http://guanjia.qq.com/online_server/webindex.html&quot;&gt;腾讯电脑管家安全检测&lt;/a&gt;：在QQ聊天窗口中发的网址，会调用此数据库，作用较大。&lt;/p&gt;
+
+&lt;p&gt;5、&lt;a href=&quot;http://www.jiankongbao.com/&quot;&gt;监控宝&lt;/a&gt;：监控站点是否可以访问,发送故障通知，深入分析响应时间，生成性能报告，帮助您改善性能。&lt;/p&gt;
+
+&lt;p&gt;6、&lt;a href=&quot;http://union.rising.com.cn/index/index.aspx&quot;&gt;瑞星网站密码安全检测系统&lt;/a&gt;：通过全面的分析报告，为管理员提供快速修复网站密码安全隐患的建议。&lt;/p&gt;
+
+&lt;p&gt;7、&lt;a href=&quot;http://secure.supfree.net/&quot;&gt;诺顿在线网站安全检测&lt;/a&gt;：可以帮您了解网站的真实性与安全性，避免上网中病毒、木马，防止被钓鱼网站欺骗。&lt;/p&gt;
+
+&lt;p&gt;8、&lt;a href=&quot;http://999.anquanbao.com/&quot;&gt;安全宝&lt;/a&gt;：特色功能，修复网站漏洞、免费mini CDN加速、可视化网站报告，创新工场旗下一员。&lt;/p&gt;
+
+&lt;p&gt;9、&lt;a href=&quot;http://www.scanv.com/&quot;&gt;SCANV安全中心&lt;/a&gt;：与百度深入合作的安全检测网站，百度搜索结果的风险提示有部分数据就引用自SCANV，站长值得重视。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-9&quot;&gt;网站被封申诉通道&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;http://zhanzhang.baidu.com/feedback&quot;&gt;百度网页申诉&lt;/a&gt;：专人处理申诉问题，然后分发到各个小组处理。&lt;/p&gt;
+
+&lt;p&gt;2、&lt;a href=&quot;http://www.google.com/webmasters/&quot;&gt;Google网站申诉&lt;/a&gt;：登陆Google网站管理员工具即可。&lt;/p&gt;
+
+&lt;p&gt;3、&lt;a href=&quot;http://guanjia.qq.com/complaint.html&quot;&gt;腾讯电脑管家网站申诉&lt;/a&gt;：QQ聊天窗口输入网址出现绿色对勾、红色叉（不信任网站）均可以在这里申诉。&lt;/p&gt;
+
+&lt;p&gt;4、&lt;a href=&quot;http://www.anquan.org/seccenter/appeal_verify/&quot;&gt;安全联盟申诉通道&lt;/a&gt;：百度搜索结果中出现的风险提示，均来自SCANV(知道创宇)的网址库。&lt;/p&gt;
+
+&lt;p&gt;5、&lt;a href=&quot;http://wd.360.cn/appeal/appeal.html&quot;&gt;360网盾申诉&lt;/a&gt;：360网盾拦截木马病毒网站，采取自动加人工的审核方法，核实您申诉的网址是否存在欺骗、不健康或者其他恶意信息的行为。&lt;/p&gt;
+
+&lt;p&gt;6、&lt;a href=&quot;http://fish.ijinshan.com/Kws/appeal&quot;&gt;金山云安全网站申诉&lt;/a&gt;：主要通过杀毒软件拦截的网页，如果出现误报可以向金山申诉。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-10&quot;&gt;社会化工具&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;http://tuijian.baidu.com/&quot;&gt;百度推荐工具&lt;/a&gt;：该工具是通过对用户访问内容和行为的数据分析，向用户相关的文章内容，以此提高网站流量和黏性。&lt;/p&gt;
+
+&lt;p&gt;2、&lt;a href=&quot;http://duoshuo.com/&quot;&gt;多说评论&lt;/a&gt;：目前站长用的最多的插件了，第三方社会化评论系统，功能同上！&lt;/p&gt;
+
+&lt;p&gt;3、&lt;a href=&quot;http://www.denglu.cc/demo.html&quot;&gt;灯鹭社会化评论&lt;/a&gt;：功能最全的一款社会化工具，包含社会化登陆和分享功能，代码简洁、加载速度快，支持二次开发。&lt;/p&gt;
+
+&lt;p&gt;4、&lt;a href=&quot;http://www.jiathis.com/&quot;&gt;JiaThis分享&lt;/a&gt;：国内中小网站使用量最大的分享工具，数据分析强大，代码简洁。&lt;/p&gt;
+
+&lt;p&gt;5、&lt;a href=&quot;http://www.bshare.cn/s&quot;&gt;bShare分享&lt;/a&gt;：社会化分享工具，可把文章一键分享到上百个社会化网站中。优点是与同类工具比后台统计数据全面、专业。&lt;/p&gt;
+
+&lt;p&gt;6、&lt;a href=&quot;http://www.wumii.com/widget/relatedItems&quot;&gt;无觅相关文章插件&lt;/a&gt;：利用数据挖掘的技术，在读者阅读时显示最相关的内容，从而提升访问量，延长读者逗留在您网站的时间。&lt;/p&gt;
+
+&lt;p&gt;7、&lt;a href=&quot;http://www.uyan.cc/&quot;&gt;友言&lt;/a&gt;：一键同步评论留言分享到社交平台，实时采集SNS相关留言评论，迅速提升网站社会化流量。&lt;/p&gt;
+
+&lt;p&gt;8、&lt;a href=&quot;http://www.ujian.cc/&quot;&gt;友荐相关文章推荐工具&lt;/a&gt;：JiaThis旗下网站，与无觅相关文章插件类似，但代码简洁，同时还能在、各自合作网站实现站站互推。&lt;/p&gt;
+
+&lt;p&gt;9、&lt;a href=&quot;http://lz.bshare.cn/&quot;&gt;乐知相关文章插件&lt;/a&gt;：bshare旗下网站，代码简洁，功能同上！&lt;/p&gt;
+
+&lt;p&gt;10、&lt;a href=&quot;http://tui.cnzz.com/&quot;&gt;云推荐&lt;/a&gt;：阿里云旗下面向站长的智能文章推荐工具！基于阿里云先进的云计算系统，支持海量网页数据和用户行为数据的分析计算。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-11&quot;&gt;站长综合类查询工具&lt;/h1&gt;
+
+&lt;p&gt;1、&lt;a href=&quot;http://tool.chinaz.com/&quot;&gt;站长工具&lt;/a&gt;: Chinaz提供的系列SEO工具集，将不少SEO查询集中在一个页面。&lt;/p&gt;
+
+&lt;p&gt;2、&lt;a href=&quot;http://www.aizhan.com/&quot;&gt;爱站&lt;/a&gt;: 爱站网以百度权重查询起家，之后提供了多种站长常用查询工具。&lt;/p&gt;
+
+&lt;p&gt;3、&lt;a href=&quot;http://www.archive.org/&quot;&gt;网站历史查询工具&lt;/a&gt;: 美国互联网档案馆(The Internet Archive)保存了自1996年开始的各类网站的首页截图资料，不过该网站已经被中国屏蔽了。&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>【转】SEO经验-改版类</title>
+      <link>http://lilifeng.net/blogs/2015/01/29/Website-SEO-Refactor/</link>
+      <pubDate>Thu, 29 Jan 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Website</category>
+      
+      <category>SEO</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/29/Website-SEO-Refactor/</guid>
+      <description>&lt;p&gt;当网站运营一段时间后，你想扩大规模或希望获得更好的效果时，我们就会对网站进改版。对现有结构去做任何改动，都有可能会对搜索引擎产生一定的影响，那怎样才能让损失降到最低，在这里给出了以下需要注意的事项，供参考。&lt;/p&gt;
+
+&lt;p&gt;一、持有搜索引擎优化概念&lt;/p&gt;
+
+&lt;p&gt;当网站改版时你可能注意更多的是网站的外观，但是你要记住，网站空有漂亮的外壳是没有用的，所以当外观不利于排名的时候你必须要做好取舍，另外在设计网站时要考虑到搜索引擎优化的一些问题，譬如：标题是否唯一、url做没做静态化、网站是否填写了title、keywords、description三个标签、是否为网站写了robots等等。 &lt;/p&gt;
+
+&lt;p&gt;二、重定向与404&lt;/p&gt;
+
+&lt;p&gt;尽量让之前的url网址都能打开，如果确实无法做到，或者涉及到换域名，那么必须把之前的url重定向到新网页。做完重定向之后，还有一项工作是不可缺少的，那就是为新网站制作404页面，无论网站开发者考虑的多么精密和周全，只要涉及到改版肯定有死链接，所以这项工作绝对不能少。 &lt;/p&gt;
+
+&lt;p&gt;三、调试分析&lt;/p&gt;
+
+&lt;p&gt;准确的调试和分析对于网站来说非常重要。在网站没有完善之前一旦上线对网站伤害是很大的。首先我们要做的就是分析和调试，确保每个页面的功能，如果你的URL结构发生了改变，你的目标的URL，也有可能改变了，这将需要你去修订。 &lt;/p&gt;
+
+&lt;p&gt;四、屏蔽爬虫&lt;/p&gt;
+
+&lt;p&gt;如果你的网站是一点点修改，向新网站过度(在线修改)，你可以短暂屏蔽搜索引擎抓取，采用robots.txt禁止或Meta Robots使用禁止爬虫在源代码上爬行，观察排名是否有波动。&lt;/p&gt;
+
+&lt;p&gt;五、内部连接&lt;/p&gt;
+
+&lt;p&gt;重新设计的网站可能充满内部链接的缺陷。该网站上线后你应该做人工审查或者用站长工具软件等审查。我喜欢使用Chrome插件检查我的链接，快速评估哪些链接可能坏了。以确保他们将链接到真正的页面的URL并不是重定向。 &lt;/p&gt;
+
+&lt;p&gt;六、外观及兼容&lt;/p&gt;
+
+&lt;p&gt;新网站看起来真的很不错，但是你必须确保你新设计的网站让所有人在所有的浏览器上看到的内容是一样的。另外，要注意在移动设备上如何看起来更好。在这里你可以使用的工具，如browserstack或跨浏览器测试。 &lt;/p&gt;
+
+&lt;p&gt;七、代码审查&lt;/p&gt;
+
+&lt;p&gt;以上，我们提到了一些代码的相关因素如meta robots标签和网站三要素标签，然而，还有其他的一些代码需要我们注意。如：css和js是否规范、网页是否做gzip压缩，MD5加密代码是否正确等等。&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>【转】SEO经验-原则类</title>
+      <link>http://lilifeng.net/blogs/2015/01/29/Website-SEO-Principles/</link>
+      <pubDate>Thu, 29 Jan 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Website</category>
+      
+      <category>SEO</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/29/Website-SEO-Principles/</guid>
+      <description>&lt;h1 id=&quot;seo&quot;&gt;一、域名如何选择对SEO最佳。&lt;/h1&gt;
+
+&lt;p&gt;1、选择原则：新站选择域名，千万不要贪图老域名，不要听那些广告吹嘘的老域名有多少多少好处！新站绝对不要有任何历史背景的新域名，也不要选灰色词语、尤其是有黑色历史的旧网站。&lt;/p&gt;
+
+&lt;p&gt;2、识别方法：查找要购买的域名是否有历史背景：用带WWW域名和不带WWW的域名在百度查询，然后再谷歌查询。一定要在两个搜索引擎都搜索过，发现都没有任何相关记录，才能进行确认这个新域名没有问题。&lt;/p&gt;
+
+&lt;p&gt;3、问题回顾：新站开了之后，突然发现有很多外链，或者关键词突然掉了，或者收录突然消失。往往都是这种问题。但你遇到这种问题的时候，建议立即更换一个域名。这样比优化一个有历史问题的网站来的快！百度的这种算法问题，正如人脑海里面的“坏同学“的坏印象一样：一旦印象差，心里总有那么一点的不好感和印象，相处起来总有疙瘩！&lt;/p&gt;
+
+&lt;h1 id=&quot;seo-1&quot;&gt;二、怎么选择最适合SEO的空间/服务器。&lt;/h1&gt;
+
+&lt;p&gt;1、判断原则：必须去查空间的IP，查这个空间的IP的共用网站是否有被K历史，或者被降权历史。&lt;/p&gt;
+
+&lt;p&gt;2、检查方法：如何查，就是在站长工具/爱站里面查这个IP是否有其他网站，然后用这些工具进行SEO综合信息查询这些同一个IP共用服务器的所在网站。如果网站有好多，要多查几十个网站。&lt;/p&gt;
+
+&lt;p&gt;3、参考标准：&lt;/p&gt;
+
+&lt;p&gt;（1）、检查是否有被降权的历史或被K的历史，如果都没有，要检查这些网站是否有快照更新、是否网站的权重全是0。如果这些网站都会过类似的的被降权、被K的历史问题的，不要选择这种空间。新站开了之后，死活不收录，怎么都没有排名，就极度有可能是这个问题。&lt;/p&gt;
+
+&lt;p&gt;（2）、检查这些共用服务器空间的网站，都是做什么内容网站的，传奇私服、博彩、弹窗广告、黑客服务、红客联盟、软件下载站之类的。如果网站突然降权、突然被K、突然被攻击，很有可能就是被的网站受到攻击，而殃及了自己的网站。&lt;/p&gt;
+
+&lt;p&gt;（3）检查同一个IP的这个服务器的网站数量。如果网站数量超过100个甚至有几千个，那么你必须要考虑放弃这个空间了。有时候自己的网站经常突然打不开，过了一段时间就好了，就是这种网站数量提案多问题导致的。数量太多的，还有可能是小规模的站群网站，要特别注意。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;三、程序选择不可马虎大意。&lt;/h1&gt;
+
+&lt;p&gt;1、选择标准：不要复制别人的程序，不要下载网上的源码，不要购买非官方的淘宝店上的源码。&lt;/p&gt;
+
+&lt;p&gt;特别提醒：黑客、广告、弹窗、网赚等都是靠这些赚钱。往往是留一点点代码放在程序里面作为漏洞，有的知识一个大小写字母的差异，有的以图片格式植入木马。受到攻击无法检查，被人挂黑链，往往就是这些。别不要相信，这就是真正的现实，这就是为什么说“免费的东西是最贵的”的道理所在！&lt;/p&gt;
+
+&lt;p&gt;2、网站后台程序：最好使用WordPress、DEDE、DZ等。现在重点推荐WordPress或DZ，DZ在国内的架构优化做的最好，充分考虑了SEO的各种需求，而且在简单易用的用户体验方面做了很好的设计。而WordPress因为简单易用的插件式使用方法，也受到国内SEOer的热捧，而其实WordPress早在国外闻名世界！&lt;/p&gt;
+
+&lt;p&gt;3、网站模板：最好自己开发或自己到官方的网站进行购买。官方网站模板一般都比较便宜，几十块到几百块不等。购买之后的网站模板，还必须要修改下，调整为适合自己的，以避免跟别人的网站代码结构“雷同”问题。&lt;/p&gt;
+
+&lt;p&gt;4、网站后台和模板程序必须精简修改。按照SEO的最简单原则，大大幅度的精简网站，把不要的广告链接、文字、不合理的代码方式、代码结构、图片等全部杀毒检查，全部修改或删除。&lt;/p&gt;
+
+&lt;p&gt;案例分析：网站刚开始有排名，但过了一段时间，排名却掉下去了，快照倒退，或者被K了。文章原创、外链原创、友链正常…一切符合SEO白帽要求，但结果却是先有排名，后慢慢的掉下去排名。百度在深入爬取之后，会发现很多累赘的程序，发现很多没用的代码，就会被百度识别。当然，百度识别之后，还会给你20天时间进行更改。但这个过程，往往是很多SEOer不知道的，等到排名下降，或被K，已经晚了，要重新来过，要一个月，甚至更久！这个时间差，就是为什么新站现有排名后排名下降的常规问题，请大家好好参悟！千万别学“王林气功”，SEO像王林气功的那样“洒杂”式浑水摸鱼，SEO无能的水平，终究会败露的！&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;四、文章必须原创和数量充足。&lt;/h1&gt;
+
+&lt;p&gt;原创文章是老掉牙的问题了。新站开站的文章必须准备好几篇的，也要符合如下要求：&lt;/p&gt;
+
+&lt;p&gt;1、一般的小网站，企业站之类的，原创创文章5-10篇，600-800字，最好1000字以上。文章必须写的比较好，不要拖泥带水，写出真感觉，真感情！简单的说，就是对用户有用的文章，用户舍得花时间看的文章，对用户感情有触动的文章！&lt;/p&gt;
+
+&lt;p&gt;2、如果你是大网站，你必须准备10-20篇文章。其中3篇5000字以上文章，1篇1万字以上的文章，尤其是后15天的新站优化，必须使用到两三篇1万字以上的原创文章！&lt;/p&gt;
+
+&lt;p&gt;3、文章标题和内容必须覆盖一定的长尾词，而且每篇文章的长尾词不同。这个是专门为新站获得排名而准备的。&lt;/p&gt;
+
+&lt;p&gt;特别说明：当新站开了之后，发现有了排名之后，30分钟之内，蜘蛛还会再爬一次网站的。这个时候，必须在蜘蛛再来爬的前10分钟内，再发一篇新文章。这样会直接带来新文章的收录，新文章很容易获得排名。这个规律，一般SEO新手都不知道的！&lt;/p&gt;
+
+&lt;p&gt;文章秒收的必要条件：三张以上的图片，三段以上的文字。&lt;/p&gt;
+
+&lt;p&gt;4、在上述步骤之后，立即去爱站检查排名，那个文章有排名，就把其相关的所有的文章发布完。这个剩余的刚发布的文章不用发外链哦，不要贪快，这个过程叫作弊，懂了吧！&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;五、外链要原创要在高权重网站发布。&lt;/h1&gt;
+
+&lt;p&gt;1、 网站上传之后，去高权重网站发表原创外链！&lt;/p&gt;
+
+&lt;p&gt;特别注意：必须是高权重的，能带网址的网站，最好是论坛类的，例如360论坛等。要事先准备好账号，不要临时才注册新账号，那要搞半天的。其实，外链资源的积累，也是新站能否做到秒收的一个重要基础！&lt;/p&gt;
+
+&lt;p&gt;关键之处：就是网站上传完到网站空间，数据库、基本结构等搭建好之后。第一篇文章一发完，立即去高权重网发外链，或者去爱站查网站（也是高权重外链）。这个步骤很重要，非常关键。千万不要搞错！&lt;/p&gt;
+
+&lt;p&gt;2、外链千万不要停贪多，当天只发一条，就够了。外链要广，不在于多。这个问题，不再多说。&lt;/p&gt;
+
+&lt;p&gt;3、外链内容，必须要原创，即使是那么200文字。这个必须要事先准备好的。&lt;/p&gt;
+
+&lt;p&gt;4、后续第二天起的优化一旦有文章发布，也是每篇文章发1条外链。这个外链，必须配合网站已经有排名的关键词/长尾关键词。这样才可以保证继续快速提升网站排名。这一点也是非常重要的。&lt;/p&gt;
+
+&lt;p&gt;5、另外每天还要发一条外链，就是指向网站首页的网址，千万不能多！能锚文本，指向已经有排名的关键词/长尾关键词；没有锚文本，就用赤裸裸的文本加网址的方式！&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;六、时间把握必须准确。&lt;/h1&gt;
+
+&lt;p&gt;最佳开站时间如下：&lt;/p&gt;
+
+&lt;p&gt;早上：10:00——11：00。&lt;/p&gt;
+
+&lt;p&gt;晚上：下午15:00——20:00。&lt;/p&gt;
+
+&lt;p&gt;为什么要这样选择新网站开站的时间段呢？因为蜘蛛最频繁的时间段，也是有经验的站长、有道行的SEO才知道的规律。现在公布出来，你有福了！也不用再乱折腾，像买福利彩票那样坐等上帝恋上你！         &lt;/p&gt;
+
+&lt;p&gt;特别时刻：在利用空间商提供的超长二级域名网址给空间上传完程序并部署好数据库和后台信息之后，再去购买域名来解析空间IP。千万不要提前购买域名，因为你购买了，蜘蛛很快就来爬这个域名了，如果蜘蛛来了发现网站是空的，那你惨了，被蜘蛛定了不被信任的否定信用，那么开新站就很有难度了。为什么有些网站死活不收录，也会是这个原因啊。这个步骤也是很重要的。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-4&quot;&gt;15天之后的后续优化策略：&lt;/h1&gt;
+
+&lt;p&gt;1、一般网站：文章增加1，对应文章网址的外链增加1。每个网站最多发2条外链，不要在同一个网站发过多的外链！那也是作弊。&lt;/p&gt;
+
+&lt;p&gt;2、大型网站：文章加2，外链加2.。当然，文章和外链数量也可以递增，但要考虑后续的人力物力。例如我们说说SEO论坛，就是典型的15人同时开展的大型网站了，每天15篇文章到每天30篇文章，你也可以研究下。&lt;/p&gt;
+
+&lt;p&gt;3、继续集中做已经有排名的关键词/长尾关键词的外链。如果关键词已经到了首页第一名，那就要改做其他没有达到第一名的关键词或者长尾关键词。&lt;/p&gt;
+
+&lt;p&gt;4、文章的编写要特别注意，不要再是直接在标题中包括已经有排名的关键词，而是在文章中包括10-15个这样的关键词即可。否则，又是作弊了！再次强调，15天后SEO优化，标题中不要出现已经有排名的关键词，只要在文章中和外链中体现即可！&lt;/p&gt;
+
+&lt;p&gt;我在SEO百科前面的《5.3、关键词竞争度分析标准》一文中谈到了200一下的小指数，最快七天可以到首页。有人相信，也有人怀疑，也有人求所有的流程技巧。其实，我告诉你，为了保留意见，我肯定是放大了结果的，2000多指数到首页，2小时到首页的，4天到权4的，大有案例！这些案例，不但是在本篇文章的重要基础之上去做的，更加重要的是，她是白帽SEO，不是什么所谓的灰帽，更加不是黑帽！更为令你惊奇的是，在说说SEO论坛的所有版主中，在所有天荒老师的徒弟中，实现了超多的这样新站快速排名上首页的SEO优化案例！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>【转】SEO经验-PHP技术类</title>
+      <link>http://lilifeng.net/blogs/2015/01/29/Website-SEO-PHPTech/</link>
+      <pubDate>Thu, 29 Jan 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Website</category>
+      
+      <category>SEO</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/29/Website-SEO-PHPTech/</guid>
+      <description>&lt;p&gt;现在SEO基本上已经是在广泛的应用了，php程序的企业网站也越来越多，其实我之前一直喜欢用asp的，但是发现很多国外的空间现在不支持asp，所以也就研究了一下php，网站建好，当然也想要有一个好的网站排名，带来流量和销量，本文我和大家总结一下在apache服务器下PHP网站的几个seo建议吧!&lt;/p&gt;
+
+&lt;p&gt;PHP(超文本预处理器)是一种开源脚本语言。它吸收了很多常用语音的语法和特点，是目前大多数网站所采用的WEB开发语言。PHP网站的SEO优化策略包括关键词优化、网站地图优化、URL地址静态化和URL重写优化等。但是在这些优化的时候必须遵循各大搜索引擎公司的搜索原则，否则会被认为在SEO作弊，那样不但不会给网站带来人气和流量，还会影响网站被收录。&lt;/p&gt;
+
+&lt;p&gt;一、PHP网站关键词优化&lt;/p&gt;
+
+&lt;p&gt;根据搜索引擎的工作原理，我们知道用户和搜索引擎都是根据关键词对目标网站进行搜索分析。通过分析这些的关键词和搜索流量，我们发现在网站发展前期关键词是影响网站被搜索引擎收录的一个核心因素，关键词给网站带来了大量用户的同时也带来了大量的流量，其流量比例占网站总流量的绝大部分。由此可见，关键词的优化对于网站的流量至关重要。而关键词的确定必须是和网站内容高度相关的，一般网站需要在以下位置设置关键词:&lt;/p&gt;
+
+&lt;p&gt;(1)关键词需要出现在标签当中，也就是标题当中需要包含关键词，而且还需要保证不同的页面是不一样的;&lt;/p&gt;
+
+&lt;p&gt;(2)关键词应放在网站的标签内的keywords和description里面，并且一般只可出现一次;&lt;/p&gt;
+
+&lt;p&gt;(3)网站logo图片的Alt属性中可以设置于网站主题的关键词，其他图片的Alt应放着与图片相符合的ALT属性，否则会被搜索引擎认为在作弊;&lt;/p&gt;
+
+&lt;p&gt;(4)网站的目录名和文件名可以设置为关键词，会更好的被搜索引擎抓取;&lt;/p&gt;
+
+&lt;p&gt;(5)网页内容的中一般放置一篇文章的标题或者内容提要，这里需要放置关键词，但是整个页面的关键词不易设置过度，一般设置在 标签中，但需与文章内容相关，否则会认为在作弊。&lt;/p&gt;
+
+&lt;p&gt;二、PHP网站地图优化&lt;/p&gt;
+
+&lt;p&gt;网站地图优化又叫网站导航优化俗称sitemap。首先网站地图为网站访问者指明了访问网站的方向和路径，清晰明了的告诉网站访问者网站的布局和内容，给网站访问者友好的体验。用户的体验感觉不错，那么他下次访问网站的几率就会大大提高;其次搜索引擎蜘蛛也非常喜欢网站地图。因此做好网站地图SEO，对于网站非常重要。&lt;/p&gt;
+
+&lt;p&gt;(1)针对PHP网站，一般采用XML格式的网站地图。网站地图保存在根目录下的一个XML文件里，大家在很多网站的底部都会发现有这么一个文件。例如：www.xxx.com/sitemap.xml,它是网站上链接的列表。制作一个简洁明了高效的网站地图，可以为搜索引擎快速浏览整个网站的窗口，并且收录网站的全部内容。&lt;/p&gt;
+
+&lt;p&gt;(2)一般在网站的footer下添加一个关键词，并指向相应的内容页面。&lt;/p&gt;
+
+&lt;p&gt;三、PHP网站 URL地址优化&lt;/p&gt;
+
+&lt;p&gt;URL地址优化包括URL地址静态化(又叫伪静态)和URL地址转向两个方面。根据搜索引擎的搜索原理，静态页面更有利于搜索引擎抓取收录。现在大多数网站都是动态的页面，比如本文所讨论的PHP网站就为动态链接的页面。那么我们就要采取措施把PHP动态生成的页面转化为静态页面。&lt;/p&gt;
+
+&lt;p&gt;四、 url地址静态化&lt;/p&gt;
+
+&lt;p&gt;(1))把网页上带链接的地方，都换上新的静态化链接。搜索引擎和浏览器将通过该链接来发生请求。&lt;/p&gt;
+
+&lt;p&gt;(2)Apache服务器中在httpd.conf或.htaccess使用”/dir/([^./]*).html”来实现新的重写规则，告诉Apache服务执行这个重写规则之后的操作。通过这样一个重写规则使得PHP生成的动态页面转化为静态页面展现给搜索引擎。当搜索引擎蜘蛛爬行到这里页面的时候，就会记录下这个新的页面，从而达到URL地址优化的目的。在执行这样的操作后，要保留原链接只需在httpd.conf中使用Alias指令(仅适用于apache服务器)。&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Hadoop1.2.1系统分布式配置</title>
+      <link>http://lilifeng.net/blogs/2015/01/28/Hadoop-Setup/</link>
+      <pubDate>Wed, 28 Jan 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Hadoop</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/28/Hadoop-Setup/</guid>
+      <description>&lt;p&gt;环境：CentOS6.5、hadoop1.2.1、jdk1.8.0&lt;/p&gt;
+
+&lt;p&gt;namenode:centos1(ip:172.16.26.129)&lt;/p&gt;
+
+&lt;p&gt;datanode:centos2(ip:172.16.26.130)、centos3(ip:172.16.26.131)&lt;/p&gt;
+
+&lt;p&gt;配置步骤：&lt;/p&gt;
+
+&lt;p&gt;（1）在所有机器上安装所需软件&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# yum -y install wget, java-1.8.0-openjdk-devel, ssh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;（2）在所有机器上配置NameNode和DataNode&lt;/p&gt;
+
+&lt;p&gt;在所有机器上修改/etc/hosts&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# vi /etc/hosts&lt;/span&gt;
+
+127.0.0.1               localhost.localdomain localhost centos1
+172.16.26.129             centos1
+172.16.26.130             centos2
+172.16.26.131             centos3
+::1             localhost6.localdomain6 localhost6 centos1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在所有机器上修改hostname&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# hostname centos1&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# hostname&lt;/span&gt;
+centos1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在所有机器上修改network配置&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# vi /etc/sysconfig/network			//修改HOSTNAME＝XXX&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在所有机器上关闭防火墙&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# service iptables stop&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# service iptables status&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(3)在所有机器上建立相同的用户&lt;/p&gt;
+
+&lt;p&gt;在所有机器上成功建立grid用户后，设置用户密码&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# useradd grid&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# passwd grid&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;（4）在namenode上设置SSH无密码访问&lt;/p&gt;
+
+&lt;p&gt;在所有机器上使用grid用户登录&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# su grid&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在所有机器上/home/grid下创建ssh文件夹&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos2 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkdir .ssh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在namenode上生成密钥对&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh-keygen -t dsa -P &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt; -f ~/.ssh/id_dsa
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注意点：&lt;/p&gt;
+
+  &lt;p&gt;不进行以下步骤SSH免密码登录设置会不成功&lt;/p&gt;
+
+  &lt;p&gt;.ssh目录要设成700 有执行权限
+authorized_keys要设成600 否则会出错
+还有ssh 登陆要加入用户名的 比如
+ssh root@localhost&lt;/p&gt;
+
+  &lt;p&gt;这时从centos1向其他机器发起SSH连接，只有第一次登录时需要输入密码，以后则不需要&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;(5)在所有机器上安装配置hadoop1.2.1&lt;/p&gt;
+
+&lt;p&gt;首先在namenode上配置，配置后在分发到datanode上&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tar -xf hadoop-1.2.1.tar.gz 
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;hadoop-1.2.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;接下来需要修改hadoop的conf文件夹下的配置信息：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi conf/hadoop-env.sh
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/java/jvm/java&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;修改core-site.xml，如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi conf/core-site.xml
+&amp;lt;configuration&amp;gt;
+&amp;lt;property&amp;gt;
+&amp;lt;name&amp;gt;fs.default.name&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;hdfs://centos1:9000&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;property&amp;gt;
+&amp;lt;name&amp;gt;hadoop.tmp.dir&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;/home/grid/tmp&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注意：hadoop.tmp.dir是hadoop文件系统依赖的基础配置，很多路径都依赖它。它默认的位置是在/tmp/{$user}下面，在local和hdfs都会建有相同的目录，但是在/tmp路径下的存储是不安全的，因为linux一次重启，文件就可能被删除。导致namenode启动不起来。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;修改hdfs-site.xml，如下&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi conf/hdfs-site.xml
+&amp;lt;configuration&amp;gt;
+&amp;lt;property&amp;gt;
+&amp;lt;name&amp;gt;dfs.replication&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;1&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;修改mapred-site.xml，如下（保险起见这里写centos1对应的IP地址）：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi conf/mapred-site.xml
+&amp;lt;configuration&amp;gt;
+&amp;lt;property&amp;gt;
+&amp;lt;name&amp;gt;mapred.job.tracker&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;172.16.26.129:9001&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;masters里写入作为namenode节点机器的IP&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi conf/masters
+172.16.26.129&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;slaves里写入作为datanode节点的机器的IP&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi conf/slaves
+172.16.26.130
+172.16.26.131&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;修改bin下的hadoop中Jvm的调用方式&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi bin/hadoop&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;查找 –jvm . vi 下的命令模式： :/-jvm，将-jvm server改成 –server .&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;因为JDK1.6已经废除了一个参数-jvm,如果不修改的话，无法启动数据节点。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;到此，hadoop的有关配置已经完成，namenode端通过如下命令把配置好的hadoop发送到各个datanode处：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;scp -r ~/hadoop-1.2.1 centos2:/home/grid
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;scp -r ~/hadoop-1.2.1 centos3:/home/grid&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;（6）启动服务&lt;/p&gt;
+
+&lt;p&gt;在namenode端格式化分布式文件系统：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop namenode -format&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;如果没有任何error字样的信息，下面接着在namenode端启动hadoop进程：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/start-all.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;如果没有其它差错的话，hadoop可以正常启动，并能够在各个机器上得到验证：&lt;/p&gt;
+
+&lt;p&gt;在namenode端用jps命令查看启动情况，如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jps
+xxxx Jps
+xxxx Namenode
+xxxx Secondarynamenode
+xxxx JobTracker&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在datanode端用jps查看启动情况，如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos2 ~&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;jps
+xxxx Jps
+xxxx DataNode
+xxxx TaskTracker&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;然后可以通过如下地址来查看集群运行状况：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;http://172.16.26.129:50030
+    http://172.16.26.129:50070
+    http://172.16.26.130:50060
+    http://172.16.26.131:50060&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;————————————-我是分割线——————————-&lt;/p&gt;
+
+&lt;p&gt;跑hadoop自带的wordcount程序&lt;/p&gt;
+
+&lt;p&gt;1、通过hadoop的命令在HDFS上创建/tmp/workcount目录，命令如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop fs -mkdir /tmp/wordcount&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;2、通过copyFromLocal命令把本地的word.txt复制到HDFS上，命令如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop fs -copyFromLocal /home/grid/word.txt  /tmp/wordcount/word.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3、通过命令运行例子，使用命令如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop jar hadoop-examples-1.2.1.jar wordcount /tmp/wordcount/word.txt  /tmp/wordcount/out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;4、查看运行结果，查看例子的输出结果使用命令： &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop fs -ls /tmp/wordcount/out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;发现有两个文件夹和一个文件，使用命令查看part-r-00000文件：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop fs -cat /tmp/wordcount/out/part-r-00000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;————————————-我是分割线——————————-&lt;/p&gt;
+
+&lt;p&gt;问题1：&lt;/p&gt;
+
+&lt;p&gt;namenode无法启动，启动显示host = java.net.UnknownHostException&lt;/p&gt;
+
+&lt;p&gt;应对：&lt;/p&gt;
+
+&lt;p&gt;针对每台机器需要设置正确的hostname，方法如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;su
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# vi /etc/sysconfig/network			//修改HOSTNAME＝XXX&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# vi /etc/hosts						//修改映射关系从跟本机有关的IP映射到XXX&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# hostname XXX&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# service network restart&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;root@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# su grid&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# bin/start-all.sh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;问题2：&lt;/p&gt;
+
+&lt;p&gt;datanode无法启动，报错NoRouteToHostException: No route to host&lt;/p&gt;
+
+&lt;p&gt;应对：&lt;/p&gt;
+
+&lt;p&gt;关闭master的防火墙。&lt;/p&gt;
+
+&lt;p&gt;问题3：&lt;/p&gt;
+
+&lt;p&gt;ssh无法无密码访问，每次都需要输入密码&lt;/p&gt;
+
+&lt;p&gt;应对：
+暂时还没有更好的解决方法！&lt;/p&gt;
+
+</description>
+    </item>
     
     <item>
       <title>iOS研发工程师面试题及答案</title>

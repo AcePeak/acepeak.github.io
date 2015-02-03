@@ -21,7 +21,7 @@ datanode:centos2(ip:172.16.26.130)、centos3(ip:172.16.26.131)
 
 （1）在所有机器上安装所需软件
 
-{% highlight shell %}
+{% highlight bash %}
 [root@centos1 ~] # yum -y install wget, java-1.8.0-openjdk-devel, ssh
 {% endhighlight %}
 
@@ -31,7 +31,7 @@ datanode:centos2(ip:172.16.26.130)、centos3(ip:172.16.26.131)
 
 在所有机器上修改/etc/hosts
 
-{% highlight shell %}
+{% highlight bash %}
 [root@centos1 ~] # vi /etc/hosts
 
 127.0.0.1               localhost.localdomain localhost centos1
@@ -44,7 +44,7 @@ datanode:centos2(ip:172.16.26.130)、centos3(ip:172.16.26.131)
 
 在所有机器上修改hostname
 
-{% highlight shell %}
+{% highlight bash %}
 [root@centos1 ~] # hostname centos1
 [root@centos1 ~] # hostname
 centos1
@@ -53,14 +53,14 @@ centos1
 
 在所有机器上修改network配置
 
-{% highlight shell %}
+{% highlight bash %}
 [root@centos1 ~] # vi /etc/sysconfig/network			//修改HOSTNAME＝XXX
 {% endhighlight %}
 
 
 在所有机器上关闭防火墙
 
-{% highlight shell %}
+{% highlight bash %}
 [root@centos1 ~] # service iptables stop
 [root@centos1 ~] # service iptables status
 {% endhighlight %}
@@ -70,7 +70,7 @@ centos1
 
 在所有机器上成功建立grid用户后，设置用户密码
 
-{% highlight shell %}
+{% highlight bash %}
 [root@centos1 ~] # useradd grid
 [root@centos1 ~] # passwd grid
 {% endhighlight %}
@@ -80,21 +80,21 @@ centos1
 
 在所有机器上使用grid用户登录
 
-{% highlight shell %}
+{% highlight bash %}
 [root@centos1 ~] # su grid
 {% endhighlight %}
 
 
 在所有机器上/home/grid下创建ssh文件夹
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos2 ~] $ mkdir .ssh
 {% endhighlight %}
 
 
 在namenode上生成密钥对
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 ~] $ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
 [grid@centos1 ~] $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 {% endhighlight %}
@@ -116,7 +116,7 @@ centos1
 
 首先在namenode上配置，配置后在分发到datanode上
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 ~] $ wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz
 [grid@centos1 ~] $ tar -xf hadoop-1.2.1.tar.gz 
 [grid@centos1 ~] $ cd hadoop-1.2.1
@@ -125,7 +125,7 @@ centos1
 
 接下来需要修改hadoop的conf文件夹下的配置信息：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ vi conf/hadoop-env.sh
 export JAVA_HOME=/usr/java/jvm/java
 {% endhighlight %}
@@ -133,7 +133,7 @@ export JAVA_HOME=/usr/java/jvm/java
 
 修改core-site.xml，如下：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ vi conf/core-site.xml
 <configuration>
 <property>
@@ -153,7 +153,7 @@ export JAVA_HOME=/usr/java/jvm/java
 
 修改hdfs-site.xml，如下
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ vi conf/hdfs-site.xml
 <configuration>
 <property>
@@ -166,7 +166,7 @@ export JAVA_HOME=/usr/java/jvm/java
 
 修改mapred-site.xml，如下（保险起见这里写centos1对应的IP地址）：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ vi conf/mapred-site.xml
 <configuration>
 <property>
@@ -179,7 +179,7 @@ export JAVA_HOME=/usr/java/jvm/java
 
 masters里写入作为namenode节点机器的IP
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ vi conf/masters
 172.16.26.129
 {% endhighlight %}
@@ -187,7 +187,7 @@ masters里写入作为namenode节点机器的IP
 
 slaves里写入作为datanode节点的机器的IP
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ vi conf/slaves
 172.16.26.130
 172.16.26.131
@@ -196,7 +196,7 @@ slaves里写入作为datanode节点的机器的IP
 
 修改bin下的hadoop中Jvm的调用方式
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ vi bin/hadoop
 {% endhighlight %}
 
@@ -208,7 +208,7 @@ slaves里写入作为datanode节点的机器的IP
 
 到此，hadoop的有关配置已经完成，namenode端通过如下命令把配置好的hadoop发送到各个datanode处：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ scp -r ~/hadoop-1.2.1 centos2:/home/grid
 [grid@centos1 hadoop-1.2.1] $ scp -r ~/hadoop-1.2.1 centos3:/home/grid
 {% endhighlight %}
@@ -218,14 +218,14 @@ slaves里写入作为datanode节点的机器的IP
 
 在namenode端格式化分布式文件系统：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop namenode -format
 {% endhighlight %}
 
 
 如果没有任何error字样的信息，下面接着在namenode端启动hadoop进程：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/start-all.sh
 {% endhighlight %}
 
@@ -235,7 +235,7 @@ slaves里写入作为datanode节点的机器的IP
 
 在namenode端用jps命令查看启动情况，如下：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 ~] $ jps
 xxxx Jps
 xxxx Namenode
@@ -246,7 +246,7 @@ xxxx JobTracker
 
 在datanode端用jps查看启动情况，如下：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos2 ~] $ jps
 xxxx Jps
 xxxx DataNode
@@ -256,7 +256,7 @@ xxxx TaskTracker
 
 然后可以通过如下地址来查看集群运行状况：
 
-{% highlight shell %}
+{% highlight bash %}
     http://172.16.26.129:50030
     http://172.16.26.129:50070
     http://172.16.26.130:50060
@@ -272,14 +272,14 @@ xxxx TaskTracker
 
 1、通过hadoop的命令在HDFS上创建/tmp/workcount目录，命令如下：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop fs -mkdir /tmp/wordcount
 {% endhighlight %}
 
 
 2、通过copyFromLocal命令把本地的word.txt复制到HDFS上，命令如下：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop fs -copyFromLocal /home/grid/word.txt  /tmp/wordcount/word.txt
 {% endhighlight %}
 
@@ -287,21 +287,21 @@ xxxx TaskTracker
 
 3、通过命令运行例子，使用命令如下：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop jar hadoop-examples-1.2.1.jar wordcount /tmp/wordcount/word.txt  /tmp/wordcount/out
 {% endhighlight %}
 
 
 4、查看运行结果，查看例子的输出结果使用命令： 
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop fs -ls /tmp/wordcount/out
 {% endhighlight %}
 
 
 发现有两个文件夹和一个文件，使用命令查看part-r-00000文件：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop fs -cat /tmp/wordcount/out/part-r-00000
 {% endhighlight %}
 
@@ -318,7 +318,7 @@ namenode无法启动，启动显示host = java.net.UnknownHostException
 
 针对每台机器需要设置正确的hostname，方法如下：
 
-{% highlight shell %}
+{% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ su
 [root@centos1 hadoop-1.2.1] # vi /etc/sysconfig/network			//修改HOSTNAME＝XXX
 [root@centos1 hadoop-1.2.1] # vi /etc/hosts						//修改映射关系从跟本机有关的IP映射到XXX
