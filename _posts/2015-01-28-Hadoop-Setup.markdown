@@ -4,6 +4,7 @@ title: Hadoop1.2.1系统分布式配置
 author: AcePeak
 categories: [Internet]
 tags: 
+- 原生
 - Web
 - Hadoop
 ---

@@ -2,10 +2,10 @@
   <li class="{% if page.overview %}current{% endif %}">
     <a href="/">首页</a>
   </li>
-  <li class="{% if page.categories.'博文' %}current{% endif %}">
+  <li class="{% if page.categories[0] == '博文' %}current{% endif %}">
     <a href="/blogs/journal/">生活</span></a>
   </li>
-  <li class="{% if page.categories.'博文' == null %}{% if page.author %}current{% endif %}{% endif %}">
+  <li class="{% if page.categories[0] != '博文' %}{% if page.author %}current{% endif %}{% endif %}">
     <a href="/blogs/career/">工作</a>
   </li>
   <li class="{% if page.url contains '/docs/' %}current{% endif %}">
