@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验-原则类
+title: 【转】SEO经验（一）之原则篇
 author: AcePeak
 categories: [Internet]
 tags: 

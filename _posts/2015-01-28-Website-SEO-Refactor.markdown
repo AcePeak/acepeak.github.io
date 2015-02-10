@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验-改版类
+title: 【转】SEO经验（三）之改版篇
 author: AcePeak
 categories: [Internet]
 tags: 

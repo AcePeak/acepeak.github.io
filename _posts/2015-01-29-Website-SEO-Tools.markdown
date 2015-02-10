@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验-工具类
+title: 【转】SEO经验（四）之工具篇
 author: AcePeak
 categories: [Internet]
 tags: 

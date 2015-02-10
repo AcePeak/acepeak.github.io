@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验-PHP技术类
+title: 【转】SEO经验（二）之PHP技术篇
 author: AcePeak
 categories: [Internet]
 tags: 

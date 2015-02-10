@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 04 Feb 2015 18:26:37 +0800</pubDate>
-    <lastBuildDate>Wed, 04 Feb 2015 18:26:37 +0800</lastBuildDate>
+    <pubDate>Tue, 10 Feb 2015 16:50:56 +0800</pubDate>
+    <lastBuildDate>Tue, 10 Feb 2015 16:50:56 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.2</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,883 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>高性能服务器架构(High-Performance Server Architecture)</title>
+      <link>http://lilifeng.net/blogs/2015/02/10/high-performance-server-concept/</link>
+      <pubDate>Tue, 10 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/10/high-performance-server-concept/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;来源：&lt;a href=&quot;http://pl.atyp.us/content/tech/servers.html&quot;&gt;http://pl.atyp.us/content/tech/servers.html&lt;/a&gt;
+译文来源：&lt;a href=&quot;http://www.lupaworld.com/home/space-341888-do-blog-id-136718.html&quot;&gt;http://www.lupaworld.com/home/space-341888-do-blog-id-136718.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;引言&lt;/h1&gt;
+
+&lt;p&gt;本文将与你分享我多年来在服务器开发方面的一些经验。对于这里所说的服务器，更精确的定义应该是每秒处理大量离散消息或者请求的服务程序，网络服务器更符合这种情况，但并非所有的网络程序都是严格意义上的服务器。使用“高性能请求处理程序”是一个很糟糕的标题，为了叙述起来简单，下面将简称为“服务器”。&lt;/p&gt;
+
+&lt;p&gt;本文不会涉及到多任务应用程序，在单个程序里同时处理多个任务现在已经很常见。比如你的浏览器可能就在做一些并行处理，但是这类并行程序设计没有多大挑战性。真正的挑战出现在服务器的架构设计对性能产生制约时，如何通过改善架构来提升系统性能。对于在拥有上G内存和G赫兹CPU上运行的浏览器来说，通过DSL进行多个并发下载任务不会有如此的挑战性。这里，应用的焦点不在于通过吸管小口吮吸，而是如何通过水龙头大口畅饮，这里麻烦是如何解决在硬件性能的制约.(作者的意思应该是怎么通过网络硬件的改善来增大流量)&lt;/p&gt;
+
+&lt;p&gt;一些人可能会对我的某些观点和建议发出置疑，或者自认为有更好的方法, 这是无法避免的。在本文中我不想扮演上帝的角色；这里所谈论的是我自己的一些经验，这些经验对我来说, 不仅在提高服务器性能上有效，而且在降低调试困难度和增加系统的可扩展性上也有作用。但是对某些人的系统可能会有所不同。如果有其它更适合于你的方法，那实在是很不错. 但是值得注意的是，对本文中所提出的每一条建议的其它一些可替代方案，我经过实验得出的结论都是悲观的。你自己的小聪明在这些实验中或许有更好的表现，但是如果因此怂恿我在这里建议读者这么做，可能会引起无辜读者的反感。你并不想惹怒读者，对吧？&lt;/p&gt;
+
+&lt;p&gt;本文的其余部分将主要说明影响服务器性能的四大杀手:&lt;/p&gt;
+
+&lt;p&gt;1)   数据拷贝（Data Copies）&lt;/p&gt;
+
+&lt;p&gt;2)   环境切换（Context Switches）&lt;/p&gt;
+
+&lt;p&gt;3)   内存分配（Memory allocation）&lt;/p&gt;
+
+&lt;p&gt;4)   锁竞争（Lock contention）&lt;/p&gt;
+
+&lt;p&gt;在文章结尾部分还会提出其它一些比较重要的因素，但是上面的四点是主要因素。如果服务器在处理大部分请求时能够做到没有数据拷贝，没有环境切换，没有内存分配，没有锁竞争，那么我敢保证你的服务器的性能一定很出色。&lt;/p&gt;
+
+&lt;h2 id=&quot;data-copies&quot;&gt;数据拷贝（Data Copies）&lt;/h2&gt;
+
+&lt;p&gt;本节会有点短，因为大多数人在数据拷贝上吸取过教训。几乎每个人都知道产生数据拷贝是不对的，这点是显而易见的，在你的职业生涯中, 你很早就会见识过它；而且遇到过这个问题，因为10年前就有人开始说这个词。对我来说确实如此。现今，几乎每个大学课程和几乎所有how-to文档中都提到了它。甚至在某些商业宣传册中，”零拷贝” 都是个流行用语。&lt;/p&gt;
+
+&lt;p&gt;尽管数据拷贝的坏处显而易见，但是还是会有人忽视它。因为产生数据拷贝的代码常常隐藏很深且带有伪装，你知道你所调用的库或驱动的代码会进行数据拷贝吗？答案往往超出想象。猜猜“程序I/O”在计算机上到底指什么？哈希函数是伪装的数据拷贝的例子，它有带拷贝的内存访问消耗和更多的计算。曾经指出哈希算法是一种有效的“拷贝+”似乎能够被避免，但据我所知，有一些非常聪明的人说过要做到这一点是相当困难的。如果想真正去除数据拷贝，不管是因为影响了服务器性能，还是想在黑客大会上展示”零复制”技术，你必须自己跟踪可能发生数据拷贝的所有地方，而不是轻信宣传。&lt;/p&gt;
+
+&lt;p&gt;有一种可以避免数据拷贝的方法是使用buffer的描述符（或者buffer chains的描述符）来取代直接使用buffer指针，每个buffer描述符应该由以下元素组成：&lt;/p&gt;
+
+&lt;p&gt;l  一个指向buffer的指针和整个buffer的长度&lt;/p&gt;
+
+&lt;p&gt;l  一个指向buffer中真实数据的指针和真实数据的长度，或者长度的偏移&lt;/p&gt;
+
+&lt;p&gt;l  以双向链表的形式提供指向其它buffer的指针&lt;/p&gt;
+
+&lt;p&gt;l  一个引用计数&lt;/p&gt;
+
+&lt;p&gt;现在，代码可以简单的在相应的描述符上增加引用计数来代替内存中数据的拷贝。这种做法在某些条件下表现的相当好，包括在典型的网络协议栈的操作上，但有些情况下这做法也令人很头大。一般来说，在buffer chains的开头和结尾增加buffer很容易，对整个buffer增加引用计数，以及对buffer chains的即刻释放也很容易。在chains的中间增加buffer，一块一块的释放buffer，或者对部分buffer增加引用技术则比较困难。而分割，组合chains会让人立马崩溃。&lt;/p&gt;
+
+&lt;p&gt;我不建议在任何情况下都使用这种技术，因为当你想在链上搜索你想要的一个块时，就不得不遍历一遍描述符链，这甚至比数据拷贝更糟糕。最适用这种技术地方是在程序中大的数据块上，这些大数据块应该按照上面所说的那样独立的分配描述符，以避免发生拷贝，也能避免影响服务器其它部分的工作.(大数据块拷贝很消耗CPU,会影响其它并发线程的运行)。&lt;/p&gt;
+
+&lt;p&gt;关于数据拷贝最后要指出的是：在避免数据拷贝时不要走极端。我看到过太多的代码为了避免数据拷贝，最后结果反而比拷贝数据更糟糕，比如产生环境切换或者一个大的I/O请求被分解了。数据拷贝是昂贵的，但是在避免它时，是收益递减的(意思是做过头了，效果反而不好)。为了除去最后少量的数据拷贝而改变代码，继而让代码复杂度翻番，不如把时间花在其它方面。&lt;/p&gt;
+
+&lt;h2 id=&quot;context-switches&quot;&gt;上下文切换（Context Switches）&lt;/h2&gt;
+
+&lt;p&gt;相对于数据拷贝影响的明显，非常多的人会忽视了上下文切换对性能的影响。在我的经验里，比起数据拷贝，上下文切换是让高负载应用彻底完蛋的真正杀手。系统更多的时间都花费在线程切换上，而不是花在真正做有用工作的线程上。令人惊奇的是，（和数据拷贝相比）在同一个水平上，导致上下文切换原因总是更常见。引起环境切换的第一个原因往往是活跃线程数比CPU个数多。随着活跃线程数相对于CPU个数的增加，上下文切换的次数也在增加，如果你够幸运，这种增长是线性的，但更常见是指数增长。这个简单的事实解释了为什么每个连接一个线程的多线程设计的可伸缩性更差。对于一个可伸缩性的系统来说，限制活跃线程数少于或等于CPU个数是更有实际意义的方案。曾经这种方案的一个变种是只使用一个活跃线程，虽然这种方案避免了环境争用，同时也避免了锁，但它不能有效利用多CPU在增加总吞吐量上的价值，因此除非程序无CPU限制（non-CPU-bound），(通常是网络I/O限制 network-I/O-bound)，应该继续使用更实际的方案。&lt;/p&gt;
+
+&lt;p&gt;一个有适量线程的程序首先要考虑的事情是规划出如何创建一个线程去管理多连接。这通常意味着前置一个select/poll, 异步I/O，信号或者完成端口，而后台使用一个事件驱动的程序框架。关于哪种前置API是最好的有很多争论。 Dan Kegel的C10K在这个领域是一篇不错的论文。个人认为，select/poll和信号通常是一种丑陋的方案，因此我更倾向于使用AIO或者完成端口，但是实际上它并不会好太多。也许除了select()，它们都还不错。所以不要花太多精力去探索前置系统最外层内部到底发生了什么。&lt;/p&gt;
+
+&lt;p&gt;对于最简单的多线程事件驱动服务器的概念模型, 其内部有一个请求缓存队列，客户端请求被一个或者多个监听线程获取后放到队列里，然后一个或者多个工作线程从队列里面取出请求并处理。从概念上来说，这是一个很好的模型，有很多用这种方式来实现他们的代码。这会产生什么问题吗？引起环境切换的第二个原因是把对请求的处理从一个线程转移到另一个线程。有些人甚至把对请求的回应又切换回最初的线程去做，这真是雪上加霜，因为每一个请求至少引起了2次环境切换。把一个请求从监听线程转换到成工作线程，又转换回监听线程的过程中，使用一种“平滑”的方法来避免环境切换是非常重要的。此时，是否把连接请求分配到多个线程，或者让所有线程依次作为监听线程来服务每个连接请求，反而不重要了。&lt;/p&gt;
+
+&lt;p&gt;即使在将来,也不可能有办法知道在服务器中同一时刻会有多少激活线程.毕竟，每时每刻都可能有请求从任意连接发送过来，一些进行特殊任务的“后台”线程也会在任意时刻被唤醒。那么如果你不知道当前有多少线程是激活的，又怎么能够限制激活线程的数量呢？根据我的经验，最简单同时也是最有效的方法之一是：用一个老式的带计数的信号量，每一个线程执行的时候就先持有信号量。如果信号量已经到了最大值，那些处于监听模式的线程被唤醒的时候可能会有一次额外的环境切换,(监听线程被唤醒是因为有连接请求到来, 此时监听线程持有信号量时发现信号量已满,所以即刻休眠), 接着它就会被阻塞在这个信号量上，一旦所有监听模式的线程都这样阻塞住了，那么它们就不会再竞争资源了，直到其中一个线程释放信号量，这样环境切换对系统的影响就可以忽略不计。更主要的是，这种方法使大部分时间处于休眠状态的线程避免在激活线程数中占用一个位置，这种方式比其它的替代方案更优雅。&lt;/p&gt;
+
+&lt;p&gt;一旦处理请求的过程被分成两个阶段(监听和工作)，那么更进一步，这些处理过程在将来被分成更多的阶段(更多的线程)就是很自然的事了。最简单的情况是一个完整的请求先完成第一步,然后是第二步(比如回应)。然而实际会更复杂：一个阶段可能产生出两个不同执行路径，也可能只是简单的生成一个应答(例如返回一个缓存的值)。由此每个阶段都需要知道下一步该如何做，根据阶段分发函数的返回值有三种可能的做法：&lt;/p&gt;
+
+&lt;p&gt;l  请求需要被传递到另外一个阶段（返回一个描述符或者指针）&lt;/p&gt;
+
+&lt;p&gt;l  请求已经完成（返回ok）&lt;/p&gt;
+
+&lt;p&gt;l  请求被阻塞(返回”请求阻塞”)。这和前面的情况一样，阻塞到直到别的线程释放资源&lt;/p&gt;
+
+&lt;p&gt;应该注意到在这种模式下，对阶段的排队是在一个线程内完成的，而不是经由两个线程中完成。这样避免不断把请求放在下一阶段的队列里，紧接着又从该队列取出这个请求来执行。这种经由很多活动队列和锁的阶段很没必要。&lt;/p&gt;
+
+&lt;p&gt;这种把一个复杂的任务分解成多个较小的互相协作的部分的方式，看起来很熟悉，这是因为这种做法确实很老了。我的方法，源于CAR在1978年发明的”通信序列化进程”(Communicating Sequential Processes CSP)，它的基础可以上溯到1963时的Per Brinch Hansen and Matthew Conway–在我出生之前！然而，当Hoare创造出CSP这个术语的时候，“进程”是从抽象的数学角度而言的，而且，这个CSP术语中的进程和操作系统中同名的那个进程并没有关系。依我看来，这种在操作系统提供的单个线程之内，实现类似多线程一样协同并发工作的CSP的方法，在可扩展性方面让很多人头疼。&lt;/p&gt;
+
+&lt;p&gt;一个实际的例子是，Matt Welsh的SEDA，这个例子表明分段执行的(stage-execution)思想朝着一个比较合理的方向发展。SEDA是一个很好的“server Aarchitecture done right”的例子，值得把它的特性评论一下：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;SEDA的批处理倾向于强调一个阶段处理多个请求，而我的方式倾向于强调一个请求分成多个阶段处理。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在我看来SEDA的一个重大缺陷是给每个阶段申请一个独立的在加载响应阶段中线程“后台”重分配的线程池。结果，原因1和原因2引起的环境切换仍然很多。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在纯技术的研究项目中，在Java中使用SEDA是有用的，然而在实际应用场合，我觉得这种方法很少被选择。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;memory-allocator&quot;&gt;内存分配（Memory Allocator）&lt;/h2&gt;
+
+&lt;p&gt;申请和释放内存是应用程序中最常见的操作, 因此发明了许多聪明的技巧使得内存的申请效率更高。然而再聪明的方法也不能弥补这种事实:在很多场合中，一般的内存分配方法非常没有效率。所以为了减少向系统申请内存，我有三个建议。&lt;/p&gt;
+
+&lt;p&gt;建议一是使用预分配。我们都知道由于使用静态分配而对程序的功能加上人为限制是一种糟糕的设计。但是还是有许多其它很不错的预分配方案。通常认为，通过系统一次性分配内存要比分开几次分配要好，即使这样做在程序中浪费了某些内存。如果能够确定在程序中会有几项内存使用，在程序启动时预分配就是一个合理的选择。即使不能确定，在开始时为请求句柄预分配可能需要的所有内存也比在每次需要一点的时候才分配要好。通过系统一次性连续分配多项内存还能极大减少错误处理代码。在内存比较紧张时，预分配可能不是一个好的选择，但是除非面对最极端的系统环境，否则预分配都是一个稳赚不赔的选择。&lt;/p&gt;
+
+&lt;p&gt;建议二是使用一个内存释放分配的lookaside list(监视列表或者后备列表)。基本的概念是把最近释放的对象放到链表里而不是真的释放它，当不久再次需要该对象时，直接从链表上取下来用，不用通过系统来分配。使用lookaside list的一个额外好处是可以避免复杂对象的初始化和清理.&lt;/p&gt;
+
+&lt;p&gt;通常，让lookaside list不受限制的增长，即使在程序空闲时也不释放占用的对象是个糟糕的想法。在避免引入复杂的锁或竞争情况下，不定期的“清扫”非活跃对象是很有必要的。一个比较妥当的办法是,让lookaside list由两个可以独立锁定的链表组成：一个”新链”和一个”旧链”.使用时优先从”新”链分配，然后最后才依靠”旧”链。对象总是被释放的”新”链上。清除线程则按如下规则运行：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;锁住两个链&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;保存旧链的头结点&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;把前一个新链挂到旧链的前头&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;解锁&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在空闲时通过第二步保存的头结点开始释放旧链的所有对象。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;使用了这种方式的系统中，对象只有在真的没用时才会释放，释放至少延时一个清除间隔期(指清除线程的运行间隔)，但同常不会超过两个间隔期。清除线程不会和普通线程发生锁竞争。理论上来说，同样的方法也可以应用到请求的多个阶段，但目前我还没有发现有这么用的。&lt;/p&gt;
+
+&lt;p&gt;使用lookaside lists有一个问题是，保持分配对象需要一个链表指针(链表结点)，这可能会增加内存的使用。但是即使有这种情况，使用它带来的好处也能够远远弥补这些额外内存的花销。&lt;/p&gt;
+
+&lt;p&gt;第三条建议与我们还没有讨论的锁有关系。先抛开它不说。即使使用lookaside list,内存分配时的锁竞争也常常是最大的开销。解决方法是使用线程私有的lookasid list, 这样就可以避免多个线程之间的竞争。更进一步，每个处理器一个链会更好，但这样只有在非抢先式线程环境下才有用。基于极端考虑，私有lookaside list甚至可以和一个共用的链工作结合起来使用。&lt;/p&gt;
+
+&lt;h2 id=&quot;lock-contention&quot;&gt;锁竞争（Lock Contention）&lt;/h2&gt;
+
+&lt;p&gt;高效率的锁是非常难规划的, 以至于我把它称作卡律布狄斯和斯库拉(参见附录)。一方面, 锁的简单化(粗粒度锁)会导致并行处理的串行化,因而降低了并发的效率和系统可伸缩性; 另一方面, 锁的复杂化(细粒度锁)在空间占用上和操作时的时间消耗上都可能产生对性能的侵蚀。偏向于粗粒度锁会有死锁发生，而偏向于细粒度锁则会产生竞争。在这两者之间，有一个狭小的路径通向正确性和高效率，但是路在哪里？&lt;/p&gt;
+
+&lt;p&gt;由于锁倾向于对程序逻辑产生束缚，所以如果要在不影响程序正常工作的基础上规划出锁方案基本是不可能的。这也就是人们为什么憎恨锁，并且为自己设计的不可扩展的单线程方案找借口了。&lt;/p&gt;
+
+&lt;p&gt;几乎我们每个系统中锁的设计都始于一个”锁住一切的超级大锁”，并寄希望于它不会影响性能，当希望落空时(几乎是必然), 大锁被分成多个小锁，然后我们继续祷告(性能不会受影响)，接着，是重复上面的整个过程(许多小锁被分成更小的锁), 直到性能达到可接受的程度。通常，上面过程的每次重复都回增加大于20%-50%的复杂性和锁负荷，并减少5%-10%的锁竞争。最终结果是取得了适中的效率，但是实际效率的降低是不可避免的。设计者开始抓狂:”我已经按照书上的指导设计了细粒度锁，为什么系统性能还是很糟糕?”&lt;/p&gt;
+
+&lt;p&gt;在我的经验里，上面的方法从基础上来说就不正确。设想把解决方案当成一座山，优秀的方案表示山顶，糟糕的方案表示山谷。上面始于”超级锁”的解决方案就好像被形形色色的山谷，凹沟，小山头和死胡同挡在了山峰之外的登山者一样，是一个典型的糟糕爬山法；从这样一个地方开始登顶，还不如下山更容易一些。那么登顶正确的方法是什么？&lt;/p&gt;
+
+&lt;p&gt;首要的事情是为你程序中的锁形成一张图表，有两个轴：&lt;/p&gt;
+
+&lt;p&gt;l  图表的纵轴表示代码。如果你正在应用剔出了分支的阶段架构(指前面说的为请求划分阶段)，你可能已经有这样一张划分图了，就像很多人见过的OSI七层网络协议架构图一样。&lt;/p&gt;
+
+&lt;p&gt;l  图表的水平轴表示数据集。在请求的每个阶段都应该有属于该阶段需要的数据集。&lt;/p&gt;
+
+&lt;p&gt;现在，你有了一张网格图，图上每个单元格表示一个特定阶段需要的特定数据集。下面是应该遵守的最重要的规则：两个请求不应该产生竞争，除非它们在同一个阶段需要同样的数据集。如果你严格遵守这个规则，那么你已经成功了一半。&lt;/p&gt;
+
+&lt;p&gt;一旦你定义出了上面那个网格图，在你的系统中的每种类型的锁就都可以被标识出来了。你的下一个目标是确保这些标识出来的锁尽可能在两个轴之间均匀的分布, 这部分工作是和具体应用相关的。你得像个钻石切割工一样，根据你对程序的了解，找出请求阶段和数据集之间的自然“纹理线”。有时候它们很容易发现，有时候又很难找出来，此时需要不断回顾来发现它。在程序设计时，把代码分隔成不同阶段是很复杂的事情，我也没有好的建议，但是对于数据集的定义，有一些建议给你：&lt;/p&gt;
+
+&lt;p&gt;l  如果你能对请求按顺序编号，或者能对请求进行哈希，或者能把请求和事物ID关联起来，那么根据这些编号或者ID就能对数据更好的进行分隔。&lt;/p&gt;
+
+&lt;p&gt;l  有时，基于数据集的资源最大化利用，把请求动态的分配给数据，相对于依据请求的固有属性来分配会更有优势。就好像现代CPU的多个整数运算单元知道把请求分离一样。&lt;/p&gt;
+
+&lt;p&gt;l  确定每个阶段指定的数据集是不一样的是非常有用的，以便保证一个阶段争夺的数据在另外阶段不会争夺。&lt;/p&gt;
+
+&lt;p&gt;如果你在纵向和横向上把“锁空间(这里实际指锁的分布)” 分隔了，并且确保了锁均匀分布在网格上，那么恭喜你获得了一个好方案。现在你处在了一个好的登山点，打个比喻，你面有了一条通向顶峰的缓坡，但你还没有到山顶。现在是时候对锁竞争进行统计，看看该如何改进了。以不同的方式分隔阶段和数据集，然后统计锁竞争，直到获得一个满意的分隔。当你做到这个程度的时候，那么无限风景将呈现在你脚下。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;其他方面&lt;/h2&gt;
+
+&lt;p&gt;我已经阐述完了影响性能的四个主要方面。然而还有一些比较重要的方面需要说一说，大所属都可归结于你的平台或系统环境：&lt;/p&gt;
+
+&lt;p&gt;l  你的存储子系统在大数据读写和小数据读写，随即读写和顺序读写方面是如何进行？在预读和延迟写入方面做得怎样？&lt;/p&gt;
+
+&lt;p&gt;l  你使用的网络协议效率如何？是否可以通过修改参数改善性能？是否有类似于TCP_CORK, MSG_PUSH,Nagle-toggling算法的手段来避免小消息产生？&lt;/p&gt;
+
+&lt;p&gt;l  你的系统是否支持Scatter-Gather I/O(例如readv/writev)? 使用这些能够改善性能，也能避免使用缓冲链(见第一节数据拷贝的相关叙述)带来的麻烦。(说明：在dma传输数据的过程中，要求源物理地址和目标物理地址必须是连续的。但在有的计算机体系中，如IA，连续的存储器地址在物理上不一定是连续的，则dma传输要分成多次完成。如果传输完一块物理连续的数据后发起一次中断，同时主机进行下一块物理连续的传输，则这种方式即为block dma方式。scatter/gather方式则不同，它是用一个链表描述物理不连续的存储器，然后把链表首地址告诉dma master。dma master传输完一块物理连续的数据后，就不用再发中断了，而是根据链表传输下一块物理连续的数据，最后发起一次中断。很显然 scatter/gather方式比block dma方式效率高) &lt;/p&gt;
+
+&lt;p&gt;l  你的系统的页大小是多少？高速缓存大小是多少？向这些大小边界进行对起是否有用？系统调用和上下文切换花的代价是多少？&lt;/p&gt;
+
+&lt;p&gt;l  你是否知道锁原语的饥饿现象？你的事件机制有没有”惊群”问题?你的唤醒/睡眠机制是否有这样糟糕的行为: 当X唤醒了Y, 环境立刻切换到了Y,但是X还有没完成的工作?&lt;/p&gt;
+
+&lt;p&gt;我在这里考虑的了很多方面，相信你也考虑过。在特定情况下，应用这里提到的某些方面可能没有价值，但能考虑这些因素的影响还是有用的。如果在系统手册中，你没有找到这些方面的说明，那么就去努力找出答案。写一个测试程序来找出答案；不管怎样，写这样的测试代码都是很好的技巧锻炼。如果你写的代码在多个平台上都运行过，那么把这些相关的代码抽象为一个平台相关的库，将来在某个支持这里提到的某些功能的平台上，你就赢得了先机。&lt;/p&gt;
+
+&lt;p&gt;对你的代码,“知其所以然”, 弄明白其中高级的操作, 以及在不同条件下的花销.这不同于传统的性能分析, 不是关于具体的实现,而是关乎设计. 低级别的优化永远是蹩脚设计的最后救命稻草. &lt;/p&gt;
+
+&lt;h2 id=&quot;map&quot;&gt;（map注：下面这段文字原文没有，这是译者对于翻译的理）&lt;/h2&gt;
+
+&lt;p&gt;附录：奥德修斯（Odysseus，又译“奥德赛”），神话中伊塔刻岛国王，《伊利亚特》和《奥德赛》两大史诗中的主人公（公元前11世纪到公元前9世纪的希腊史称作“荷马时代”。包括《伊利亚特》和《奥德赛》两部分的《荷马史诗》，是古代世界一部著名的杰作）。奥德修斯曾参加过著名的特洛伊战争，在战争中他以英勇善战、足智多谋而著称，为赢得战争的胜利，他设计制造了著名的“特洛伊木马”（后来在西方成了“为毁灭敌人而送的礼物”的代名词）。特洛伊城毁灭后，他在回国途中又经历了许多风险，荷马的《奥德赛》就是奥德修斯历险的记述。“斯库拉和卡律布狄斯”的故事是其中最惊险、最恐怖的一幕。&lt;/p&gt;
+
+&lt;p&gt;相传，斯库拉和卡律布狄斯是古希腊神话中的女妖和魔怪，女妖斯库拉住在意大利和西西里岛之间海峡中的一个洞穴里，她的对面住着另一个妖怪卡律布狄斯。它们为害所有过往航海的人。据荷马说，女妖斯库拉长着12只不规则的脚，有6个蛇一样的脖子，每个脖子上各有一颗可怕的头，张着血盆大口，每张嘴有3 排毒牙，随时准备把猎物咬碎。它们每天在意大利和西西里岛之间海峡中兴风作浪，航海者在两个妖怪之间通过是异常危险的，它们时刻在等待着穿过西西里海峡的船舶。在海峡中间，卡律布狄斯化成一个大旋涡，波涛汹涌、水花飞溅，每天3次从悬崖上奔涌而出，在退落时将通过此处的船只全部淹没。当奥德修斯的船接近卡律布狄斯大旋涡时，它像火炉上的一锅沸水，波涛滔天，激起漫天雪白的水花。当潮退时，海水混浊，涛声如雷，惊天动地。这时，黑暗泥泞的岩穴一见到底。正当他们惊恐地注视着这一可怕的景象时，正当舵手小心翼翼地驾驶着船只从左绕过旋涡时，突然海怪斯库拉出现在他们面前，她一口叼住了6个同伴。奥德修斯亲眼看见自己的同伴在妖怪的牙齿中间扭动着双手和双脚，挣扎了一会儿，他们便被嚼碎，成了血肉模糊的一团。其余的人侥幸通过了卡律布狄斯大旋涡和海怪斯库拉之间的危险的隘口。后来又历经种种灾难，最后终于回到了故乡——伊塔刻岛。&lt;/p&gt;
+
+&lt;p&gt;这个故事在语言学界和翻译界被广为流传。前苏联著名翻译家巴尔胡达罗夫就曾把 “斯库拉和卡律布狄斯”比作翻译中“直译和意译”。他说：“形象地说，译者总是不得不在直译和意译之间迂回应变，犹如在斯库拉和卡律布狄斯之间曲折前行，以求在这海峡两岸之间找到一条狭窄然而却足够深邃的航道，以便达到理想的目的地——最大限度的等值翻译。”&lt;/p&gt;
+
+&lt;p&gt;德国著名语言学家洪堡特也说过类似的话：“我确信任何翻译无疑地都是企图解决不可能解决的任务。因为任何一个翻译家都会碰到一个暗礁而遭到失败，他们不是由于十分准确地遵守了原文的形式而破坏了译文语言的特点，就是为了照顾译文语言的特点而损坏了原文。介于两者之间的做法不仅难于办到，而且简直是不可能办到。”&lt;/p&gt;
+
+&lt;p&gt;历史上长久以来都认为，翻译只能选择两个极端的一种：或者这种——逐字翻译（直译）；或者那种——自由翻译（意译）。就好像翻译中的斯库拉和卡律布狄斯”一样。如今 “斯库拉和卡律布狄斯”已成为表示双重危险——海怪和旋涡的代名词，人们常说“介于斯库拉和卡律布狄斯之间”，这就是说：处于两面受敌的险境，比喻“危机四伏”，用来喻指译者在直译和意译之间反复作出抉择之艰难。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>服务器测试概念及标准</title>
+      <link>http://lilifeng.net/blogs/2015/02/09/server-test-concept/</link>
+      <pubDate>Mon, 09 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Web</category>
+      
+      <category>测试</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/09/server-test-concept/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;a点：性能期望值
+b点：高于期望，系统资源处于临界点
+c点：高于期望，拐点
+d点：超过负载，系统崩溃&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;性能测试&lt;/h2&gt;
+
+&lt;p&gt;a点到b点之间的系统性能&lt;/p&gt;
+
+&lt;p&gt;定义：狭义的性能测试，是指以性能预期目标为前提，对系统不断施加压力，验证系统在资源可接受范围内，是否能达到性能预期。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;负载测试&lt;/h2&gt;
+
+&lt;p&gt;b点的系统性能&lt;/p&gt;
+
+&lt;p&gt;定义：狭义的负载测试，是指对系统不断地增加压力或增加一定压力下的持续时间，直到系统的某项或多项性能指标达到极限，例如某种资源已经达到饱和状态等。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;压力测试&lt;/h2&gt;
+
+&lt;p&gt;b点到d点之间&lt;/p&gt;
+
+&lt;p&gt;定义：狭义的压力测试，是指超过安全负载的情况下，对系统不断施加压力，是通过确定一个系统的瓶颈或不能接收用户请求的性能点，来获得系统能提供的最大服务级别的测试。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;稳定性测试&lt;/h2&gt;
+
+&lt;p&gt;a点到b点之间&lt;/p&gt;
+
+&lt;p&gt;定义：狭义的稳定性测试，是指被测试系统在特定硬件、软件、网络环境条件下，给系统加载一定业务压力，使系统运行一段较长时间，以此检测系统是否稳定，一般稳定性测试时间为n*12小时。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;网站测试标准&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;类别&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;判断维度&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;不通过&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;通过&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;服务器性能&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;超时概率&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;大于万分之一&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;小于万分之一&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;错误概率&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;大于万分之一&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;小于万分之一&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;TPS&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;小于期望高峰值&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;大于期望高峰值&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;TPS波动范围&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;见TPS波动模型&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;见TPS波动模型&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;CPU利用率&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;大于75%&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;小于75%&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Load&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;平均每核CPULoad数大于1&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;平均每核CPULoad数小于1&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;JVM内存利用率&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;大于80%&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;小于万分之一&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;FullGC频率&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;平均小于半小时一次&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;平均大于半小时一次&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;前端性能&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;YSLow评定&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;YSlow评定为C以下&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;YSlow评定为C级或以上&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;用户体验性能&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;页面大小&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;页面大于500k&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;页面小于500k&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;页面响应&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;1M带宽时大于1s&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;1M带宽时小于1s&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>LoadRunner实战系列（四）之术语篇</title>
+      <link>http://lilifeng.net/blogs/2015/02/08/loadrunner-glossary/</link>
+      <pubDate>Sun, 08 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Web</category>
+      
+      <category>测试</category>
+      
+      <category>LoadRunner</category>
+      
+      <category>术语</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/08/loadrunner-glossary/</guid>
+      <description>&lt;h2 id=&quot;section&quot;&gt;术语篇&lt;/h2&gt;
+
+&lt;p&gt;Transactions（用户事务分析）&lt;/p&gt;
+
+&lt;p&gt;—-用户事务分析是站在用户角度进行的基础性能分析。&lt;/p&gt;
+
+&lt;p&gt;Transation Sunmmary（事务综述）&lt;/p&gt;
+
+&lt;p&gt;—-对事务进行综合分析是性能分析的第一步，通过分析测试时间内用户事务的成功与失败情况，可以直接判断出系统是否运行正常。&lt;/p&gt;
+
+&lt;p&gt;Average Transaciton Response Time（事务平均响应时间）&lt;/p&gt;
+
+&lt;p&gt;—-事务平均响应时间”显示的是测试场景运行期间的每一秒内事务执行所用的平均时间，通过它可以分析测试场景运行期间应用系统的性能走向。&lt;/p&gt;
+
+&lt;p&gt;例：随着测试时间的变化，系统处理事务的速度开始逐渐变慢，这说明应用系统随着投产时间的变化，整体性能将会有下降的趋势。&lt;/p&gt;
+
+&lt;p&gt;Transactions per Second（每秒通过事务数/TPS）&lt;/p&gt;
+
+&lt;p&gt;—-每秒通过事务数/TPS”显示在场景运行的每一秒钟，每个事务通过、失败以及停止的数量，使考查系统性能的一个重要参数。通过它可以确定系统在任何给定时刻的时间事务负载。分析TPS主要是看曲线的性能走向。将它与平均事务响应时间进行对比，可以分析事务数目对执行时间的影响。&lt;/p&gt;
+
+&lt;p&gt;例：当压力加大时，点击率/TPS曲线如果变化缓慢或者有平坦的趋势，很有可能是服务器开始出现瓶颈。&lt;/p&gt;
+
+&lt;p&gt;Total Transactions per Second（每秒通过事务总数）&lt;/p&gt;
+
+&lt;p&gt;—-每秒通过事务总数”显示在场景运行时，在每一秒内通过的事务总数、失败的事务总署以及停止的事务总数。&lt;/p&gt;
+
+&lt;p&gt;Transaction Performance Sunmmary（事务性能摘要）&lt;/p&gt;
+
+&lt;p&gt;—-事务性能摘要”显示方案中所有事务的最小、最大和平均执行时间，可以直接判断响应时间是否符合用户的要求。重点关注事务的平均和最大执行时间，如果其范围不在用户可以接受的时间范围内，需要进行原因分析。&lt;/p&gt;
+
+&lt;p&gt;Transaction Response Time Under Load（事务响应时间与负载）&lt;/p&gt;
+
+&lt;p&gt;—-事务响应时间与负载”是“正在运行的虚拟用户”图和“平均响应事务时间”图的组合，通过它可以看出在任一时间点事务响应时间与用户数目的关系，从而掌握系统在用户并发方面的性能数据，为扩展用户系统提供参考。此图可以查看虚拟用户负载对执行时间的总体影响，对分析具有渐变负载的测试场景比较有用。&lt;/p&gt;
+
+&lt;p&gt;Transaction Response Time(Percentile)（事务响应时间(百分比)）&lt;/p&gt;
+
+&lt;p&gt;—-事务响应时间(百分比)”是根据测试结果进行分析而得到的综合分析图，也就是工具通过一些统计分析方法间接得到的图表。通过它可以分析在给定事务响应时间范围内能执行的事务百分比。&lt;/p&gt;
+
+&lt;p&gt;Transaction Response Time(Distribution)（事务响应时间(分布)）&lt;/p&gt;
+
+&lt;p&gt;—-事务响应时间(分布)”显示在场景运行过程中，事务执行所用时间的分布，通过它可以了解测试过程中不同响应时间的事务数量。如果系统预先定义了相关事务可以接受的最小和最大事务响应时间，则可以使用此图确定服务器性能是否在可以接受的范围内。&lt;/p&gt;
+
+&lt;p&gt;Web Resources（Web资源分析）&lt;/p&gt;
+
+&lt;p&gt;—-资源分析是从服务器入手对Web服务器的性能分析。&lt;/p&gt;
+
+&lt;p&gt;Hits per Second（每秒点击次数）&lt;/p&gt;
+
+&lt;p&gt;—-每秒点击次数”，即使运行场景过程中虚拟用户每秒向Web服务器提交的HTTP请求数。通过它可以评估虚拟用户产生的负载量，如将其和“平均事务响应时间”图比较，可以查看点击次数对事务性能产生的影响。通过对查看“每秒点击次数”，可以判断系统是否稳定。系统点击率下降通常表明服务器的响应速度在变慢，需进一步分析，发现系统瓶颈所在。&lt;/p&gt;
+
+&lt;p&gt;Throughput（吞吐率）&lt;/p&gt;
+
+&lt;p&gt;—-吞吐率”显示的是场景运行过程中服务器的每秒的吞吐量。其度量单位是字节，表示虚拟用在任何给定的每一秒从服务器获得的数据量。&lt;/p&gt;
+
+&lt;p&gt;可以依据服务器的吞吐量来评估虚拟用户产生的负载量，以及看出服务器在流量方面的处理能力以及是否存在瓶颈。&lt;/p&gt;
+
+&lt;p&gt;吞吐率”图和“点击率”图的区别：&lt;/p&gt;
+
+&lt;p&gt;—-吞吐率”图，是每秒服务器处理的HTTP申请数。&lt;/p&gt;
+
+&lt;p&gt;—-点击率”图，是客户端每秒从服务器获得的总数据量。&lt;/p&gt;
+
+&lt;p&gt;HTTP Status Code Summary（HTTP状态代码概要）&lt;/p&gt;
+
+&lt;p&gt;—-HTTP状态代码概要”显示场景或会话步骤过程中从Web服务器返回的HTTP状态代码数，该图按照代码分组。HTTP状态代码表示HTTP请求的状态。&lt;/p&gt;
+
+&lt;p&gt;HTTP Responses per Second（每秒HTTP响应数）&lt;/p&gt;
+
+&lt;p&gt;—-每秒HTTP响应数”是显示运行场景过程中每秒从Web服务器返回的不同HTTP状态代码的数量，还能返回其它各类状态码的信息，通过分析状态码，可以判断服务器在压力下的运行情况，也可以通过对图中显示的结果进行分组，进而定位生成错误的代码脚本。&lt;/p&gt;
+
+&lt;p&gt;Pages Downloader per Second（每秒下载页面数）&lt;/p&gt;
+
+&lt;p&gt;—-每秒下载页面数”显示场景或会话步骤运行的每一秒内从服务器下载的网页数。使用此图可依据下载的页数来计算Vuser生成的负载量。和吞吐量图一样，每秒下载页面数图标是Vuser在给定的任一秒内从服务器接收到的数据量。但是吞吐量考虑的各个资源极其大小（例，每个GIF文件的大小、每个网页的大小）。而每秒下载页面数只考虑页面数。&lt;/p&gt;
+
+&lt;p&gt;*注：要查看每秒下载页数图，必须在R-T-S那里设置“每秒页面数(仅HTML模式)。&lt;/p&gt;
+
+&lt;p&gt;Retries per Second（每秒重试次数）&lt;/p&gt;
+
+&lt;p&gt;—-每秒重试次数”显示场景或会话步骤运行的每一秒内服务器尝试的连接次数。&lt;/p&gt;
+
+&lt;p&gt;在下列情况将重试服务器连接：&lt;/p&gt;
+
+&lt;p&gt;A、初始连接未经授权&lt;/p&gt;
+
+&lt;p&gt;B、要求代理服务器身份验证&lt;/p&gt;
+
+&lt;p&gt;C、服务器关闭了初始连接&lt;/p&gt;
+
+&lt;p&gt;D、初始连接无法连接到服务器&lt;/p&gt;
+
+&lt;p&gt;E、服务器最初无法解析负载生成器的IP地址&lt;/p&gt;
+
+&lt;p&gt;Retries Summary（重试次数概要）&lt;/p&gt;
+
+&lt;p&gt;—-重试次数概要”显示场景或会话步骤运行过程中服务器尝试的连接次数，它按照重试原因分组。将此图与每秒重试次数图一起使用可以确定场景或会话步骤运行过程中服务器在哪个时间点进行了重试。&lt;/p&gt;
+
+&lt;p&gt;Connections（连接数）&lt;/p&gt;
+
+&lt;p&gt;—-连接数”显示场景或会话步骤运行过程中每个时间点打开的TCP/IP连接数。&lt;/p&gt;
+
+&lt;p&gt;借助此图，可以知道何时需要添加其他连接。&lt;/p&gt;
+
+&lt;p&gt;例：当连接数到达稳定状态而事务响应时间迅速增大时，添加连接可以使性能得到极大提高（事务响应时间将降低）。&lt;/p&gt;
+
+&lt;p&gt;Connections Per Second（每秒连接数）&lt;/p&gt;
+
+&lt;p&gt;—-每秒连接数”显示方案在运行过程中每秒建立的TCP/IP连接数。51Testing软件测试网,理想情况下，很多HTTP请求都应该使用同一连接，而不是每个请求都新打开一个连接。通过每秒连接数图可以看出服务器的处理情况，就表明服务器的性能在逐渐下降。&lt;/p&gt;
+
+&lt;p&gt;SSLs Per Second（每秒SSL连接数）&lt;/p&gt;
+
+&lt;p&gt;—-每秒SSL连接数”显示场景或会话步骤运行的每一秒内打开的新的以及重新使用的SSL连接数。当对安全服务器打开TCP/IP连接后，浏览器将打开SSL连接。&lt;/p&gt;
+
+&lt;p&gt;Web Page Breakdown（网页元素细分）&lt;/p&gt;
+
+&lt;p&gt;—-网页元素细分主要用来评估页面内容是否影响事务的响应时间，通过它可以深入地分析网站上那些下载很慢的图形或中断的连接等有问题的元素。&lt;/p&gt;
+
+&lt;p&gt;Web Page Breakdown（页面分解总图）&lt;/p&gt;
+
+&lt;p&gt;—-页面分解显示某一具体事务在测试过程的响应情况，进而分析相关的事务运行是否正常。&lt;/p&gt;
+
+&lt;p&gt;页面分解图可以按下面四种方式进行进一步细分：&lt;/p&gt;
+
+&lt;p&gt;1)、Download Time Breaddown（下载时间细分）&lt;/p&gt;
+
+&lt;p&gt;—-下载时间细分”图显示网页中不同元素的下载时间，同时还可按照下载过程把时间进行分解，用不同的颜色来显示DNS解析时间、建立连接时间、第一次缓冲时间等各自所占比例。&lt;/p&gt;
+
+&lt;p&gt;2)Component Breakdown(Over Time)（组件细分(随时间变化)）&lt;/p&gt;
+
+&lt;p&gt;—-组件细分图显示选定网页的页面组件随时间变化的细分图。通过该图可以很容易的看出哪些元素在测试过程中下载时间不稳定。该图特别适用于需要在客户端下载控件较多的页面，通过分析控件的响应时间，很容易就能发现那些控件不稳定或者比较耗时。&lt;/p&gt;
+
+&lt;p&gt;3)Download Time Breakdown(Over Time)（下载时间细分(随时间变化)）&lt;/p&gt;
+
+&lt;p&gt;—-“下载时间细分(随时间变化)”图显示选定网页的页面元素下载时间细分（随时间变化）情况，它非常清晰地显示了页面各个元素在压力测试过程中的下载情况。“下载时间细分”图显示的是整个测试过程页面元素响应的时间统计分析结果，“下载时间细分(随时间变化)”显示的事场景运行过程中每一秒内页面元素响应时间的统计结果，两者分别从宏观和微观角度来分析页面元素的下载时间。&lt;/p&gt;
+
+&lt;p&gt;4)Time to First Buffer Breakdown(Over Time)（第一次缓冲时间细分(随时间变化)）&lt;/p&gt;
+
+&lt;p&gt;—-“第一次缓冲时间细分(随时间变化)”图显示成功收到从Web服务器返回的第一次缓冲之前的这段时间，场景或会话步骤运行的每一秒中每个网页组件的服务器时间和网络时间（以秒为单位）。可以使用该图确定场景或会话步骤运行期间服务器或网络出现问题的时间。&lt;/p&gt;
+
+&lt;p&gt;5)First Buffer Time：是指客户端与服务器端建立连接后，从服务器发送第一个数据包开始计时，数据经过网络传送到客户端，到浏览器接收到第一个缓冲所用的时间。&lt;/p&gt;
+
+&lt;p&gt;6)Page Component Breakdown（页面组件细分）&lt;/p&gt;
+
+&lt;p&gt;—-“页面组件细分”图显示每个网页及其组件的平均下载时间（以秒为单位）。可以根据下载组件所用的平均秒数对图列进行排序，通过它有助于隔离有问题的组件。&lt;/p&gt;
+
+&lt;p&gt;7)Page Component Breakdown(Over Time)（页面组件分解(随时间变化)）&lt;/p&gt;
+
+&lt;p&gt;—-“页面组件分解(随时间变化)”图显示在方案运行期间的每一秒内每个网页及其组件的平均响应时间 （以秒为单位）。&lt;/p&gt;
+
+&lt;p&gt;8)Page Download Time Breakdown（页面下载时间细分）&lt;/p&gt;
+
+&lt;p&gt;“页面下载时间细分”图显示每个页面组件下载时间的细分，可以根据它确定在网页下载期间事务响应时间缓慢是由网络错误引起还是由服务器错误引起。“页面下载时间细分”图根据DNS解析时间、连接时间、第一次缓冲时间、SSL握手时间、接收时间、FTP验证时间、客户端时间和错误时间来对每个组件的下载过程进行细分。&lt;/p&gt;
+
+&lt;p&gt;9)Page Download Time Breakdown(Over Time)（页面下载时间细分(随时间变化)）&lt;/p&gt;
+
+&lt;p&gt;—-“页面下载时间细分(随时间变化)”图显示方案运行期间，每一秒内每个页面组件下载时间的细分。使用此图可以确定网络或服务器在方案执行期间哪一时间点发生了问题。&lt;/p&gt;
+
+&lt;p&gt;—-“页面组件细分(随时间变化)”图和“页面下载时间细分(随时间变化)”图通常结合起来进行分析：首先确定有问题的组件，然后分析它们的下载过程，进而定位原因在哪里。&lt;/p&gt;
+
+&lt;p&gt;10)Time to First Buffer Breakdown（第一次缓冲时间细分）&lt;/p&gt;
+
+&lt;p&gt;—-“第一次缓冲时间细分”图显示成功收到从Web服务器返回的第一次缓冲之前的这一段时间内的每个页面组件的相关服务器/网路时间。如果组件的下载时间很长，则可以使用此图确定产生的问题与服务器有关还是与网络有关。&lt;/p&gt;
+
+&lt;p&gt;—-网络时间：定义为第一个HTTP请求那一刻开始，直到确认为止所经过的平均时间。&lt;/p&gt;
+
+&lt;p&gt;—-服务器时间：定义为从收到初始HTTP请求确认开始，直到成功收到来自Web服务器的一次缓冲为止所经过的平均时间。&lt;/p&gt;
+
+&lt;p&gt;11)Time to First Buffer Breakdown(Over Time)（第一次缓冲时间细分(随时间变化)）&lt;/p&gt;
+
+&lt;p&gt;—-“第一次缓冲时间细分(随时间变化)”图显示成功收到从Web服务器返回的第一个缓冲之前的这段时间内，场景运行的每一秒中每个网页组件的服务器时间和网络时间。可以使用此图确定场景运行期间服务器或网络出现问题的时间点。&lt;/p&gt;
+
+&lt;p&gt;12)Downloader Component Size(KB)（已下载组件大小）&lt;/p&gt;
+
+&lt;p&gt;—-“已下载组件大小”图显示每个已经下载的网页组建的大小。通过它可以直接看出哪些组件比较大并需要进一步进行优化以提高性能。&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>LoadRunner实战系列（三）之脚本篇</title>
+      <link>http://lilifeng.net/blogs/2015/02/07/loadrunner-scripts/</link>
+      <pubDate>Sat, 07 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Web</category>
+      
+      <category>测试</category>
+      
+      <category>LoadRunner</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/07/loadrunner-scripts/</guid>
+      <description>&lt;h2 id=&quot;section&quot;&gt;脚本篇&lt;/h2&gt;
+
+&lt;p&gt;1.HTTP的GET请求 &lt;/p&gt;
+
+&lt;p&gt;这里以访问百度为例，地址http://www.baidu.com/s?wd=mobile，表示在百度上搜索mobile。具体脚本如下（有注释） &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;lr_start_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;web_reg_find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Search=Body&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里说明在Body的范围内查找  &lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;&amp;quot;SaveCount=ret_Count&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里表示把返回值的个数放在变量ret_Count里  &lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;&amp;quot;Text=mobile&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里表示查找的内容是“mobile”  &lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;LAST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;web_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Baidu_Search&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;URL= http://www.baidu.com/s?wd=mobile&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;TargetFrame=Main&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;Resource=0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;RecContentType=text/html&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;Mode=http&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;   
+        &lt;span class=&quot;n&quot;&gt;LAST&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;   
+  
+    &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Request Status:%d&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;查找到的返回值个数:%d&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lr_eval_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{ret_Count}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)));&lt;/span&gt;  
+  
+  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lr_eval_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{ret_Count}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里判断检查到的个数  &lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Rec successful.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+         &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_PASS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+     &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+         &lt;span class=&quot;n&quot;&gt;lr_error_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Rec failed&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+         &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_FAIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;   
+  
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;2.HTTP POST请求 
+这个是在我们项目中用到的，发送POST请求，进行自然语言识别的，脚本如下： &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;lr_start_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;web_reg_find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Search=Body&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里说明在Body的范围内查找  &lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;&amp;quot;SaveCount=ret_Count&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里表示把返回值的个数放在变量ret_Count里  &lt;/span&gt;
+                 &lt;span class=&quot;s&quot;&gt;&amp;quot;Text=t&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里表示查找的内容是“t”  &lt;/span&gt;
+                 &lt;span class=&quot;n&quot;&gt;LAST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;web_submit_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;trs&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+                &lt;span class=&quot;s&quot;&gt;&amp;quot;Action=http://192.168.77.185:9002/recognizeText&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//地址  &lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;&amp;quot;Method=POST&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//POST请求  &lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;&amp;quot;RecContentType=text/html&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+                &lt;span class=&quot;s&quot;&gt;&amp;quot;Mode=HTML&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;ITEMDATA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+                &lt;span class=&quot;s&quot;&gt;&amp;quot;Name=usercontent&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Value=gprs&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ENDITEM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这一行表示传入一个参数usercontent，值为gprs  &lt;/span&gt;
+                &lt;span class=&quot;s&quot;&gt;&amp;quot;Name=Accept&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Value=text/plain&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ENDITEM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;LAST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+     &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Request Status:%d&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lr_eval_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{ret_Count}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里判断检查到的个数  &lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Rec successful.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+         &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_PASS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+     &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;   
+         &lt;span class=&quot;n&quot;&gt;lr_error_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Rec failed&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+         &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_FAIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;   
+  
+     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3.WebService请求 &lt;/p&gt;
+
+&lt;p&gt;详细脚本如下： &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;lr_start_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;web_service_call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;StepName=getSupportCity_102&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;SOAPMethod=WeatherWebService|WeatherWebServiceSoap|getSupportCity&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里是我已经引用了webservice的名称及调用方法  &lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;ResponseParam=response&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;Service=WeatherWebService&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;ExpectedResponse=SoapResult&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+        &lt;span class=&quot;s&quot;&gt;&amp;quot;Snapshot=t1353067092.inf&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;BEGIN_ARGUMENTS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+                      &lt;span class=&quot;s&quot;&gt;&amp;quot;byProvinceName=安徽&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里是入参，参数名称：byProvinceName，值：安徽。入参和返回值的名称都可以再引用里看见  &lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;END_ARGUMENTS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;BEGIN_RESULT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+                      &lt;span class=&quot;s&quot;&gt;&amp;quot;getSupportCityResult=result&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里是返回值，名称：getSupportCityResult，把它放到变量result中  &lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;END_RESULT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;LAST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Request Status:%d&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Result:%s&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lr_eval_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{result}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里把返回值输出，调试webservice的时候用  &lt;/span&gt;
+  
+  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lr_eval_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{result}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;合肥&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//这里是判断返回值中是否包含“合肥”  &lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LR_PASS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;send&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LR_AUTO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+  
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;4.Socket请求 
+我这里指的是简单的Socket请求，端连接，发送接收的都是一个字符串。比较复杂的Socket请求，自己录制脚本。如果不知道，自己去查。 
+详细脚本如下，另外还包含一个data.ws文件，用来声明发送和接收的字节数组及其长度的，并指定要发送的内容（发送的内容一样可以参数化的） &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;quot;lrs.h&amp;quot;  &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recvbuf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;recvlen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;lrs_startup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;257&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;lr_start_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Trans_1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;lr_start_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Conn_1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lrs_create_socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;socket0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;TCP&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;RemoteHost=192.168.1.101:8888&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;LrsLastArg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//创建Socket连接  &lt;/span&gt;
+  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;     
+        &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Conn_1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_FAIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;     
+        &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Trans_1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_FAIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;     
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Conn_1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_PASS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//判断socket是否链接成功的事务，0表示创建成功  &lt;/span&gt;
+  
+    &lt;span class=&quot;n&quot;&gt;lrs_send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;socket0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;buf0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LrsLastArg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//发送buf0，buf0为在data.ws中定义的发送变量  &lt;/span&gt;
+  
+    &lt;span class=&quot;n&quot;&gt;lrs_receive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;socket0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;buf1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LrsLastArg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//接收消息，存放在buf1中，buf1是在data.ws中定义的接收数组，注意数组长度一定要大于等于实际接收长度  &lt;/span&gt;
+  
+    &lt;span class=&quot;n&quot;&gt;lrs_get_last_received_buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;socket0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recvbuf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recvlen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//把Socket最后接收的字节数组，长度放在recvlen中，内容放在recvbuf中  &lt;/span&gt;
+  
+    &lt;span class=&quot;n&quot;&gt;lr_output_message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Received:%s&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lr_eval_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recvbuf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;  
+  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recvlen&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;lr_end_transaction&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Trans_1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_PASS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;  
+        &lt;span class=&quot;nf&quot;&gt;lr_end_transaction&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Trans_1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LR_FAIL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+  
+    &lt;span class=&quot;n&quot;&gt;lrs_disable_socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;socket0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DISABLE_SEND_RECV&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;lrs_close_socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;socket0&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//data.ws  &lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WSRData&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+  
+&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;buf0&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;  
+    &lt;span class=&quot;s&quot;&gt;&amp;quot;hehehehe&amp;quot;&lt;/span&gt;  
+  
+&lt;span class=&quot;n&quot;&gt;recv&lt;/span&gt;  &lt;span class=&quot;n&quot;&gt;buf1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;  
+      
+  
+  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>LoadRunner实战系列（二）之流程篇</title>
+      <link>http://lilifeng.net/blogs/2015/02/06/loadrunner-operation/</link>
+      <pubDate>Fri, 06 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Web</category>
+      
+      <category>测试</category>
+      
+      <category>LoadRunner</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/06/loadrunner-operation/</guid>
+      <description>&lt;h2 id=&quot;section&quot;&gt;流程篇&lt;/h2&gt;
+
+&lt;p&gt;首先打开Virtual User Generator（VuGen）；&lt;/p&gt;
+
+&lt;p&gt;创建新Virtual User，选择Web(HTTP/HTML)，点击创建；&lt;/p&gt;
+
+&lt;p&gt;弹出了配置框，在里面选择如下内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Application Type: Internet Applications
+
+Program to record: 这里如果有IE8及以下最好，因为LR不支持IE10以上；或者选择Firefox，因为LR对其他浏览器支持也不好。因此这里对我而言，选择firefox程序的所在
+
+URL Address: 选择你需要测试的网址，比如http://www.baidu.com/?q=mobile
+
+Working Directory: 不变即可
+
+Record to Action: 选择Action即可
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;点击确定后将会进行后台录制，时间很长。对我而言点击取消，直接进入Action代码中进行编码。&lt;/p&gt;
+
+&lt;p&gt;结束后将会进入Action代码页中，如果没有代码只有return 0，则可以手动添加你需要的逻辑，常用的有web_url，具体可以参考实战系列（三）之脚本篇&lt;/p&gt;
+
+&lt;p&gt;脚本书写完毕后，可以点击Tools-&amp;gt;Create Controller Scenario，选择保存脚本后出现创建场景（Scenario）窗口，Vusers选择1000，点击确认进入Controller程序中&lt;/p&gt;
+
+&lt;p&gt;进入Controller&lt;/p&gt;
+
+&lt;p&gt;在左下角找到Global Schedule窗口，双击Start Vusers，选择开始即同步开启1000VUser，确认&lt;/p&gt;
+
+&lt;p&gt;双击Duration，选择30分钟测试，确认；&lt;/p&gt;
+
+&lt;p&gt;双击Stop VUsers，选择Stop All Vusers Simulatenously，确认&lt;/p&gt;
+
+&lt;p&gt;选择Scenario-&amp;gt;Start开始运行，然后就可以观察到各种报表和系统实际承载能力了；&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>LoadRunner实战系列（一）之安装篇</title>
+      <link>http://lilifeng.net/blogs/2015/02/05/loadrunner-install/</link>
+      <pubDate>Thu, 05 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Web</category>
+      
+      <category>测试</category>
+      
+      <category>LoadRunner</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/05/loadrunner-install/</guid>
+      <description>&lt;p&gt;LoadRunner 是一种预测系统行为和性能的工业标准级负载测试工具。通过以模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner 能够对整个企业架构进行测试。通过使用LoadRunner，企业能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。目前企业的网络应用环境都必须支持大量用户，网络体系架构中含各类应用环境且由不同供应商提供软件和硬件产品。难以预知的用户负载和愈来愈复杂的应用环境使公司时时担心会发生用户响应速度过慢， 系统崩溃等问题。这些都不可避免地导致公司收益的损失。Mercury Interactive 的 LoadRunner 能让企业保护自己的收入来源，无需购置额外硬件而最大限度地利用现有的IT 资源，并确保终端用户在应用系统的各个环节中对其测试应用的质量，可靠性和可扩展性都有良好的评价。LoadRunner是一种适用于各种体系架构的自动负载测试工具，它能预测系统行为并优化系统性能。LoadRunner的测试对象是整个企业的系统，它通过模拟实际用户的操作行为和实行实时性能监测，来帮助您更快的查找和发现问题。此外，LoadRunner能支持广范的协议和技术，为您的特殊环境提供特殊的解决方案。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;安装篇&lt;/h2&gt;
+
+&lt;p&gt;下载地址：&lt;a href=&quot;http://pan.baidu.com/s/1kTDr9DP&quot;&gt;http://pan.baidu.com/s/1kTDr9DP&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下载后直接运行setup.exe安装，中间可能会在要求安装基础软件的时候报错，一般的错误是运行时参数错误，解决方法是自行进入./Additional Components\IDE Add-Ins\MS Visual Studio .NET，选择报错的模块自行安装。&lt;/p&gt;
+
+&lt;p&gt;安装完成后按照crack中说明文件即可完成破解并正常使用。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>fullPageSwipeLoop published!</title>
