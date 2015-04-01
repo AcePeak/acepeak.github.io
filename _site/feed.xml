@@ -11,10 +11,10 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 11 Feb 2015 10:28:11 +0800</pubDate>
-    <lastBuildDate>Wed, 11 Feb 2015 10:28:11 +0800</lastBuildDate>
+    <pubDate>Wed, 01 Apr 2015 13:33:04 +0800</pubDate>
+    <lastBuildDate>Wed, 01 Apr 2015 13:33:04 +0800</lastBuildDate>
     <language>cn-CH</language>
-    <generator>Jekyll v2.5.2</generator>
+    <generator>Jekyll v2.5.3</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
     <image>
       <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,247 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>基于C++的Hadoop Map/Reduce框架--HCE</title>
+      <link>http://lilifeng.net/blogs/2015/03/31/hadoop-cpp-hce/</link>
+      <pubDate>Tue, 31 Mar 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Hadoop</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/03/31/hadoop-cpp-hce/</guid>
+      <description>&lt;p&gt;Hadoop系统提供了MapReduce计算框架的开源实现，像Yahoo!、Facebook、淘宝、中移动、百度、腾讯等公司都在借助Hadoop进行海量数据处理。Hadoop系统性能不仅取决于任务调度器的分配策略，还受到分配后实际任务执行效率的影响，任务执行常常涉及读取、排序、归并、压缩、写入等具体阶段。&lt;/p&gt;
+
+&lt;p&gt;HCE计算框架是一个开源项目，旨在通过优化任务执行的各个阶段，提升整个Hadoop系统的效率。与Hadoop Java框架相比，基于HCE框架的MapReduce任务最高可以节省超过30%的CPU资源使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150331_1.jpg&quot; alt=&quot;Hadoop生态系统中的HCE计算框架&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图1 Hadoop生态系统中的HCE计算框架&lt;/p&gt;
+
+&lt;p&gt;图1给出了HCE框架在Hadoop生态系统中所处的位置。对于OLTP系统来说，用户通过Web前端生成相应请求，请求经过中间件处理，作为数据进入数据库或者K-V存储系统中，同时会产生日志。OLTP系统产生的数据和日志都会作为分析系统的输入，对于搜索引擎和广告系统来说，每天的日志会轻松超过TB。日志和业务数据一般会存放到海量存储系统HDFS文件系统或者K-V存储系统中，分布式计算框架MapReduce一般会基于存储系统之上。每天会执行成千上万的MapReduce作业进行海量数据处理，产生的结果会有三个去处：存放于海量存储系统以备后续使用；导入用于产生报表或分析的数据库；作为OLTP系统的输入，导入线上存储中。MapReduce作业一般由内部用户通过Hadoop原生客户端、Pig/DISQL语言客户端或者Hive数据仓库三种方式进行提交，作业执行结果可以通过SQL客户端查询。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;问题&lt;/h1&gt;
+
+&lt;p&gt;越来越多的公司开始使用Hadoop及其周边系统进行海量数据分析，Yahoo!和Facebook的Hadoop集群节点数已经过万，并且节点增长的趋势不减，国内公司如腾讯和百度等也面临着同样的问题。不断增长的业务需求和业务数据导致的集群资源紧缺是集群不断扩容的主要原因，CPU资源（注：存储资源紧缺的解决方案之一是开启重量级的压缩（如Facebook），这涉及CPU资源的使用）又是其中最为紧缺的。为了控制成本，优化集群资源利用率势在必行。&lt;/p&gt;
+
+&lt;p&gt;对于分布式计算层面，资源优化有两个途径：一是通过精细化的资源调度来保证全局资源的最大化利用，这通常涉及合理的资源调度算法和轻量级的资源隔离；二是通过优化计算任务和用户程序来提升原有计算作业的资源使用率。HCE计算框架主要关注后者。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;跨平台、高扩展、通用接口的计算框架也带来了额外开销&lt;/h2&gt;
+
+&lt;p&gt;分析Hadoop MapReduce计算框架，已有实现可以再做权衡。&lt;/p&gt;
+
+&lt;p&gt;MapReduce框架通过Java语言高效实现，保证了其跨平台的兼容性；不过国内互联网公司一般都使用Intel x86平台，兼容性的优势很难得以体现，因此可以选择优于Java性能但不支持跨平台的语言来实现MapReduce框架。&lt;/p&gt;
+
+&lt;p&gt;为了最大化可扩展性（Extensibility），Hadoop实现了多层级的数据处理流封装，这使得Java框架在大数据处理时存在一些性能损耗，实际上可以实现更加直接的数据处理路径来提升处理效率。&lt;/p&gt;
+
+&lt;p&gt;国内互联网公司的工程师们大多使用C++进行功能开发或脚本语言来处理文本，Java接口对于他们而言是比较麻烦的事情。Hadoop提供了Streaming编程接口，允许用户程序可以通过媒介——标准输入输出来和计算框架交互数据，也即绕开了语言的限制，因此很多用户任务是通过Streaming接口启动的。Streaming接口的优势在于支持多语言开发，而增加通用性带来的是性能的损耗，即数据拷贝管道和Key切分开销（大约2%～5%），并且不如原生态的语言接口更加适宜编程。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;用户程序在计算框架控制之外&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150331_2.jpg&quot; alt=&quot;MapReduce任务执行框架示意图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图2 MapReduce任务执行框架示意图&lt;/p&gt;
+
+&lt;p&gt;除了框架的开销，计算任务的资源占用还包括用户程序。如图2所示，Hadoop Streaming和Pipes框架支持C++用户开发MapReduce应用程序，框架启动用户可执行程序，框架和用户程序分别处于两个进程，分别占用资源。简单的分析程序不会占用太多的CPU资源，即用户程序在整个计算任务执行时间中所占比例不大，此时，优化计算框架会带来比较可观的收益；不过，对于复杂的分析程序而言，用户程序所占时间远远超过计算框架，此时，优化计算框架带来的收益可能微乎其微。因此，节省集群CPU资源离不开优化用户程序。&lt;/p&gt;
+
+&lt;p&gt;优化用户作业可以分为两个层面，一是通过较高层次的统一入口让用户提交作业，例如使用数据仓库Hive的用户不会操作Hadoop MapReduce的API，在Hive内部统一做优化，包括一些静态或者动态方法，调整用户作业参数，使任务利用最少资源高效执行；二是优化直接操作MapReduce API的用户作业，当然Hive也属于这个范畴。设想用户作业或者数据仓库是通过C++语言实现的，编译由用户实施，平台仅仅通过接口调用用户的可执行程序，那么此时想要优化用户程序会比较困难。有动态和静态两种优化方式：动态优化方式（注：详情参见Starfish: A Selftuning System for Big Data Analytics (CIDR’11)）是在MapReduce上新增一层，通过profiler和sampler等技术动态调整作业参数；静态优化方式是让用户用编译时依赖框架提供的头文件和库文件，通过编译优化技术提升用户程序性能。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;解决&lt;/h1&gt;
+
+&lt;p&gt;HCE计算框架通过静态优化计算框架和用户程序来提升计算任务的CPU使用率。如图2所示，将框架和用户程序整合到一个进程，可以通过同一套编译机制同时优化框架和用户程序，Key-Values处理也处于同一个进程空间，不用借助媒介（管道或套接字）来传递。HCE和Hadoop提供的用户编程接口如表1所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150331_2.jpg&quot; alt=&quot;MapReduce框架各用户接口对比&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;表1 MapReduce框架各用户接口对比&lt;/p&gt;
+
+&lt;h2 id=&quot;c&quot;&gt;计算框架高效C++实现&lt;/h2&gt;
+
+&lt;p&gt;HCE框架通过C++语言实现了MapReduce的数据处理逻辑，依托比Java性能更优的C++语言，可以在数据处理操作上获得更佳的CPU利用率，同时也可以更加直接地调用Native Lib而非通过JNI（注：压缩库是Native实现，Hadoop通过JNI来调用压缩方法，HCE压缩在一个进程空间执行）；此外，通过高效的编译优化方法，例如ICC编译器等，可以进一步挖掘框架的性能优势。&lt;/p&gt;
+
+&lt;p&gt;HCE框架通过精简的方式实现了MapReduce的数据处理流程，比较多层次的Java流式封装，HCE的处理流程更加高效。&lt;/p&gt;
+
+&lt;p&gt;HCE框架提供了多种语言接口C++、Python等，方便了用户编程，也节省了Streaming接口的额外开销；同时HCE也提供完全兼容原有Java Streaming的接口，即原有作业可以无缝迁移到HCE框架。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;用户程序静态编译优化&lt;/h2&gt;
+
+&lt;p&gt;HCE框架采用的是静态优化用户程序的方式，动态优化交给上层的数据仓库去做。对于那些CPU负载较重的用户程序，HCE提供C++编程接口给用户，用户编译本地程序需要依赖框架的头文件和库文件，头文件中内置了如SSE等优化代码，可以使得用户程序在编译时被优化。这种简单的方式能够使得用户程序的执行效率大幅提升。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-5&quot;&gt;框架&lt;/h1&gt;
+
+&lt;p&gt;HCE框架实现了Hadoop支持的功能组件，例如在C++空间中支持Text或者SequenceFile格式的RecordReader和RecordWriter，也支持Gzip、Lzo、QuickLz、Lzma等4种压缩格式。由于输入文件切分是在Hadoop Client实施的，所以Split方法还是在Java空间执行的；当然，用户定义的Mapper和Reducer必须在C++空间实现，例如Hive想要基于HCE框架执行，那么就必须实现C++版本的Mapper、Reducer等功能组件。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150331_2.jpg&quot; alt=&quot;HCE框架数据处理流程图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图3 HCE框架数据处理流程图&lt;/p&gt;
+
+&lt;p&gt;图3展示了HCE框架的数据处理流程，可以看出HCE框架在C++空间高效实现了多个可扩展的功能模块，如RecordReader、OutputCollector、Shuffle、ReduceInputReader、RecordWriter、Committer、Partitioner、Mapper、Reducer、Combiner等，处理逻辑比Hadoop MapReduce更加紧凑高效。处于Hadoop Java空间的MapRunner和ReduceRunner只是起到收集状态信息的作用。&lt;/p&gt;
+
+&lt;p&gt;HCE框架的性能提升主要集中在Map阶段，大约超过40%。对于一般的MapReduce程序，相比Shuffle和Reduce阶段，Map阶段也是其资源占用最多的阶段，因为最终作业的输出一般仅仅是输入的10%，大量的数据处理是在Map阶段完成的。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-6&quot;&gt;拓展&lt;/h1&gt;
+
+&lt;p&gt;仅有基本的HCE框架是不够的，因为大量已有作业是通过Streaming接口执行的，而且除C++开发接口之外，脚本开发者也想使用对应语言的开发接口。幸运的是，所有脚本语言都基于C开发，因此可以实现简单的解释器，将脚本语言翻译成C语言，最终执行的仍是HCE框架，而这个解释开销很小。当然，Streaming作业的额外开销是不可避免了，不过基于HCE框架的Streaming作业可以利用框架的性能优势获得CPU利用率的提升，这对于轻量级作业收益仍然可观。&lt;/p&gt;
+
+&lt;p&gt;图4展示了Java Streaming、HCE、Streaming Over HCE和Python Over HCE四个框架的数据处理途径。Java Streaming框架的数据处理仍然是在Java空间完成的，而HCE、Streaming Over HCE、Python Over HCE框架的数据处理都在C++空间完成，Child JVM仅从HCE进程收集任务状态信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150331_2.jpg&quot; alt=&quot;Streaming Over HCE和Python Over HCE框架示意图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图4 Streaming Over HCE和Python Over HCE框架示意图&lt;/p&gt;
+
+&lt;h1 id=&quot;section-7&quot;&gt;未来&lt;/h1&gt;
+
+&lt;p&gt;MapReduce计算框架并不仅仅依赖于HDFS存储系统，也可以基于其他存储系统，例如Hypertable或者是其他的K-V系统。目前很多块存储系统或K-V系统都是C++语言实现的，想要在其上使用原生态的Hadoop MapReduce，就必须通过存储系统的语言转换接口（例如Hypertable的Thrift）或者计算系统的转换接口（例如Hadoop的AvroRPC等），问题是数据的序列化和反序列化难免带来额外开销。因此，基于HCE框架、非Java语言实现的存储系统可以更加高效地支持Hadoop MapReduce计算，当然它们需要实现对应的Split、RecordReader、RecordWriter和Committer等组件。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-8&quot;&gt;小结&lt;/h1&gt;
+
+&lt;p&gt;HCE框架是Hadoop MapReduce框架的一个衍生品。依托HCE框架的高效本地处理机制，Hadoop作业可以最多节省30%的CPU资源使用。此外，HCE提供了C++、Python等多种编程接口，并且保证了已有接口的向前兼容；多种编译优化技术也可以方便地应用到MapReduce框架；最后，HCE通过编译优化和内置解释器等方式优化了用户程序的执行。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Atlassian Bamboo 持续构建（CI）服务部署</title>
+      <link>http://lilifeng.net/blogs/2015/03/04/atlassian-bamboo-deplyment/</link>
+      <pubDate>Wed, 04 Mar 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Deployment</category>
+      
+      <category>CI</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/03/04/atlassian-bamboo-deplyment/</guid>
+      <description>
+</description>
+    </item>
+    
+    <item>
+      <title>留存率</title>
+      <link>http://lilifeng.net/blogs/2015/02/21/advertise-retention-rate/</link>
+      <pubDate>Sat, 21 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/21/advertise-retention-rate/</guid>
+      <description>&lt;h2 id=&quot;section&quot;&gt;用户留存率&lt;/h2&gt;
+
+&lt;p&gt;在互联网行业中，用户在某段时间内开始使用应用，经过一段时间后，仍然继续使用应用的被认作是留存；这部分用户占当时新增用户的比例即是留存率，会按照每隔1单位时间（例日、周、月）来进行统计。顾名思义，留存指的就是“有多少用户留下来了”。留存用户和留存率体现了应用的质量和保留用户的能力。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;留存率计算公式&lt;/h2&gt;
+
+&lt;p&gt;留存率=登陆用户数/新增用户数*100% （一般统计周期为天）&lt;/p&gt;
+
+&lt;p&gt;新增用户数：应用在当前时间段新注册登录应用的用户数；&lt;/p&gt;
+
+&lt;p&gt;登录用户数：在当前时间段至少登录过一次的用户数；&lt;/p&gt;
+
+&lt;p&gt;活跃用户数：登录用户数-新增用户数；&lt;/p&gt;
+
+&lt;p&gt;次日留存率：当天新增的用户数，在次日至少登录过一次的用户数；&lt;/p&gt;
+
+&lt;p&gt;3日留存率：当天新增的用户数，在往后3天内至少登录过一次的用户数；&lt;/p&gt;
+
+&lt;p&gt;7日留存率：当天新增的用户数，在往后7天内至少登录过一次的用户数；&lt;/p&gt;
+
+&lt;p&gt;15日留存数：当天新增的用户数，在往后7天内至少登录过一次的用户，在往后第8天到第14天内至少再登陆过一次的用户数&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;留存率的作用&lt;/h2&gt;
+
+&lt;p&gt;互联网时代，无论是新兴的手机棋牌游戏还是传统的MMORPG，也不管付费与否，都需要保持用户的活跃度，一旦用户的活跃度下降，就意味着用户的离开或流失。基于此，“留存”的概念就可以用来分析应用或者网站的服务效果，是否能够留住用户。因此，留存率反映的实际上是一种转化率，即由初期的不稳定的用户转化为活跃用户、稳定用户、忠诚用户的过程，随着这个留存率统计过程的不断延展，就能看到不同时期的用户的变化情况。&lt;/p&gt;
+
+&lt;p&gt;之所以是这样，是因为留存是以研究新登用户为目标对象的，即研究某一个时间点的一批用户在随后的几天，几周，几个月的时间内的生命周期情况，从宏观上把握用户的生命周期长度以及我们可以改善的余地。&lt;/p&gt;
+
+&lt;p&gt;因此这里就引申出一个问题，我们为什么要研究的是新登用户？如刚才所说的，我们要宏观观察用户的生命进程情况，那么我们最佳的办法就是从用户导入期就开始，所谓导入期就是用户进入游戏，这个地方我们的分析其实大有作为的，因为用户进入游戏时来源于不同的渠道，通过不同的营销手段拉入游戏，这样我们交叉分析，通过用户的后期留存情况就能从一个层面把握渠道质量，比如，付费，粘性，价值量，CAC成本。&lt;/p&gt;
+
+&lt;p&gt;一般来说留存率这类指标是需要长期持续跟踪的，且要根据版本更新，推广等诸多因素结合起来分析，试图去找到玩家的最佳周期进行制定相应的策略提升质量。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>常见的网络广告防作弊技术</title>
+      <link>http://lilifeng.net/blogs/2015/02/20/advertise-anti-cheat/</link>
+      <pubDate>Fri, 20 Feb 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/20/advertise-anti-cheat/</guid>
+      <description>&lt;p&gt;以下是多数广告投放系统常用的几种防作弊方式，希望给每个网络营销者带来一点有用的帮助。&lt;/p&gt;
+
+&lt;h2 id=&quot;ip&quot;&gt;1、IP防止作弊&lt;/h2&gt;
+
+&lt;p&gt;一般计费方式是按照24小时内唯一IP，可以将每个IP记入数据库，当下一个访问IP与数据库已存在的IP相同时，则不计费。现在上网一般是动态IP，作弊者通过拨号器上下线来实现改变IP地址，你可以通过C段IP来辨别，如大量出现218.175.11.x这种相同C段的IP号，则可能作弊。可以通过IP加密提交，然后由接收端进行解密记录入库，可以杜绝采用模拟提交数据的作弊方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;cookies&quot;&gt;2、COOKIES防止作弊&lt;/h2&gt;
+
+&lt;p&gt;当你访问过一个页面时，COOKIE并会记录，当你下一次访问该页面时，并会提交一个相同COOKIES参数，你可以判断重复的不计费。这种方式的缺陷是很容易改变物理信息进行作弊，比如通过INTERNET选项清空COOKIES。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;3、点击比率上线设置&lt;/h2&gt;
+
+&lt;p&gt;平均点击率从99年的5%下降到了1%以内，当然其中还需要广告面向对象与页面的访问者的交叉率，越高则表示该页面与广告的关联度越大，点击率越高。目前富媒体广告的点击率在2%至5%，普通图片点击在0.1%至1%，与图片的创意有关，可以设置当点击率超过一定的百分率提示可能作弊行为。为了提高点击率，最常见的创意方式是模拟WINDOWS系统提示、模拟关闭按钮以及美女激情诱惑性图片。&lt;/p&gt;
+
+&lt;h2 id=&quot;alexa&quot;&gt;4、结合ALEXA数据防止作弊&lt;/h2&gt;
+
+&lt;p&gt;ALEXA虽然不是一个标准，但却是极好的参考工具，当一个ALEXA数值很大的站点却做了很高的点击量，就产生疑问了，流量从何而来？&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;5、来源统计防止作弊&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A、记录该点击的来路页面，即广告放置页面的地址，可以人工巡查广告放置是否正确，查看旁边是否有引导性不良语句。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;B、记录放置广告页面的来路，每个站点的搜索引擎来路总是占据很大的一个比例，如果该页面没有来路，可以判断这个页面的流量非连接流量，可以通过两种途径获得，&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;一、浏览器直接访问或者收藏夹访问；&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;二、弹窗流量没有来路统计，也有可能是目前流行的流氓插件弹窗。该种方式也可以查询到有些站长将广告代码放置在IFRAME里的最终页面。&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;6、通过唯一参数防止作弊&lt;/h2&gt;
+
+&lt;p&gt;网卡MAC物理地址、硬盘序列号，通过该类软硬件信息生成机器码。这种方式的缺点是很难在WEB上应用，适合软件营销的防作弊方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;7、时间顺差防止作弊&lt;/h2&gt;
+
+&lt;p&gt;当你打开一个有广告的页面时，一般情况下不可能瞬间点击广告，因为每个广告都由印象转变为关注，再转变成点击行动，你可以设置当访问者打开网站页面几秒内点击广告为作弊行为。当几次广告点击的时间差完全一致时，也可以判断为机器人点击行为。当你打开一个广告，在几秒内立即关闭，也可以判断为无效点击。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;8、鼠标值&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A、显示屏幕上的每个点都具有一个坐标值，当你在某个点按下鼠标时，都会有一个坐标值，当采用机器人点击时，为同一个鼠标值，可以只记一次点击。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;B、每次点击都会产生鼠标的KEYUP和KEYDOWN的行为，如果未能捕获到这个值，可能是模拟数据提交。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+    </item>
     
     <item>
       <title>高性能服务器架构(High-Performance Server Architecture)</title>
@@ -38,8 +279,11 @@
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/10/high-performance-server-concept/</guid>
       <description>&lt;blockquote&gt;
-  &lt;p&gt;来源：&lt;a href=&quot;http://pl.atyp.us/content/tech/servers.html&quot;&gt;http://pl.atyp.us/content/tech/servers.html&lt;/a&gt;
-译文来源：&lt;a href=&quot;http://www.lupaworld.com/home/space-341888-do-blog-id-136718.html&quot;&gt;http://www.lupaworld.com/home/space-341888-do-blog-id-136718.html&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;来源：&lt;a href=&quot;http://pl.atyp.us/content/tech/servers.html&quot;&gt;http://pl.atyp.us/content/tech/servers.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;译文来源：&lt;a href=&quot;http://www.lupaworld.com/home/space-341888-do-blog-id-136718.html&quot;&gt;http://www.lupaworld.com/home/space-341888-do-blog-id-136718.html&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h1 id=&quot;section&quot;&gt;引言&lt;/h1&gt;
@@ -190,7 +434,7 @@
 
 &lt;p&gt;l  你使用的网络协议效率如何？是否可以通过修改参数改善性能？是否有类似于TCP_CORK, MSG_PUSH,Nagle-toggling算法的手段来避免小消息产生？&lt;/p&gt;
 
-&lt;p&gt;l  你的系统是否支持Scatter-Gather I/O(例如readv/writev)? 使用这些能够改善性能，也能避免使用缓冲链(见第一节数据拷贝的相关叙述)带来的麻烦。(说明：在dma传输数据的过程中，要求源物理地址和目标物理地址必须是连续的。但在有的计算机体系中，如IA，连续的存储器地址在物理上不一定是连续的，则dma传输要分成多次完成。如果传输完一块物理连续的数据后发起一次中断，同时主机进行下一块物理连续的传输，则这种方式即为block dma方式。scatter/gather方式则不同，它是用一个链表描述物理不连续的存储器，然后把链表首地址告诉dma master。dma master传输完一块物理连续的数据后，就不用再发中断了，而是根据链表传输下一块物理连续的数据，最后发起一次中断。很显然 scatter/gather方式比block dma方式效率高) &lt;/p&gt;
+&lt;p&gt;l  你的系统是否支持Scatter-Gather I/O(例如readv/writev)? 使用这些能够改善性能，也能避免使用缓冲链(见第一节数据拷贝的相关叙述)带来的麻烦。(说明：在dma传输数据的过程中，要求源物理地址和目标物理地址必须是连续的。但在有的计算机体系中，如IA，连续的存储器地址在物理上不一定是连续的，则dma传输要分成多次完成。如果传输完一块物理连续的数据后发起一次中断，同时主机进行下一块物理连续的传输，则这种方式即为block dma方式。scatter/gather方式则不同，它是用一个链表描述物理不连续的存储器，然后把链表首地址告诉dma master。dma master传输完一块物理连续的数据后，就不用再发中断了，而是根据链表传输下一块物理连续的数据，最后发起一次中断。很显然 scatter/gather方式比block dma方式效率高)&lt;/p&gt;
 
 &lt;p&gt;l  你的系统的页大小是多少？高速缓存大小是多少？向这些大小边界进行对起是否有用？系统调用和上下文切换花的代价是多少？&lt;/p&gt;
 
@@ -198,7 +442,7 @@
 
 &lt;p&gt;我在这里考虑的了很多方面，相信你也考虑过。在特定情况下，应用这里提到的某些方面可能没有价值，但能考虑这些因素的影响还是有用的。如果在系统手册中，你没有找到这些方面的说明，那么就去努力找出答案。写一个测试程序来找出答案；不管怎样，写这样的测试代码都是很好的技巧锻炼。如果你写的代码在多个平台上都运行过，那么把这些相关的代码抽象为一个平台相关的库，将来在某个支持这里提到的某些功能的平台上，你就赢得了先机。&lt;/p&gt;
 
-&lt;p&gt;对你的代码,“知其所以然”, 弄明白其中高级的操作, 以及在不同条件下的花销.这不同于传统的性能分析, 不是关于具体的实现,而是关乎设计. 低级别的优化永远是蹩脚设计的最后救命稻草. &lt;/p&gt;
+&lt;p&gt;对你的代码,“知其所以然”, 弄明白其中高级的操作, 以及在不同条件下的花销.这不同于传统的性能分析, 不是关于具体的实现,而是关乎设计. 低级别的优化永远是蹩脚设计的最后救命稻草.&lt;/p&gt;
 
 &lt;h2 id=&quot;map&quot;&gt;（map注：下面这段文字原文没有，这是译者对于翻译的理）&lt;/h2&gt;
 
@@ -559,9 +803,9 @@ d点：超过负载，系统崩溃&lt;/p&gt;
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/07/loadrunner-scripts/</guid>
       <description>&lt;h2 id=&quot;section&quot;&gt;脚本篇&lt;/h2&gt;
 
-&lt;p&gt;1.HTTP的GET请求 &lt;/p&gt;
+&lt;p&gt;1.HTTP的GET请求&lt;/p&gt;
 
-&lt;p&gt;这里以访问百度为例，地址http://www.baidu.com/s?wd=mobile，表示在百度上搜索mobile。具体脚本如下（有注释） &lt;/p&gt;
+&lt;p&gt;这里以访问百度为例，地址http://www.baidu.com/s?wd=mobile，表示在百度上搜索mobile。具体脚本如下（有注释）&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
@@ -598,7 +842,7 @@ d点：超过负载，系统崩溃&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;2.HTTP POST请求 
-这个是在我们项目中用到的，发送POST请求，进行自然语言识别的，脚本如下： &lt;/p&gt;
+这个是在我们项目中用到的，发送POST请求，进行自然语言识别的，脚本如下：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
@@ -635,9 +879,9 @@ d点：超过负载，系统崩溃&lt;/p&gt;
      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;3.WebService请求 &lt;/p&gt;
+&lt;p&gt;3.WebService请求&lt;/p&gt;
 
-&lt;p&gt;详细脚本如下： &lt;/p&gt;
+&lt;p&gt;详细脚本如下：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
@@ -674,7 +918,7 @@ d点：超过负载，系统崩溃&lt;/p&gt;
 
 &lt;p&gt;4.Socket请求 
 我这里指的是简单的Socket请求，端连接，发送接收的都是一个字符串。比较复杂的Socket请求，自己录制脚本。如果不知道，自己去查。 
-详细脚本如下，另外还包含一个data.ws文件，用来声明发送和接收的字节数组及其长度的，并指定要发送的内容（发送的内容一样可以参数化的） &lt;/p&gt;
+详细脚本如下，另外还包含一个data.ws文件，用来声明发送和接收的字节数组及其长度的，并指定要发送的内容（发送的内容一样可以参数化的）&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;quot;lrs.h&amp;quot;  &lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Action&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
@@ -758,16 +1002,17 @@ d点：超过负载，系统崩溃&lt;/p&gt;
 
 &lt;p&gt;弹出了配置框，在里面选择如下内容：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Application Type: Internet Applications
+&lt;blockquote&gt;
+  &lt;p&gt;Application Type: Internet Applications&lt;/p&gt;
 
-Program to record: 这里如果有IE8及以下最好，因为LR不支持IE10以上；或者选择Firefox，因为LR对其他浏览器支持也不好。因此这里对我而言，选择firefox程序的所在
+  &lt;p&gt;Program to record: 这里如果有IE8及以下最好，因为LR不支持IE10以上；或者选择Firefox，因为LR对其他浏览器支持也不好。因此这里对我而言，选择firefox程序的所在&lt;/p&gt;
 
-URL Address: 选择你需要测试的网址，比如http://www.baidu.com/?q=mobile
+  &lt;p&gt;URL Address: 选择你需要测试的网址，比如http://www.baidu.com/?q=mobile&lt;/p&gt;
 
-Working Directory: 不变即可
+  &lt;p&gt;Working Directory: 不变即可&lt;/p&gt;
 
-Record to Action: 选择Action即可
-&lt;/code&gt;&lt;/pre&gt;
+  &lt;p&gt;Record to Action: 选择Action即可&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;点击确定后将会进行后台录制，时间很长。对我而言点击取消，直接进入Action代码中进行编码。&lt;/p&gt;
 
@@ -862,16 +1107,14 @@ Record to Action: 选择Action即可
 
 &lt;p&gt;In order to create a landscape loopable slider within a section, each slide will be defined with another &lt;code&gt;div&lt;/code&gt;. Besides, another 2 slides should be duplicated from the original first and last slide div and seperately copied after the original last one and before the original first one. Like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;javascript
-&amp;lt;div class=&quot;section&quot;&amp;gt;
-	&amp;lt;div class=&quot;slide swipe&quot;&amp;gt; Slide 4 &amp;lt;/div&amp;gt;
-	&amp;lt;div class=&quot;slide&quot;&amp;gt; Slide 1 &amp;lt;/div&amp;gt;
-	&amp;lt;div class=&quot;slide&quot;&amp;gt; Slide 2 &amp;lt;/div&amp;gt;
-	&amp;lt;div class=&quot;slide&quot;&amp;gt; Slide 3 &amp;lt;/div&amp;gt;
-	&amp;lt;div class=&quot;slide&quot;&amp;gt; Slide 4 &amp;lt;/div&amp;gt;
-	&amp;lt;div class=&quot;slide swipe&quot;&amp;gt; Slide 1 &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;section&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;slide swipe&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Slide&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;slide&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Slide&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;slide&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Slide&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;slide&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Slide&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;slide&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Slide&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;slide swipe&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Slide&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;You can see a fully working example of the HTML structure in the &lt;a href=&quot;https://github.com/acepeak/ap.fullPageSwipeLoop/blob/master/examples/swipeloop.html&quot;&gt;&lt;code&gt;swipeloop.html&lt;/code&gt; file&lt;/a&gt;.&lt;/p&gt;
 
@@ -1087,15 +1330,15 @@ Record to Action: 选择Action即可
 
 &lt;p&gt;一、持有搜索引擎优化概念&lt;/p&gt;
 
-&lt;p&gt;当网站改版时你可能注意更多的是网站的外观，但是你要记住，网站空有漂亮的外壳是没有用的，所以当外观不利于排名的时候你必须要做好取舍，另外在设计网站时要考虑到搜索引擎优化的一些问题，譬如：标题是否唯一、url做没做静态化、网站是否填写了title、keywords、description三个标签、是否为网站写了robots等等。 &lt;/p&gt;
+&lt;p&gt;当网站改版时你可能注意更多的是网站的外观，但是你要记住，网站空有漂亮的外壳是没有用的，所以当外观不利于排名的时候你必须要做好取舍，另外在设计网站时要考虑到搜索引擎优化的一些问题，譬如：标题是否唯一、url做没做静态化、网站是否填写了title、keywords、description三个标签、是否为网站写了robots等等。&lt;/p&gt;
 
 &lt;p&gt;二、重定向与404&lt;/p&gt;
 
-&lt;p&gt;尽量让之前的url网址都能打开，如果确实无法做到，或者涉及到换域名，那么必须把之前的url重定向到新网页。做完重定向之后，还有一项工作是不可缺少的，那就是为新网站制作404页面，无论网站开发者考虑的多么精密和周全，只要涉及到改版肯定有死链接，所以这项工作绝对不能少。 &lt;/p&gt;
+&lt;p&gt;尽量让之前的url网址都能打开，如果确实无法做到，或者涉及到换域名，那么必须把之前的url重定向到新网页。做完重定向之后，还有一项工作是不可缺少的，那就是为新网站制作404页面，无论网站开发者考虑的多么精密和周全，只要涉及到改版肯定有死链接，所以这项工作绝对不能少。&lt;/p&gt;
 
 &lt;p&gt;三、调试分析&lt;/p&gt;
 
-&lt;p&gt;准确的调试和分析对于网站来说非常重要。在网站没有完善之前一旦上线对网站伤害是很大的。首先我们要做的就是分析和调试，确保每个页面的功能，如果你的URL结构发生了改变，你的目标的URL，也有可能改变了，这将需要你去修订。 &lt;/p&gt;
+&lt;p&gt;准确的调试和分析对于网站来说非常重要。在网站没有完善之前一旦上线对网站伤害是很大的。首先我们要做的就是分析和调试，确保每个页面的功能，如果你的URL结构发生了改变，你的目标的URL，也有可能改变了，这将需要你去修订。&lt;/p&gt;
 
 &lt;p&gt;四、屏蔽爬虫&lt;/p&gt;
 
@@ -1103,11 +1346,11 @@ Record to Action: 选择Action即可
 
 &lt;p&gt;五、内部连接&lt;/p&gt;
 
-&lt;p&gt;重新设计的网站可能充满内部链接的缺陷。该网站上线后你应该做人工审查或者用站长工具软件等审查。我喜欢使用Chrome插件检查我的链接，快速评估哪些链接可能坏了。以确保他们将链接到真正的页面的URL并不是重定向。 &lt;/p&gt;
+&lt;p&gt;重新设计的网站可能充满内部链接的缺陷。该网站上线后你应该做人工审查或者用站长工具软件等审查。我喜欢使用Chrome插件检查我的链接，快速评估哪些链接可能坏了。以确保他们将链接到真正的页面的URL并不是重定向。&lt;/p&gt;
 
 &lt;p&gt;六、外观及兼容&lt;/p&gt;
 
-&lt;p&gt;新网站看起来真的很不错，但是你必须确保你新设计的网站让所有人在所有的浏览器上看到的内容是一样的。另外，要注意在移动设备上如何看起来更好。在这里你可以使用的工具，如browserstack或跨浏览器测试。 &lt;/p&gt;
+&lt;p&gt;新网站看起来真的很不错，但是你必须确保你新设计的网站让所有人在所有的浏览器上看到的内容是一样的。另外，要注意在移动设备上如何看起来更好。在这里你可以使用的工具，如browserstack或跨浏览器测试。&lt;/p&gt;
 
 &lt;p&gt;七、代码审查&lt;/p&gt;
 
@@ -1263,7 +1506,7 @@ Record to Action: 选择Action即可
 
 &lt;p&gt;晚上：下午15:00——20:00。&lt;/p&gt;
 
-&lt;p&gt;为什么要这样选择新网站开站的时间段呢？因为蜘蛛最频繁的时间段，也是有经验的站长、有道行的SEO才知道的规律。现在公布出来，你有福了！也不用再乱折腾，像买福利彩票那样坐等上帝恋上你！         &lt;/p&gt;
+&lt;p&gt;为什么要这样选择新网站开站的时间段呢？因为蜘蛛最频繁的时间段，也是有经验的站长、有道行的SEO才知道的规律。现在公布出来，你有福了！也不用再乱折腾，像买福利彩票那样坐等上帝恋上你！&lt;/p&gt;
 
 &lt;p&gt;特别时刻：在利用空间商提供的超长二级域名网址给空间上传完程序并部署好数据库和后台信息之后，再去购买域名来解析空间IP。千万不要提前购买域名，因为你购买了，蜘蛛很快就来爬这个域名了，如果蜘蛛来了发现网站是空的，那你惨了，被蜘蛛定了不被信任的否定信用，那么开新站就很有难度了。为什么有些网站死活不收录，也会是这个原因啊。这个步骤也是很重要的。&lt;/p&gt;
 
@@ -1498,7 +1741,7 @@ xxxx TaskTracker&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop jar hadoop-examples-1.2.1.jar wordcount /tmp/wordcount/word.txt  /tmp/wordcount/out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;4、查看运行结果，查看例子的输出结果使用命令： &lt;/p&gt;
+&lt;p&gt;4、查看运行结果，查看例子的输出结果使用命令：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;grid@centos1 hadoop-1.2.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bin/hadoop fs -ls /tmp/wordcount/out&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -1609,7 +1852,7 @@ kvo:键值观察机制，他提供了观察某一属性变化的方法，极大�
 具体用看到嗯哼用到过的一个地方是对于按钮点击变化状态的的监控。
 比如我自定义的一个button
 [cpp] 
-[self addObserver:self forKeyPath:@”highlighted” options:0 context:nil]; &lt;/p&gt;
+[self addObserver:self forKeyPath:@”highlighted” options:0 context:nil];&lt;/p&gt;
 
 &lt;h1 id=&quot;pragma-mark-kvo&quot;&gt;pragma mark KVO&lt;/h1&gt;
 
@@ -1812,7 +2055,7 @@ OBC的垃圾回收机制？&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;5.CSS引入的方式有哪些? link和@import的区别是?&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;内联 内嵌 外链 导入   &lt;/p&gt;
+&lt;p&gt;内联 内嵌 外链 导入&lt;/p&gt;
 
 &lt;p&gt;区别 ：同时加载&lt;/p&gt;
 
@@ -1844,7 +2087,7 @@ OBC的垃圾回收机制？&lt;/p&gt;
 
 &lt;p&gt;1.双边距BUG float引起的  使用display&lt;/p&gt;
 
-&lt;p&gt;2.3像素问题 使用float引起的 使用dislpay:inline -3px  &lt;/p&gt;
+&lt;p&gt;2.3像素问题 使用float引起的 使用dislpay:inline -3px&lt;/p&gt;
 
 &lt;p&gt;3.超链接hover 点击后失效  使用正确的书写顺序 link visited hover active&lt;/p&gt;
 
@@ -3051,8 +3294,78 @@ Max传漾
     </item>
     
     <item>
-      <title>广告平台术语</title>
-      <link>http://lilifeng.net/blogs/2014/12/28/Advertise-glossary/</link>
+      <title>网络广告术语之付费模式</title>
+      <link>http://lilifeng.net/blogs/2014/12/29/Advertise-glossary-pay-form/</link>
+      <pubDate>Mon, 29 Dec 2014 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>市场</category>
+      
+      <category>术语</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/29/Advertise-glossary-pay-form/</guid>
+      <description>&lt;h2 id=&quot;pbipay-by-impressions-&quot;&gt;PBI(Pay By Impressions): 按展现计费&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;CPM(Cost Per Mille): 千次展现费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;CPM更多是一种费用清算方式，表明按照展现收费。网上广告收费最科学的办法是按照有多少人看到你的广告来收费。按访问人次收费已经成为网络广告的惯例。CPM(千人成本)指的是广告投放过程中，听到或者看到某广告的每一人平均分担到多少广告成本。传统媒介多采用这种计价方式。在网上广告，CPM取决于“印象”尺度，通常理解为一个人的眼睛在一段固定的时间内注视一个广告的次数。比如说一个广告横幅的单价是1元/CPM的话，意味着每一千个人次看到这个Banner的话就收1元，如此类推，10，000人次访问的主页就是10元。至于每CPM的收费究竟是多少，要根据以主页的热门程度(即浏览人数)划分价格等级，采取固定费率。国际惯例是每CPM收费从5美元至200美元不等。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;eCPM(effective Cost Per Mille): 有效千次展现费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;eCPM是一种指标和数量，表明千次展现成本。
+eCPM = 收入/网页展示次数×1000&lt;/p&gt;
+
+&lt;h2 id=&quot;pbepay-by-engagements-&quot;&gt;PBE(Pay By Engagements): 按参与计费&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;CPC(Cost Per Click): 每次点击费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;以每点击一次计费。这样的方法加上点击率限制可以加强作弊的难度，而且是宣传网站站点的最优方式。但是，此类方法就有不少经营广告的网站觉得不公平，比如，虽然浏览者没有点击，但是他已经看到了广告，对于这些看到广告却没有点击的流量来说，网站成了白忙活。有很多网站不愿意做这样的广告，据说，是因为传统媒体从来都没有这样干过。目前Google Adsense就采用此方式。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;CPA(Cost Per Acquisition/Action): 每次行动费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;CPA计价方式是指按广告投放实际效果，即按回应的有效问卷或定单来计费，而不限广告投放量。CPA的计价方式对于网站而言有一定的风险，但若广告投放成功，其收益也比CPM的计价方式要大得多。广告主为规避广告费用风险，只有当网络用户点击旗帜广告，链接广告主网页后，才按点击次数付给广告站点费用。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;CPI(Cost Per Install): 每次安装费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;网络广告模式，每成功安装的一个应用程序，开发者/发行商就要支付一定费用。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;CPT(Cost Per Try): 每次试玩费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这种模式主要是移动应用渠道营销平台以试玩为付费标准，而不仅仅以应用的显示次数或者联网激活付费;这种方式的特点是按用户使用时长或使用周期计费，可以从根本上杜绝刷流量、激活作弊，是最真实的、有效的营销方式之一。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;CPL(Cost Per Leads): 每次引导费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;即每次通过特定链接，注册成功后付费的一个常见广告模式。这是我们通常称谓的引导注册，比如“亚洲交友”。一个网络媒体(网站)会包含有数十个甚至成千上万个页面，站点为获得生存，一般都需要在站点投放网络广告。网络广告所投放的位置和价格就牵涉到特定的页面以及浏览人数的多寡。这好比平面媒体(如报纸)的“版位”、“发行量”，或者电波媒体(如电视)的“时段”、“收视率”的概念。&lt;/p&gt;
+
+&lt;h2 id=&quot;pbppay-by-purchases-&quot;&gt;PBP(Pay By Purchases): 按购买计费&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;CPS(Cost Per Sales): 以实际销售产品数量来换算广告刊登金额&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;即根据每个订单/每次交易来收费的方式。用户每成功达成一笔交易,网站主可获得佣金。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;CPP(Cost Per Purchase): 每笔购买费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;每购买成本广告主为规避广告费用风险，只有在网络用户点击旗帜广告并进行在线交易后，才按销售笔数付给广告站点费用。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;CPO(Cost Per Order): 每笔交易费用&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;即根据每个订单/每次交易来收费的方式。&lt;/p&gt;
+
+&lt;h2 id=&quot;pbtpay-by-time-&quot;&gt;PBT(Pay By Time): 按时间计费&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;CPT(Cost Per Time): 按时长计费&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;按时长计费是包时段投放广告的一种形式，广告主选择广告位和投放时间，费用与广告点击量无关。采用这种方式出售广告，网站主决定每一个广告位的价格，广告主自行选择购买时间段，目前可按周或按天购买，成交价就是网站主标定的价格。&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>网络广告术语之广告形式</title>
+      <link>http://lilifeng.net/blogs/2014/12/28/Advertise-glossary-adform/</link>
       <pubDate>Sun, 28 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
@@ -3063,7 +3376,148 @@ Max传漾
       
       <category>广告平台</category>
       
-      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/28/Advertise-glossary/</guid>
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/28/Advertise-glossary-adform/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Banner: 横幅广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;最早的网络广告形式。横幅广告，一个表现商家广告内容的图片，放置在广告商的页面上，是互联网广告中最基本的广告形式。按照互动广告局（Interactive Advertising Bureau）的规范，468×60像素的称为全横幅广告（Full Banner），234×60像素的称为半横幅广告（Half Banner），120×240像素的称为垂直旗帜广告（Vertical Banner）。一般位于页面的最上方，具有较强的视觉冲击力 。现在很多网站都把banner也叫做顶部通栏，或者是顶部小通栏。但是目前横幅/旗帜已经在网站中投放的位置比较随意了，不局限于顶部。&lt;/p&gt;
+
+&lt;p&gt;banner广告在移动平台上是目前最普遍的一种广告模式，通常以横幅形式出现在手机屏幕的上方。开发者在应用中加入一个或多个“互动广告位”代码，即可自动播放平台提供的各种广告，获得额外的广告收益。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_1.png&quot; alt=&quot;横幅广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Button\LOGO: 标识广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;在网页上出现的企业和产品的标识(商标，C1)等，规格多为120X60Pixies，投放位置常出现在网站首页或二级主页面上。与按钮广告相比，两种广告在表现形式和效果上区别不大，都是引导浏览者与企业沟通的途径。标识广告形象、生动，标识性强，有利于塑造商家晶牌形象。同时点击标识，可链接商家的有关信息或网站。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_2.png&quot; alt=&quot;标识广告&quot; /&gt;
+&lt;img src=&quot;/img/141228_4.png&quot; alt=&quot;下拉式标识广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Full Column: 通栏广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;通栏广告是一种具有唯一性的多媒体推广方式，通栏广告展示区在搜索结果列表的上方，企业可以根据需要购买通栏广告，当买家搜索时，购买了通栏广告的企业广告会显示在展示区中。占据主要页面宽度的图片广告，具有极强的视觉效果，是展示品牌形象的非常好的广告形式。目前有贯穿屏幕的通栏，也有半通栏形式。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_3.png&quot; alt=&quot;通栏广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Text Link: 文字链广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;将这段文字链接的企业网站放置在各大门户网站的相应版块，使浏览者看到并点击则可进入到企业的网站上的一种广告营销方式。文字链接是一种对浏览者干扰最少，但却最有效果的网络广告形式之一。文字链广告的安排位置灵活，它可以出现在页面的任何位置，可以竖排也可以横排，每一行就是一个广告，点击每一行就可以进入相应的广告页面。&lt;/p&gt;
+
+&lt;p&gt;文字链广告相对于图片、动画等广告，不但文件体积小，而且传输速率快。文字链广告由于只是文本，所以广告受众更容易捕捉广告内容。特别是信息量很大的页面，文字链广告直截了当，开门见山，使浏览者一目了然。&lt;/p&gt;
+
+&lt;p&gt;极具成本效益的推广方式，精彩的文字创意同样会收到意想不到的效果固定。对于某些广告主来说，有时文字的表述比图片更能表达广告诉求的内容，而且同样以时间计费，价格相比于其他广告形式较低。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_5.png&quot; alt=&quot;文字链广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Picture &amp;amp; Text Link: 图文广告/图文混排&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;静态图片和文字相结合的一种广告形式。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_6.png&quot; alt=&quot;图文广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Sky Scraper / Tower Board /Vertical Banner: 摩天轮广告/擎天柱广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;擎天柱广告是利用网站页面左右两侧的竖式广告位置而设计的广告形式。这种广告形式可以直接将客户的产品和产品特点详细的说明，并可以进行特定的数据调查、有奖活动。广告特点：它会在浏览全过程中吸引用户的注意力，促使其点击广告。同时，由于其广告面积较大，而且制作成互动格式，因此，可以广泛应用于品牌宣传、产品促销或者市场调查等领域。既满足大曝光量的要求，又不会影响用户的使用习惯。出现在文章页面的两侧，竖型的广告幅面。起到超大LOGO的效果，视觉冲击力极强。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_7.png&quot; alt=&quot;擎天柱广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Bi-Sky Scraper: 对联广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;对联广告是指利用网站页面左右两侧的竖式广告位置而设计的广告形式。这种广告形式可以直接将客户的产品和产品特点详细的说明，并可以进行特定的数据调查、有奖活动。不干涉使用者浏览页面， 注目焦点集中，有助于吸引访问者点阅，有效地传播广告相关讯息。对联广告的特色是广告页面得以充分伸展，同时不干涉使用者浏览，注目焦点集中。显示时随页面浏览而跟随移动，提供可关闭标志。对联为广告的形式，为各行各业推销产品和服务，传播企业文化和经营理念，树立企业形象。此种形式广告因版面所限，一般表现于1024&lt;em&gt;768及以上分辨率的屏幕上，800&lt;/em&gt;600分辨率下有些用户无法观看。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_8.png&quot; alt=&quot;对联广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Picture In Picture/TV-Screen: 大屏幕广告/画中画广告/巨幅广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;画中画广告是指在文章里强制加入广告图片，比如在新闻里加入FLASH广告，这些广告和文章混杂在一起，读者有时无法辨认是新闻图片还是广告。即使会辨认，也会分散注意力。该广告将配合客户需要，链接至为客户量身订作的迷你网站。大大增强广告的命中率。
+新闻内容页面中出现的大尺寸图片广告，该投放形式使得用户在关注某一类新闻时会看到所投放广告，从而加强广告在用户心目中的印象。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_9.png&quot; alt=&quot;画中画广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Full Screen: 全屏广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;在用户打开当前网页时强制插入一个广告页面或弹出广告窗口。它们有点类似电视广告，都是打断正常节目的播放，强迫观看。插播式广告有各种尺寸，有全屏的也有小窗口的，而且互动的程序也不同，从静态的到全部动态的都有。浏览者可以通过关闭窗口不看广告(电视广告是无法做到的)，但是它们的出现没有任何征兆，保证您的目标客户群体可以看到您定向投放的全屏幕广告宣传页。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_10.png&quot; alt=&quot;全屏广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Moving Icon /Floating: 悬停/漂浮/浮动广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;指的是会随鼠标或光标移动的网络广告。最常看到的是所谓浮水印广告，会随着网页拉上拉下，在页面左边或是右边跟着上下移动，吸引浏览者的注意。有些网站会直接在光标后有一段文字或图像跟着鼠标移动，这也属于浮动式广告。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_11.png&quot; alt=&quot;全屏广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Crazy Ad/Streaming Ad: 疯狂广告/流媒体广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;流媒体广告通过编写流媒体的同步多媒体集成语言，将播放的广告时间、次数、播出形式等参数设定为与播放内容相关，从而实现流式传播。&lt;a href=&quot;http://www.doc88.com/p-692583305816.html&quot;&gt;论文：流媒体广告发展现状及策略分析&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Crazy Ad是雅虎取的名称，其实也就是流媒体这种广告形式。在频道首页下载后出现几秒的大尺寸图片广告，第一时间吸引用户的注意力 ，然后慢慢收缩成一个button，或者是消失。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;iCast: 多媒体视窗广告/网视广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;是一种不需要受众安装任何插件就可以播放的整合视频、音频、动画图像、双向信息通信和用户交互功能的新一代网络广告解决方案。iCast广告突破了传统Internet广告带宽瓶颈对内容容量的限制，采用了独创的“Transparent Download”（透明下载）技术，利用带宽空闲时在后台进行广告下载，对于用户正常浏览网页的行为没有任何影响。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_12.png&quot; alt=&quot;网视广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Video Ad: 视频广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;视频广告，分为传统视频广告和移动视频广告两类。传统视频广告是在视频内的广告进行设置和投放，而移动视频广告分为传统贴片广告和In-App视频广告，是指在移动设备内进行的插播视频的模式。
+移动视频广告，则主要通过移动互联网在移动设备中（手机、PSP、平板电脑等）所展现的一种方式，其技术主要采用数码及HTML5技术，融合视频、音频、图像及动画，在手机用户开启或退出移动应用等“碎片时间” 来插播视频。移动视频广告主要应用于移动互联网，在移动设备中展示，作为一种新的展示模式，用户正处于慢慢接受的过程，因此，过度频繁的移动视频展示，不仅不能树立品牌效果，还可能导致用户体验受损。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Pre-movie Adverts: 贴片广告/随片广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;将企业产品广告或企业形象广告与影片一同拷贝，在电影放映前播出的广告。广告的运营商与电影的制作方、发行方、放映方合作，在每部电影放映前播放客户的品牌广告，它是电影广告最明显最外在的形式，属于电影中的“硬广告”。尽管这种广告形式常常在播放前引起大量观众的唏嘘声，但是调查显示它的传达效果较电视广告有更深刻的观众记忆度。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;product placement: 植入广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;把产品及其服务具有代表性的视听品牌符号融入影视或舞台产品中的一种广告方式，给观众留下相当的印象，以达到营销目的。“植入式广告”是随着电影、电视、游戏等的发展而兴起的一种广告形式，它是指在影视剧情、游戏中刻意插入商家的产品或表示，以达到潜移默化的宣传效果。由于受众对广告有天生的抵触心理，把商品融入这些娱乐方式的做法往往比硬性推销的效果好得多。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Sponserships: 赞助式广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;赞助式广告赞助有三种形式：内容赞助，节目赞助，节日赞助。广告主可对自己感兴趣的网站内容或节目进行赞助，或在特别时期（如澳门回归、世界杯）赞助网站的推广活动。赞助式广告一般放置时间较长且无需和其他广告轮流滚动，故有利于扩大页面知名度。广告主若有明确的品牌宣传目标，赞助式广告将是一种低廉而颇有成效的选择。&lt;/p&gt;
+
+&lt;p&gt;赞助式广告确切的说是一种广告投放传播的方式，而不仅仅是一种网络广告的形式．它可能是通栏式广告，弹出式广告等等形式中的一种，也可能是包含很多广告形式的打包计划，甚至是以冠名等方式出现的一种广告形式。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_13.png&quot; alt=&quot;赞助式广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Search Engine Ad: 搜索引擎广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;搜索引擎广告是指广告主根据自己的产品或服务的内容、特点等，确定相关的关键词，撰写广告内容并自主定价投放的广告。当用户搜索到广告主投放的关键词时，相应的广告就会展示（关键词有多个用户购买时，根据竞价排名原则展示），并在用户点击后按照广告主对该关键词的出价收费，无点击不收费。搜索引擎广告包括关键词广告、竞价排名广告、地址栏搜索广告和网站登陆广告等形式。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_14.png&quot; alt=&quot;搜索引擎广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Interstitial Ad: 插屏广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;在功能开启、暂停、退出时以半屏或全屏的形式弹出，展示时机巧妙避开用户对应用的正常体验。插屏广告采用了自动广告适配和缓存优化技术，可支持炫酷广告特效，视觉冲击力强，是目前比较有效的精准广告推广形式，比起推送广告，用户可以选择点击或者忽略，不会强制看广告，而且是通过cpa来计费，对开发者来说这是一种比较好的形式，对于广告主来说这种精准的广告推送形式更加有效!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_15.png&quot; alt=&quot;插屏广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Offer Wall: 积分墙广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;“积分墙”是在一个应用内展示各种积分任务（下载安装推荐的优质应用、注册、填表等），以供用户完成任务获得积分的页面。是除“广告条”、“插屏广告”外，第三方移动广告平台提供给应用开发者的另一新型移动广告盈利模式。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_16.png&quot; alt=&quot;积分墙广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Offer Wall: 推送广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;通知栏推送技术，是一种通过移动互联网的新型技术——Airpush技术，利用碎片时间向智能手机用户通知栏发送广告（碎片时间：包括手机用户非手机操作时间，以及工作、生活、学习之余的闲散、零碎的时间）的技术。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_17.png&quot; alt=&quot;推送广告&quot; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>网络广告术语之一般术语</title>
+      <link>http://lilifeng.net/blogs/2014/12/27/Advertise-glossary-general/</link>
+      <pubDate>Sat, 27 Dec 2014 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>市场</category>
+      
+      <category>术语</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/27/Advertise-glossary-general/</guid>
       <description>&lt;p&gt;&lt;code&gt;Campaign: 广告活动&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Advertising Campaign(广告活动) 指在某一特定市场上为实现某一目标所集中进行的大规模的广告活动, 可以是通过平面印刷品、电视电台、落地活动、互联网及社交平台、移动端等作为载体进行传播更可以是组合, 是广告策略的一种体现。&lt;/p&gt;
@@ -3084,36 +3538,13 @@ Max传漾
 
 &lt;p&gt;24小时内相同IP地址之被计算一次。&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;CPM(Cost Per Mille): 千次展现费用&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;CPM更多是一种费用清算方式，表明按照展现收费。网上广告收费最科学的办法是按照有多少人看到你的广告来收费。按访问人次收费已经成为网络广告的惯例。CPM(千人成本)指的是广告投放过程中，听到或者看到某广告的每一人平均分担到多少广告成本。传统媒介多采用这种计价方式。在网上广告，CPM取决于“印象”尺度，通常理解为一个人的眼睛在一段固定的时间内注视一个广告的次数。比如说一个广告横幅的单价是1元/CPM的话，意味着每一千个人次看到这个Banner的话就收1元，如此类推，10，000人次访问的主页就是10元。至于每CPM的收费究竟是多少，要根据以主页的热门程度(即浏览人数)划分价格等级，采取固定费率。国际惯例是每CPM收费从5美元至200美元不等。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;eCPM(effective Cost Per Mille): 有效千次展现费用&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;eCPM是一种指标和数量，表明千次展现成本。
-eCPM = 收入/网页展示次数×1000&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;CPC(Cost Per Click): 每次点击费用&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;以每点击一次计费。这样的方法加上点击率限制可以加强作弊的难度，而且是宣传网站站点的最优方式。但是，此类方法就有不少经营广告的网站觉得不公平，比如，虽然浏览者没有点击，但是他已经看到了广告，对于这些看到广告却没有点击的流量来说，网站成了白忙活。有很多网站不愿意做这样的广告，据说，是因为传统媒体从来都没有这样干过。目前Google Adsense就采用此方式。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;CPA(Cost Per Acquisition/Action): 每次行动费用&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;CPA计价方式是指按广告投放实际效果，即按回应的有效问卷或定单来计费，而不限广告投放量。CPA的计价方式对于网站而言有一定的风险，但若广告投放成功，其收益也比CPM的计价方式要大得多。广告主为规避广告费用风险，只有当网络用户点击旗帜广告，链接广告主网页后，才按点击次数付给广告站点费用。&lt;/p&gt;
-
-&lt;p&gt;CPL(Cost Per Leads): 每次引导费用&lt;/p&gt;
-
-&lt;p&gt;即每次通过特定链接，注册成功后付费的一个常见广告模式。这是我们通常称谓的引导注册，比如“亚洲交友”。一个网络媒体(网站)会包含有数十个甚至成千上万个页面，站点为获得生存，一般都需要在站点投放网络广告。网络广告所投放的位置和价格就牵涉到特定的页面以及浏览人数的多寡。这好比平面媒体(如报纸)的“版位”、“发行量”，或者电波媒体(如电视)的“时段”、“收视率”的概念。&lt;/p&gt;
-
-&lt;p&gt;CPS(Cost Per Sales): 以实际销售产品数量来换算广告刊登金额&lt;/p&gt;
-
-&lt;p&gt;即根据每个订单/每次交易来收费的方式。用户每成功达成一笔交易,网站主可获得佣金。&lt;/p&gt;
-
 &lt;p&gt;&lt;code&gt;CTR(Click-Through Rate): 点击率&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;网络广告被点击的次数与访问次数的比例，即Clicks/ Impressions。如果这个页面被访问了100次，而页面上的广告被点击了20次，那么CTR为20%。CTR是评估广告效果的指标之一。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;IO(Insertion Order): 广告订单（加插刊登通知）&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;广告主发交媒体刊登广告的订单，也称”发稿单”。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;MFC(Media Flow Chart): 媒介排期表&lt;/code&gt;&lt;/p&gt;
 
@@ -3121,9 +3552,35 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;MP(Media Plan): 媒介排期表（详）&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;IGA(In-Game Advertising): 游戏内广告&lt;/p&gt;
+&lt;p&gt;在4A中指详细的排期&lt;/p&gt;
 
-&lt;p&gt;是指在游戏中的嵌入式商业广告. 通常分为内嵌式、外挂式和独立交互式三种. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;IGA(In-Game Advertising): 游戏内广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;是指在游戏中的嵌入式商业广告. 通常分为内嵌式、外挂式和独立交互式三种.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Landing Site: 点击跳转网站&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;广告点击跳转到的目标站点。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Tracking pixel: 监测像素&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;通常是 1x1 的透明像素图片,通常在 html 上下文中配合JavaScript 使用,可以灵活实现各类数据监测。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;UA(User Agent): 用户代理&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;一个特殊字符串头,使得服务器能够识别客户使用的操作系统及版本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;IMEI(International Mobile Equipment Identity): 国际移动设备身份码&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Android上通用的设备唯一标识符。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;UDID(Unique Device Identifier): 苹果 iOS 操作系统唯一设备身份识别码&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;IDFA(Identifier for Advertisers): 广告主识别码&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;苹果对 iOS 6 以上版本的设备随机分配的匿名识别码。&lt;/p&gt;
+
+&lt;p&gt;`DUID(Device_Unique_ Identifier): 微软 WP 操作系统唯一设备身份识别码。&lt;/p&gt;
 
 </description>
     </item>
@@ -3495,7 +3952,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 
 &lt;p&gt;乙:跟我思故我在，其实都是一个道理&lt;/p&gt;
 
-&lt;p&gt;甲:http://user.qzone.qq.com/86056701/blog/1230446813 &lt;/p&gt;
+&lt;p&gt;甲:http://user.qzone.qq.com/86056701/blog/1230446813&lt;/p&gt;
 
 &lt;p&gt;甲:这个是我以前写的关于缘分的&lt;/p&gt;
 
@@ -3531,7 +3988,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 
 &lt;p&gt;甲:就好像买彩票,每个人中一等奖的概率都是1/N!比如说,如果你没中一等奖,你会说这个太难了,因为你预期是不中一等奖&lt;/p&gt;
 
-&lt;p&gt;甲:如果你中了,你会说纯粹是巧合 &lt;/p&gt;
+&lt;p&gt;甲:如果你中了,你会说纯粹是巧合&lt;/p&gt;
 
 &lt;p&gt;乙:那如果我和一等奖每个号码都正正好好差了一位数呢？&lt;/p&gt;
 
@@ -3706,7 +4163,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/05/07/Run-Run-Continue/</guid>
-      <description>&lt;p&gt;“嘭~~~”，随着每天早上1楼施工发出的200分贝铁锤和电钻噪声在大概7点钟左右准时响起，我被从睡梦中赶了出来，躺在了一个狭小房间的床上。 &lt;/p&gt;
+      <description>&lt;p&gt;“嘭~~~”，随着每天早上1楼施工发出的200分贝铁锤和电钻噪声在大概7点钟左右准时响起，我被从睡梦中赶了出来，躺在了一个狭小房间的床上。&lt;/p&gt;
 
 &lt;p&gt;思考，辗转，回笼。无奈1楼施工是一个不间断的闹钟，而且是距离比较远，自己没有控制权的闹钟。于是，思考，辗转，回笼，死循环。。。
 1/2小时,1/4小时…直到数列达到稳定,我终于彻底清醒.&lt;/p&gt;
@@ -3715,9 +4172,9 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 
 &lt;p&gt;工作还是那么忙.不一样的是,绿豆眼昨天居然对我们说了一句有良心的话:”兄弟们,马上我们的milestone就要到了,大家不要太辛苦,晚上一点要早点回去早点休息,最晚9点回去啊…” 从此我天天11点回家…&lt;/p&gt;
 
-&lt;p&gt;夏天到了, 白日延长, 夜幕晚落, 跑步已经成为schedule. 现在已经非常轻松, 实际上,现在只要有空,我会每周跑两次,周三+周六. 现在绕着世纪公园跑一圈已经全然没有难度,准备周三和同事跑一圈,周六自己跑的时候跑两圈. 奔跑其实不是我主要的目的,我真正的目的是为了缓解工作中过大的压力以及我脆弱的全身肌肉筋骨. &lt;/p&gt;
+&lt;p&gt;夏天到了, 白日延长, 夜幕晚落, 跑步已经成为schedule. 现在已经非常轻松, 实际上,现在只要有空,我会每周跑两次,周三+周六. 现在绕着世纪公园跑一圈已经全然没有难度,准备周三和同事跑一圈,周六自己跑的时候跑两圈. 奔跑其实不是我主要的目的,我真正的目的是为了缓解工作中过大的压力以及我脆弱的全身肌肉筋骨.&lt;/p&gt;
 
-&lt;p&gt;我确实可以从工作中感觉到快乐,只不过就是比较累. 有时候想想,我这么累,但是做了什么? 大型公司有大型公司的规划,非常难以直线上升,要让我永远做小职员,我也不是这样的人. 事业不是说跑一圈跑两圈就可以成功的, 对我来说,事业最需要的不是持之以恒, 而是一份计划书和一份勇气. 是否会离开去接受难以预测的未来. 是我选择我的未来,还是让别人左右我很多年然后再一脚踹开. &lt;/p&gt;
+&lt;p&gt;我确实可以从工作中感觉到快乐,只不过就是比较累. 有时候想想,我这么累,但是做了什么? 大型公司有大型公司的规划,非常难以直线上升,要让我永远做小职员,我也不是这样的人. 事业不是说跑一圈跑两圈就可以成功的, 对我来说,事业最需要的不是持之以恒, 而是一份计划书和一份勇气. 是否会离开去接受难以预测的未来. 是我选择我的未来,还是让别人左右我很多年然后再一脚踹开.&lt;/p&gt;
 
 &lt;p&gt;说实话, 有时候被一脚踹开也是一种幸福, 因为我不需要离开的勇气, 需要的仅仅是一份计划书.&lt;/p&gt;
 
@@ -3739,139 +4196,139 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/04/25/Those-Words-Worth-Half-Life/</guid>
-      <description>&lt;p&gt;1，绅士无非就是耐心的狼。 &lt;/p&gt;
+      <description>&lt;p&gt;1，绅士无非就是耐心的狼。&lt;/p&gt;
 
-&lt;p&gt;2，老鼠嘲笑猫的时候，身旁必有一个洞。 &lt;/p&gt;
+&lt;p&gt;2，老鼠嘲笑猫的时候，身旁必有一个洞。&lt;/p&gt;
 
-&lt;p&gt;3，女人吻男人是一种幸福，男人吻女人是一种口福。 &lt;/p&gt;
+&lt;p&gt;3，女人吻男人是一种幸福，男人吻女人是一种口福。&lt;/p&gt;
 
-&lt;p&gt;4，男人：二十岁的时候，是半成品；三十岁的时候，是成品；四十岁的时候，是精品；五十岁的时候，是极品；六十岁的时候，是样品；七十岁的时候，是纪念品。 &lt;/p&gt;
+&lt;p&gt;4，男人：二十岁的时候，是半成品；三十岁的时候，是成品；四十岁的时候，是精品；五十岁的时候，是极品；六十岁的时候，是样品；七十岁的时候，是纪念品。&lt;/p&gt;
 
-&lt;p&gt;5，站在山顶和站在山脚下的两人，虽然地位不同，但在对方眼里，同样的渺小。 &lt;/p&gt;
+&lt;p&gt;5，站在山顶和站在山脚下的两人，虽然地位不同，但在对方眼里，同样的渺小。&lt;/p&gt;
 
-&lt;p&gt;6，结论就是你懒得再想下去的地方。――路的尽头，仍然是路，只要你愿意走。 &lt;/p&gt;
+&lt;p&gt;6，结论就是你懒得再想下去的地方。――路的尽头，仍然是路，只要你愿意走。&lt;/p&gt;
 
-&lt;p&gt;7，使我们不快乐的，都是一些芝麻小事，我们可以躲闪一头大象，却躲不开一只苍蝇。 &lt;/p&gt;
+&lt;p&gt;7，使我们不快乐的，都是一些芝麻小事，我们可以躲闪一头大象，却躲不开一只苍蝇。&lt;/p&gt;
 
-&lt;p&gt;8，最好的与最坏的创造了历史，平庸之辈则繁衍了种族。 &lt;/p&gt;
+&lt;p&gt;8，最好的与最坏的创造了历史，平庸之辈则繁衍了种族。&lt;/p&gt;
 
-&lt;p&gt;9，在这世上惟一件事比别人议论更糟，那就是无人议论你。 &lt;/p&gt;
+&lt;p&gt;9，在这世上惟一件事比别人议论更糟，那就是无人议论你。&lt;/p&gt;
 
-&lt;p&gt;10，一颗将爆的炸弹比一颗已爆的炸弹恐怖得多。 &lt;/p&gt;
+&lt;p&gt;10，一颗将爆的炸弹比一颗已爆的炸弹恐怖得多。&lt;/p&gt;
 
-&lt;p&gt;11，成功便是站起比倒下多一次。 &lt;/p&gt;
+&lt;p&gt;11，成功便是站起比倒下多一次。&lt;/p&gt;
 
-&lt;p&gt;12，失败并不意味你浪费了时间和生命。失败表明你有理由重新开始。 &lt;/p&gt;
+&lt;p&gt;12，失败并不意味你浪费了时间和生命。失败表明你有理由重新开始。&lt;/p&gt;
 
-&lt;p&gt;13，人生中有时不去冒险比冒险更危险。 &lt;/p&gt;
+&lt;p&gt;13，人生中有时不去冒险比冒险更危险。&lt;/p&gt;
 
-&lt;p&gt;14，所有的人都站在一边并不一定是好事，譬如他们都站在船的一边 &lt;/p&gt;
+&lt;p&gt;14，所有的人都站在一边并不一定是好事，譬如他们都站在船的一边&lt;/p&gt;
 
-&lt;p&gt;15，许多人爬到了梯子的顶端，却发现梯子架错了墙。 &lt;/p&gt;
+&lt;p&gt;15，许多人爬到了梯子的顶端，却发现梯子架错了墙。&lt;/p&gt;
 
-&lt;p&gt;16，使学生丧失信心是教师最大的犯罪。 &lt;/p&gt;
+&lt;p&gt;16，使学生丧失信心是教师最大的犯罪。&lt;/p&gt;
 
-&lt;p&gt;17，十之八九，争论的结果是双方比以前更相信自己绝对正确。 &lt;/p&gt;
+&lt;p&gt;17，十之八九，争论的结果是双方比以前更相信自己绝对正确。&lt;/p&gt;
 
-&lt;p&gt;18，偶然的成功比失败更可怕。 &lt;/p&gt;
+&lt;p&gt;18，偶然的成功比失败更可怕。&lt;/p&gt;
 
-&lt;p&gt;19，才华其实就是把与人相同的聪明用到与众不同的地方。 &lt;/p&gt;
+&lt;p&gt;19，才华其实就是把与人相同的聪明用到与众不同的地方。&lt;/p&gt;
 
-&lt;p&gt;20，状态是干出来的，而不是等出来的。 &lt;/p&gt;
+&lt;p&gt;20，状态是干出来的，而不是等出来的。&lt;/p&gt;
 
-&lt;p&gt;21，道歉是为将来再次冒犯打下伏笔。 &lt;/p&gt;
+&lt;p&gt;21，道歉是为将来再次冒犯打下伏笔。&lt;/p&gt;
 
-&lt;p&gt;22，所谓百依百顺，就是为了某种不可告人的目的在未完成前，所表现的不同寻常的耐心。 &lt;/p&gt;
+&lt;p&gt;22，所谓百依百顺，就是为了某种不可告人的目的在未完成前，所表现的不同寻常的耐心。&lt;/p&gt;
 
-&lt;p&gt;23，所谓儿童不宜，其实就是大人们令人感动地把犯错误的危险留给了自己。 &lt;/p&gt;
+&lt;p&gt;23，所谓儿童不宜，其实就是大人们令人感动地把犯错误的危险留给了自己。&lt;/p&gt;
 
-&lt;p&gt;24，你想以40km/h的速度开车到80岁，还是以80km/h的速度开车到40岁？ &lt;/p&gt;
+&lt;p&gt;24，你想以40km/h的速度开车到80岁，还是以80km/h的速度开车到40岁？&lt;/p&gt;
 
-&lt;p&gt;25，在敌人面前，谁先镇定下来，谁就离胜利不远了。 &lt;/p&gt;
+&lt;p&gt;25，在敌人面前，谁先镇定下来，谁就离胜利不远了。&lt;/p&gt;
 
-&lt;p&gt;26，所有的人都是平凡的，有些人因知道这一点而真正成了平凡的人。 &lt;/p&gt;
+&lt;p&gt;26，所有的人都是平凡的，有些人因知道这一点而真正成了平凡的人。&lt;/p&gt;
 
-&lt;p&gt;27，乞丐就是一种向你的良心征税的人。 &lt;/p&gt;
+&lt;p&gt;27，乞丐就是一种向你的良心征税的人。&lt;/p&gt;
 
-&lt;p&gt;28，所谓大难不死，就是有了灾祸之后，得到的不是同情，而是莫名其妙的祝贺。 &lt;/p&gt;
+&lt;p&gt;28，所谓大难不死，就是有了灾祸之后，得到的不是同情，而是莫名其妙的祝贺。&lt;/p&gt;
 
-&lt;p&gt;29，处在社交圈中是一种烦恼，而超脱出来简直是一场悲剧。 &lt;/p&gt;
+&lt;p&gt;29，处在社交圈中是一种烦恼，而超脱出来简直是一场悲剧。&lt;/p&gt;
 
-&lt;p&gt;30，厌倦，就是一个人吃完盘子里的食物后对盘子的感情。 &lt;/p&gt;
+&lt;p&gt;30，厌倦，就是一个人吃完盘子里的食物后对盘子的感情。&lt;/p&gt;
 
-&lt;p&gt;31，参加追悼会的程序常常是，先受一次深刻的人生教育，然后大家一起抽烟喝酒打牌。 &lt;/p&gt;
+&lt;p&gt;31，参加追悼会的程序常常是，先受一次深刻的人生教育，然后大家一起抽烟喝酒打牌。&lt;/p&gt;
 
-&lt;p&gt;32，知识是一种使求知者吃得越多越觉得饿的粮食。 &lt;/p&gt;
+&lt;p&gt;32，知识是一种使求知者吃得越多越觉得饿的粮食。&lt;/p&gt;
 
-&lt;p&gt;33，羞耻心就像人的内衣，必要时脱掉了没什么，关键是为谁脱掉。 &lt;/p&gt;
+&lt;p&gt;33，羞耻心就像人的内衣，必要时脱掉了没什么，关键是为谁脱掉。&lt;/p&gt;
 
-&lt;p&gt;34，爱情是会沉底的，在平淡的日子里，最重要的是经常轻轻晃一晃盛装爱情的“水杯”。 &lt;/p&gt;
+&lt;p&gt;34，爱情是会沉底的，在平淡的日子里，最重要的是经常轻轻晃一晃盛装爱情的“水杯”。&lt;/p&gt;
 
-&lt;p&gt;35，战争：用舌头解不开就用牙齿咬吧！ &lt;/p&gt;
+&lt;p&gt;35，战争：用舌头解不开就用牙齿咬吧！&lt;/p&gt;
 
-&lt;p&gt;36，憎恨别人就像为了逮住一只耗子而不惜烧毁你自己的房子。但耗子不一定逮到了 。 &lt;/p&gt;
+&lt;p&gt;36，憎恨别人就像为了逮住一只耗子而不惜烧毁你自己的房子。但耗子不一定逮到了 。&lt;/p&gt;
 
-&lt;p&gt;37，每个人的一生都有许多梦想，但如果其中一个不断搅扰着你，剩下的就仅仅是行动了。 &lt;/p&gt;
+&lt;p&gt;37，每个人的一生都有许多梦想，但如果其中一个不断搅扰着你，剩下的就仅仅是行动了。&lt;/p&gt;
 
-&lt;p&gt;38，世上只有想不通的人，没有走不通的路。 &lt;/p&gt;
+&lt;p&gt;38，世上只有想不通的人，没有走不通的路。&lt;/p&gt;
 
-&lt;p&gt;39，幸运之神的降临，往往只是因为你多看了一眼，多想了一下，多走了一步。 &lt;/p&gt;
+&lt;p&gt;39，幸运之神的降临，往往只是因为你多看了一眼，多想了一下，多走了一步。&lt;/p&gt;
 
-&lt;p&gt;40，失败发生在彻底的放弃之后。 &lt;/p&gt;
+&lt;p&gt;40，失败发生在彻底的放弃之后。&lt;/p&gt;
 
-&lt;p&gt;41，所谓敌人，不过是那些迫使我们自己变得强大的人。 &lt;/p&gt;
+&lt;p&gt;41，所谓敌人，不过是那些迫使我们自己变得强大的人。&lt;/p&gt;
 
-&lt;p&gt;42，胆怯的人在危险前被吓住了；懦弱的人在危险中被吓住了；勇敢的人在危险过后被吓住了。 &lt;/p&gt;
+&lt;p&gt;42，胆怯的人在危险前被吓住了；懦弱的人在危险中被吓住了；勇敢的人在危险过后被吓住了。&lt;/p&gt;
 
-&lt;p&gt;43，反腐败的风险常常大于搞腐败的风险。――人大代表的不平。 &lt;/p&gt;
+&lt;p&gt;43，反腐败的风险常常大于搞腐败的风险。――人大代表的不平。&lt;/p&gt;
 
-&lt;p&gt;44，使人疲惫的不是远方的高山，而是鞋里的一粒沙子。 &lt;/p&gt;
+&lt;p&gt;44，使人疲惫的不是远方的高山，而是鞋里的一粒沙子。&lt;/p&gt;
 
-&lt;p&gt;45，家庭的幸福需夫妻共同努力，而破坏它，一人就够了。 &lt;/p&gt;
+&lt;p&gt;45，家庭的幸福需夫妻共同努力，而破坏它，一人就够了。&lt;/p&gt;
 
-&lt;p&gt;46，最了解你的人有时不是你的朋友，而是你的敌人。 &lt;/p&gt;
+&lt;p&gt;46，最了解你的人有时不是你的朋友，而是你的敌人。&lt;/p&gt;
 
-&lt;p&gt;47，你若不想做，会找一个或无数个借口；你若想做，会想一个或无数个办法。 &lt;/p&gt;
+&lt;p&gt;47，你若不想做，会找一个或无数个借口；你若想做，会想一个或无数个办法。&lt;/p&gt;
 
-&lt;p&gt;48，看一个人的心术，看他的眼神；看一个人的身价，看他的对手；看一个人的底牌，看他的朋友。 &lt;/p&gt;
+&lt;p&gt;48，看一个人的心术，看他的眼神；看一个人的身价，看他的对手；看一个人的底牌，看他的朋友。&lt;/p&gt;
 
-&lt;p&gt;49，魅力女人，就是有充分的意志力去抵挡男人的进攻，也有足够多的魅力阻挡男人的撤退。 &lt;/p&gt;
+&lt;p&gt;49，魅力女人，就是有充分的意志力去抵挡男人的进攻，也有足够多的魅力阻挡男人的撤退。&lt;/p&gt;
 
-&lt;p&gt;50，山盟海誓是一种经常让高山和海洋领受尴尬的重量级承诺。 &lt;/p&gt;
+&lt;p&gt;50，山盟海誓是一种经常让高山和海洋领受尴尬的重量级承诺。&lt;/p&gt;
 
-&lt;p&gt;51，好女人是一所学校，好男人毕业了可留校任教。 &lt;/p&gt;
+&lt;p&gt;51，好女人是一所学校，好男人毕业了可留校任教。&lt;/p&gt;
 
-&lt;p&gt;52，你不理财，财不理你。 &lt;/p&gt;
+&lt;p&gt;52，你不理财，财不理你。&lt;/p&gt;
 
-&lt;p&gt;53，不要同一个傻瓜争辩，否则别人会搞不清到底谁是傻瓜。 &lt;/p&gt;
+&lt;p&gt;53，不要同一个傻瓜争辩，否则别人会搞不清到底谁是傻瓜。&lt;/p&gt;
 
-&lt;p&gt;54，加班加点，废寝忘食有时很可能是不具备效率和工作能力的表现。 &lt;/p&gt;
+&lt;p&gt;54，加班加点，废寝忘食有时很可能是不具备效率和工作能力的表现。&lt;/p&gt;
 
-&lt;p&gt;55，做父母是个专业性很强的职业，可大部分的父母未经任何培训就上岗了。 &lt;/p&gt;
+&lt;p&gt;55，做父母是个专业性很强的职业，可大部分的父母未经任何培训就上岗了。&lt;/p&gt;
 
-&lt;p&gt;56，凡向鳄鱼池内投掷物品者，必须下池自己捡回。――肯尼亚天然动物园告示 &lt;/p&gt;
+&lt;p&gt;56，凡向鳄鱼池内投掷物品者，必须下池自己捡回。――肯尼亚天然动物园告示&lt;/p&gt;
 
-&lt;p&gt;57，当你想丢点什么的时候请想想，千万别丢脸。――成都垃圾箱，果皮箱上语 &lt;/p&gt;
+&lt;p&gt;57，当你想丢点什么的时候请想想，千万别丢脸。――成都垃圾箱，果皮箱上语&lt;/p&gt;
 
-&lt;p&gt;58，凡是上了年纪的人，大多是反对的太多，商议的太久，行动的太迟，后悔的太早。 &lt;/p&gt;
+&lt;p&gt;58，凡是上了年纪的人，大多是反对的太多，商议的太久，行动的太迟，后悔的太早。&lt;/p&gt;
 
-&lt;p&gt;59，做生意的过程就是一个不断怂恿别人放松警惕，而自己保持高度警惕的过程。 &lt;/p&gt;
+&lt;p&gt;59，做生意的过程就是一个不断怂恿别人放松警惕，而自己保持高度警惕的过程。&lt;/p&gt;
 
-&lt;p&gt;60，打工者做工，小老板做事，中老板做市，大老板做势――你是哪一种？ &lt;/p&gt;
+&lt;p&gt;60，打工者做工，小老板做事，中老板做市，大老板做势――你是哪一种？&lt;/p&gt;
 
-&lt;p&gt;61，成功是一种观念，致富是一种义务，快乐是一种权力。 &lt;/p&gt;
+&lt;p&gt;61，成功是一种观念，致富是一种义务，快乐是一种权力。&lt;/p&gt;
 
-&lt;p&gt;62，聪明人能洞察事物未来的发展趋势。他们在发洪水之前养鸭，而不是养鸡。 &lt;/p&gt;
+&lt;p&gt;62，聪明人能洞察事物未来的发展趋势。他们在发洪水之前养鸭，而不是养鸡。&lt;/p&gt;
 
-&lt;p&gt;63，两种人无药可救：一是不服从命令的人，二是惟命是从的人。 &lt;/p&gt;
+&lt;p&gt;63，两种人无药可救：一是不服从命令的人，二是惟命是从的人。&lt;/p&gt;
 
-&lt;p&gt;64，打算开创新事业时，十人中有一两人赞成时就可开始，以免太迟。 &lt;/p&gt;
+&lt;p&gt;64，打算开创新事业时，十人中有一两人赞成时就可开始，以免太迟。&lt;/p&gt;
 
-&lt;p&gt;65，买保险――用不上时痛苦，用上时更痛苦。 &lt;/p&gt;
+&lt;p&gt;65，买保险――用不上时痛苦，用上时更痛苦。&lt;/p&gt;
 
-&lt;p&gt;66，给猴一棵树，给虎一座山。――用人之道 &lt;/p&gt;
+&lt;p&gt;66，给猴一棵树，给虎一座山。――用人之道&lt;/p&gt;
 
-&lt;p&gt;67，世上有三种人：一是良心被狗吃了的人，二是良心没被狗吃的人，三是良心连狗都不吃的人。 &lt;/p&gt;
+&lt;p&gt;67，世上有三种人：一是良心被狗吃了的人，二是良心没被狗吃的人，三是良心连狗都不吃的人。&lt;/p&gt;
 
 &lt;p&gt;68，你可以先知先觉地领导产业，后知后觉地苦苦追赶，或不知不觉地被淘汰。&lt;/p&gt;
 </description>
@@ -3887,119 +4344,119 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/04/13/NWPU-Airline-Lady-Event/</guid>
-      <description>&lt;p&gt;转载语: 本来一直不打算转载别人的文章,但是文章好啊,好多同学都转了,为了表示我也是西工大的人,破格转一次吧. &lt;/p&gt;
+      <description>&lt;p&gt;转载语: 本来一直不打算转载别人的文章,但是文章好啊,好多同学都转了,为了表示我也是西工大的人,破格转一次吧.&lt;/p&gt;
 
-&lt;p&gt;卷首语：最近网上疯狂流传《飞机上偷摸空姐指南》一文，余闻之不禁窃笑。此文把我的思绪带回到了2001年那个血色的秋天，至今对空乘班的格斗水平记忆犹新。当MM们举起美丽的板砖时我的世界观瞬间崩塌，那横飞的板砖，华丽的粉拳绣腿，以及被轰至渣倒在地上哀号的西工大理科生们–仍然是历历在目，让我们打开这尘封的记忆吧···· &lt;/p&gt;
+&lt;p&gt;卷首语：最近网上疯狂流传《飞机上偷摸空姐指南》一文，余闻之不禁窃笑。此文把我的思绪带回到了2001年那个血色的秋天，至今对空乘班的格斗水平记忆犹新。当MM们举起美丽的板砖时我的世界观瞬间崩塌，那横飞的板砖，华丽的粉拳绣腿，以及被轰至渣倒在地上哀号的西工大理科生们–仍然是历历在目，让我们打开这尘封的记忆吧····&lt;/p&gt;
 
-&lt;p&gt;当年空乘mm们军训时的静坐事件，20连的恐龙逆袭，27舍的惊天群P，永垂校史的报亭之战……至今想起还是热血沸腾。打群架不是希罕事哪个学校都有，只是牵扯到空姐的比较少见，估计打破了很多纯洁少年心中的祭坛。那几个被轰至渣的可怜男生绝对不会同意《飞机上偷摸空姐指南》作者的观点（我估计他们今后一辈子坐飞机都会有心理阴影了，可怜的娃啊），上百人的群骂，壮观啊，热血青春……借某老师一句话：“咱西工大9年都闹没这么大动静……” &lt;/p&gt;
+&lt;p&gt;当年空乘mm们军训时的静坐事件，20连的恐龙逆袭，27舍的惊天群P，永垂校史的报亭之战……至今想起还是热血沸腾。打群架不是希罕事哪个学校都有，只是牵扯到空姐的比较少见，估计打破了很多纯洁少年心中的祭坛。那几个被轰至渣的可怜男生绝对不会同意《飞机上偷摸空姐指南》作者的观点（我估计他们今后一辈子坐飞机都会有心理阴影了，可怜的娃啊），上百人的群骂，壮观啊，热血青春……借某老师一句话：“咱西工大9年都闹没这么大动静……”&lt;/p&gt;
 
 &lt;p&gt;第一章：&lt;/p&gt;
 
-&lt;p&gt;华丽入场！宅男的萌思！ 西工大招收第一批空乘，是在2000年。那还是空乘专业相对少见的年代，空姐两字，在俺们滴心目中那是闪闪发光啊。要知道，工大——不管是什么工大——男女比例都相当离谱。我们班28人，女生4人，而且都……我没有故意贬低自己同学的意思，但是，单论外表，真的是不堪入目。 &lt;/p&gt;
+&lt;p&gt;华丽入场！宅男的萌思！ 西工大招收第一批空乘，是在2000年。那还是空乘专业相对少见的年代，空姐两字，在俺们滴心目中那是闪闪发光啊。要知道，工大——不管是什么工大——男女比例都相当离谱。我们班28人，女生4人，而且都……我没有故意贬低自己同学的意思，但是，单论外表，真的是不堪入目。&lt;/p&gt;
 
-&lt;p&gt;这就是上个世纪的西工大，一个不适合男人生存的地方。直到招收空乘的消息传出。 &lt;/p&gt;
+&lt;p&gt;这就是上个世纪的西工大，一个不适合男人生存的地方。直到招收空乘的消息传出。&lt;/p&gt;
 
-&lt;p&gt;收空乘的消息无异于晴天霹雳。这事儿的意义可不是沙漠里出现绿洲那么简单：这意味着一个和尚庙可能突然变成帝国华击团，或者星见丘西学园，总之一切ACG中的后宫名岛都突然出现在我们脑海里……不，确切的说只是浮现在我一个人的脑海里，那时候看动漫的人不多，估计我的同学们脑海中浮现的是豹房馆娃宫之类的——听起来有点猥琐，但是你要理解这帮憋了几年的大小伙子们的痛苦所在。 &lt;/p&gt;
+&lt;p&gt;收空乘的消息无异于晴天霹雳。这事儿的意义可不是沙漠里出现绿洲那么简单：这意味着一个和尚庙可能突然变成帝国华击团，或者星见丘西学园，总之一切ACG中的后宫名岛都突然出现在我们脑海里……不，确切的说只是浮现在我一个人的脑海里，那时候看动漫的人不多，估计我的同学们脑海中浮现的是豹房馆娃宫之类的——听起来有点猥琐，但是你要理解这帮憋了几年的大小伙子们的痛苦所在。&lt;/p&gt;
 
-&lt;p&gt;在玫瑰色的幻想和诡异的气氛中，第一届空乘学员开始入学，这也是一切不幸的开始…… &lt;/p&gt;
+&lt;p&gt;在玫瑰色的幻想和诡异的气氛中，第一届空乘学员开始入学，这也是一切不幸的开始……&lt;/p&gt;
 
-&lt;p&gt;2000年的时候大家都觉得空乘专业稀罕，加之是第一届，种种因素交汇之下，进来了不少极品，比如富家小姐或者问题少女之类的存在。而作为稀罕的“空姐”，作为极度稀缺的美女资源，作为一个全新的专业，她们不可避免的受到了多种照顾与特权——满怀羡慕的普通女生，磨拳擦掌的狼样男生，以及小心翼翼把这第一届空姐当宝呵护的校领导。可惜磨拳擦掌的狼样男生渐渐发现事情并不像想想中的那样美好。时值大学开始扩招，本科生渐渐贬值，而空姐可要稀罕得多。加之空姐们相貌出众，很多从小就是被人宠大的，所以一个个都眼高于顶，为人处世又不知留余地。27 舍是无数男生的滑铁卢，“想打空姐主意，至少硕士以上，本科生靠边站！”这类话也是有的。况且以一个无收入的普通男生，也很难供得起一个空姐的高消费—— 单看看27舍门前每天骆绎不绝的私家车，废柴学生们就可以歇着鸟……空姐的入学，并没有缓解男女比例的矛盾，反而进一步激化。吃不到葡萄的人难免会说葡萄酸，而空姐中的少数极品也确实极能折腾，打胎坐台当二奶的就没消停过——好吧，今天学生坐台不希罕，可那是相对纯洁的2000年，还好死不死地撞上pol.ice叔叔大扫除，更糟的是还有电视台现场采访。 &lt;/p&gt;
+&lt;p&gt;2000年的时候大家都觉得空乘专业稀罕，加之是第一届，种种因素交汇之下，进来了不少极品，比如富家小姐或者问题少女之类的存在。而作为稀罕的“空姐”，作为极度稀缺的美女资源，作为一个全新的专业，她们不可避免的受到了多种照顾与特权——满怀羡慕的普通女生，磨拳擦掌的狼样男生，以及小心翼翼把这第一届空姐当宝呵护的校领导。可惜磨拳擦掌的狼样男生渐渐发现事情并不像想想中的那样美好。时值大学开始扩招，本科生渐渐贬值，而空姐可要稀罕得多。加之空姐们相貌出众，很多从小就是被人宠大的，所以一个个都眼高于顶，为人处世又不知留余地。27 舍是无数男生的滑铁卢，“想打空姐主意，至少硕士以上，本科生靠边站！”这类话也是有的。况且以一个无收入的普通男生，也很难供得起一个空姐的高消费—— 单看看27舍门前每天骆绎不绝的私家车，废柴学生们就可以歇着鸟……空姐的入学，并没有缓解男女比例的矛盾，反而进一步激化。吃不到葡萄的人难免会说葡萄酸，而空姐中的少数极品也确实极能折腾，打胎坐台当二奶的就没消停过——好吧，今天学生坐台不希罕，可那是相对纯洁的2000年，还好死不死地撞上pol.ice叔叔大扫除，更糟的是还有电视台现场采访。&lt;/p&gt;
 
-&lt;p&gt;话说回来，纵然空姐班里有一些极品，一个巴掌还是拍不响的，废柴男生们的确是带着有色眼镜来看她们的——不太好形容，有点类似于看风尘女子的那种感觉，因为空姐们自打入学——不对，是从入学之前开始，就注定了被意淫的命运。 &lt;/p&gt;
+&lt;p&gt;话说回来，纵然空姐班里有一些极品，一个巴掌还是拍不响的，废柴男生们的确是带着有色眼镜来看她们的——不太好形容，有点类似于看风尘女子的那种感觉，因为空姐们自打入学——不对，是从入学之前开始，就注定了被意淫的命运。&lt;/p&gt;
 
-&lt;p&gt;还有一方面矛盾不可不提的，就是普通的女大学生与空姐们之间的矛盾。女人与女人之间的矛盾很难解释，但却绝对可怕。 &lt;/p&gt;
+&lt;p&gt;还有一方面矛盾不可不提的，就是普通的女大学生与空姐们之间的矛盾。女人与女人之间的矛盾很难解释，但却绝对可怕。&lt;/p&gt;
 
-&lt;p&gt;种种怨念的终点，就是军训时的爆发。 &lt;/p&gt;
+&lt;p&gt;种种怨念的终点，就是军训时的爆发。&lt;/p&gt;
 
 &lt;p&gt;第二章：爆燃！女人的怨念！！&lt;/p&gt;
 
-&lt;p&gt;新生入学一般都是直接军训，而有些时候考虑到各方面因素和课程安排，也可能会把军训调整到大一结束时的暑假进行。空姐的军训，就在第二年的暑假。积攒一年的种种怨念与矛盾，终于在这一刻点燃。 &lt;/p&gt;
+&lt;p&gt;新生入学一般都是直接军训，而有些时候考虑到各方面因素和课程安排，也可能会把军训调整到大一结束时的暑假进行。空姐的军训，就在第二年的暑假。积攒一年的种种怨念与矛盾，终于在这一刻点燃。&lt;/p&gt;
 
-&lt;p&gt;这不是男人与女人之间的战争，这也不是女人与女人之间的战争，这是极度混乱的群斗……要详细描述这场战争是很困难的，因为情况太过复杂，而且我亦未能见证全部。但是，无论哪一个版本的传说，有两个军训时的连队都是绝对无法回避的，那就是恐龙之20连（理科生女学员连）和空姐之21连。 &lt;/p&gt;
+&lt;p&gt;这不是男人与女人之间的战争，这也不是女人与女人之间的战争，这是极度混乱的群斗……要详细描述这场战争是很困难的，因为情况太过复杂，而且我亦未能见证全部。但是，无论哪一个版本的传说，有两个军训时的连队都是绝对无法回避的，那就是恐龙之20连（理科生女学员连）和空姐之21连。&lt;/p&gt;
 
-&lt;p&gt;当然这种称呼未必公平，20连的mm不见得都是恐龙，21连的空姐们也未必个个都是绝色。不过龙战士之逆袭名声在外，姑且用之。今天我们很难考证到底是谁先动手，可以理解，人类历史上很多战争乒乒乓乓的打了几十年甚至几辈子也说不清到底是谁开的第一枪——不是历史学家太废柴，而且情况太复杂。每次集会，20 连和21连自然是挨边坐，摩擦向来不少，像“个子矮就老实呆着，站什么站。”这类的话21连没少说。甚至还有的放出豪言：没有空姐，西工大的男生怎么活！……空姐的27舍是学校里最好的宿舍，这一年中享受着超越普通学生的优厚待遇。军训拉练时，别的同学几乎都是只带一个军用水壶，空姐们却大包小包，零食，CD，随身听，不像拉练，更像旅游。女生的矛盾，可以从鸡毛蒜皮开始，累积到无以复加；20连和21连的矛盾，说起来也是源远流长。只要积怨够深，一个眼神、一个动作就可以成为火拼的理由，所谓睚眦即杀人，大抵如是。 &lt;/p&gt;
+&lt;p&gt;当然这种称呼未必公平，20连的mm不见得都是恐龙，21连的空姐们也未必个个都是绝色。不过龙战士之逆袭名声在外，姑且用之。今天我们很难考证到底是谁先动手，可以理解，人类历史上很多战争乒乒乓乓的打了几十年甚至几辈子也说不清到底是谁开的第一枪——不是历史学家太废柴，而且情况太复杂。每次集会，20 连和21连自然是挨边坐，摩擦向来不少，像“个子矮就老实呆着，站什么站。”这类的话21连没少说。甚至还有的放出豪言：没有空姐，西工大的男生怎么活！……空姐的27舍是学校里最好的宿舍，这一年中享受着超越普通学生的优厚待遇。军训拉练时，别的同学几乎都是只带一个军用水壶，空姐们却大包小包，零食，CD，随身听，不像拉练，更像旅游。女生的矛盾，可以从鸡毛蒜皮开始，累积到无以复加；20连和21连的矛盾，说起来也是源远流长。只要积怨够深，一个眼神、一个动作就可以成为火拼的理由，所谓睚眦即杀人，大抵如是。&lt;/p&gt;
 
-&lt;p&gt;学生军训结束时一般有两个必经的仪式：分列式阅兵，以及晚上的合唱比赛——这两件事都很要命。 &lt;/p&gt;
+&lt;p&gt;学生军训结束时一般有两个必经的仪式：分列式阅兵，以及晚上的合唱比赛——这两件事都很要命。&lt;/p&gt;
 
-&lt;p&gt;合唱比赛是压死骆驼的最后一根稻草。轮到空姐们上台唱的时候，台下一片嘘声，男生们大喝倒彩。根据一些风传的解释，那晚男生们嘘21连是因为白天训练时有几个连受21连羞辱：“看什么看，傻X！”估计空姐们自打入学以来没少承受色狼们的目光洗礼，已经快到暴走的临界点了。加之她们当中脾气大的不乏其人，被人看了不骂回去才怪。那一年里俺也听到过一些仁兄平时在校园里偷眼看空姐们，而被痛骂的传说，而且这样的消息不止一次。 &lt;/p&gt;
+&lt;p&gt;合唱比赛是压死骆驼的最后一根稻草。轮到空姐们上台唱的时候，台下一片嘘声，男生们大喝倒彩。根据一些风传的解释，那晚男生们嘘21连是因为白天训练时有几个连受21连羞辱：“看什么看，傻X！”估计空姐们自打入学以来没少承受色狼们的目光洗礼，已经快到暴走的临界点了。加之她们当中脾气大的不乏其人，被人看了不骂回去才怪。那一年里俺也听到过一些仁兄平时在校园里偷眼看空姐们，而被痛骂的传说，而且这样的消息不止一次。&lt;/p&gt;
 
-&lt;p&gt;不过根据政委的推测，这嘘声里应该还要加上男生们的酸葡萄心理，以及这一年里积攒下的怨念。这种喝倒彩的情况，有脾气的人都忍不下，何况这些脾气特大的大小姐们。被嘘的空姐自然没有拿到第一，这还罢了，问题是拿了冠军的，恰恰是她们的宿敌——20连！！！ &lt;/p&gt;
+&lt;p&gt;不过根据政委的推测，这嘘声里应该还要加上男生们的酸葡萄心理，以及这一年里积攒下的怨念。这种喝倒彩的情况，有脾气的人都忍不下，何况这些脾气特大的大小姐们。被嘘的空姐自然没有拿到第一，这还罢了，问题是拿了冠军的，恰恰是她们的宿敌——20连！！！&lt;/p&gt;
 
-&lt;p&gt;合唱比赛的结束，就是第一次静坐事件的开始。比赛结束后，空姐们在东方红广场就地静坐示威，直至深夜才返回27舍。这里要说一下地形：东方红广场的北面是爱生舞台，南面是英才路，周围环绕着宿舍食堂等；爱生舞台即是合唱的表演台，一个连队上台唱歌的时候其他连队就在下面东方红广场上集合。27舍就在爱生舞台的背面，也就是紧挨着东方红广场的北侧。第一次静坐持续到大概晚上一两点钟，不过收工了也不太平。空姐们要生气，可不是坐坐就算。作为爆发的前奏，回到27舍得空姐们把灌满水的饮料瓶从楼上（空姐住在三楼）扔到爱生舞台的顶棚上，还不停的敲暖气管道，一个楼的人都没法睡觉。更有甚者，把脏水从六楼的窗户向外泼，沿用一句经典台词：“空姐发怒了，打雷收衣服啊！”…… &lt;/p&gt;
+&lt;p&gt;合唱比赛的结束，就是第一次静坐事件的开始。比赛结束后，空姐们在东方红广场就地静坐示威，直至深夜才返回27舍。这里要说一下地形：东方红广场的北面是爱生舞台，南面是英才路，周围环绕着宿舍食堂等；爱生舞台即是合唱的表演台，一个连队上台唱歌的时候其他连队就在下面东方红广场上集合。27舍就在爱生舞台的背面，也就是紧挨着东方红广场的北侧。第一次静坐持续到大概晚上一两点钟，不过收工了也不太平。空姐们要生气，可不是坐坐就算。作为爆发的前奏，回到27舍得空姐们把灌满水的饮料瓶从楼上（空姐住在三楼）扔到爱生舞台的顶棚上，还不停的敲暖气管道，一个楼的人都没法睡觉。更有甚者，把脏水从六楼的窗户向外泼，沿用一句经典台词：“空姐发怒了，打雷收衣服啊！”……&lt;/p&gt;
 
-&lt;p&gt;比起后来的一切，这不过是小case，天子之怒，伏尸千里；空姐们要生气，也绝不是坐坐就算。如果你以为空姐们只是像普通学生毕业那般砸砸瓶瓶罐罐就可以发泄妥当，那就大错特错鸟。 &lt;/p&gt;
+&lt;p&gt;比起后来的一切，这不过是小case，天子之怒，伏尸千里；空姐们要生气，也绝不是坐坐就算。如果你以为空姐们只是像普通学生毕业那般砸砸瓶瓶罐罐就可以发泄妥当，那就大错特错鸟。&lt;/p&gt;
 
-&lt;p&gt;只是当时没有人想到，没有一个人想到。 &lt;/p&gt;
+&lt;p&gt;只是当时没有人想到，没有一个人想到。&lt;/p&gt;
 
 &lt;p&gt;第三章：狭路之宿敌！激斗！！&lt;/p&gt;
 
-&lt;p&gt;21连和20连的冲突只是乱世的序曲，真正的暴风雨即将到来…… &lt;/p&gt;
+&lt;p&gt;21连和20连的冲突只是乱世的序曲，真正的暴风雨即将到来……&lt;/p&gt;
 
-&lt;p&gt;（路人甲：不就是几个丫头撒泼吗?）一般的丫头撒泼可到不了这种程度。要撒泼撒到辅导员下跪，撒到校领导全到现场劝说，撒到武警教官采取了肢体方式“检讨”自己直至瘀青擦伤……要知道，静坐那天还是211工程验收。另外不要小瞧女生的战斗力，尤其是群架场合。170的mm某些情况下可以看作185的男人…… &lt;/p&gt;
+&lt;p&gt;（路人甲：不就是几个丫头撒泼吗?）一般的丫头撒泼可到不了这种程度。要撒泼撒到辅导员下跪，撒到校领导全到现场劝说，撒到武警教官采取了肢体方式“检讨”自己直至瘀青擦伤……要知道，静坐那天还是211工程验收。另外不要小瞧女生的战斗力，尤其是群架场合。170的mm某些情况下可以看作185的男人……&lt;/p&gt;
 
-&lt;p&gt;空姐们会夺得第一阶段的胜利。她们相当团结，而且战斗意志高涨，开局必然是轻易地将废柴男生击溃。当然，能否巩固战果就很难说了，绝对数量相差过大。还好，天朝没有搞大逃杀的兴致，所以第二天还是正常的分列式阅兵。 &lt;/p&gt;
+&lt;p&gt;空姐们会夺得第一阶段的胜利。她们相当团结，而且战斗意志高涨，开局必然是轻易地将废柴男生击溃。当然，能否巩固战果就很难说了，绝对数量相差过大。还好，天朝没有搞大逃杀的兴致，所以第二天还是正常的分列式阅兵。&lt;/p&gt;
 
-&lt;p&gt;这个分列式不用多说，各位想必都经历过。但是很诡异的一点是，空姐的方阵走的相当好，却没有拿到优秀方阵奖而给了一个最佳服务奖——即使是从吾等旁观者的角度来看，也有不够公平。而且，矛盾焦点就在“服务”这个词上。分列式汇演上，各连的方阵从主席台经过时广播里都有介绍，是和专业有关的。比如“这是XX系的方阵，他们如何如何如何”。 &lt;/p&gt;
+&lt;p&gt;这个分列式不用多说，各位想必都经历过。但是很诡异的一点是，空姐的方阵走的相当好，却没有拿到优秀方阵奖而给了一个最佳服务奖——即使是从吾等旁观者的角度来看，也有不够公平。而且，矛盾焦点就在“服务”这个词上。分列式汇演上，各连的方阵从主席台经过时广播里都有介绍，是和专业有关的。比如“这是XX系的方阵，他们如何如何如何”。&lt;/p&gt;
 
-&lt;p&gt;轮到空姐方阵，也就是21连经过时，对她们的介绍中有一句是“多次承担了学校的对外接待工作”，因为自打招了空乘之后，人尽其才、物尽其用，但凡学校一些活动、庆典之类的场合，空姐都要出来当花瓶的——大体相当于礼仪小姐了，不管是在校内接待来客访问还是拿出去活动亮相（每年颁发学位证都是一乘务MM站在旁边拿着），一水儿身材窈窕的空姐制服整齐的往那儿一站，闪闪耀眼，那是倍儿有面子，别的学校哪有咱这阵势？ &lt;/p&gt;
+&lt;p&gt;轮到空姐方阵，也就是21连经过时，对她们的介绍中有一句是“多次承担了学校的对外接待工作”，因为自打招了空乘之后，人尽其才、物尽其用，但凡学校一些活动、庆典之类的场合，空姐都要出来当花瓶的——大体相当于礼仪小姐了，不管是在校内接待来客访问还是拿出去活动亮相（每年颁发学位证都是一乘务MM站在旁边拿着），一水儿身材窈窕的空姐制服整齐的往那儿一站，闪闪耀眼，那是倍儿有面子，别的学校哪有咱这阵势？&lt;/p&gt;
 
-&lt;p&gt;是的，这句话原本没错，但是我觉得写稿的人还是应该仔细斟酌一下先，因为在这个不纯洁的年代“接待”可以有很黄很暴力的解释，而男人们听到后思维无疑都往胯下走。随着念稿人说出那句“多次承担了学校的对外接待工作”，台下很多连队的男生们顿时放声暴笑起来！ &lt;/p&gt;
+&lt;p&gt;是的，这句话原本没错，但是我觉得写稿的人还是应该仔细斟酌一下先，因为在这个不纯洁的年代“接待”可以有很黄很暴力的解释，而男人们听到后思维无疑都往胯下走。随着念稿人说出那句“多次承担了学校的对外接待工作”，台下很多连队的男生们顿时放声暴笑起来！&lt;/p&gt;
 
-&lt;p&gt;唉，要知道，空姐们昨儿的火还没消呐。可以想象，伴随着这些笑声，她们怒槽已然全满。怒槽全满的时候，就是暴气、暴种、暴走的时候，就是释放华丽的必杀的时候，就是名垂校史的——报、亭、之、战爆发的时候！ &lt;/p&gt;
+&lt;p&gt;唉，要知道，空姐们昨儿的火还没消呐。可以想象，伴随着这些笑声，她们怒槽已然全满。怒槽全满的时候，就是暴气、暴种、暴走的时候，就是释放华丽的必杀的时候，就是名垂校史的——报、亭、之、战爆发的时候！&lt;/p&gt;
 
-&lt;p&gt;报亭今日犹在。其实这个报亭只是个普通的报亭，再平凡没有，你在这里只能买到当月的各种杂志和报纸，还不打折。尽管这里毫无特别之处，连AV和盗版碟都买不到，但是，这是通向操场的咽喉要道，战役爆发于此是历史的必然。而且报亭紧挨着6舍。 &lt;/p&gt;
+&lt;p&gt;报亭今日犹在。其实这个报亭只是个普通的报亭，再平凡没有，你在这里只能买到当月的各种杂志和报纸，还不打折。尽管这里毫无特别之处，连AV和盗版碟都买不到，但是，这是通向操场的咽喉要道，战役爆发于此是历史的必然。而且报亭紧挨着6舍。&lt;/p&gt;
 
-&lt;p&gt;6舍，是当时教官们的驻地。 &lt;/p&gt;
+&lt;p&gt;6舍，是当时教官们的驻地。&lt;/p&gt;
 
-&lt;p&gt;分列式汇演刚结束，空姐们就涌向了6舍，放心，是要讨个说法，不是找教官们PK。毕竟教官们不是大一的毛头小子，不会跟她们打起来，况且教官们作为专业战斗人员（武警学员警官），要是真打起来也没悬念，也就不会有后面的事情发生。一时间，6舍前面莺莺燕燕、群雌粥粥，而五舍和六舍之间的道路被她们完全封锁。 &lt;/p&gt;
+&lt;p&gt;分列式汇演刚结束，空姐们就涌向了6舍，放心，是要讨个说法，不是找教官们PK。毕竟教官们不是大一的毛头小子，不会跟她们打起来，况且教官们作为专业战斗人员（武警学员警官），要是真打起来也没悬念，也就不会有后面的事情发生。一时间，6舍前面莺莺燕燕、群雌粥粥，而五舍和六舍之间的道路被她们完全封锁。&lt;/p&gt;
 
 &lt;p&gt;第四章：全灭！理科生耻辱之碑西工大！&lt;/p&gt;
 
-&lt;p&gt;历史的车轮，总喜欢借凡人之手开始滚动…… &lt;/p&gt;
+&lt;p&gt;历史的车轮，总喜欢借凡人之手开始滚动……&lt;/p&gt;
 
-&lt;p&gt;这时候男主角登场了，其实这一系列事件中并无特定的男主角，只是他不幸成为了天字第一号炮灰。据说他是ZK系的。他要从那条路过，就是从五舍和六舍之间穿过，空姐们已经把路封锁，不允许对方通过——可见空姐们是有战略头脑的，计划停当，分工有序，意志坚强。 &lt;/p&gt;
+&lt;p&gt;这时候男主角登场了，其实这一系列事件中并无特定的男主角，只是他不幸成为了天字第一号炮灰。据说他是ZK系的。他要从那条路过，就是从五舍和六舍之间穿过，空姐们已经把路封锁，不允许对方通过——可见空姐们是有战略头脑的，计划停当，分工有序，意志坚强。&lt;/p&gt;
 
-&lt;p&gt;那小子说：“是老师不让过，还是你们不让过？”空姐们说，是我们不让过。那小子颇为不耐，说了句：“你们算个屁啊？”可怜的主角男，你真是不晓得女人的厉害。——是的，虽然那一刻以前我们都不晓得，但是去送死的就是你了！这一句口舌之快的后果就是将近20个女生冲了上去。二十比一！！ &lt;/p&gt;
+&lt;p&gt;那小子说：“是老师不让过，还是你们不让过？”空姐们说，是我们不让过。那小子颇为不耐，说了句：“你们算个屁啊？”可怜的主角男，你真是不晓得女人的厉害。——是的，虽然那一刻以前我们都不晓得，但是去送死的就是你了！这一句口舌之快的后果就是将近20个女生冲了上去。二十比一！！&lt;/p&gt;
 
-&lt;p&gt;而男方还没清醒过来——谁能想到空姐们会动手而且是群殴？谁以前正视过女人拳脚的威力？谁能在这一瞬间认清局势，而不是在奇怪“怎么会这样”或者犹豫“该不该还手，该不该打女人”？——如果你在这种犹豫中挨了几拳后，就更难做出正确的判断！ &lt;/p&gt;
+&lt;p&gt;而男方还没清醒过来——谁能想到空姐们会动手而且是群殴？谁以前正视过女人拳脚的威力？谁能在这一瞬间认清局势，而不是在奇怪“怎么会这样”或者犹豫“该不该还手，该不该打女人”？——如果你在这种犹豫中挨了几拳后，就更难做出正确的判断！&lt;/p&gt;
 
-&lt;p&gt;乱拳打死老师傅，何况一名字都没有的所谓主角？当时的情况，除非是以专业格斗家的身手，迅速放倒迎面的对手然后立即突围、再寻求帮手或者打运动战。街头群斗中稍有犹豫，就是一个死字！ &lt;/p&gt;
+&lt;p&gt;乱拳打死老师傅，何况一名字都没有的所谓主角？当时的情况，除非是以专业格斗家的身手，迅速放倒迎面的对手然后立即突围、再寻求帮手或者打运动战。街头群斗中稍有犹豫，就是一个死字！&lt;/p&gt;
 
-&lt;p&gt;赞美伟大的辅导员——ZHW等几位老师们，若不是老师们把他救出来，我们的主角男就可以穿越到异界去建立后宫了。 &lt;/p&gt;
+&lt;p&gt;赞美伟大的辅导员——ZHW等几位老师们，若不是老师们把他救出来，我们的主角男就可以穿越到异界去建立后宫了。&lt;/p&gt;
 
-&lt;p&gt;主角男一击脱离，但是事态已然不可控制。21连的空姐们开始追击其他在场的男生们，当时西工大还没有体育生，男生多是戴着高度眼镜的书虫和宅男们，毫无准备的男生们瞬间崩溃，四下奔逃！ &lt;/p&gt;
+&lt;p&gt;主角男一击脱离，但是事态已然不可控制。21连的空姐们开始追击其他在场的男生们，当时西工大还没有体育生，男生多是戴着高度眼镜的书虫和宅男们，毫无准备的男生们瞬间崩溃，四下奔逃！&lt;/p&gt;
 
-&lt;p&gt;没错！是四下奔逃！四下奔逃的男生们！ &lt;/p&gt;
+&lt;p&gt;没错！是四下奔逃！四下奔逃的男生们！&lt;/p&gt;
 
-&lt;p&gt;这是西工大历史上最耻辱的一幕！我所拥有的常识在一瞬间崩塌，我的的世界观在一瞬间改变了……女性，并不是弱者……女人的斗魂从来就不逊于男人！ &lt;/p&gt;
+&lt;p&gt;这是西工大历史上最耻辱的一幕！我所拥有的常识在一瞬间崩塌，我的的世界观在一瞬间改变了……女性，并不是弱者……女人的斗魂从来就不逊于男人！&lt;/p&gt;
 
 &lt;p&gt;终章：流放的哀思。&lt;/p&gt;
 
-&lt;p&gt;正所谓：狭巷短兵相接处，杀人如草不闻声。和这惊天一战相比，后面的第二次静坐事件都不算什么了，虽然要说惊险那也是千钧一发。当天正值211工程验收，专家组检查结束，车队前脚刚出学校，空姐们就冲到教学区东门口——请参照地图——至学校南门那一地段，再度开始静坐，同时掏出手机——当年手机在空姐中的普及率还是较高的——打电话给媒体，力图扩大影响。还好错过了211检查组，，不然学校这脸还真丢大了。剩下的战斗说难不难，也就是关门放狗。媒体，不让他们进来就好；空姐，可以慢慢调教。 &lt;/p&gt;
+&lt;p&gt;正所谓：狭巷短兵相接处，杀人如草不闻声。和这惊天一战相比，后面的第二次静坐事件都不算什么了，虽然要说惊险那也是千钧一发。当天正值211工程验收，专家组检查结束，车队前脚刚出学校，空姐们就冲到教学区东门口——请参照地图——至学校南门那一地段，再度开始静坐，同时掏出手机——当年手机在空姐中的普及率还是较高的——打电话给媒体，力图扩大影响。还好错过了211检查组，，不然学校这脸还真丢大了。剩下的战斗说难不难，也就是关门放狗。媒体，不让他们进来就好；空姐，可以慢慢调教。&lt;/p&gt;
 
-&lt;p&gt;估计领导们都被那一战打清醒了，这一次学校的应对相当迅速，杀伐果断不逊于当今圣上。关死大门，封锁现场，在家的校领导全到现场，劝说转移到阶四对话。在阶梯教室里辅导员老师和军训教官违心的做了“检讨”，几位武警学院的教官还采取了肢体方式“检讨”自己……毕竟，已经是暑假了，乱子虽大，也不难办。后面就是放假，个别谈话，调查，集体开会，以及……搬家。 &lt;/p&gt;
+&lt;p&gt;估计领导们都被那一战打清醒了，这一次学校的应对相当迅速，杀伐果断不逊于当今圣上。关死大门，封锁现场，在家的校领导全到现场，劝说转移到阶四对话。在阶梯教室里辅导员老师和军训教官违心的做了“检讨”，几位武警学院的教官还采取了肢体方式“检讨”自己……毕竟，已经是暑假了，乱子虽大，也不难办。后面就是放假，个别谈话，调查，集体开会，以及……搬家。&lt;/p&gt;
 
-&lt;p&gt;是的，搬家。距离不见得是良药，但是向来很有效。空姐们被发配到了新校区，包括当年主管学生工作的学生处处长也被打包踢了过去。新校区在沣峪口，背靠秦岭，可以说山清水秀，换个说法也就是荒山野岭，青灯古佛。后来我们航模队活动，去过那里几次。大约一小时车程吧，空气比城里好了不少，天很高，站在校园里，就能看到墙外连绵的远山。建筑都是新的，看起来很干净的感觉；只是没有本校那种熙熙攘攘的热闹，空气中飘着一丝寥落。 &lt;/p&gt;
+&lt;p&gt;是的，搬家。距离不见得是良药，但是向来很有效。空姐们被发配到了新校区，包括当年主管学生工作的学生处处长也被打包踢了过去。新校区在沣峪口，背靠秦岭，可以说山清水秀，换个说法也就是荒山野岭，青灯古佛。后来我们航模队活动，去过那里几次。大约一小时车程吧，空气比城里好了不少，天很高，站在校园里，就能看到墙外连绵的远山。建筑都是新的，看起来很干净的感觉；只是没有本校那种熙熙攘攘的热闹，空气中飘着一丝寥落。&lt;/p&gt;
 
-&lt;p&gt;暑假过后，便是新生入学。又有了充满朝气的少年们，军训，适应宿舍，交新的朋友，接受大学的生活方式，然后便是黄叶凋零的秋天。 &lt;/p&gt;
+&lt;p&gt;暑假过后，便是新生入学。又有了充满朝气的少年们，军训，适应宿舍，交新的朋友，接受大学的生活方式，然后便是黄叶凋零的秋天。&lt;/p&gt;
 
-&lt;p&gt;然后的然后，在梧桐树下，会有学弟问我—— &lt;/p&gt;
+&lt;p&gt;然后的然后，在梧桐树下，会有学弟问我——&lt;/p&gt;
 
-&lt;p&gt;“学长，我们学校不是有很多空姐吗？为什么放眼看去全是恐龙？” &lt;/p&gt;
+&lt;p&gt;“学长，我们学校不是有很多空姐吗？为什么放眼看去全是恐龙？”&lt;/p&gt;
 
-&lt;p&gt;“空姐……” &lt;/p&gt;
+&lt;p&gt;“空姐……”&lt;/p&gt;
 
-&lt;p&gt;我的思绪飘向了秦岭，飘向了那承载南北岁月的山峦。 &lt;/p&gt;
+&lt;p&gt;我的思绪飘向了秦岭，飘向了那承载南北岁月的山峦。&lt;/p&gt;
 
-&lt;p&gt;“学长？” &lt;/p&gt;
+&lt;p&gt;“学长？”&lt;/p&gt;
 
-&lt;p&gt;“呃，抱歉走神了。空姐是有的，不过你确定自己足够强壮吗？” &lt;/p&gt;
+&lt;p&gt;“呃，抱歉走神了。空姐是有的，不过你确定自己足够强壮吗？”&lt;/p&gt;
 
-&lt;p&gt;“强壮？”对方的思路显然滑到了前列腺上，“难道空姐都是天生媚骨，一般的男人扛不住？” &lt;/p&gt;
+&lt;p&gt;“强壮？”对方的思路显然滑到了前列腺上，“难道空姐都是天生媚骨，一般的男人扛不住？”&lt;/p&gt;
 
-&lt;p&gt;“……你要这样理解也行，总之，先锻炼好身体，有空我陪你去看。如果你有兴趣，就练习一下格斗技，特别要练好抗击打能力和百米跑。要知道能配上美女的向来只有英雄和勇者啊。” &lt;/p&gt;
+&lt;p&gt;“……你要这样理解也行，总之，先锻炼好身体，有空我陪你去看。如果你有兴趣，就练习一下格斗技，特别要练好抗击打能力和百米跑。要知道能配上美女的向来只有英雄和勇者啊。”&lt;/p&gt;
 
-&lt;p&gt;是的，秋风吹得动落叶，岁月带不走悲伤。 &lt;/p&gt;
+&lt;p&gt;是的，秋风吹得动落叶，岁月带不走悲伤。&lt;/p&gt;
 
 &lt;p&gt;美人和英雄都谢幕了……&lt;/p&gt;
 </description>
@@ -4139,7 +4596,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 
 &lt;p&gt;串门—学门甲&lt;/p&gt;
 
-&lt;p&gt;波子朔有俩个也须娃儿,真也须娃跟尾也须娃儿佛:”够，你朝喔岸挪一哈”.为也须娃儿佛:”厄不,再挪—-秋叠子载哈起啦！”真也须娃佛:”木事，有厄里!”为也须瓦佛：“哼，就你喔米年~~~一ean(鹅暗)子几几恰吧”真业鸟火啦：“咋俩？你个乃炮地，哈死你俩！你求新滴老子卷你哩！！！！厄北你个所跌子地，你把峨阔笑死俩，小心鹅把泥地—-嘀咕子割喽! &lt;/p&gt;
+&lt;p&gt;波子朔有俩个也须娃儿,真也须娃跟尾也须娃儿佛:”够，你朝喔岸挪一哈”.为也须娃儿佛:”厄不,再挪—-秋叠子载哈起啦！”真也须娃佛:”木事，有厄里!”为也须瓦佛：“哼，就你喔米年~~~一ean(鹅暗)子几几恰吧”真业鸟火啦：“咋俩？你个乃炮地，哈死你俩！你求新滴老子卷你哩！！！！厄北你个所跌子地，你把峨阔笑死俩，小心鹅把泥地—-嘀咕子割喽!&lt;/p&gt;
 </description>
     </item>
     
@@ -4155,128 +4612,128 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/03/15/Productivity-And-Production-Relations/</guid>
-      <description>&lt;p&gt;丁：所以只能在美国人的公司里搞科研 &lt;/p&gt;
+      <description>&lt;p&gt;丁：所以只能在美国人的公司里搞科研&lt;/p&gt;
 
-&lt;p&gt;丁：给美国人打工 &lt;/p&gt;
+&lt;p&gt;丁：给美国人打工&lt;/p&gt;
 
-&lt;p&gt;丁：呵呵，其实人家说的很清楚 &lt;/p&gt;
+&lt;p&gt;丁：呵呵，其实人家说的很清楚&lt;/p&gt;
 
-&lt;p&gt;丁：现在的科研不可能单枪匹马了 &lt;/p&gt;
+&lt;p&gt;丁：现在的科研不可能单枪匹马了&lt;/p&gt;
 
-&lt;p&gt;乙：恩 &lt;/p&gt;
+&lt;p&gt;乙：恩&lt;/p&gt;
 
-&lt;p&gt;乙：科研都是大项目 &lt;/p&gt;
+&lt;p&gt;乙：科研都是大项目&lt;/p&gt;
 
-&lt;p&gt;乙：一个人能搞出来除非你是爱因斯坦 &lt;/p&gt;
+&lt;p&gt;乙：一个人能搞出来除非你是爱因斯坦&lt;/p&gt;
 
-&lt;p&gt;丁：本科小兵，硕士小队长，博士大队长而已 &lt;/p&gt;
+&lt;p&gt;丁：本科小兵，硕士小队长，博士大队长而已&lt;/p&gt;
 
-&lt;p&gt;丁：也就理论学界可以搞搞英雄主义 &lt;/p&gt;
+&lt;p&gt;丁：也就理论学界可以搞搞英雄主义&lt;/p&gt;
 
-&lt;p&gt;丁：在咱们实践界 &lt;/p&gt;
+&lt;p&gt;丁：在咱们实践界&lt;/p&gt;
 
-&lt;p&gt;丁：都是大工程…… &lt;/p&gt;
+&lt;p&gt;丁：都是大工程……&lt;/p&gt;
 
-&lt;p&gt;乙：感觉在学校里面那些人，每天工作不超过4小时 &lt;/p&gt;
+&lt;p&gt;乙：感觉在学校里面那些人，每天工作不超过4小时&lt;/p&gt;
 
-&lt;p&gt;丁：安逸啊 &lt;/p&gt;
+&lt;p&gt;丁：安逸啊&lt;/p&gt;
 
-&lt;p&gt;丁：相比之下人家单位工资比我高多了 &lt;/p&gt;
+&lt;p&gt;丁：相比之下人家单位工资比我高多了&lt;/p&gt;
 
-&lt;p&gt;丁：在学校，只要你努努力 &lt;/p&gt;
+&lt;p&gt;丁：在学校，只要你努努力&lt;/p&gt;
 
-&lt;p&gt;丁：比外面整的爽多了 &lt;/p&gt;
+&lt;p&gt;丁：比外面整的爽多了&lt;/p&gt;
 
-&lt;p&gt;丁：现在，就是要做服务业 &lt;/p&gt;
+&lt;p&gt;丁：现在，就是要做服务业&lt;/p&gt;
 
-&lt;p&gt;丁：特别是教育业 &lt;/p&gt;
+&lt;p&gt;丁：特别是教育业&lt;/p&gt;
 
-&lt;p&gt;乙：其实服务业，教育业都是为了实业服务的，真正能够赚钱的是做实业的 &lt;/p&gt;
+&lt;p&gt;乙：其实服务业，教育业都是为了实业服务的，真正能够赚钱的是做实业的&lt;/p&gt;
 
-&lt;p&gt;乙：然后服务业和教育业赚实业者的钱 &lt;/p&gt;
+&lt;p&gt;乙：然后服务业和教育业赚实业者的钱&lt;/p&gt;
 
-&lt;p&gt;乙：就相当于采矿=实业，锻造=服务业 &lt;/p&gt;
+&lt;p&gt;乙：就相当于采矿=实业，锻造=服务业&lt;/p&gt;
 
-&lt;p&gt;丁：这个，不同意 &lt;/p&gt;
+&lt;p&gt;丁：这个，不同意&lt;/p&gt;
 
-&lt;p&gt;丁：因为，做实业的太多了 &lt;/p&gt;
+&lt;p&gt;丁：因为，做实业的太多了&lt;/p&gt;
 
-&lt;p&gt;丁：而且成本太高 &lt;/p&gt;
+&lt;p&gt;丁：而且成本太高&lt;/p&gt;
 
-&lt;p&gt;丁：这个，我们是不用考虑的 &lt;/p&gt;
+&lt;p&gt;丁：这个，我们是不用考虑的&lt;/p&gt;
 
-&lt;p&gt;乙：还记得马克思主义怎么说的吗？ &lt;/p&gt;
+&lt;p&gt;乙：还记得马克思主义怎么说的吗？&lt;/p&gt;
 
-&lt;p&gt;乙：生产力决定生产关系 &lt;/p&gt;
+&lt;p&gt;乙：生产力决定生产关系&lt;/p&gt;
 
-&lt;p&gt;丁：实业是土，服务业是草，是花 &lt;/p&gt;
+&lt;p&gt;丁：实业是土，服务业是草，是花&lt;/p&gt;
 
-&lt;p&gt;丁：我说的是提高生活水平，不是说做事业 &lt;/p&gt;
+&lt;p&gt;丁：我说的是提高生活水平，不是说做事业&lt;/p&gt;
 
-&lt;p&gt;丁：做事业第一步要完成资本的原始积累 &lt;/p&gt;
+&lt;p&gt;丁：做事业第一步要完成资本的原始积累&lt;/p&gt;
 
-&lt;p&gt;丁：这个也是马克思主义说的 &lt;/p&gt;
+&lt;p&gt;丁：这个也是马克思主义说的&lt;/p&gt;
 
-&lt;p&gt;乙：对啊，生产力决定生产关系，你的生产力高了你的关系提高了，关系提高基本上就代表你的生活水平高了 &lt;/p&gt;
+&lt;p&gt;乙：对啊，生产力决定生产关系，你的生产力高了你的关系提高了，关系提高基本上就代表你的生活水平高了&lt;/p&gt;
 
-&lt;p&gt;丁：生产力是说社会平均生产力 &lt;/p&gt;
+&lt;p&gt;丁：生产力是说社会平均生产力&lt;/p&gt;
 
-&lt;p&gt;乙：用在个人也不为错 &lt;/p&gt;
+&lt;p&gt;乙：用在个人也不为错&lt;/p&gt;
 
-&lt;p&gt;丁：所有实业的平均值 &lt;/p&gt;
+&lt;p&gt;丁：所有实业的平均值&lt;/p&gt;
 
-&lt;p&gt;丁：服务业的用处就是以最高生产力为参考，努力提升次高生产力 &lt;/p&gt;
+&lt;p&gt;丁：服务业的用处就是以最高生产力为参考，努力提升次高生产力&lt;/p&gt;
 
 &lt;p&gt;乙：生产力决定生产关系是说你的能力高了能做的事情多了效率高了，那么你的生产关系在提升，为更多的人创造价值，和更多的人合作，发展
-到你领导更多的人 &lt;/p&gt;
+到你领导更多的人&lt;/p&gt;
 
-&lt;p&gt;丁：教育培训业的目的就是为了提升这个 &lt;/p&gt;
+&lt;p&gt;丁：教育培训业的目的就是为了提升这个&lt;/p&gt;
 
-&lt;p&gt;乙：最后当你能对更多人造成影响的时候，你做出的一点点努力其实就会使你生产力得到大幅提升 &lt;/p&gt;
+&lt;p&gt;乙：最后当你能对更多人造成影响的时候，你做出的一点点努力其实就会使你生产力得到大幅提升&lt;/p&gt;
 
-&lt;p&gt;丁：同意 &lt;/p&gt;
+&lt;p&gt;丁：同意&lt;/p&gt;
 
-&lt;p&gt;乙：这就是他们的关系 &lt;/p&gt;
+&lt;p&gt;乙：这就是他们的关系&lt;/p&gt;
 
-&lt;p&gt;丁：影响力决定生产力？ &lt;/p&gt;
+&lt;p&gt;丁：影响力决定生产力？&lt;/p&gt;
 
-&lt;p&gt;丁：你能这么说吗？ &lt;/p&gt;
+&lt;p&gt;丁：你能这么说吗？&lt;/p&gt;
 
-&lt;p&gt;乙：影响力+现有生产力=产生的生产力 &lt;/p&gt;
+&lt;p&gt;乙：影响力+现有生产力=产生的生产力&lt;/p&gt;
 
-&lt;p&gt;乙：是个迭代过程 &lt;/p&gt;
+&lt;p&gt;乙：是个迭代过程&lt;/p&gt;
 
-&lt;p&gt;丁：影响力决定你改变生产力的能力 &lt;/p&gt;
+&lt;p&gt;丁：影响力决定你改变生产力的能力&lt;/p&gt;
 
-&lt;p&gt;乙：影响力就是生产关系 &lt;/p&gt;
+&lt;p&gt;乙：影响力就是生产关系&lt;/p&gt;
 
-&lt;p&gt;丁：是个嵌套关系 &lt;/p&gt;
+&lt;p&gt;丁：是个嵌套关系&lt;/p&gt;
 
-&lt;p&gt;乙：新生产力=旧生产力+生产关系 &lt;/p&gt;
+&lt;p&gt;乙：新生产力=旧生产力+生产关系&lt;/p&gt;
 
-&lt;p&gt;乙：继续迭代 &lt;/p&gt;
+&lt;p&gt;乙：继续迭代&lt;/p&gt;
 
-&lt;p&gt;乙：生产关系=K×生产力 &lt;/p&gt;
+&lt;p&gt;乙：生产关系=K×生产力&lt;/p&gt;
 
-&lt;p&gt;乙：所以说，一边努力提升自己的生产力，一边提高自己的生产关系吧 &lt;/p&gt;
+&lt;p&gt;乙：所以说，一边努力提升自己的生产力，一边提高自己的生产关系吧&lt;/p&gt;
 
-&lt;p&gt;乙：更新下：新生产力=旧生产力×生产关系 &lt;/p&gt;
+&lt;p&gt;乙：更新下：新生产力=旧生产力×生产关系&lt;/p&gt;
 
-&lt;p&gt;乙：我觉得这样更合理 &lt;/p&gt;
+&lt;p&gt;乙：我觉得这样更合理&lt;/p&gt;
 
-&lt;p&gt;丁：生产力=k*生产力^2? &lt;/p&gt;
+&lt;p&gt;丁：生产力=k*生产力^2?&lt;/p&gt;
 
-&lt;p&gt;乙：每次提升的生产关系K都不一样 &lt;/p&gt;
+&lt;p&gt;乙：每次提升的生产关系K都不一样&lt;/p&gt;
 
-&lt;p&gt;乙：所以是一系列K的乘法 &lt;/p&gt;
+&lt;p&gt;乙：所以是一系列K的乘法&lt;/p&gt;
 
-&lt;p&gt;乙：每次的旧生产关系也都不一样 &lt;/p&gt;
+&lt;p&gt;乙：每次的旧生产关系也都不一样&lt;/p&gt;
 
-&lt;p&gt;乙：旧的生产力也不同 &lt;/p&gt;
+&lt;p&gt;乙：旧的生产力也不同&lt;/p&gt;
 
-&lt;p&gt;乙：其实归根结底还是取决于生产力，你自己的能力和效率 &lt;/p&gt;
+&lt;p&gt;乙：其实归根结底还是取决于生产力，你自己的能力和效率&lt;/p&gt;
 
-&lt;p&gt;丁：细节有待商榷，基本框架基本理解，保留意见 &lt;/p&gt;
+&lt;p&gt;丁：细节有待商榷，基本框架基本理解，保留意见&lt;/p&gt;
 
 &lt;p&gt;乙：如果你自己没能力，生产关系也不能提升你的生产力&lt;/p&gt;
 </description>
@@ -4294,43 +4751,43 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/03/13/Joke-Music-Strings/</guid>
-      <description>&lt;p&gt;1.王心凌《爱你》，S.H.E《我爱你》，Beyond《真的爱你》，李宗盛《我是真的爱你》，言承旭《我是真的真的很爱你》。 &lt;/p&gt;
+      <description>&lt;p&gt;1.王心凌《爱你》，S.H.E《我爱你》，Beyond《真的爱你》，李宗盛《我是真的爱你》，言承旭《我是真的真的很爱你》。&lt;/p&gt;
 
-&lt;p&gt;点评：不用这么复杂吧！ &lt;/p&gt;
+&lt;p&gt;点评：不用这么复杂吧！&lt;/p&gt;
 
 &lt;p&gt;【Ace】想起来一个游戏。。。忘了名字～～～也是添加新的字上去&lt;/p&gt;
 
-&lt;p&gt;2.王菲《如果你是假的》，邓丽君《假如我是真的》，萧正楠《假如我是假的》。 &lt;/p&gt;
+&lt;p&gt;2.王菲《如果你是假的》，邓丽君《假如我是真的》，萧正楠《假如我是假的》。&lt;/p&gt;
 
-&lt;p&gt;　点评：能退货么？ &lt;/p&gt;
+&lt;p&gt;　点评：能退货么？&lt;/p&gt;
 
 &lt;p&gt;【Ace】《假如你是真的》，我寒～～～&lt;/p&gt;
 
-&lt;p&gt;3.成龙《我是谁》，蟑螂《忘了我是谁》，蔡依林《你是谁》，许志安《忘了你是谁》。 &lt;/p&gt;
+&lt;p&gt;3.成龙《我是谁》，蟑螂《忘了我是谁》，蔡依林《你是谁》，许志安《忘了你是谁》。&lt;/p&gt;
 
-&lt;p&gt;　点评：你们都需要脑白金！ &lt;/p&gt;
+&lt;p&gt;　点评：你们都需要脑白金！&lt;/p&gt;
 
 &lt;p&gt;【Ace】换个顺序更好：《我是谁》《忘了你是谁》《你是谁》《忘了我是谁》。。。&lt;/p&gt;
 
-&lt;p&gt;4.萧亚轩《一辈子做你的女孩》，龙梅子《下辈子做你的女人》。 &lt;/p&gt;
+&lt;p&gt;4.萧亚轩《一辈子做你的女孩》，龙梅子《下辈子做你的女人》。&lt;/p&gt;
 
-&lt;p&gt;　点评：不错，成熟了！ &lt;/p&gt;
+&lt;p&gt;　点评：不错，成熟了！&lt;/p&gt;
 
-&lt;p&gt;5.朴树《我爱你 再见》，丁薇 《再见 我爱你》 &lt;/p&gt;
+&lt;p&gt;5.朴树《我爱你 再见》，丁薇 《再见 我爱你》&lt;/p&gt;
 
-&lt;p&gt;点评：不送…… &lt;/p&gt;
+&lt;p&gt;点评：不送……&lt;/p&gt;
 
 &lt;p&gt;【Ace】想知道2楼掉下去和20楼掉下去的区别吗？听听这两首歌。&lt;/p&gt;
 
-&lt;p&gt;6.苏永康《男人不该让女人流泪》，陈小春《女人不该让男人太累》。 &lt;/p&gt;
+&lt;p&gt;6.苏永康《男人不该让女人流泪》，陈小春《女人不该让男人太累》。&lt;/p&gt;
 
-&lt;p&gt;点评：多么体贴的小夫妻啊！ &lt;/p&gt;
+&lt;p&gt;点评：多么体贴的小夫妻啊！&lt;/p&gt;
 
 &lt;p&gt;【Ace】男的听两首歌会觉得前面的是男人的责任，后者是女人没做好；女孩听的时候会觉得前者是男人没做好，后者是女人的责任。&lt;/p&gt;
 
-&lt;p&gt;7.姜育恒《爱我你怕了吗》，孙燕姿《害怕》，王力宏《不要害怕》，潘玮柏《我不怕》，赵薇《不怕》，郭美美《不怕不怕啦》，郑伊健《怕什么，什么也不怕》。 &lt;/p&gt;
+&lt;p&gt;7.姜育恒《爱我你怕了吗》，孙燕姿《害怕》，王力宏《不要害怕》，潘玮柏《我不怕》，赵薇《不怕》，郭美美《不怕不怕啦》，郑伊健《怕什么，什么也不怕》。&lt;/p&gt;
 
-&lt;p&gt;　点评：真是人多胆子大！ &lt;/p&gt;
+&lt;p&gt;　点评：真是人多胆子大！&lt;/p&gt;
 
 &lt;p&gt;【Ace】小姜的表白有那么可怕吗？&lt;/p&gt;
 
@@ -4378,49 +4835,49 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/27/About-Career/</guid>
       <description>&lt;p&gt;所谓职业，无非是将自己变成一个聪明的勤快人。&lt;/p&gt;
 
-&lt;p&gt;2004年，集团下属科技公司改组，执行委员会找我谈话，决定派我去兼任科技公司的副总，负责整个公司的业务和人事安排。工作于是无厘头地增加了很多内容。 &lt;/p&gt;
+&lt;p&gt;2004年，集团下属科技公司改组，执行委员会找我谈话，决定派我去兼任科技公司的副总，负责整个公司的业务和人事安排。工作于是无厘头地增加了很多内容。&lt;/p&gt;
 
-&lt;p&gt;当时公司招了大批应届本科和研究生毕业的新新人类。平均年龄25岁。那个新的助理，是经过多次面试后，我亲自招回来的一个女孩。名牌大学本科毕业，聪明、性格活泼。私下里我得承认，我招她的一个很重要的原因，除了她在大学里优秀的表现之外，还因为她写了一手漂亮的字。女孩能写一手好字的不多，尤其像她，看起来长发飘飘，多么女性化的一个姑娘，一手字却写得铿锵倜傥，让我对她不由多了很多好感。 &lt;/p&gt;
+&lt;p&gt;当时公司招了大批应届本科和研究生毕业的新新人类。平均年龄25岁。那个新的助理，是经过多次面试后，我亲自招回来的一个女孩。名牌大学本科毕业，聪明、性格活泼。私下里我得承认，我招她的一个很重要的原因，除了她在大学里优秀的表现之外，还因为她写了一手漂亮的字。女孩能写一手好字的不多，尤其像她，看起来长发飘飘，多么女性化的一个姑娘，一手字却写得铿锵倜傥，让我对她不由多了很多好感。&lt;/p&gt;
 
-&lt;p&gt;手把手地教。从工作流程到待人接物。她也学得快。很多工作一教就上手。一上手就熟练。跟各位同事也相处得颇融洽。我开始慢慢地给她一些协调的工作，各部门之间以及各分公司之间的业务联系和沟通让她尝试着去处理。 &lt;/p&gt;
+&lt;p&gt;手把手地教。从工作流程到待人接物。她也学得快。很多工作一教就上手。一上手就熟练。跟各位同事也相处得颇融洽。我开始慢慢地给她一些协调的工作，各部门之间以及各分公司之间的业务联系和沟通让她尝试着去处理。&lt;/p&gt;
 
-&lt;p&gt;开始经常出错。她很紧张，来找我谈。我告诉她：“错了没关系，你且放心按照你的想法去做。遇到问题了，来问我，我会告诉你该怎么办。”仍然错。又来找我，这次谈得比较深入，她的困惑是，为什么总是让她做这些琐碎的事情？我当时问她：“什么叫做不琐碎的工作呢？” &lt;/p&gt;
+&lt;p&gt;开始经常出错。她很紧张，来找我谈。我告诉她：“错了没关系，你且放心按照你的想法去做。遇到问题了，来问我，我会告诉你该怎么办。”仍然错。又来找我，这次谈得比较深入，她的困惑是，为什么总是让她做这些琐碎的事情？我当时问她：“什么叫做不琐碎的工作呢？”&lt;/p&gt;
 
-&lt;p&gt;她答不上来，想了半天，跟我说：“我总觉得，我的能力不仅仅能做这些，我还能做一些更加重要的事情。”那次谈话，进行了一个小时。我知道，我说的话，她没听进去多少。后来我说：“先把手头的工作做好，避免常识性错误的发生，然后循序渐进吧。” &lt;/p&gt;
+&lt;p&gt;她答不上来，想了半天，跟我说：“我总觉得，我的能力不仅仅能做这些，我还能做一些更加重要的事情。”那次谈话，进行了一个小时。我知道，我说的话，她没听进去多少。后来我说：“先把手头的工作做好，避免常识性错误的发生，然后循序渐进吧。”&lt;/p&gt;
 
-&lt;p&gt;半年以后，她来找我，第一次提出辞职。我推掉了约会，跟她谈辞职的问题。问起辞职的原因，她跟我直言：“本科四年，功课优秀，没想到毕业后找到了工作，却每天处理的都是些琐碎的事情，没有成就感。”我又问她：“你觉得，在你现在所有的工作中，最没有意义的最浪费你的时间精力的工作是什么？”她马上答我：“帮您贴发票，然后报销，到财务去走流程，把现金拿回来给您。” &lt;/p&gt;
+&lt;p&gt;半年以后，她来找我，第一次提出辞职。我推掉了约会，跟她谈辞职的问题。问起辞职的原因，她跟我直言：“本科四年，功课优秀，没想到毕业后找到了工作，却每天处理的都是些琐碎的事情，没有成就感。”我又问她：“你觉得，在你现在所有的工作中，最没有意义的最浪费你的时间精力的工作是什么？”她马上答我：“帮您贴发票，然后报销，到财务去走流程，把现金拿回来给您。”&lt;/p&gt;
 
 &lt;p&gt;我笑着问她：“你帮我贴发票报销有半年了吧？通过这件事儿，你总结出了一些什么信息？”&lt;/p&gt;
 
 &lt;p&gt;她呆了半天，答我：“贴发票就是贴发票，只要财务上不出错不就行了呗，能有什么信息？”&lt;/p&gt;
 
-&lt;p&gt;我说，我来跟你讲讲当年我的做法吧：1998年的时候，我从财务被调到了总经理办公室，担任总经理助理的工作。其中有一项工作，就是跟你现在做的一样，帮总经理报销他所有的票据。本来这个工作就像你刚才说的，把票据贴好，然后完成财务上的流程，就可以了。 &lt;/p&gt;
+&lt;p&gt;我说，我来跟你讲讲当年我的做法吧：1998年的时候，我从财务被调到了总经理办公室，担任总经理助理的工作。其中有一项工作，就是跟你现在做的一样，帮总经理报销他所有的票据。本来这个工作就像你刚才说的，把票据贴好，然后完成财务上的流程，就可以了。&lt;/p&gt;
 
-&lt;p&gt;其实票据是一种数据记录，它记录了和总经理乃至整个公司营运有关的费用情况。看起来没有意义的一堆数据，其实它们涉及了公司各方面的经营和运作。于是我建立了一个表格，将所有总经理在我这里报销的数据按照时间、数额、消费场所、联系人、电话等记录下来。 &lt;/p&gt;
+&lt;p&gt;其实票据是一种数据记录，它记录了和总经理乃至整个公司营运有关的费用情况。看起来没有意义的一堆数据，其实它们涉及了公司各方面的经营和运作。于是我建立了一个表格，将所有总经理在我这里报销的数据按照时间、数额、消费场所、联系人、电话等记录下来。&lt;/p&gt;
 
-&lt;p&gt;我起初建立这个表格的目的很简单，我是想在财务上有据可循，同时万一我的上司有情况来询问我的时候，我会有准确的数据告诉他。通过这样的一份数据统计，渐渐地我发现了一些上级在商务活动中的规律，比如，哪一类的商务活动，经常在什么样的场合，费用预算大概是多少；总经理的公共关系常规和非常规的处理方式，等等。 &lt;/p&gt;
+&lt;p&gt;我起初建立这个表格的目的很简单，我是想在财务上有据可循，同时万一我的上司有情况来询问我的时候，我会有准确的数据告诉他。通过这样的一份数据统计，渐渐地我发现了一些上级在商务活动中的规律，比如，哪一类的商务活动，经常在什么样的场合，费用预算大概是多少；总经理的公共关系常规和非常规的处理方式，等等。&lt;/p&gt;
 
-&lt;p&gt;当我的上级发现，他布置工作给我的时候，我会处理得很妥帖。有一些信息是他根本没有告诉我的，我也能及时准确地处理。他问我为什么，我告诉了他我的工作方法和信息来源。 &lt;/p&gt;
+&lt;p&gt;当我的上级发现，他布置工作给我的时候，我会处理得很妥帖。有一些信息是他根本没有告诉我的，我也能及时准确地处理。他问我为什么，我告诉了他我的工作方法和信息来源。&lt;/p&gt;
 
 &lt;p&gt;渐渐地，他基于这种良性积累，越来越多地交代更加重要的工作。再渐渐地，一种信任和默契就此产生，我升职的时候，他说我是他用过的最好用的助理。&lt;/p&gt;
 
-&lt;p&gt;说完这些长篇大论，我看着这个姑娘，她愣愣地看着我。我跟她直言：“我觉得你最大的问题，是你没有用心。在看似简单不动脑子就能完成的工作里，你没有把你的心沉下去，所以，半年了，你觉得自己没有进步。”她不出声，但是收回了辞职报告。 &lt;/p&gt;
+&lt;p&gt;说完这些长篇大论，我看着这个姑娘，她愣愣地看着我。我跟她直言：“我觉得你最大的问题，是你没有用心。在看似简单不动脑子就能完成的工作里，你没有把你的心沉下去，所以，半年了，你觉得自己没有进步。”她不出声，但是收回了辞职报告。&lt;/p&gt;
 
 &lt;p&gt;又坚持了三个月，她还是辞职了。这次我没有留她，让她走了。&lt;/p&gt;
 
-&lt;p&gt;后来她经常在MSN上跟我聊天，告诉我她的新工作的情况。一年内，她换了三份工作。每一次都坚持不了多久。每一次她都说新的工作不是她想要的工作。2005年的时候，她又一次辞职了，很苦恼，跑来找我，要跟我吃饭。我请她去写字楼后面的商场吃日本料理。吃到中途，忽然跟我说：“我有些明白你以前说的话是什么意思了。” &lt;/p&gt;
+&lt;p&gt;后来她经常在MSN上跟我聊天，告诉我她的新工作的情况。一年内，她换了三份工作。每一次都坚持不了多久。每一次她都说新的工作不是她想要的工作。2005年的时候，她又一次辞职了，很苦恼，跑来找我，要跟我吃饭。我请她去写字楼后面的商场吃日本料理。吃到中途，忽然跟我说：“我有些明白你以前说的话是什么意思了。”&lt;/p&gt;
 
-&lt;p&gt;所谓的职业生涯，其实你很难预测到你将来真正要从事什么工作，将来所要从事的工作，是否跟你在大学里学的专业有关。大多数人，很有可能将来所做的工作，跟他当初所学的专业一点关系都没有。从22岁大学毕业到26岁之间这四年，不是你做了什么，重要的是你在工作中养成了怎么样的良好的工作习惯。这个良好的工作习惯指的是：认真、踏实的工作作风，以及是否学会了如何用最快的时间接受新的事物，发现新事物的内在规律，比别人更短时间内掌握这些规律并且处理好它们。具备了以上的要素，你就成长为一个被人信任的工作的人。 &lt;/p&gt;
+&lt;p&gt;所谓的职业生涯，其实你很难预测到你将来真正要从事什么工作，将来所要从事的工作，是否跟你在大学里学的专业有关。大多数人，很有可能将来所做的工作，跟他当初所学的专业一点关系都没有。从22岁大学毕业到26岁之间这四年，不是你做了什么，重要的是你在工作中养成了怎么样的良好的工作习惯。这个良好的工作习惯指的是：认真、踏实的工作作风，以及是否学会了如何用最快的时间接受新的事物，发现新事物的内在规律，比别人更短时间内掌握这些规律并且处理好它们。具备了以上的要素，你就成长为一个被人信任的工作的人。&lt;/p&gt;
 
-&lt;p&gt;人都有惰性，也都愿意用那些用起来顺手的人。当你具备了被人信任的基础，并且在日常的工作中逐渐表现出你的踏实、聪明和细致的时候，越来越多的工作机会就会提供到你面前。原因很简单，用一句话就能交代清楚并且能被你顺利完成的工作，谁愿意说三句话甚至半小时交代一个怎么都不明白的人呢？沟通也是一种成本，沟通的时间越少，内耗越少，这是作为管理者最清楚的一件事。 &lt;/p&gt;
+&lt;p&gt;人都有惰性，也都愿意用那些用起来顺手的人。当你具备了被人信任的基础，并且在日常的工作中逐渐表现出你的踏实、聪明和细致的时候，越来越多的工作机会就会提供到你面前。原因很简单，用一句话就能交代清楚并且能被你顺利完成的工作，谁愿意说三句话甚至半小时交代一个怎么都不明白的人呢？沟通也是一种成本，沟通的时间越少，内耗越少，这是作为管理者最清楚的一件事。&lt;/p&gt;
 
-&lt;p&gt;当你有比别人更多的工作机会去接触那些你没有接触过的工作的时候，你就有了比别人多的学习机会，人人都喜欢聪明勤奋的学生，作为管理者，大概更是如此。 &lt;/p&gt;
+&lt;p&gt;当你有比别人更多的工作机会去接触那些你没有接触过的工作的时候，你就有了比别人多的学习机会，人人都喜欢聪明勤奋的学生，作为管理者，大概更是如此。&lt;/p&gt;
 
-&lt;p&gt;一个新手，大多数新手，在这四年里，是看不出太大的差距的。但是这四年的经历，为以后职业生涯的发展奠定的基础，是至关重要的。很多人不在乎年轻时走弯路，很多人觉得日常的工作人人都能做好没什么了不起。然而就是这些简单的工作，循序渐进地、隐约地成为今后发展的分水岭。 &lt;/p&gt;
+&lt;p&gt;一个新手，大多数新手，在这四年里，是看不出太大的差距的。但是这四年的经历，为以后职业生涯的发展奠定的基础，是至关重要的。很多人不在乎年轻时走弯路，很多人觉得日常的工作人人都能做好没什么了不起。然而就是这些简单的工作，循序渐进地、隐约地成为今后发展的分水岭。&lt;/p&gt;
 
 &lt;p&gt;漫不经心地对待基层工作的最大损失，就是将看似简单的事物性处理方式，分界成为长远发展的能力问题。&lt;/p&gt;
 
-&lt;p&gt;聪明的人，总是不认为自己的能力有问题。时间长了，他会抱怨自己运气不好，抱怨那些看起来资质普通的人，总能比自己更能走狗屎运。抱怨她容貌比自己好，或者他更会讨领导欢心，等等。慢慢地，影响心态。所谓的怀才不遇，有时是这种情况。 &lt;/p&gt;
+&lt;p&gt;聪明的人，总是不认为自己的能力有问题。时间长了，他会抱怨自己运气不好，抱怨那些看起来资质普通的人，总能比自己更能走狗屎运。抱怨她容貌比自己好，或者他更会讨领导欢心，等等。慢慢地，影响心态。所谓的怀才不遇，有时是这种情况。&lt;/p&gt;
 
 &lt;p&gt;工作需要一个聪明人，工作其实更需要一个踏实的人。在聪明和踏实之间，我更愿意选择后者。而踏实，是人人都能做到的，和先天条件没有太大关系。&lt;/p&gt;
 
@@ -4483,37 +4940,37 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/14/Houseman-Lovers-Day/</guid>
-      <description>&lt;p&gt;今天情人节，对于咱孤家寡人，不想上街抢对对鸳鸯的戏，就宅在家了～，既然过节就要来点不同嘛，焖面！！！ &lt;/p&gt;
+      <description>&lt;p&gt;今天情人节，对于咱孤家寡人，不想上街抢对对鸳鸯的戏，就宅在家了～，既然过节就要来点不同嘛，焖面！！！&lt;/p&gt;
 
-&lt;p&gt;话说焖面可是我爸的绝学，做出来的那面，那豆角，那肉，都无法用语言表达那种酣畅淋漓的吃面快感，如果在我开吃焖面的第一口问我一个问题，我一定是吃完之后才有空来回答你～～～ &lt;/p&gt;
+&lt;p&gt;话说焖面可是我爸的绝学，做出来的那面，那豆角，那肉，都无法用语言表达那种酣畅淋漓的吃面快感，如果在我开吃焖面的第一口问我一个问题，我一定是吃完之后才有空来回答你～～～&lt;/p&gt;
 
-&lt;p&gt;这个路数（Lousou），我经过潜心研究我爸十几年来各种技战术的卧底工作经验，结合我当前突飞猛进的做饭技巧，再加上我饥饿肚皮发出的3级警告信号，我觉得已经到了我来尝试一把的时候了。 &lt;/p&gt;
+&lt;p&gt;这个路数（Lousou），我经过潜心研究我爸十几年来各种技战术的卧底工作经验，结合我当前突飞猛进的做饭技巧，再加上我饥饿肚皮发出的3级警告信号，我觉得已经到了我来尝试一把的时候了。&lt;/p&gt;
 
-&lt;p&gt;无奈，不能照搬我爸的那套路数，因为我没有高压锅，普通的锅只好客串一次主要容器了，豆角，肉，面中午买好，下午5点40开始准备，到6点40的时候搞定！！！ &lt;/p&gt;
+&lt;p&gt;无奈，不能照搬我爸的那套路数，因为我没有高压锅，普通的锅只好客串一次主要容器了，豆角，肉，面中午买好，下午5点40开始准备，到6点40的时候搞定！！！&lt;/p&gt;
 
-&lt;p&gt;结果嘛。。。非常的形似，看大部分（大部分？）东西都非常有胃口。但是至于神嘛，为了保证我们本篇乐观的文章风格，咱们还是放到下回再说吧。 &lt;/p&gt;
+&lt;p&gt;结果嘛。。。非常的形似，看大部分（大部分？）东西都非常有胃口。但是至于神嘛，为了保证我们本篇乐观的文章风格，咱们还是放到下回再说吧。&lt;/p&gt;
 
-&lt;p&gt;什么？不行？那好吧。。。怎么说呢，有以下几点： &lt;/p&gt;
+&lt;p&gt;什么？不行？那好吧。。。怎么说呢，有以下几点：&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;糊锅。我放面的时候下面都是豆角和肉，后来浇汤的时候用筷子轻轻拨了拨上面的面层而已，最后发现糊锅的都是面，它们怎么跑下去的～～～ &lt;/p&gt;
+    &lt;p&gt;糊锅。我放面的时候下面都是豆角和肉，后来浇汤的时候用筷子轻轻拨了拨上面的面层而已，最后发现糊锅的都是面，它们怎么跑下去的～～～&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;面粘。最后出锅的时候，发现有些面还很湿。。。 &lt;/p&gt;
+    &lt;p&gt;面粘。最后出锅的时候，发现有些面还很湿。。。&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;油多。和上面可能算是同一点，那些湿面上面大部分都是油，吃起来有点小腻了～～～～ &lt;/p&gt;
+    &lt;p&gt;油多。和上面可能算是同一点，那些湿面上面大部分都是油，吃起来有点小腻了～～～～&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;肉少。其实，我切肉的时候，起码也有十几片肉啊，为什么最后出锅以后我总共就吃到了2块呢？他们都跑去哪里了？ &lt;/p&gt;
+    &lt;p&gt;肉少。其实，我切肉的时候，起码也有十几片肉啊，为什么最后出锅以后我总共就吃到了2块呢？他们都跑去哪里了？&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/090214_1.jpg&quot; alt=&quot;面1&quot; /&gt;
 &lt;img src=&quot;/img/090214_2.jpg&quot; alt=&quot;面2&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;总的来说嘛，今天是个很好的尝试（也挺失败）。。。以后有机会再尝试好了～～～ &lt;/p&gt;
+&lt;p&gt;总的来说嘛，今天是个很好的尝试（也挺失败）。。。以后有机会再尝试好了～～～&lt;/p&gt;
 </description>
     </item>
     
@@ -4529,67 +4986,67 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/08/Introducing-WM-Softwares/</guid>
-      <description>&lt;p&gt;最近用了一个WM6.1 PPC手机，从网上搜罗了N多软件，好的不好的都拿来玩了一把，在这里列出一些我觉得WM系统必备的软件吧： &lt;/p&gt;
+      <description>&lt;p&gt;最近用了一个WM6.1 PPC手机，从网上搜罗了N多软件，好的不好的都拿来玩了一把，在这里列出一些我觉得WM系统必备的软件吧：&lt;/p&gt;
 
-&lt;p&gt;1,Resco Explorer &lt;/p&gt;
+&lt;p&gt;1,Resco Explorer&lt;/p&gt;
 
-&lt;p&gt;这个是资源管理器的增强版，有了这个就不要用自带的资源管理器了，打开Windows再也不用怀疑是死机了。 &lt;/p&gt;
+&lt;p&gt;这个是资源管理器的增强版，有了这个就不要用自带的资源管理器了，打开Windows再也不用怀疑是死机了。&lt;/p&gt;
 
-&lt;p&gt;2, Resco Registry Add-in &lt;/p&gt;
+&lt;p&gt;2, Resco Registry Add-in&lt;/p&gt;
 
-&lt;p&gt;这个是注册表编辑器，有一些系统优化就需要这个东西来搞定了 &lt;/p&gt;
+&lt;p&gt;这个是注册表编辑器，有一些系统优化就需要这个东西来搞定了&lt;/p&gt;
 
-&lt;p&gt;3,SmallMenu &lt;/p&gt;
+&lt;p&gt;3,SmallMenu&lt;/p&gt;
 
-&lt;p&gt;这个东西会在开始的徽章那里多一个功能出来,生成另一个menu，这个menu相当于windows的快速启动,而且可以快速关闭程序 &lt;/p&gt;
+&lt;p&gt;这个东西会在开始的徽章那里多一个功能出来,生成另一个menu，这个menu相当于windows的快速启动,而且可以快速关闭程序&lt;/p&gt;
 
-&lt;p&gt;4,iLuncher &lt;/p&gt;
+&lt;p&gt;4,iLuncher&lt;/p&gt;
 
-&lt;p&gt;这个东西可以让你的今日显示几个tab,每个tab下面都有不同的图标，相当于多tab的快捷方式组合,图标不大,放得挺多，可以当桌面用 &lt;/p&gt;
+&lt;p&gt;这个东西可以让你的今日显示几个tab,每个tab下面都有不同的图标，相当于多tab的快捷方式组合,图标不大,放得挺多，可以当桌面用&lt;/p&gt;
 
-&lt;p&gt;5,这个应该先说,安装CF2.0和CF3.5 &lt;/p&gt;
+&lt;p&gt;5,这个应该先说,安装CF2.0和CF3.5&lt;/p&gt;
 
-&lt;p&gt;6,QuickClock &lt;/p&gt;
+&lt;p&gt;6,QuickClock&lt;/p&gt;
 
-&lt;p&gt;这个可以在桌面显示一个大钟,并且可以显示未接来电个数,未看短信个数,未看邮件个数,年月日 &lt;/p&gt;
+&lt;p&gt;这个可以在桌面显示一个大钟,并且可以显示未接来电个数,未看短信个数,未看邮件个数,年月日&lt;/p&gt;
 
-&lt;p&gt;7,AddinTimer &lt;/p&gt;
+&lt;p&gt;7,AddinTimer&lt;/p&gt;
 
-&lt;p&gt;这个功能多多,可以定时提醒,定时飞行模式,定时群发单发短信(赞),定时电话，很多功能,自定义音乐,可以选择某个目录让它随机选择音乐提醒，定时变换情景,定时重启,定时运行程序什么的，可以放到今日,看到未结束的所有的定时项目，很好用 &lt;/p&gt;
+&lt;p&gt;这个功能多多,可以定时提醒,定时飞行模式,定时群发单发短信(赞),定时电话，很多功能,自定义音乐,可以选择某个目录让它随机选择音乐提醒，定时变换情景,定时重启,定时运行程序什么的，可以放到今日,看到未结束的所有的定时项目，很好用&lt;/p&gt;
 
-&lt;p&gt;8,手机千千静听 &lt;/p&gt;
+&lt;p&gt;8,手机千千静听&lt;/p&gt;
 
-&lt;p&gt;这个听音乐很舒服,可以看歌词，不过歌词服务器和千千静听不是一个,所以歌词的质量不好，但是如果你音乐文件同一个目录下有同名的lrc文件,它也可以显示歌词 &lt;/p&gt;
+&lt;p&gt;这个听音乐很舒服,可以看歌词，不过歌词服务器和千千静听不是一个,所以歌词的质量不好，但是如果你音乐文件同一个目录下有同名的lrc文件,它也可以显示歌词&lt;/p&gt;
 
-&lt;p&gt;9,CorePlayer &lt;/p&gt;
+&lt;p&gt;9,CorePlayer&lt;/p&gt;
 
-&lt;p&gt;手机上的万能播放器,确实够万能的，连图片都可以看.. 你就当它暴风影音好了 &lt;/p&gt;
+&lt;p&gt;手机上的万能播放器,确实够万能的，连图片都可以看.. 你就当它暴风影音好了&lt;/p&gt;
 
-&lt;p&gt;10, UCWEB &lt;/p&gt;
+&lt;p&gt;10, UCWEB&lt;/p&gt;
 
-&lt;p&gt;上网利器,流量不大,网页速度快,多页面模式，书签也很好用，我今天中午吃饭的地方就是用它上dianping和ddmap找到的 &lt;/p&gt;
+&lt;p&gt;上网利器,流量不大,网页速度快,多页面模式，书签也很好用，我今天中午吃饭的地方就是用它上dianping和ddmap找到的&lt;/p&gt;
 
-&lt;p&gt;11,KAV &lt;/p&gt;
+&lt;p&gt;11,KAV&lt;/p&gt;
 
-&lt;p&gt;手机上的卡巴斯基，新短信拦截查毒,陌生号码会问你是否加入黑名单.. 可以Full Scan，好像不消耗很多内存，平时驻留在今日右下角 &lt;/p&gt;
+&lt;p&gt;手机上的卡巴斯基，新短信拦截查毒,陌生号码会问你是否加入黑名单.. 可以Full Scan，好像不消耗很多内存，平时驻留在今日右下角&lt;/p&gt;
 
-&lt;p&gt;12,MDict &lt;/p&gt;
+&lt;p&gt;12,MDict&lt;/p&gt;
 
-&lt;p&gt;手机上的查词冠军,这个是免费的,比手机金山词霸好用，但是必须要下载词库，网上有很多对应词库,自己找找安装吧。我装的是4个：5mAll，现代汉语词典，维基百科050623，牛津英汉双解词典。 &lt;/p&gt;
+&lt;p&gt;手机上的查词冠军,这个是免费的,比手机金山词霸好用，但是必须要下载词库，网上有很多对应词库,自己找找安装吧。我装的是4个：5mAll，现代汉语词典，维基百科050623，牛津英汉双解词典。&lt;/p&gt;
 
-&lt;p&gt;13,MSN &lt;/p&gt;
+&lt;p&gt;13,MSN&lt;/p&gt;
 
-&lt;p&gt;14,QQ2008 &lt;/p&gt;
+&lt;p&gt;14,QQ2008&lt;/p&gt;
 
-&lt;p&gt;这都不用说 &lt;/p&gt;
+&lt;p&gt;这都不用说&lt;/p&gt;
 
-&lt;p&gt;15,PhoneArea &lt;/p&gt;
+&lt;p&gt;15,PhoneArea&lt;/p&gt;
 
-&lt;p&gt;这个是查询来电归属的,手机来电的时候自动显示，平时运行也可以查询手机归属,身份证归属,区号等 &lt;/p&gt;
+&lt;p&gt;这个是查询来电归属的,手机来电的时候自动显示，平时运行也可以查询手机归属,身份证归属,区号等&lt;/p&gt;
 
-&lt;p&gt;16,HandCalendar &lt;/p&gt;
+&lt;p&gt;16,HandCalendar&lt;/p&gt;
 
-&lt;p&gt;万年历，有一些好玩的插件，历史上的今天啊，生理曲线啊，有个插件功能很囧：&lt;女性安全期查询&gt; &lt;/女性安全期查询&gt;&lt;/p&gt;
+&lt;p&gt;万年历，有一些好玩的插件，历史上的今天啊，生理曲线啊，有个插件功能很囧：&lt;女性安全期查询&gt;&lt;/女性安全期查询&gt;&lt;/p&gt;
 
 &lt;某丁&gt; ...... 
 
@@ -4630,49 +5087,49 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/02/02/Letter-To-Losing-Boy/</guid>
-      <description>&lt;p&gt;老端注：这是我第一回收到感情方面的来信询问，发信人还是一位男性，由于本人非感情方面的专家，因此本不打算回复。但转念一想，用经济学和进化心理学知识是否也可以提供一些个人情感方面的帮助呢？毕竟这两方面我还稍微有点研究，说不定可以尝试一下。于是干脆隐去来信人姓名，贴上blog供大家共同研究。 &lt;/p&gt;
+      <description>&lt;p&gt;老端注：这是我第一回收到感情方面的来信询问，发信人还是一位男性，由于本人非感情方面的专家，因此本不打算回复。但转念一想，用经济学和进化心理学知识是否也可以提供一些个人情感方面的帮助呢？毕竟这两方面我还稍微有点研究，说不定可以尝试一下。于是干脆隐去来信人姓名，贴上blog供大家共同研究。&lt;/p&gt;
 
-&lt;p&gt;下面是来信内容： &lt;/p&gt;
+&lt;p&gt;下面是来信内容：&lt;/p&gt;
 
-&lt;p&gt;=========================================== &lt;/p&gt;
+&lt;p&gt;===========================================&lt;/p&gt;
 
-&lt;p&gt;老端，您好： &lt;/p&gt;
+&lt;p&gt;老端，您好：&lt;/p&gt;
 
-&lt;p&gt;请允许我叫你老端，这样感觉像是我的大哥，我是从一年多之前开始看您的文章，陆陆续续一直到今天，我知道你写经济学、股票和心理学比较多一些，不过我今天想问的问题和这些关系不是很大，简单讲，我失恋了。 &lt;/p&gt;
+&lt;p&gt;请允许我叫你老端，这样感觉像是我的大哥，我是从一年多之前开始看您的文章，陆陆续续一直到今天，我知道你写经济学、股票和心理学比较多一些，不过我今天想问的问题和这些关系不是很大，简单讲，我失恋了。&lt;/p&gt;
 
-&lt;p&gt;先简要介绍一下自己吧，我出生在南方沿海一个小城市，大学在上海念，毕业之后也留在了上海，今年我26岁，也就是说，工作已经有4年了，也算是一个小白领吧，月收入不算很高，五千元出头一点，个人感觉自己长得还过得去。 &lt;/p&gt;
+&lt;p&gt;先简要介绍一下自己吧，我出生在南方沿海一个小城市，大学在上海念，毕业之后也留在了上海，今年我26岁，也就是说，工作已经有4年了，也算是一个小白领吧，月收入不算很高，五千元出头一点，个人感觉自己长得还过得去。&lt;/p&gt;
 
-&lt;p&gt;我女朋友是以前单位的同事，后来我们都换了工作，不过谈到现在也快有1年多了，她是上海人，长得不算非常漂亮，但也算比较漂亮了，年龄和我同岁。刚一开始到那家公司，我就被她给吸引住了，由于有工作往来，渐渐的就开始有了一些感情，有时候下班也会顺道一起走，刚一开始我就非常非常的爱她，感觉自己为她牺牲一切都值得，我想她应该也是爱我的。后来发展下去，我在她身上花了不少时间精力和钱，因为我觉得自己是非常爱她的。但后来由于工作变动，我们见面的时间减少了很多。忽然有一天，她告诉我，我们之间没有那种感觉，我也不知道她指的是什么感觉，反正由于没感觉，因此我们很难继续发展了。听到她这么说，我真是有一种说不出的感觉，似乎这个世界都没多少意思了。 &lt;/p&gt;
+&lt;p&gt;我女朋友是以前单位的同事，后来我们都换了工作，不过谈到现在也快有1年多了，她是上海人，长得不算非常漂亮，但也算比较漂亮了，年龄和我同岁。刚一开始到那家公司，我就被她给吸引住了，由于有工作往来，渐渐的就开始有了一些感情，有时候下班也会顺道一起走，刚一开始我就非常非常的爱她，感觉自己为她牺牲一切都值得，我想她应该也是爱我的。后来发展下去，我在她身上花了不少时间精力和钱，因为我觉得自己是非常爱她的。但后来由于工作变动，我们见面的时间减少了很多。忽然有一天，她告诉我，我们之间没有那种感觉，我也不知道她指的是什么感觉，反正由于没感觉，因此我们很难继续发展了。听到她这么说，我真是有一种说不出的感觉，似乎这个世界都没多少意思了。&lt;/p&gt;
 
-&lt;p&gt;我这么写是不是让你感觉很傻？但是你不在我这个位置是不会知道我的苦闷的。有一段时间我真的是做什么事情都无聊，脑子里想的都是她，后来我问过她，她说主要是因为家里不同意，因为我按照目前的收入是买不起房子的，而且我家里也不算很富裕的那种。我也不知道这是她的借口还是什么，也有可能就是这个原因。但是我想我们的收入一起买一间外环附近的小房子，还是可能的吧。再说现在房价都开始下跌了。 &lt;/p&gt;
+&lt;p&gt;我这么写是不是让你感觉很傻？但是你不在我这个位置是不会知道我的苦闷的。有一段时间我真的是做什么事情都无聊，脑子里想的都是她，后来我问过她，她说主要是因为家里不同意，因为我按照目前的收入是买不起房子的，而且我家里也不算很富裕的那种。我也不知道这是她的借口还是什么，也有可能就是这个原因。但是我想我们的收入一起买一间外环附近的小房子，还是可能的吧。再说现在房价都开始下跌了。&lt;/p&gt;
 
-&lt;p&gt;老端先生，我写了这么多其实也不知道想说什么。不知道以你的见识，能给我一些什么建议。我知道您肯定会说，喜欢一个女人那都是我的本能基因在作怪，可问题是我就是喜欢，怎么办呢？这次过年我也没有回家，就躲在上海喝闷酒，很希望能够看到您的回复。 &lt;/p&gt;
+&lt;p&gt;老端先生，我写了这么多其实也不知道想说什么。不知道以你的见识，能给我一些什么建议。我知道您肯定会说，喜欢一个女人那都是我的本能基因在作怪，可问题是我就是喜欢，怎么办呢？这次过年我也没有回家，就躲在上海喝闷酒，很希望能够看到您的回复。&lt;/p&gt;
 
-&lt;p&gt;祝 顺利 &lt;/p&gt;
+&lt;p&gt;祝 顺利&lt;/p&gt;
 
-&lt;p&gt;失恋男 &lt;/p&gt;
+&lt;p&gt;失恋男&lt;/p&gt;
 
-&lt;p&gt;========================================== &lt;/p&gt;
+&lt;p&gt;==========================================&lt;/p&gt;
 
-&lt;p&gt;以下是我的回复： &lt;/p&gt;
+&lt;p&gt;以下是我的回复：&lt;/p&gt;
 
-&lt;p&gt;失恋男，你好： &lt;/p&gt;
+&lt;p&gt;失恋男，你好：&lt;/p&gt;
 
-&lt;p&gt;据我所知，失恋之后会写信找人求助的男人是极少数，很幸运你就是那极少数之一。令我感到好奇的是，我又不是所谓的“知心大姐姐”，为什么你这封信会发到我这边？事实上我对你的问题是毫无办法，唯一的建议大约就是等待时间来给你疗伤吧。不过鉴于我略微知道一些经济学和心理学的知识，因此我打算从这两个角度给你一些建议，希望能够对你有帮助。 &lt;/p&gt;
+&lt;p&gt;据我所知，失恋之后会写信找人求助的男人是极少数，很幸运你就是那极少数之一。令我感到好奇的是，我又不是所谓的“知心大姐姐”，为什么你这封信会发到我这边？事实上我对你的问题是毫无办法，唯一的建议大约就是等待时间来给你疗伤吧。不过鉴于我略微知道一些经济学和心理学的知识，因此我打算从这两个角度给你一些建议，希望能够对你有帮助。&lt;/p&gt;
 
-&lt;p&gt;首先我要指出的是，你失恋之后的消极心理状态是非常正常的行为，进化心理学对疼痛的定义就是能够持续唤起大脑注意的信号，这里的“疼痛”不仅仅是指生理上的，同时也是指心理上的，越是“痛”的事情，就越能够占用我们最多的注意力。由于你的失恋行为客观上妨碍了你达成自己的“繁衍成就”，因此随之而来的疼痛可以让你持续关注这件事，以找出解决问题的办法，事实上你这封信就是“疼痛”的产物，虽然我不认为这封信会对你起到多大帮助作用。 &lt;/p&gt;
+&lt;p&gt;首先我要指出的是，你失恋之后的消极心理状态是非常正常的行为，进化心理学对疼痛的定义就是能够持续唤起大脑注意的信号，这里的“疼痛”不仅仅是指生理上的，同时也是指心理上的，越是“痛”的事情，就越能够占用我们最多的注意力。由于你的失恋行为客观上妨碍了你达成自己的“繁衍成就”，因此随之而来的疼痛可以让你持续关注这件事，以找出解决问题的办法，事实上你这封信就是“疼痛”的产物，虽然我不认为这封信会对你起到多大帮助作用。&lt;/p&gt;
 
-&lt;p&gt;第二点我要指出的是，你的年纪还太轻了，你才二十多岁，很难让女人对你产生多大兴趣。如果你熟悉巴菲特的投资方法，你就会知道，巴菲特是从来不买新股的，按照他的话说，新股没有太多的过往业绩，因此很难证明是一只能够持续带来回报的好股票。同样的，聪明的女人基本上不会对二十几岁的男人报以太大的希望，因为这个年龄段的男人才工作没几年，根本还看不出潜力在哪里，女人们与其在这类男人中挑选未来的黑马，还不如直接找一个三十几岁的成熟蓝筹更安全些。这就是为什么女人常常对成熟老男人动心的原因所在。 &lt;/p&gt;
+&lt;p&gt;第二点我要指出的是，你的年纪还太轻了，你才二十多岁，很难让女人对你产生多大兴趣。如果你熟悉巴菲特的投资方法，你就会知道，巴菲特是从来不买新股的，按照他的话说，新股没有太多的过往业绩，因此很难证明是一只能够持续带来回报的好股票。同样的，聪明的女人基本上不会对二十几岁的男人报以太大的希望，因为这个年龄段的男人才工作没几年，根本还看不出潜力在哪里，女人们与其在这类男人中挑选未来的黑马，还不如直接找一个三十几岁的成熟蓝筹更安全些。这就是为什么女人常常对成熟老男人动心的原因所在。&lt;/p&gt;
 
-&lt;p&gt;第三点我要告诉你的是，你现在花费太多时间、精力和金钱在女人身上是很不明智的行为。你应该明白，谈恋爱是一场博弈游戏，二十五六岁的女孩子正好处于自身吸引力的顶峰，而你则明显不是。事实上很少有一场博弈游戏是在完全平等的状况下进行的，例如，购房者和开发商的博弈肯定是不平等的，布什和萨达姆的博弈也不平等，回乡农民工和票贩子的博弈更加不会平等。你和你前女友的博弈，在我看来也不平等，而很不幸，你把自己放在了一个劣势的地位上。既然男人可以希望女人长得漂亮，那么女人也同样可以希望男人有钱，这是很公平的交易，对方如果漂亮，那么她要求找一个买得起房子的男人不是很正常吗？问题是你这个年龄段的男人一般来说是买不起房子的。因此这是你的问题了，你不该把自己放在一个不平等的位置再去参与这场博弈游戏，孙子说：先胜而求战。他的意思是，局面对你有利，你才参加游戏，对你不利你就不要去参加了。所以我的建议很简单，二十多岁的时候你好好存钱、好好工作、好好投资、好好学习，乱七八糟的想法不要太多，所谓“筑巢引凤”，你就别盼着有凤来帮你筑巢了，当然这种人也不是说没有，那就要看你运气如何了。 &lt;/p&gt;
+&lt;p&gt;第三点我要告诉你的是，你现在花费太多时间、精力和金钱在女人身上是很不明智的行为。你应该明白，谈恋爱是一场博弈游戏，二十五六岁的女孩子正好处于自身吸引力的顶峰，而你则明显不是。事实上很少有一场博弈游戏是在完全平等的状况下进行的，例如，购房者和开发商的博弈肯定是不平等的，布什和萨达姆的博弈也不平等，回乡农民工和票贩子的博弈更加不会平等。你和你前女友的博弈，在我看来也不平等，而很不幸，你把自己放在了一个劣势的地位上。既然男人可以希望女人长得漂亮，那么女人也同样可以希望男人有钱，这是很公平的交易，对方如果漂亮，那么她要求找一个买得起房子的男人不是很正常吗？问题是你这个年龄段的男人一般来说是买不起房子的。因此这是你的问题了，你不该把自己放在一个不平等的位置再去参与这场博弈游戏，孙子说：先胜而求战。他的意思是，局面对你有利，你才参加游戏，对你不利你就不要去参加了。所以我的建议很简单，二十多岁的时候你好好存钱、好好工作、好好投资、好好学习，乱七八糟的想法不要太多，所谓“筑巢引凤”，你就别盼着有凤来帮你筑巢了，当然这种人也不是说没有，那就要看你运气如何了。&lt;/p&gt;
 
-&lt;p&gt;第四点我要指出的是，进化心理学家很早就已经证明了，女人寻求长期稳定婚姻看中的是两点，第一是能够提升社会地位；第二是能够提升生活水平。因此你最最应该关注的是如何才能提升你自己的社会地位和生活水平，这才是提升自身吸引力的正途，如果你把自己的全部聪明才智放在这两条上，我相信加以时日，你的前途不会太差的。所以请你放弃幻想，牢牢记住一点：凡是女人，都是虚荣和势利的，唯一的区别是程度各有不同。如果你希望进行简单（Easy）模式的婚姻博弈，那么找一个社会地位和生活水平低于你的伴侣；如果你希望进行正常（Normal）模式的婚姻博弈，那么找一个社会地位和生活水平和你相当的，即所谓门当户对的伴侣；如果你希望进行噩梦（Nightmare）级别的婚姻博弈，那么就找一个上海女孩吧，该模式不能save/load，升级速度慢，花费时间长，一旦失败就直接game over，适合希望接受挑战的专家级玩家，普通人连大Boss的面都见不到就挂了。 &lt;/p&gt;
+&lt;p&gt;第四点我要指出的是，进化心理学家很早就已经证明了，女人寻求长期稳定婚姻看中的是两点，第一是能够提升社会地位；第二是能够提升生活水平。因此你最最应该关注的是如何才能提升你自己的社会地位和生活水平，这才是提升自身吸引力的正途，如果你把自己的全部聪明才智放在这两条上，我相信加以时日，你的前途不会太差的。所以请你放弃幻想，牢牢记住一点：凡是女人，都是虚荣和势利的，唯一的区别是程度各有不同。如果你希望进行简单（Easy）模式的婚姻博弈，那么找一个社会地位和生活水平低于你的伴侣；如果你希望进行正常（Normal）模式的婚姻博弈，那么找一个社会地位和生活水平和你相当的，即所谓门当户对的伴侣；如果你希望进行噩梦（Nightmare）级别的婚姻博弈，那么就找一个上海女孩吧，该模式不能save/load，升级速度慢，花费时间长，一旦失败就直接game over，适合希望接受挑战的专家级玩家，普通人连大Boss的面都见不到就挂了。&lt;/p&gt;
 
-&lt;p&gt;第五，前面这些话似乎太理性了，以至于不太能够被接受吧，但是男性就是应该理性一些，所谓理性是指能够正确的基于形势作出判断，而感性是指，不管形势如何总是基于本能反映来作出判断。相对于女人，其实男人占的优势更大，由于一个人长得是美是丑是天生决定的，因此女人更容易相信命运的安排，而男人则不同，男人可以依靠自己的奋斗得到更多资源，因此男人的“可能性”会更多。所以，你可以把女人看作是债券，把男人看作是股票，前者更关注安全性，而后者更关注回报率。 &lt;/p&gt;
+&lt;p&gt;第五，前面这些话似乎太理性了，以至于不太能够被接受吧，但是男性就是应该理性一些，所谓理性是指能够正确的基于形势作出判断，而感性是指，不管形势如何总是基于本能反映来作出判断。相对于女人，其实男人占的优势更大，由于一个人长得是美是丑是天生决定的，因此女人更容易相信命运的安排，而男人则不同，男人可以依靠自己的奋斗得到更多资源，因此男人的“可能性”会更多。所以，你可以把女人看作是债券，把男人看作是股票，前者更关注安全性，而后者更关注回报率。&lt;/p&gt;
 
-&lt;p&gt;为了避免造成误解，我得把我的立场表个态，我对你的处境很同情，但是对你的某些做法并不认可，于是从经济博弈和进化心理学角度提出了一些看法，如果对你有帮助，我很高兴，如果没帮助，那就权当作笑话来看吧。另外，这篇东西我不希望被看作充满了歧视女性的言论，我不想作出任何道德上的批判，只是说了一些科学研究的事实。换言之，我也不认为你前女友的做法有什么错。你应该能够明白我的意思。 &lt;/p&gt;
+&lt;p&gt;为了避免造成误解，我得把我的立场表个态，我对你的处境很同情，但是对你的某些做法并不认可，于是从经济博弈和进化心理学角度提出了一些看法，如果对你有帮助，我很高兴，如果没帮助，那就权当作笑话来看吧。另外，这篇东西我不希望被看作充满了歧视女性的言论，我不想作出任何道德上的批判，只是说了一些科学研究的事实。换言之，我也不认为你前女友的做法有什么错。你应该能够明白我的意思。&lt;/p&gt;
 
-&lt;p&gt;最后祝你成功的从一只创业板的三线票成长为主板市场的大蓝筹，虽然困难重重，但你至少应该付出更多努力吧。再见。 &lt;/p&gt;
+&lt;p&gt;最后祝你成功的从一只创业板的三线票成长为主板市场的大蓝筹，虽然困难重重，但你至少应该付出更多努力吧。再见。&lt;/p&gt;
 
 &lt;p&gt;端宏斌&lt;/p&gt;
 </description>
@@ -4690,17 +5147,17 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/18/Yesterday-Today-Tomorrow/</guid>
-      <description>&lt;p&gt;前几天的变化太突然太大太让人受不了，到现在仍然摆脱不了这些事情所引起的阴霾。这几天一直在思考。 &lt;/p&gt;
+      <description>&lt;p&gt;前几天的变化太突然太大太让人受不了，到现在仍然摆脱不了这些事情所引起的阴霾。这几天一直在思考。&lt;/p&gt;
 
-&lt;p&gt;就在那些事发生前几天，我已经在思考我的未来。毕竟目前的工作非常没有前途，如果不是对产品一种慈父的爱和我们成功温馨的团队，我恐怕早就心灰意冷离开这里了。我曾和Samuel聊过，我们究竟未来可以做些什么。Samuel告诉我，我们现在所做的这个职业，这个产品，这份工作，是非常没有前途的，就算一年20万，30万，那又能如何？要想把自己的事业做好做大，必须要有人脉，你一个人再如何有才，再如何能干，你只是一个人，你影响的空间有限。当你有一个更广阔的圈子之后，你就可以依靠这些朋友去推广你以及你的理念，这才会创造更多的价值，回报当然也更大。当时我只想着这辈子找一个稳定些能做大做强的事业来在平时没事的时候来学习，准备；说实话，动机非常原始，下班无聊想找事情做。 &lt;/p&gt;
+&lt;p&gt;就在那些事发生前几天，我已经在思考我的未来。毕竟目前的工作非常没有前途，如果不是对产品一种慈父的爱和我们成功温馨的团队，我恐怕早就心灰意冷离开这里了。我曾和Samuel聊过，我们究竟未来可以做些什么。Samuel告诉我，我们现在所做的这个职业，这个产品，这份工作，是非常没有前途的，就算一年20万，30万，那又能如何？要想把自己的事业做好做大，必须要有人脉，你一个人再如何有才，再如何能干，你只是一个人，你影响的空间有限。当你有一个更广阔的圈子之后，你就可以依靠这些朋友去推广你以及你的理念，这才会创造更多的价值，回报当然也更大。当时我只想着这辈子找一个稳定些能做大做强的事业来在平时没事的时候来学习，准备；说实话，动机非常原始，下班无聊想找事情做。&lt;/p&gt;
 
-&lt;p&gt;紧接着，公司发生了翻天覆地的变化。公司裁员，我们项目组的人首当其冲，一天之内7个人离开公司，大部分都是很要好的朋友。第二天项目组被宣布将在发布之后解散，人员将要重新配置到其他项目组。 &lt;/p&gt;
+&lt;p&gt;紧接着，公司发生了翻天覆地的变化。公司裁员，我们项目组的人首当其冲，一天之内7个人离开公司，大部分都是很要好的朋友。第二天项目组被宣布将在发布之后解散，人员将要重新配置到其他项目组。&lt;/p&gt;
 
-&lt;p&gt;听到这个消息真的比被裁还要难受。这个产品基本就是我们自己设计编写的，我们全部人一起为之奋斗了4年，我们承认开始的时候一边在摸索一边在开发确实没有把产品做的足够好，但是在我们努力奋斗了几年之后，一直在变好，我们所有人对这个版本的产品都赋予厚望，加上市场有了一些反应和反馈，我们更加坚信我们的产品是有价值的，我们每个人都觉得还有很多事情想要做，想要让产品做得更好。最让我们割舍不下的是我们这个团队，在产品整个过程我们团队基本上没有什么大的改变，每个人都非常了解其他人，大家相处非常融洽其乐融融，大家都是老实人，都非常有能力，都非常的有职业精神。就我所知，我们的团队应该是上海2个office里面讨论最活跃，交流最没有压力最快速的项目组了。我们和大部分QA关系也都非常好，都很认真负责，私底下是朋友，对产品的感情都是真的。这样一群有着共同信仰共同情感的人们走在了一起，开开心心的过了4年，公司的一个变革瞬间令我们分崩瓦解，感慨良多。1年前我家人劝我如果别处有机会的话，可以去跳槽看看，我对家人说，对这个产品我还有很多事情想做但是没有做完，当产品翅膀硬了可以独自翱翔的时候我自然会离开，而且，我非常舍不得现在这个团队。 &lt;/p&gt;
+&lt;p&gt;听到这个消息真的比被裁还要难受。这个产品基本就是我们自己设计编写的，我们全部人一起为之奋斗了4年，我们承认开始的时候一边在摸索一边在开发确实没有把产品做的足够好，但是在我们努力奋斗了几年之后，一直在变好，我们所有人对这个版本的产品都赋予厚望，加上市场有了一些反应和反馈，我们更加坚信我们的产品是有价值的，我们每个人都觉得还有很多事情想要做，想要让产品做得更好。最让我们割舍不下的是我们这个团队，在产品整个过程我们团队基本上没有什么大的改变，每个人都非常了解其他人，大家相处非常融洽其乐融融，大家都是老实人，都非常有能力，都非常的有职业精神。就我所知，我们的团队应该是上海2个office里面讨论最活跃，交流最没有压力最快速的项目组了。我们和大部分QA关系也都非常好，都很认真负责，私底下是朋友，对产品的感情都是真的。这样一群有着共同信仰共同情感的人们走在了一起，开开心心的过了4年，公司的一个变革瞬间令我们分崩瓦解，感慨良多。1年前我家人劝我如果别处有机会的话，可以去跳槽看看，我对家人说，对这个产品我还有很多事情想做但是没有做完，当产品翅膀硬了可以独自翱翔的时候我自然会离开，而且，我非常舍不得现在这个团队。&lt;/p&gt;
 
-&lt;p&gt;这些天发生的这些事情，已经彻底让我对自己的明天有了更清晰的想法。在经历了那些事情之后，我仍然在思考我以后究竟可以把个人价值体现在哪里。我在思考我的事业，我的爱情，我的未来，我的优点和缺点，我能做出什么样的改变。这一系列事情让我有了这些思考。 &lt;/p&gt;
+&lt;p&gt;这些天发生的这些事情，已经彻底让我对自己的明天有了更清晰的想法。在经历了那些事情之后，我仍然在思考我以后究竟可以把个人价值体现在哪里。我在思考我的事业，我的爱情，我的未来，我的优点和缺点，我能做出什么样的改变。这一系列事情让我有了这些思考。&lt;/p&gt;
 
-&lt;p&gt;曾几何时，我一直很讨厌关系观。什么事情都要讲求关系，我很反感根据关系来办事，甚至当我家人想到动用关系来为我办事的时候我也非常的反感。现在，我对关系观没有一点厌恶之情了。关系观不正是为了朋友为了家人能够更好的生活吗？人生在世，我自己自问不能对国家做出多么出色的贡献，但是我有能力让我的家人我的朋友过上好日子，这就是我存在在这个世界上的价值。如果只是为了我自己兴趣高兴快乐，为了自己能活着而活着，这样有意义吗？如果公司裁员的时候我有能力帮助的话，他们就不需要为了再找工作而努力奔波四处寻找工作了，如果我有能力的话，我就可以留住这个温馨和睦的团队了。我只想以我的角度来试图挽救。 &lt;/p&gt;
+&lt;p&gt;曾几何时，我一直很讨厌关系观。什么事情都要讲求关系，我很反感根据关系来办事，甚至当我家人想到动用关系来为我办事的时候我也非常的反感。现在，我对关系观没有一点厌恶之情了。关系观不正是为了朋友为了家人能够更好的生活吗？人生在世，我自己自问不能对国家做出多么出色的贡献，但是我有能力让我的家人我的朋友过上好日子，这就是我存在在这个世界上的价值。如果只是为了我自己兴趣高兴快乐，为了自己能活着而活着，这样有意义吗？如果公司裁员的时候我有能力帮助的话，他们就不需要为了再找工作而努力奔波四处寻找工作了，如果我有能力的话，我就可以留住这个温馨和睦的团队了。我只想以我的角度来试图挽救。&lt;/p&gt;
 
 &lt;p&gt;由此我确定了我短期，长期的计划： 
 1. 短期：提升能力，努力赚钱，达到家人无忧的程度。我要对家人负责任让他们过上好日子，尽可能减少他们受到的伤害。 
@@ -4721,31 +5178,31 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <description>&lt;p&gt;http://blogs.qq.com/a/20090112/000550.htm这个更详细。。。&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;成语 &lt;/li&gt;
+  &lt;li&gt;成语&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;欧阳挖坑：又叫月球挖坑，形容拥有一定身份的人说话极不负责任。欧阳院士一不小心，坑挖到了月球上去了。“多出来的那个坑很可能”这个结论与探月工程首席科学家的身份很不符合。参考：http://blog.sina.com.cn/s/blog_589a39ed01009z92.html &lt;/p&gt;
+&lt;p&gt;欧阳挖坑：又叫月球挖坑，形容拥有一定身份的人说话极不负责任。欧阳院士一不小心，坑挖到了月球上去了。“多出来的那个坑很可能”这个结论与探月工程首席科学家的身份很不符合。参考：http://blog.sina.com.cn/s/blog_589a39ed01009z92.html&lt;/p&gt;
 
 &lt;p&gt;秋雨含泪：秋天的雨水里面含着泪水。秋雨本已肃杀，含泪更显冷酷，寓意帮闲文人阶级不顾平民百姓的疾苦粉饰太平。2008年6月，中国文人余秋雨“含泪劝告灾民”。痛斥灾民要求查清豆腐渣工程的正义行动。而在四川大地震中，成千上万的学生因校园迅速倒塌而丧生。“秋雨含泪”被引申为假惺惺的鳄鱼的眼泪。参考：http://baike.baidu.com/view/1694146.htm 
-正龙拍虎：某人或某集团为利益所驱动而做假，被揭穿后还抵死不认；社会公信力缺失。大家基本都知道，而且时间过程比较长，直接看参考好了：http://baike.baidu.com/view/1278620.htm &lt;/p&gt;
+正龙拍虎：某人或某集团为利益所驱动而做假，被揭穿后还抵死不认；社会公信力缺失。大家基本都知道，而且时间过程比较长，直接看参考好了：http://baike.baidu.com/view/1278620.htm&lt;/p&gt;
 
-&lt;p&gt;兆山羡鬼：无耻文人王兆山，2008年6月在四川大地震发生后，面对6万多死难者竟作诗曰：“纵做鬼，也幸福”。“兆山羡鬼”被引申为冷血动物的代名词。例句：家中出了人命都不去看一下，你这不是“兆山羡鬼”吗？ &lt;/p&gt;
+&lt;p&gt;兆山羡鬼：无耻文人王兆山，2008年6月在四川大地震发生后，面对6万多死难者竟作诗曰：“纵做鬼，也幸福”。“兆山羡鬼”被引申为冷血动物的代名词。例句：家中出了人命都不去看一下，你这不是“兆山羡鬼”吗？&lt;/p&gt;
 
-&lt;p&gt;黔驴死撑：来自瓮安事件。意思大概是政府公信力缺失。 &lt;/p&gt;
+&lt;p&gt;黔驴死撑：来自瓮安事件。意思大概是政府公信力缺失。&lt;/p&gt;
 
-&lt;p&gt;聚打酱油：网络上不谈政治，不谈敏感话题，与自己无关，自己什么都不知道，就用此话回帖而已，相当于“路过”。 &lt;/p&gt;
+&lt;p&gt;聚打酱油：网络上不谈政治，不谈敏感话题，与自己无关，自己什么都不知道，就用此话回帖而已，相当于“路过”。&lt;/p&gt;
 
-&lt;p&gt;抵制蠢货：意指鄙视那些不明白是非就怂恿别人一起进行某项活动的人。来自于法国支持ZD的家乐福事件。http://www.xici.net/u13743703/d69031287.htm &lt;/p&gt;
+&lt;p&gt;抵制蠢货：意指鄙视那些不明白是非就怂恿别人一起进行某项活动的人。来自于法国支持ZD的家乐福事件。http://www.xici.net/u13743703/d69031287.htm&lt;/p&gt;
 
-&lt;p&gt;俯卧硬撑：同黔驴死撑。 &lt;/p&gt;
+&lt;p&gt;俯卧硬撑：同黔驴死撑。&lt;/p&gt;
 
-&lt;p&gt;谁死鹿手：鹿死谁手，谁死鹿手。形容某些没有社会公德的企业所做的事情。来自三鹿事件。http://zhoubutong.blog.sohu.com/100061143.html &lt;/p&gt;
+&lt;p&gt;谁死鹿手：鹿死谁手，谁死鹿手。形容某些没有社会公德的企业所做的事情。来自三鹿事件。http://zhoubutong.blog.sohu.com/100061143.html&lt;/p&gt;
 
 &lt;p&gt;比赛第一：比赛第一，友谊第二。人们敢讲实话了。http://www.5jia1.com/uchome/space.php?uid=332202&amp;amp;do=blog&amp;amp;id=397457&lt;/p&gt;
 
-&lt;p&gt;叉腰健儿：谢亚龙出品。在网络上，该词多半被引申为不懂装懂，冒充内行。http://www.stnn.cc/sport/200808/t20080823_852343.html &lt;/p&gt;
+&lt;p&gt;叉腰健儿：谢亚龙出品。在网络上，该词多半被引申为不懂装懂，冒充内行。http://www.stnn.cc/sport/200808/t20080823_852343.html&lt;/p&gt;
 
-&lt;p&gt;自取其乳：网友感慨三鹿奶粉事件后征婚，条件须严苛至对女方乳腺发育状况的考核，借此确保子嗣有足够奶源，确保在进口奶粉吃不起、国产奶粉吃死人、国外奶粉要钱，国产奶粉要命的险恶境况下可以自取其乳。 &lt;/p&gt;
+&lt;p&gt;自取其乳：网友感慨三鹿奶粉事件后征婚，条件须严苛至对女方乳腺发育状况的考核，借此确保子嗣有足够奶源，确保在进口奶粉吃不起、国产奶粉吃死人、国外奶粉要钱，国产奶粉要命的险恶境况下可以自取其乳。&lt;/p&gt;
 
 &lt;p&gt;2。年度词组 
 ★年度风行：【囧】 
@@ -4772,7 +5229,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 ★年度民心：【蔑视性沉默】 
 ★年度荒唐：【反二奶同盟】 
 ★年度长嗟：【内涵式脑残】 
-★年度棒喝：【缺德市场经济】 &lt;/p&gt;
+★年度棒喝：【缺德市场经济】&lt;/p&gt;
 
 &lt;p&gt;3。年度短语 
 ★年度奇喻：【红得尿血】 
@@ -4810,125 +5267,125 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/10/Life-tricks/</guid>
-      <description>&lt;p&gt;天涯上看来的，大家分享一下吧～ &lt;/p&gt;
+      <description>&lt;p&gt;天涯上看来的，大家分享一下吧～&lt;/p&gt;
 
-&lt;p&gt;1.吃了辣的东西，感觉就要被辣死了，就往嘴里放上少许盐，含一下，吐掉，漱下口，就不辣了； &lt;/p&gt;
+&lt;p&gt;1.吃了辣的东西，感觉就要被辣死了，就往嘴里放上少许盐，含一下，吐掉，漱下口，就不辣了；&lt;/p&gt;
 
-&lt;p&gt;2.牙齿黄，可以把花生嚼碎后含在嘴里，并刷牙三分钟，很有效； &lt;/p&gt;
+&lt;p&gt;2.牙齿黄，可以把花生嚼碎后含在嘴里，并刷牙三分钟，很有效；&lt;/p&gt;
 
-&lt;p&gt;3.若有小面积皮肤损伤或者烧伤、烫伤，抹上少许牙膏，可立即止血止痛； &lt;/p&gt;
+&lt;p&gt;3.若有小面积皮肤损伤或者烧伤、烫伤，抹上少许牙膏，可立即止血止痛；&lt;/p&gt;
 
-&lt;p&gt;4.经常装茶的杯子里面留下难看的茶渍，用牙膏洗之，非常干净； &lt;/p&gt;
+&lt;p&gt;4.经常装茶的杯子里面留下难看的茶渍，用牙膏洗之，非常干净；&lt;/p&gt;
 
-&lt;p&gt;5.仰头点眼药水时微微张嘴，这样眼睛就不会乱眨了； &lt;/p&gt;
+&lt;p&gt;5.仰头点眼药水时微微张嘴，这样眼睛就不会乱眨了；&lt;/p&gt;
 
-&lt;p&gt;6.嘴里有溃疡，就用维生素C贴在溃疡处，等它溶化后溃疡基本就好了； &lt;/p&gt;
+&lt;p&gt;6.嘴里有溃疡，就用维生素C贴在溃疡处，等它溶化后溃疡基本就好了；&lt;/p&gt;
 
-&lt;p&gt;7.眼睛进了小灰尘，闭上眼睛用力咳嗽几下，灰尘就会自己出来； &lt;/p&gt;
+&lt;p&gt;7.眼睛进了小灰尘，闭上眼睛用力咳嗽几下，灰尘就会自己出来；&lt;/p&gt;
 
-&lt;p&gt;8.洗完脸后，用手指沾些细盐在鼻头两侧轻轻按摩，然后再用清水冲洗，黑头和粉刺就会清除干净，毛细孔也会变小； &lt;/p&gt;
+&lt;p&gt;8.洗完脸后，用手指沾些细盐在鼻头两侧轻轻按摩，然后再用清水冲洗，黑头和粉刺就会清除干净，毛细孔也会变小；&lt;/p&gt;
 
-&lt;p&gt;9.刚刚被蚊子咬完时，涂上肥皂就不会痒了； &lt;/p&gt;
+&lt;p&gt;9.刚刚被蚊子咬完时，涂上肥皂就不会痒了；&lt;/p&gt;
 
-&lt;p&gt;10.如果嗓子、牙龈发炎了，在晚上把西瓜切成小块，沾着盐吃，记得一定要是晚上，当时症状就会减轻，第二天就好了； &lt;/p&gt;
+&lt;p&gt;10.如果嗓子、牙龈发炎了，在晚上把西瓜切成小块，沾着盐吃，记得一定要是晚上，当时症状就会减轻，第二天就好了；&lt;/p&gt;
 
-&lt;p&gt;11.吹风机对着标签吹，等吹到商标的胶热了，就可以很容易的把标签撕下来； &lt;/p&gt;
+&lt;p&gt;11.吹风机对着标签吹，等吹到商标的胶热了，就可以很容易的把标签撕下来；&lt;/p&gt;
 
-&lt;p&gt;12.旅行带衣服时如果怕压起褶皱，可以把每件衣服都卷成卷； &lt;/p&gt;
+&lt;p&gt;12.旅行带衣服时如果怕压起褶皱，可以把每件衣服都卷成卷；&lt;/p&gt;
 
-&lt;p&gt;13.打打嗝时就喝点醋，立杆见影； &lt;/p&gt;
+&lt;p&gt;13.打打嗝时就喝点醋，立杆见影；&lt;/p&gt;
 
-&lt;p&gt;14.吃了有异味的东西，如大蒜、臭豆腐，吃几颗花生米就好了； &lt;/p&gt;
+&lt;p&gt;14.吃了有异味的东西，如大蒜、臭豆腐，吃几颗花生米就好了；&lt;/p&gt;
 
-&lt;p&gt;15.治疗咳嗽，特别是干咳，晚上睡觉前，用纯芝麻香油煎鸡蛋，油放稍多些，什么调味料都不要放，趁热吃过就去睡觉，连吃几天效果很明显； &lt;/p&gt;
+&lt;p&gt;15.治疗咳嗽，特别是干咳，晚上睡觉前，用纯芝麻香油煎鸡蛋，油放稍多些，什么调味料都不要放，趁热吃过就去睡觉，连吃几天效果很明显；&lt;/p&gt;
 
-&lt;p&gt;16.手腕长粗的MM想带较细的手镯，就不能硬带，应把手上套上一个塑料袋再带上手镯，非常好带，也不会把手弄疼，取下也是同样的方法； &lt;/p&gt;
+&lt;p&gt;16.手腕长粗的MM想带较细的手镯，就不能硬带，应把手上套上一个塑料袋再带上手镯，非常好带，也不会把手弄疼，取下也是同样的方法；&lt;/p&gt;
 
-&lt;p&gt;17.栗子皮难剥，先把外壳剥掉，再把它放进微波炉转一下，拿出后趁热一搓，皮就掉了； &lt;/p&gt;
+&lt;p&gt;17.栗子皮难剥，先把外壳剥掉，再把它放进微波炉转一下，拿出后趁热一搓，皮就掉了；&lt;/p&gt;
 
-&lt;p&gt;18.插花时，在水里滴上一滴洗洁精，可以维持好几天； &lt;/p&gt;
+&lt;p&gt;18.插花时，在水里滴上一滴洗洁精，可以维持好几天；&lt;/p&gt;
 
-&lt;p&gt;19.把核桃放进锅里蒸十分钟，取出放在凉水里再砸开，就能取出完整的桃核仁了； &lt;/p&gt;
+&lt;p&gt;19.把核桃放进锅里蒸十分钟，取出放在凉水里再砸开，就能取出完整的桃核仁了；&lt;/p&gt;
 
-&lt;p&gt;20.把虾仁放进碗里，加一点精盐、食用碱粉，用手抓搓一会儿后用清水浸泡，然后再用清水冲洗，即能使炒出的虾仁透明如水晶，爽嫩可口； &lt;/p&gt;
+&lt;p&gt;20.把虾仁放进碗里，加一点精盐、食用碱粉，用手抓搓一会儿后用清水浸泡，然后再用清水冲洗，即能使炒出的虾仁透明如水晶，爽嫩可口；&lt;/p&gt;
 
-&lt;p&gt;21.炒肉时，先把肉用小苏打水浸泡十几分钟，倒掉水，再入味，炒出来会很嫩滑； &lt;/p&gt;
+&lt;p&gt;21.炒肉时，先把肉用小苏打水浸泡十几分钟，倒掉水，再入味，炒出来会很嫩滑；&lt;/p&gt;
 
-&lt;p&gt;22.将残茶叶浸入水中数天后，浇在植物根部，可促进植物生长； &lt;/p&gt;
+&lt;p&gt;22.将残茶叶浸入水中数天后，浇在植物根部，可促进植物生长；&lt;/p&gt;
 
-&lt;p&gt;23.把残茶叶晒干，放到厕所或者沟渠里燃熏，可消除恶臭，具有驱除蚊子苍蝇的功能； &lt;/p&gt;
+&lt;p&gt;23.把残茶叶晒干，放到厕所或者沟渠里燃熏，可消除恶臭，具有驱除蚊子苍蝇的功能；&lt;/p&gt;
 
-&lt;p&gt;24.夹生饭重煮法：可用筷子在饭内扎些直通锅底的孔，洒入少许黄酒重焖， &lt;/p&gt;
+&lt;p&gt;24.夹生饭重煮法：可用筷子在饭内扎些直通锅底的孔，洒入少许黄酒重焖，&lt;/p&gt;
 
-&lt;p&gt;25.若只表面夹生，只要将表层翻到中间再焖即可； &lt;/p&gt;
+&lt;p&gt;25.若只表面夹生，只要将表层翻到中间再焖即可；&lt;/p&gt;
 
-&lt;p&gt;26.巧除纱窗油腻：将洗衣服、吸烟剩下的烟头一起放在水里，待溶解后，拿来擦玻璃窗、纱窗，效果真不错； &lt;/p&gt;
+&lt;p&gt;26.巧除纱窗油腻：将洗衣服、吸烟剩下的烟头一起放在水里，待溶解后，拿来擦玻璃窗、纱窗，效果真不错；&lt;/p&gt;
 
-&lt;p&gt;27.只要在珠宝盒中放上一节小小的粉笔，即可让首饰常保光泽； &lt;/p&gt;
+&lt;p&gt;27.只要在珠宝盒中放上一节小小的粉笔，即可让首饰常保光泽；&lt;/p&gt;
 
-&lt;p&gt;28.桌子、瓶子表面的不干胶痕迹用风油精可以擦拭； &lt;/p&gt;
+&lt;p&gt;28.桌子、瓶子表面的不干胶痕迹用风油精可以擦拭；&lt;/p&gt;
 
-&lt;p&gt;29.出门时随时在包里带一节小的干电池，若裙子带静电，就把电池的正极在裙子上面擦几下即可去掉静电； &lt;/p&gt;
+&lt;p&gt;29.出门时随时在包里带一节小的干电池，若裙子带静电，就把电池的正极在裙子上面擦几下即可去掉静电；&lt;/p&gt;
 
-&lt;p&gt;30.不管是鞋子的哪个地方磨到了你的脚，你就在鞋子磨脚的地方涂一点点白酒，保证就不磨脚了； &lt;/p&gt;
+&lt;p&gt;30.不管是鞋子的哪个地方磨到了你的脚，你就在鞋子磨脚的地方涂一点点白酒，保证就不磨脚了；&lt;/p&gt;
 
-&lt;p&gt;31.亨调蔬菜时，如果必须要焯，焯好菜的水最好尽量利用。如做水饺的菜，焯好的水可适量放在肉馅里，这样既保证营养，又使水饺馅味美有汤； &lt;/p&gt;
+&lt;p&gt;31.亨调蔬菜时，如果必须要焯，焯好菜的水最好尽量利用。如做水饺的菜，焯好的水可适量放在肉馅里，这样既保证营养，又使水饺馅味美有汤；&lt;/p&gt;
 
-&lt;p&gt;32.夏天足部容易出汗，每天用淡盐水泡脚可有效应对汗脚； &lt;/p&gt;
+&lt;p&gt;32.夏天足部容易出汗，每天用淡盐水泡脚可有效应对汗脚；&lt;/p&gt;
 
-&lt;p&gt;33.夏天游泳后晒晒太阳，可防肌肤劳损等疾病发生； &lt;/p&gt;
+&lt;p&gt;33.夏天游泳后晒晒太阳，可防肌肤劳损等疾病发生；&lt;/p&gt;
 
-&lt;p&gt;34.夏天枕头易受潮滋生霉菌，时常曝晒枕芯有利健康； &lt;/p&gt;
+&lt;p&gt;34.夏天枕头易受潮滋生霉菌，时常曝晒枕芯有利健康；&lt;/p&gt;
 
-&lt;p&gt;35.多吃薏米小豆粥等潮湿健脾，可防暑湿； &lt;/p&gt;
+&lt;p&gt;35.多吃薏米小豆粥等潮湿健脾，可防暑湿；&lt;/p&gt;
 
-&lt;p&gt;36.防失眠：睡前少讲太多话，忌饮浓茶，睡前勿大用脑，可用热水加醋洗脚； &lt;/p&gt;
+&lt;p&gt;36.防失眠：睡前少讲太多话，忌饮浓茶，睡前勿大用脑，可用热水加醋洗脚；&lt;/p&gt;
 
-&lt;p&gt;37.金银花有疏散风湿功效，金银花水煎取汁凉后与蜂蜜冲调可解暑； &lt;/p&gt;
+&lt;p&gt;37.金银花有疏散风湿功效，金银花水煎取汁凉后与蜂蜜冲调可解暑；&lt;/p&gt;
 
-&lt;p&gt;38.吃过于肥腻的食物后喝茶，能刺激自律神经，促进脂肪代谢； &lt;/p&gt;
+&lt;p&gt;38.吃过于肥腻的食物后喝茶，能刺激自律神经，促进脂肪代谢；&lt;/p&gt;
 
-&lt;p&gt;39.睡眠不足会变笨，一天需要睡眠八小时，有午睡习惯可延缓衰老； &lt;/p&gt;
+&lt;p&gt;39.睡眠不足会变笨，一天需要睡眠八小时，有午睡习惯可延缓衰老；&lt;/p&gt;
 
-&lt;p&gt;40.双手易变得干燥粗糙，用醋泡手十分钟可护肤； &lt;/p&gt;
+&lt;p&gt;40.双手易变得干燥粗糙，用醋泡手十分钟可护肤；&lt;/p&gt;
 
-&lt;p&gt;41.夏天擦拭凉席，用滴加了花露水的清水擦拭凉席，可使凉席保持清爽洁净。当然，擦拭时最好沿着凉席纹路进行，以便花露水渗透到凉席的纹路缝隙，这样清凉舒适的感觉会更持久； &lt;/p&gt;
+&lt;p&gt;41.夏天擦拭凉席，用滴加了花露水的清水擦拭凉席，可使凉席保持清爽洁净。当然，擦拭时最好沿着凉席纹路进行，以便花露水渗透到凉席的纹路缝隙，这样清凉舒适的感觉会更持久；&lt;/p&gt;
 
-&lt;p&gt;42.早餐多食西红柿、柠檬酸等酸性蔬菜和水果，有益于养肝； &lt;/p&gt;
+&lt;p&gt;42.早餐多食西红柿、柠檬酸等酸性蔬菜和水果，有益于养肝；&lt;/p&gt;
 
-&lt;p&gt;43.爽身止痒洗头或洗澡时，在水中加五六滴花露水，能起到很好的清凉除菌、祛痱止痒作用； &lt;/p&gt;
+&lt;p&gt;43.爽身止痒洗头或洗澡时，在水中加五六滴花露水，能起到很好的清凉除菌、祛痱止痒作用；&lt;/p&gt;
 
-&lt;p&gt;44.葡萄含有睡眠辅助激素，常食有助睡眠； &lt;/p&gt;
+&lt;p&gt;44.葡萄含有睡眠辅助激素，常食有助睡眠；&lt;/p&gt;
 
-&lt;p&gt;45.夏天多喝番茄汤既可获得养料，又能补充水分，番茄汤应烧好并冷却后再喝，所含番茄红素有一定的抗前列腺癌和保护心肌的功效，最适合于男子；吃酸性物质马上刷牙会损害牙齿健康； &lt;/p&gt;
+&lt;p&gt;45.夏天多喝番茄汤既可获得养料，又能补充水分，番茄汤应烧好并冷却后再喝，所含番茄红素有一定的抗前列腺癌和保护心肌的功效，最适合于男子；吃酸性物质马上刷牙会损害牙齿健康；&lt;/p&gt;
 
-&lt;p&gt;46.因外伤碰破皮肉时，在伤处涂上牙膏进行消炎、止血，再包扎，作为临时急救药，以药物牙膏效果最为显著； &lt;/p&gt;
+&lt;p&gt;46.因外伤碰破皮肉时，在伤处涂上牙膏进行消炎、止血，再包扎，作为临时急救药，以药物牙膏效果最为显著；&lt;/p&gt;
 
-&lt;p&gt;47.将白醋喷洒在菜板上，放上半小时后再洗，不但能杀菌，还能除味； &lt;/p&gt;
+&lt;p&gt;47.将白醋喷洒在菜板上，放上半小时后再洗，不但能杀菌，还能除味；&lt;/p&gt;
 
 &lt;p&gt;48.喝酸奶能解酒后烦躁，酸奶能保护胃黏膜、延缓酒精吸收，并且含钙丰富，对缓解酒后烦躁尤其有效；&lt;/p&gt;
 
-&lt;p&gt;49.皮鞋包皮放久了发霉时，可用软布蘸酒精加水（1：1）溶液擦拭即可； &lt;/p&gt;
+&lt;p&gt;49.皮鞋包皮放久了发霉时，可用软布蘸酒精加水（1：1）溶液擦拭即可；&lt;/p&gt;
 
-&lt;p&gt;50.发生头痛、头晕时，可在太阳穴涂上牙膏，因为牙膏含有薄荷脑、丁香油可镇痛； &lt;/p&gt;
+&lt;p&gt;50.发生头痛、头晕时，可在太阳穴涂上牙膏，因为牙膏含有薄荷脑、丁香油可镇痛；&lt;/p&gt;
 
-&lt;p&gt;51.蜡烛冷冻二十四小时后，再插到生日蛋糕上，点燃时不会流下烛油； &lt;/p&gt;
+&lt;p&gt;51.蜡烛冷冻二十四小时后，再插到生日蛋糕上，点燃时不会流下烛油；&lt;/p&gt;
 
-&lt;p&gt;52.白色衣裤洗后易泛黄，可取一盆清水，滴上二三滴蓝墨水，将洗过的衣裤在浸泡一刻钟，不必拧干，就放在太阳下晒，即可洁白干净； &lt;/p&gt;
+&lt;p&gt;52.白色衣裤洗后易泛黄，可取一盆清水，滴上二三滴蓝墨水，将洗过的衣裤在浸泡一刻钟，不必拧干，就放在太阳下晒，即可洁白干净；&lt;/p&gt;
 
-&lt;p&gt;53.过多食用生葱蒜会刺激口腔肠胃， 不利健康，最好加一点醋再食用； &lt;/p&gt;
+&lt;p&gt;53.过多食用生葱蒜会刺激口腔肠胃， 不利健康，最好加一点醋再食用；&lt;/p&gt;
 
-&lt;p&gt;54.及时补充水分但应少喝果汁、可乐、雪碧、汽水等饮料，含有较多的糖精和电解质，喝多了会对肠胃产生不良刺激，影响消化和食欲。因此夏天应多喝白开水或淡盐（糖）水； &lt;/p&gt;
+&lt;p&gt;54.及时补充水分但应少喝果汁、可乐、雪碧、汽水等饮料，含有较多的糖精和电解质，喝多了会对肠胃产生不良刺激，影响消化和食欲。因此夏天应多喝白开水或淡盐（糖）水；&lt;/p&gt;
 
-&lt;p&gt;55.每天早晨用豆腐摩擦面部几分钟，坚持一个月，面部会变得很滋润； &lt;/p&gt;
+&lt;p&gt;55.每天早晨用豆腐摩擦面部几分钟，坚持一个月，面部会变得很滋润；&lt;/p&gt;
 
-&lt;p&gt;56.空调室内温差不宜超过五度，即使天气再热，空调室内温度也不宜到24度以下； &lt;/p&gt;
+&lt;p&gt;56.空调室内温差不宜超过五度，即使天气再热，空调室内温度也不宜到24度以下；&lt;/p&gt;
 
-&lt;p&gt;57.加酶洗衣粉剂放在温水中需要较长的分解时间才能使洗衣效果更佳； &lt;/p&gt;
+&lt;p&gt;57.加酶洗衣粉剂放在温水中需要较长的分解时间才能使洗衣效果更佳；&lt;/p&gt;
 
-&lt;p&gt;58.夏天，人的活动时间变长，出汗多，耗能过大，应适当多吃鸡、鸭、瘦肉、鱼类、蛋类等营养食品，以满足人体的代谢需要； &lt;/p&gt;
+&lt;p&gt;58.夏天，人的活动时间变长，出汗多，耗能过大，应适当多吃鸡、鸭、瘦肉、鱼类、蛋类等营养食品，以满足人体的代谢需要；&lt;/p&gt;
 
-&lt;p&gt;59.头痛时把苹果磨成泥状涂在纱布上，贴在头痛处，症状可减轻； &lt;/p&gt;
+&lt;p&gt;59.头痛时把苹果磨成泥状涂在纱布上，贴在头痛处，症状可减轻；&lt;/p&gt;
 
 &lt;p&gt;60.皮包上有污渍，可以用棉花蘸风油精擦拭&lt;/p&gt;
 </description>
@@ -5003,13 +5460,13 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/01/01/Joke-Japanese-Cannot-Find/</guid>
-      <description>&lt;p&gt;今天和老妈聊天，老妈说起了一件事。 &lt;/p&gt;
+      <description>&lt;p&gt;今天和老妈聊天，老妈说起了一件事。&lt;/p&gt;
 
-&lt;p&gt;我妈爱干净，经常勤奋的收拾厨房，对厨房每个物品都想有个理想的摆放地点，有一次老妈下定决心收拾了一天厨房，把所有的餐具什么的都摆到了她认为很合适的地方。 &lt;/p&gt;
+&lt;p&gt;我妈爱干净，经常勤奋的收拾厨房，对厨房每个物品都想有个理想的摆放地点，有一次老妈下定决心收拾了一天厨房，把所有的餐具什么的都摆到了她认为很合适的地方。&lt;/p&gt;
 
-&lt;p&gt;第二天我老爸做饭的时候，把厨房翻了个底朝天都没找到以前放在某处的东西，最后我妈去一下就找到了，我爸说了句：“你这样放，就是日本鬼子来扫荡都找不到！”。 &lt;/p&gt;
+&lt;p&gt;第二天我老爸做饭的时候，把厨房翻了个底朝天都没找到以前放在某处的东西，最后我妈去一下就找到了，我爸说了句：“你这样放，就是日本鬼子来扫荡都找不到！”。&lt;/p&gt;
 
-&lt;p&gt;吃完饭我妈收拾厨房的时候，又把东西放到新位置。结果过了几天可怜的我爸又做饭的时候又找不到了~~~~ &lt;/p&gt;
+&lt;p&gt;吃完饭我妈收拾厨房的时候，又把东西放到新位置。结果过了几天可怜的我爸又做饭的时候又找不到了~~~~&lt;/p&gt;
 
 &lt;p&gt;囧~~~&lt;/p&gt;
 </description>
@@ -5027,105 +5484,105 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2008/12/28/About-Destiny/</guid>
-      <description>&lt;p&gt;[甲]“结婚是靠缘分，没有缘分再好也走不到一块去”非诚勿扰的台词 &lt;/p&gt;
+      <description>&lt;p&gt;[甲]“结婚是靠缘分，没有缘分再好也走不到一块去”非诚勿扰的台词&lt;/p&gt;
 
-&lt;p&gt;[甲]“如果一定要结婚，又不可以跟自己爱的人在一起，那起码要找个知己”台词 &lt;/p&gt;
+&lt;p&gt;[甲]“如果一定要结婚，又不可以跟自己爱的人在一起，那起码要找个知己”台词&lt;/p&gt;
 
-&lt;p&gt;[乙]其实 &lt;/p&gt;
+&lt;p&gt;[乙]其实&lt;/p&gt;
 
-&lt;p&gt;[乙]一直以来人们都被忽悠了 &lt;/p&gt;
+&lt;p&gt;[乙]一直以来人们都被忽悠了&lt;/p&gt;
 
-&lt;p&gt;[乙]什么是缘分 &lt;/p&gt;
+&lt;p&gt;[乙]什么是缘分&lt;/p&gt;
 
-&lt;p&gt;[乙]你知道吗？ &lt;/p&gt;
+&lt;p&gt;[乙]你知道吗？&lt;/p&gt;
 
-&lt;p&gt;[甲]恩 &lt;/p&gt;
+&lt;p&gt;[甲]恩&lt;/p&gt;
 
-&lt;p&gt;[甲]就是无数的巧合碰一块，触动了你心里的那根弦 &lt;/p&gt;
+&lt;p&gt;[甲]就是无数的巧合碰一块，触动了你心里的那根弦&lt;/p&gt;
 
-&lt;p&gt;[甲]你觉得呢 &lt;/p&gt;
+&lt;p&gt;[甲]你觉得呢&lt;/p&gt;
 
-&lt;p&gt;[乙]不是   &lt;/p&gt;
+&lt;p&gt;[乙]不是&lt;/p&gt;
 
-&lt;p&gt;[甲]那你说 &lt;/p&gt;
+&lt;p&gt;[甲]那你说&lt;/p&gt;
 
-&lt;p&gt;[乙]缘分是事后认为而已 &lt;/p&gt;
+&lt;p&gt;[乙]缘分是事后认为而已&lt;/p&gt;
 
-&lt;p&gt;[乙]过程到底发生了什么？ &lt;/p&gt;
+&lt;p&gt;[乙]过程到底发生了什么？&lt;/p&gt;
 
-&lt;p&gt;[乙]过程是两个人相互努力的过程 &lt;/p&gt;
+&lt;p&gt;[乙]过程是两个人相互努力的过程&lt;/p&gt;
 
-&lt;p&gt;[甲]可是，没有那么些巧遇，怎么会有以后的过程 &lt;/p&gt;
+&lt;p&gt;[甲]可是，没有那么些巧遇，怎么会有以后的过程&lt;/p&gt;
 
-&lt;p&gt;[乙]没有相互努力不会有结果，你觉得开始觉得有缘分的人最终一定会走到一起吗？ &lt;/p&gt;
+&lt;p&gt;[乙]没有相互努力不会有结果，你觉得开始觉得有缘分的人最终一定会走到一起吗？&lt;/p&gt;
 
-&lt;p&gt;[甲]那就是缘分不到 &lt;/p&gt;
+&lt;p&gt;[甲]那就是缘分不到&lt;/p&gt;
 
-&lt;p&gt;[甲]我相信有缘，真是宿命论 &lt;/p&gt;
+&lt;p&gt;[甲]我相信有缘，真是宿命论&lt;/p&gt;
 
-&lt;p&gt;[乙]缘分不到仍然是事后的说法 &lt;/p&gt;
+&lt;p&gt;[乙]缘分不到仍然是事后的说法&lt;/p&gt;
 
-&lt;p&gt;[甲]这虽然是宿命论，但是我信 &lt;/p&gt;
+&lt;p&gt;[甲]这虽然是宿命论，但是我信&lt;/p&gt;
 
-&lt;p&gt;[甲]缘分会让你有那么一瞬的感觉 &lt;/p&gt;
+&lt;p&gt;[甲]缘分会让你有那么一瞬的感觉&lt;/p&gt;
 
-&lt;p&gt;[甲]佛不说吗？机缘济会 &lt;/p&gt;
+&lt;p&gt;[甲]佛不说吗？机缘济会&lt;/p&gt;
 
-&lt;p&gt;[乙]这都是为了让劳苦大众自我安慰而已 &lt;/p&gt;
+&lt;p&gt;[乙]这都是为了让劳苦大众自我安慰而已&lt;/p&gt;
 
-&lt;p&gt;[乙]试想，当你和某人觉得有缘的时候，你们一定会在一起吗？ &lt;/p&gt;
+&lt;p&gt;[乙]试想，当你和某人觉得有缘的时候，你们一定会在一起吗？&lt;/p&gt;
 
-&lt;p&gt;[乙]那么有缘代表什么呢？ &lt;/p&gt;
+&lt;p&gt;[乙]那么有缘代表什么呢？&lt;/p&gt;
 
-&lt;p&gt;[甲]不一定会 &lt;/p&gt;
+&lt;p&gt;[甲]不一定会&lt;/p&gt;
 
-&lt;p&gt;[甲]但是缘分让你有了那么段美好的回忆 &lt;/p&gt;
+&lt;p&gt;[甲]但是缘分让你有了那么段美好的回忆&lt;/p&gt;
 
-&lt;p&gt;[甲]这就够了 &lt;/p&gt;
+&lt;p&gt;[甲]这就够了&lt;/p&gt;
 
-&lt;p&gt;[甲]就跟一个寓言说的 &lt;/p&gt;
+&lt;p&gt;[甲]就跟一个寓言说的&lt;/p&gt;
 
-&lt;p&gt;[乙]缘分完全都是事后的说法 &lt;/p&gt;
+&lt;p&gt;[乙]缘分完全都是事后的说法&lt;/p&gt;
 
-&lt;p&gt;[乙]关键在于过程你们是否双方都付出了努力 &lt;/p&gt;
+&lt;p&gt;[乙]关键在于过程你们是否双方都付出了努力&lt;/p&gt;
 
-&lt;p&gt;[乙]当结婚的时候，会说我们真有缘份 &lt;/p&gt;
+&lt;p&gt;[乙]当结婚的时候，会说我们真有缘份&lt;/p&gt;
 
-&lt;p&gt;[乙]当离婚的时候，会说可能我们没有缘分 &lt;/p&gt;
+&lt;p&gt;[乙]当离婚的时候，会说可能我们没有缘分&lt;/p&gt;
 
-&lt;p&gt;[甲]百年修的同船度，千年修的共枕眠 &lt;/p&gt;
+&lt;p&gt;[甲]百年修的同船度，千年修的共枕眠&lt;/p&gt;
 
-&lt;p&gt;[乙]当复婚的时候，会说我们还真有缘分 &lt;/p&gt;
+&lt;p&gt;[乙]当复婚的时候，会说我们还真有缘分&lt;/p&gt;
 
-&lt;p&gt;[甲]不是那么个说法 &lt;/p&gt;
+&lt;p&gt;[甲]不是那么个说法&lt;/p&gt;
 
-&lt;p&gt;[甲]有的人只有缘分做朋友，有的人却有缘分做夫妻 &lt;/p&gt;
+&lt;p&gt;[甲]有的人只有缘分做朋友，有的人却有缘分做夫妻&lt;/p&gt;
 
-&lt;p&gt;[甲]不是有缘无缘，而是缘分多少 &lt;/p&gt;
+&lt;p&gt;[甲]不是有缘无缘，而是缘分多少&lt;/p&gt;
 
-&lt;p&gt;[乙]如此说来，这个道理其实就是万事万物都是由联系的，只不过有的联系多些有的联系少些，联系=缘 &lt;/p&gt;
+&lt;p&gt;[乙]如此说来，这个道理其实就是万事万物都是由联系的，只不过有的联系多些有的联系少些，联系=缘&lt;/p&gt;
 
-&lt;p&gt;[甲]你终于有所悟 &lt;/p&gt;
+&lt;p&gt;[甲]你终于有所悟&lt;/p&gt;
 
-&lt;p&gt;[甲]可以这么说 &lt;/p&gt;
+&lt;p&gt;[甲]可以这么说&lt;/p&gt;
 
-&lt;p&gt;[乙]你要明白，一个事物和另一个事物的联系可以被这两个事物共同决定，而不是说两个事物生来就有固定的联系 &lt;/p&gt;
+&lt;p&gt;[乙]你要明白，一个事物和另一个事物的联系可以被这两个事物共同决定，而不是说两个事物生来就有固定的联系&lt;/p&gt;
 
-&lt;p&gt;[乙]甚至可以被许多其他事物所联系 &lt;/p&gt;
+&lt;p&gt;[乙]甚至可以被许多其他事物所联系&lt;/p&gt;
 
-&lt;p&gt;[乙]所决定 &lt;/p&gt;
+&lt;p&gt;[乙]所决定&lt;/p&gt;
 
-&lt;p&gt;[甲]如果没有撞见，会有共同努力吗 &lt;/p&gt;
+&lt;p&gt;[甲]如果没有撞见，会有共同努力吗&lt;/p&gt;
 
-&lt;p&gt;[甲]只有去寻去碰，才会有希望 &lt;/p&gt;
+&lt;p&gt;[甲]只有去寻去碰，才会有希望&lt;/p&gt;
 
-&lt;p&gt;[乙]如果到了另一个地方，你仍然会和另外的人发生联系 &lt;/p&gt;
+&lt;p&gt;[乙]如果到了另一个地方，你仍然会和另外的人发生联系&lt;/p&gt;
 
-&lt;p&gt;[甲]对 &lt;/p&gt;
+&lt;p&gt;[甲]对&lt;/p&gt;
 
-&lt;p&gt;[甲]可是，那根弦有可能将你带回原来的起点 &lt;/p&gt;
+&lt;p&gt;[甲]可是，那根弦有可能将你带回原来的起点&lt;/p&gt;
 
-&lt;p&gt;[乙]所以说，你和别人中的一个有缘是真的，并不是说你和某个固定的人有缘是真的 &lt;/p&gt;
+&lt;p&gt;[乙]所以说，你和别人中的一个有缘是真的，并不是说你和某个固定的人有缘是真的&lt;/p&gt;
 </description>
     </item>
     
@@ -5141,78 +5598,78 @@ Cole是一个能看到死人的小孩，他和他的妈妈一起住。但是由�
       <category>博文</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2008/12/21/About-Investment/</guid>
-      <description>&lt;p&gt;[甲]你炒股吗 &lt;/p&gt;
+      <description>&lt;p&gt;[甲]你炒股吗&lt;/p&gt;
 
-&lt;p&gt;[乙]不 &lt;/p&gt;
+&lt;p&gt;[乙]不&lt;/p&gt;
 
-&lt;p&gt;[乙]我向来不去高风险的地方 &lt;/p&gt;
+&lt;p&gt;[乙]我向来不去高风险的地方&lt;/p&gt;
 
-&lt;p&gt;[甲]那不是高风险 &lt;/p&gt;
+&lt;p&gt;[甲]那不是高风险&lt;/p&gt;
 
-&lt;p&gt;[甲]是投资 &lt;/p&gt;
+&lt;p&gt;[甲]是投资&lt;/p&gt;
 
-&lt;p&gt;[甲]现在人必须有投资意识 &lt;/p&gt;
+&lt;p&gt;[甲]现在人必须有投资意识&lt;/p&gt;
 
-&lt;p&gt;[甲]怎么也比钱存银行强 &lt;/p&gt;
+&lt;p&gt;[甲]怎么也比钱存银行强&lt;/p&gt;
 
-&lt;p&gt;[乙]呵呵，炒股确实是一种投资，但是在中国炒股是一种投机 &lt;/p&gt;
+&lt;p&gt;[乙]呵呵，炒股确实是一种投资，但是在中国炒股是一种投机&lt;/p&gt;
 
-&lt;p&gt;[甲]可以这么说吧 &lt;/p&gt;
+&lt;p&gt;[甲]可以这么说吧&lt;/p&gt;
 
-&lt;p&gt;[甲]国家不是正在让股市走上正轨吗 &lt;/p&gt;
+&lt;p&gt;[甲]国家不是正在让股市走上正轨吗&lt;/p&gt;
 
-&lt;p&gt;[甲]要对政府有信心 &lt;/p&gt;
+&lt;p&gt;[甲]要对政府有信心&lt;/p&gt;
 
-&lt;p&gt;[乙]我是比较要求稳的那种。。 &lt;/p&gt;
+&lt;p&gt;[乙]我是比较要求稳的那种。。&lt;/p&gt;
 
-&lt;p&gt;[甲]我觉得炒股是一个成年人玩的游戏 &lt;/p&gt;
+&lt;p&gt;[甲]我觉得炒股是一个成年人玩的游戏&lt;/p&gt;
 
-&lt;p&gt;[甲]那你喜欢兢兢业业过日子 &lt;/p&gt;
+&lt;p&gt;[甲]那你喜欢兢兢业业过日子&lt;/p&gt;
 
-&lt;p&gt;[甲]节俭着过 &lt;/p&gt;
+&lt;p&gt;[甲]节俭着过&lt;/p&gt;
 
-&lt;p&gt;[乙]错了，我正觉得炒股是成年人用未成年人心态玩的游戏 &lt;/p&gt;
+&lt;p&gt;[乙]错了，我正觉得炒股是成年人用未成年人心态玩的游戏&lt;/p&gt;
 
-&lt;p&gt;[甲]不见得,挑股票也有学问,不是瞎摸的 &lt;/p&gt;
+&lt;p&gt;[甲]不见得,挑股票也有学问,不是瞎摸的&lt;/p&gt;
 
-&lt;p&gt;[甲]如果你要求稳,你可以去买国债 &lt;/p&gt;
+&lt;p&gt;[甲]如果你要求稳,你可以去买国债&lt;/p&gt;
 
-&lt;p&gt;[甲]绝对保本,也有收益 &lt;/p&gt;
+&lt;p&gt;[甲]绝对保本,也有收益&lt;/p&gt;
 
-&lt;p&gt;[甲]我最近比较喜欢中央二套的经济节目 &lt;/p&gt;
+&lt;p&gt;[甲]我最近比较喜欢中央二套的经济节目&lt;/p&gt;
 
-&lt;p&gt;[甲]好多讲得比较好 &lt;/p&gt;
+&lt;p&gt;[甲]好多讲得比较好&lt;/p&gt;
 
-&lt;p&gt;[乙]当你不能完全掌控一件事物的时候就去进行所谓的投资，这种情形完全是在看运气。 &lt;/p&gt;
+&lt;p&gt;[乙]当你不能完全掌控一件事物的时候就去进行所谓的投资，这种情形完全是在看运气。&lt;/p&gt;
 
-&lt;p&gt;[乙]国债可以考虑，但是如果这部分钱拿出来进行更有意义的活动不是更好吗？ &lt;/p&gt;
+&lt;p&gt;[乙]国债可以考虑，但是如果这部分钱拿出来进行更有意义的活动不是更好吗？&lt;/p&gt;
 
-&lt;p&gt;[甲]你要分析一下大势是在爬坡还是下坡就行了,不是你想象的那么可怕 &lt;/p&gt;
+&lt;p&gt;[甲]你要分析一下大势是在爬坡还是下坡就行了,不是你想象的那么可怕&lt;/p&gt;
 
-&lt;p&gt;[甲]那你平常拿出这些钱来作什么 &lt;/p&gt;
+&lt;p&gt;[甲]那你平常拿出这些钱来作什么&lt;/p&gt;
 
 &lt;p&gt;[乙]如果我拿出这部分钱去学习某项技能，这项技能可能以后会在我被裁员的时候救我一命，或者可以让我每年增加几万的额外收益，这样不是
-更好么？ &lt;/p&gt;
+更好么？&lt;/p&gt;
 
-&lt;p&gt;[乙]能不能学好一项技能恰恰是我们所能掌控的 &lt;/p&gt;
+&lt;p&gt;[乙]能不能学好一项技能恰恰是我们所能掌控的&lt;/p&gt;
 
-&lt;p&gt;[甲]你说的是培训 &lt;/p&gt;
+&lt;p&gt;[甲]你说的是培训&lt;/p&gt;
 
-&lt;p&gt;[甲]你说的固然有理,可是你没想过自己当自己的老板 &lt;/p&gt;
+&lt;p&gt;[甲]你说的固然有理,可是你没想过自己当自己的老板&lt;/p&gt;
 
-&lt;p&gt;[乙]还有一点，怎么说，我现在还没有房贷压力可能不能体会。这部分钱用来提升生活质量 &lt;/p&gt;
+&lt;p&gt;[乙]还有一点，怎么说，我现在还没有房贷压力可能不能体会。这部分钱用来提升生活质量&lt;/p&gt;
 
-&lt;p&gt;[乙]正因为我不去炒股，所以我自己是自己的老板；如果我拿去投资，别人是这些钱的老板 &lt;/p&gt;
+&lt;p&gt;[乙]正因为我不去炒股，所以我自己是自己的老板；如果我拿去投资，别人是这些钱的老板&lt;/p&gt;
 
-&lt;p&gt;[甲]不是有句老话说的好:吃不穷,穿不穷,算计不到一辈子穷 &lt;/p&gt;
+&lt;p&gt;[甲]不是有句老话说的好:吃不穷,穿不穷,算计不到一辈子穷&lt;/p&gt;
 
-&lt;p&gt;[乙]钱固然重要，但是更重要的是心态，总是想着钱，这辈子钱就是自己的主人了 &lt;/p&gt;
+&lt;p&gt;[乙]钱固然重要，但是更重要的是心态，总是想着钱，这辈子钱就是自己的主人了&lt;/p&gt;
 
-&lt;p&gt;[甲]可能工作性质不同所导致的吧,我们这边只要签约,只要你不走,单位不会开除你的 &lt;/p&gt;
+&lt;p&gt;[甲]可能工作性质不同所导致的吧,我们这边只要签约,只要你不走,单位不会开除你的&lt;/p&gt;
 
-&lt;p&gt;[甲]所以我们闲着没事,就会考虑这些事情 &lt;/p&gt;
+&lt;p&gt;[甲]所以我们闲着没事,就会考虑这些事情&lt;/p&gt;
 
-&lt;p&gt;[乙]呵呵，我上面所说的只是我个人想法 &lt;/p&gt;
+&lt;p&gt;[乙]呵呵，我上面所说的只是我个人想法&lt;/p&gt;
 </description>
     </item>
     
@@ -5930,7 +6387,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
 
 &lt;p&gt;ActiveX控件是一种极其危险的提供功能的方法（目前正在被MS逐渐冷落），因为它是一种组建对象模型（COM）的对象，只要电脑的用户可以完成的任务，它都可以完成。比如它可以存取注册表，可以随意访问本地文件系统等等。一个网页上面的控件一般有2种不安全的状态，一种是脚本的不安全，一种是初始化的不安全。当用户将一个压缩解压缩控件指向一个远程被压缩的包含特洛伊木马的系统文件并且需要控件来解压缩这个文件时，系统安全会被打破。这个状态就是初始化的不安全。从代码的角度来讲，如果控件从IPersist派生，也就是说控件实现了永久性，那么就会触发unsafe for initializing。而在脚本程序安全执行以前，一个控件依赖于特定的系统设置，那么在允许这段代码运行之前，控件的开发人员需要提供一些必要的代码。从代码的角度来讲，如果控件从IDispatch派生，也就是说控件支持脚本，那么就会触发unsafe for scripting。&lt;/p&gt;
 
-&lt;p&gt;从用户下载一个ActiveX控件开始，这个控件甚至可能很容易被攻击，因为网络上任何网络程序都可以使用它，无论是出于友好的目的还是恶意的目的。因此IE浏览器（本文只探讨IE内核的浏览器）总是试图弹出一个对话框来告诉你，这个控件可能是不安全的。这几乎总是一个很好的预防网络攻击的好方法，但是对于那些我们认为总是安全的控件，我们仍然要总是接受这种IE产生的干扰，这就使人厌烦了。其实当身为程序员的你写这样的安全控件时，这样的问题是很容易解决的。 &lt;/p&gt;
+&lt;p&gt;从用户下载一个ActiveX控件开始，这个控件甚至可能很容易被攻击，因为网络上任何网络程序都可以使用它，无论是出于友好的目的还是恶意的目的。因此IE浏览器（本文只探讨IE内核的浏览器）总是试图弹出一个对话框来告诉你，这个控件可能是不安全的。这几乎总是一个很好的预防网络攻击的好方法，但是对于那些我们认为总是安全的控件，我们仍然要总是接受这种IE产生的干扰，这就使人厌烦了。其实当身为程序员的你写这样的安全控件时，这样的问题是很容易解决的。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;3、解决方法&lt;/h2&gt;
 
@@ -5940,7 +6397,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
 &lt;p&gt;数字签名是一种使控件足够安全的方法，它通过特定的密钥来加密控件的使用，使得使用控件的对象能够根据密钥是否相符来检测控件是否足够安全。通常，拥有自己的可发布的数字签名是要Money的，本文是一篇技术文章，对此并不深入探讨，下面主要介绍代码方面的安全化。&lt;/p&gt;
 
 &lt;h3 id=&quot;iobjectsafety&quot;&gt;3.2、继承IObjectSafety接口&lt;/h3&gt;
-&lt;p&gt;IObjectSafety接口是在头文件”objsafe.h”中定义的接口，定义如下： &lt;/p&gt;
+&lt;p&gt;IObjectSafety接口是在头文件”objsafe.h”中定义的接口，定义如下：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;nl&quot;&gt;IObjectSafety&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IUnknown&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -6211,7 +6668,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HKEY_LOCAL_MACHINE&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SOFTWARE&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Classes&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CLSID&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GUID&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Implemented&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Categories&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GUID&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;ActiveX SDK头文件ObjSafe.H 已经为类别CATID_SafeForInitializing和CATID_SafeForScripting定义了GUID值。因此对于特定的工程，如果控件类的GUID是{20048BB3-DB68-11CF-9CAF-00AA006CB425}，那么我们就只需要添加两个注册表项：  &lt;/p&gt;
+&lt;p&gt;ActiveX SDK头文件ObjSafe.H 已经为类别CATID_SafeForInitializing和CATID_SafeForScripting定义了GUID值。因此对于特定的工程，如果控件类的GUID是{20048BB3-DB68-11CF-9CAF-00AA006CB425}，那么我们就只需要添加两个注册表项：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;REGEDIT4&lt;/span&gt;
        
@@ -6221,7 +6678,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
        
    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HKEY_CLASSES_ROOT&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CLSID&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20048&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BB3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DB68&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CAF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AA006CB425&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Implemented&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Categories&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DD95802&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9882&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;9F&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;00&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AA006C42C4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;将以上代码拷贝到一个*.reg中去，保存后执行就可以将GUID为{20048BB3-DB68-11CF-9CAF-00AA006CB425}的控件类注册为安全控件。有时候注册表中不一定有那两个类别，因此我们还需要自己来描述这两个重要的类别： &lt;/p&gt;
+&lt;p&gt;将以上代码拷贝到一个*.reg中去，保存后执行就可以将GUID为{20048BB3-DB68-11CF-9CAF-00AA006CB425}的控件类注册为安全控件。有时候注册表中不一定有那两个类别，因此我们还需要自己来描述这两个重要的类别：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c--&quot; data-lang=&quot;c++&quot;&gt;&lt;span class=&quot;n&quot;&gt;REGEDIT4&lt;/span&gt;
 
@@ -6268,7 +6725,7 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;这份表还远没有结束，但这些至少都是必要的。还有一点很重要，就是千万不要把本来实际上不安全的控件注册为安全的，尽管这很诱人（比如说你没有控件的源代码）。无论控件做什么事情的，一旦控件被标注为安全的，那么所有的网页都会省略对这个控件的安全检测。到目前为止，还没有方法能把一个控件标注为仅对特定网页是安全的。标注不安全控件为安全空间的一个简单安全的选择就是写一个包含了不安全控件的新安全控件。只要确保新安全控件的初始化，方法和属性都是安全的就行了。 &lt;/p&gt;
+&lt;p&gt;这份表还远没有结束，但这些至少都是必要的。还有一点很重要，就是千万不要把本来实际上不安全的控件注册为安全的，尽管这很诱人（比如说你没有控件的源代码）。无论控件做什么事情的，一旦控件被标注为安全的，那么所有的网页都会省略对这个控件的安全检测。到目前为止，还没有方法能把一个控件标注为仅对特定网页是安全的。标注不安全控件为安全空间的一个简单安全的选择就是写一个包含了不安全控件的新安全控件。只要确保新安全控件的初始化，方法和属性都是安全的就行了。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-10&quot;&gt;4、总结&lt;/h2&gt;
 

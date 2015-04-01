@@ -20,15 +20,15 @@ tags:
 
 弹出了配置框，在里面选择如下内容：
 
-	Application Type: Internet Applications
-	
-	Program to record: 这里如果有IE8及以下最好，因为LR不支持IE10以上；或者选择Firefox，因为LR对其他浏览器支持也不好。因此这里对我而言，选择firefox程序的所在
-	
-	URL Address: 选择你需要测试的网址，比如http://www.baidu.com/?q=mobile
-	
-	Working Directory: 不变即可
-	
-	Record to Action: 选择Action即可
+> Application Type: Internet Applications
+> 
+> Program to record: 这里如果有IE8及以下最好，因为LR不支持IE10以上；或者选择Firefox，因为LR对其他浏览器支持也不好。因此这里对我而言，选择firefox程序的所在
+> 
+> URL Address: 选择你需要测试的网址，比如http://www.baidu.com/?q=mobile
+> 
+> Working Directory: 不变即可
+> 
+> Record to Action: 选择Action即可
 	
 点击确定后将会进行后台录制，时间很长。对我而言点击取消，直接进入Action代码中进行编码。
 
