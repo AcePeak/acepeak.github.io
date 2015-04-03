@@ -8,6 +8,7 @@ tags:
 - C++
 - OOP
 - Design Pattern
+- 翻译
 ---
 
 

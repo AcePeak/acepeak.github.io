@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 01 Apr 2015 13:33:04 +0800</pubDate>
-    <lastBuildDate>Wed, 01 Apr 2015 13:33:04 +0800</lastBuildDate>
+    <pubDate>Thu, 02 Apr 2015 18:35:26 +0800</pubDate>
+    <lastBuildDate>Thu, 02 Apr 2015 18:35:26 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.3</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -3290,6 +3290,79 @@ mopub
 
 Max传漾
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>网络广告术语之平台类型</title>
+      <link>http://lilifeng.net/blogs/2014/12/30/Advertise-glossary-platform/</link>
+      <pubDate>Tue, 30 Dec 2014 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>市场</category>
+      
+      <category>术语</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/30/Advertise-glossary-platform/</guid>
+      <description>&lt;p&gt;&lt;code&gt;RTB(Real Time Bidding): 实时竞价&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;是一种利用第三方技术在数以百万计的网站上针对每一个用户展示行为进行评估以及出价的竞价技术。实时竞价允许广告买家根据活动目标、目标人群以及费用门槛等因素对每一个广告及每次广告展示的费用进行竞价。一旦竞价成功，广告就会立刻出现在出版商的网站中。这种允许进行动态交易的技术被业内称为 “投标人”，而且可以嵌入相关平台中。
+RTB模式与传统的展示型广告市场购买方式相区别，传统的展示型广告购买方式有CPM（cost per 1000 impressions - 按照每1000个展示曝光进行付费）、CPC（cost perclick - 按照每个点击进行付费）、Monthly Flat（广告位包月）、Daily Flat（广告位包天），而RTB就是在每一个广告展示曝光的基础上进行竞价。&lt;/p&gt;
+
+&lt;p&gt;RTB面向DSP、SSP，专注于流量交易，平台完善和生态系统的构建；提高流量交换效率，定价机制，信息聚合。以技术为驱动。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_1.jpg&quot; alt=&quot;RTB&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_7.gif&quot; alt=&quot;RTB&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DSP(Demand Side Platform): 需求方平台&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;需方平台允许广告客户和广告机构更方便地访问，以及更有效地购买广告库存，因为该平台汇集了各种广告交易平台的库存。有了这一平台，就不需要再出现另一个繁琐的购买步骤——购买请求。它服务于广告主，帮助广告主在互联网或者移动互联网上进行广告投放，DSP可以使广告主更简单便捷地遵循统一的竞价和反馈方式，对位于多家广告交易平台的在线广告,以合理的价格实时购买高质量的广告库存。一个真正意义的DSP，必须拥有两个核心特征，一是拥有强大的RTB(Real-Time Bidding)的基础设施和能力，二是拥有先进的用户定向(AudienceTargeting)技术。&lt;/p&gt;
+
+&lt;p&gt;DSP面向广告主、广告代理，专注于定向技术、自动优化、动态出价及创意优化。以服务为驱动。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_2.jpg&quot; alt=&quot;DSP&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;SSP(Sell-SidePlatform): 供应方平台&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;供应方平台能够让出版商也介入广告交易，从而使它们的库存广告可用。通过这一平台，出版商希望他们的库存广告可以获得最高的有效每千次展示费用，而不必以低价销售出去。&lt;/p&gt;
+
+&lt;p&gt;SSP面向网站主、网站代理，专注于广告位优化、展示有效性优化、展示竞价优化。以服务为驱动。&lt;/p&gt;
+
+&lt;p&gt;DSP和SSP的对比图如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_3.jpg&quot; alt=&quot;SSP&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;AdExchange: 广告交易平台&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;广告交易平台是一个开放的、能够将出版商和广告商联系在一起的在线广告市场（类似于证券交易所）。交易平台里的广告存货并不一定都是溢价库存，只要出版商想要提供的，都可以在里面找到。Ad Exchange在互联网展示广告的高速发展创新中扮演了极其重要角色，它可以使互联网展示广告市场更加透明，高效，和可控。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_4.jpg&quot; alt=&quot;Ad Exchange&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_5.jpg&quot; alt=&quot;Ad Exchange&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;DMP(Data-Management Platform): 数据管理平台&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;是把分散的数据进行整合纳入统一的技术平台。数据管理平台能够帮助所有涉及广告库存购买和出售的各方管理其数据、更方便地使用第三方数据、增强他们对所有这些数据的理解、传回数据或将定制数据传入某一平台，以进行更好地定位。&lt;/p&gt;
+
+&lt;p&gt;DMP面向广告交易中的各方，专注于数据管理、数据分析、数据调用。以技术为驱动。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_6.jpg&quot; alt=&quot;DMP&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;AdNetwork: 广告网络平台&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;广告网络是一个封闭的网络广告市场，网络业主作为中间环节先向出版商采购广告库存，然后再转售给买家，虽然有时候出版商也可以创建自己的广告网络。在广告业内，这是一个较为广泛的概念。是一种介于想出售广告空间的网站与想在网站上刊登广告的广告主之间的平台. 比较知名的大型广告网络公司如Google的AdSense。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;补一张互联网广告各主流平台图&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_8.png&quot; alt=&quot;互联网广告各主流平台图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;补一张互联网广告交易发展历史图&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141230_9.jpg&quot; alt=&quot;互联网广告交易发展历史图&quot; /&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -6785,6 +6858,8 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       
       <category>Design Pattern</category>
       
+      <category>翻译</category>
+      
       
       <category>desktop</category>
       
@@ -7002,6 +7077,8 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       
       <category>boost</category>
       
+      <category>翻译</category>
+      
       
       <category>desktop</category>
       
@@ -7177,6 +7254,8 @@ There are 0 queue items: &amp;lt; &amp;gt;&lt;/p&gt;
       <category>C++</category>
       
       <category>OOP</category>
+      
+      <category>翻译</category>
       
       
       <category>desktop</category>
