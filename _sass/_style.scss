@@ -976,3 +976,21 @@ code.output {
     display: inline !important;
   }
 }
+
+
+/* Clearfix after every .grid */
+.tag-cloud ul {
+  *zoom: 1; }
+
+.tag-cloud ul:before, .tag-cloud ul:after {
+  display: table;
+  content: "";
+  line-height: 0; }
+
+.tag-cloud ul:after {
+  clear: both; }
+
+.tag-cloud ul li {
+  float: left;
+  list-style-type: none;
+}

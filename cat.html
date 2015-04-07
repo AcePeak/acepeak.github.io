@@ -3,16 +3,20 @@ layout : tags
 title  : 分类
 ---
 <div class="tag-cloud">
+	<ul>
   {% for cat in site.categories %}
-    <a href="#posts-tag"
+  <li>
+    <a href="#{{ forloop.index }}"
       id="{{ forloop.index }}" class="__tag" style="margin: 5px">{{cat[0]}}
     </a>
     <ul id="list_{{ forloop.index }}" style="display:none;">
       {% for post in cat[1] %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        <li><a href="{{ post.url }}">{{ post.date | date: "%F"  }} {{ post.title }}</a></li>
       {% endfor %}
     </ul>
+    </li>
   {% endfor %}
+  </ul>
 </div>
 
 <div id="posts-tags" class="post-list" style="margin: 50px;"></div>
@@ -32,16 +36,32 @@ title  : 分类
     {% endfor %}
 
     {% for cat in site.categories %}
-      size = (Math.log({{ cat[1].size }}) / Math.log({{ max }})) * diffFont
-             + minFont;
-      jq("#{{ forloop.index }}").css("font-size", size + "px");
+		curEl = jq("#{{ forloop.index }}");
+		curEl.text( curEl.text() + "(" + {{ cat[1].size }} + ")");
     {% endfor %}
 
-    jq('.tag-cloud a[class^="__tag"]').click(function() {
+	function anchorClicked(anc){
       jq('.post-list').empty();
-      jq('#list_' + jq(this).attr('id')).each(function() {
+      jq('#list_' + jq(anc).attr('id')).each(function() {
          jq('.post-list').append('<ul>' + jq(this).html() + '</ul>');
       });
-    });
+	};
+
+	//detecting any change on the URL to scroll to the given anchor link
+	//(a way to detect back history button as we play with the hashes on the URL)
+	jq(window).on('hashchange', hashChangeHandler);
+
+	function hashChangeHandler(){
+		var value =  window.location.hash.replace('#', '');
+		if(value)
+		{
+			var anc = jq("#" + value.toString());
+			anchorClicked(anc);
+		}
+	};
+	
+	jq(document).ready(function(){
+		hashChangeHandler();
+	});
   });
 </script>
