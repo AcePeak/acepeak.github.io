@@ -4,7 +4,6 @@ title: '网络广告术语之平台类型'
 author: AcePeak
 categories: [广告平台]
 tags: 
-- 市场
 - 术语
 ---
 
