@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Fri, 10 Apr 2015 16:40:40 +0800</pubDate>
-    <lastBuildDate>Fri, 10 Apr 2015 16:40:40 +0800</lastBuildDate>
+    <pubDate>Fri, 10 Apr 2015 16:59:03 +0800</pubDate>
+    <lastBuildDate>Fri, 10 Apr 2015 16:59:03 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.3</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,130 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>某电商网站流量劫持案例分析与思考</title>
+      <link>http://lilifeng.net/blogs/2015/04/12/site-connect-robbed-analyze/</link>
+      <pubDate>Sun, 12 Apr 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>网络安全</category>
+      
+      
+      <category>mobile</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/04/12/site-connect-robbed-analyze/</guid>
+      <description>&lt;p&gt;【前言】&lt;/p&gt;
+
+&lt;p&gt;自腾讯与京东建立了战略合作关系之后，笔者网上购物就首选京东了。某天在家里访问京东首页的时候突然吃惊地发现浏览器突然跳到了第三方网站再回到京东，心里第一个反应就是中木马了。&lt;/p&gt;
+
+&lt;p&gt;竟然有这样的事，一定要把木马大卸八块。&lt;/p&gt;
+
+&lt;p&gt;【原因排查】&lt;/p&gt;
+
+&lt;p&gt;首先在重现的情况下抓包，京东官网确实返回了一段JavaScript让浏览器跳转到了yiqifa.com。&lt;/p&gt;
+
+&lt;p&gt;下图是应用层的抓包。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150412_1.png&quot; alt=&quot;应用层的抓包&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;服务器返回的代码导致跳转，基本可以排除本地木马，推测是网络或者服务器的问题。根据笔者的经验，这种情况很大可能是链路上的流量劫持攻击。当然也不能排除京东服务器被黑的情况。&lt;/p&gt;
+
+&lt;p&gt;继续排查。应用层已经不行了，我们要用Wireshark抓网络层的包。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150412_2.png&quot; alt=&quot;网络层的包&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从Wireshark结果可以看到，网络上出现了两个京东的HTTP响应。第一个先到，所以浏览器执行里面的JavaScript代码转到了yiqifa.com；第二个HTTP响应由于晚到，被系统忽略（Wireshark识别为out-of-order）。&lt;/p&gt;
+
+&lt;p&gt;两个京东的HTTP响应包，必然一真一假。快揭示真相了。&lt;/p&gt;
+
+&lt;p&gt;再来看看两个HTTP响应的IP头。&lt;/p&gt;
+
+&lt;p&gt;第一个包TTL值是252，第二个包TTL值是56，而之前TCP三次握手时京东服务器的TTL值是56，故可以判断先到的包是伪造的，真的包晚到而被系统忽略。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150412_3.png&quot; alt=&quot;包TTL值是252&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150412_4.png&quot; alt=&quot;包TTL值是56&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;至此，确认是链路上的劫持。&lt;/p&gt;
+
+&lt;p&gt;更多链路劫持攻击的信息可以先看看笔者之前写的文章《链路劫持攻击一二三》。&lt;/p&gt;
+
+&lt;p&gt;【攻击方式】&lt;/p&gt;
+
+&lt;p&gt;继续分析伪造的数据包。&lt;/p&gt;
+
+&lt;p&gt;伪造包的TTL值是252，也就是说它的原始TTL值应该是255（大于252的系统默认TTL值只能是255了，一般不会修改），也就表明攻击者的设备离我隔了3个路由；而正常的京东网站的HTTP响应TTL值是56，隔了8个路由。物理上假的设备离我近，所以伪造的HTTP响应会先到——比较有意思的是，笔者实际监测时候发现也有伪造包晚到导致劫持失败的情况。&lt;/p&gt;
+
+&lt;p&gt;推测是一个旁路设备侦听所有的数据包，发现请求京东首页的HTTP请求就立即返回一个定制好的HTTP响应。大致的攻击示意图如下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150412_5.png&quot; alt=&quot;攻击示意图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当时笔者推测攻击者在链路上大动干戈应该不会只针对一个网站，于是就访问了下易迅、淘宝、天猫这些电商网站，结果发现易迅也受到同样的攻击。看起来这次流量劫持的目的是将电商网站流量导给返利联盟，通过返利联盟获得当前用户成交金额的返利。&lt;/p&gt;
+
+&lt;p&gt;基本确认运营商有问题，但是无法确认是运营商官方故意的还是遭到黑客攻击或者是内部人士偷偷搞的。&lt;/p&gt;
+
+&lt;p&gt;【攻击源定位】&lt;/p&gt;
+
+&lt;p&gt;来看看当时的路由结果：&lt;/p&gt;
+
+&lt;p&gt;如果按初始TTL值为255来算，HTTP包到达本机后为252，推算出经过了3（255-252）个路由，出问题的地方就在第4个路由附近，也就是这里的119.145.220.86（属于深圳电信）。&lt;/p&gt;
+
+&lt;p&gt;当然了，虽然基本可以确认是第四个路由附近的问题（笔者连续几天抓包，伪造的HTTP响应包TTL值一直是252），但是不排除设备故意构造一个初始TTL值（比如设置为254）来增加追查难度，为了严谨的治学态度及避免被攻击者迷惑，所以证据要坐实了。&lt;/p&gt;
+
+&lt;p&gt;定位比较简单，既然攻击设备是旁路侦听数据包，可以推测它是基于包而非状态的，我们构造被侦听的数据包（也就是直接发出访问京东首页的HTTP请求TCP包，不需要三次握手）多次发送，TTL值从1开始递增，精确地传递数据包到每一个路径上，直到出现伪造响应——没有问题的位置是不会有响应的，第一个出现伪造响应的位置就是出问题的位置。&lt;/p&gt;
+
+&lt;p&gt;这个时候就需要一个数据包构造工具了，基于Python的Scapy或者Windows下的XCAP都行。&lt;/p&gt;
+
+&lt;p&gt;于是一路发过去，TTL值等于4的时候伪造的响应包出现了——确认就是第四跳路由出问题了，同时119.145.55.14回复了Time-to-live Exceeded的ICMP包。&lt;/p&gt;
+
+&lt;p&gt;【问题处理】&lt;/p&gt;
+
+&lt;p&gt;有了充分证据，于是整理了一个图文并茂的文档通过腾讯安全应急响应中心向深圳电信报障。&lt;/p&gt;
+
+&lt;p&gt;一天后得到运营商答复：“经核查，深圳本地没有进行推送，经网上查询有木马或病毒会导致此现象，非电信网内问题，请进行杀毒后再测试，谢谢”。运营商还附送了这则2013年的新闻：《淘宝易迅纷纷遭木马劫持，电脑管家独家首发专杀工具》。&lt;/p&gt;
+
+&lt;p&gt;不过从当天晚上起，我再在ADSL环境测试，就没有发现这种流量劫持现象了。&lt;/p&gt;
+
+&lt;p&gt;【攻防之道】&lt;/p&gt;
+
+&lt;p&gt;链路劫持对企业和用户都是很麻烦的，影响用户体验，还泄漏敏感信息，而且还是分地域的，检测和防御起来也相对困难。&lt;/p&gt;
+
+&lt;p&gt;链路劫持已经被某些人运用的炉火纯青。比如近期业界发现部分区域的百度联盟广告脚本被植入恶意JavaScript去DDoS攻击GitHub。&lt;/p&gt;
+
+&lt;p&gt;腾讯历史上也遇到过多起链路劫持攻击，目的性很强，大部分是插广告（少部分是钓鱼和挂马），攻击手法各种各样，有运营商的区域DNS劫持和链路劫持、运营商区域DNS Server遭到缓存投毒攻击（利用CVE-2007-2926，非常经典）、开发商在路由软件中植入劫持代码、CDN与源通信遭到ARP攻击、用户PC本地木马。当然，这些目前都已经解决了，也在持续监测中。&lt;/p&gt;
+
+&lt;p&gt;为了对抗链路劫持，很多腾讯业务也都使用了HTTPS或者私有协议，比如QQ Web登录、QQ邮箱、理财通、Web微信、微信公众平台等。&lt;/p&gt;
+
+&lt;p&gt;DNS劫持攻击相对容易检测和防护。&lt;/p&gt;
+
+&lt;p&gt;检测方面，用分布的点去进行DNS查询即可，发现运营商DNS结果不对就可以推动修复。腾讯在2010年起就建设了DNS劫持监控系统，有兴趣的朋友可以去读下这篇文章。&lt;/p&gt;
+
+&lt;p&gt;防护方面，一种方案是使用DNSSEC（DNS Security Extensions）；腾讯、114DNS还研发了自己的方案——HttpDNS。HttpDNS不使用DNS协议而是通过HTTP协议从HttpDNS后端服务器获取域名对应的IP。当然，类似的思路我们可以实现一堆了：HTTPSDNS、TCPDNS、UDPDNS、ICMPDNS……&lt;/p&gt;
+
+&lt;p&gt;链路劫持相对复杂。&lt;/p&gt;
+
+&lt;p&gt;检测方面，如有客户端，可以依靠客户端进行检测；如果没有客户端，就具体情况具体分析了，可以在网页里用JavaScript检测页面元素，甚至可以在全国重要城市租用ADSL探测。&lt;/p&gt;
+
+&lt;p&gt;另外，在机房的流量监控设备里会发现异常：比如这个案例就会出现用户接收了HTTP响应后没有回应，然后URL中又带了yiqifa.com的关键字重新访问主页的情况；再比如某些设备的HTTP阻断会向服务器发特定的RST包（我见过发IP Id为8888的案例）。&lt;/p&gt;
+
+&lt;p&gt;防护方面，这个案例只是伪造数据包，并没有实施阻断，所以只要客户端的安全软件把疑似出问题的包（一次TCP会话中TTL值相差很大或者IPId突然跳变）拦截就可以防御。为了避免误杀，可以拦截并休眠1秒，如果没有同样的数据包过来再放行。&lt;/p&gt;
+
+&lt;p&gt;有自己客户端的可以走自己的私有协议，网站类就困难一些，部署HTTPS吧。百度主页近期就使用了HTTPS，不过大部分用户还是不习惯在浏览器里输“https://”，所以还是存在被劫持的风险（类似的工具有SSLStrip）。当然了，对抗也会随之升级的，比如这次发现的GMail证书伪造事件。&lt;/p&gt;
+
+&lt;p&gt;在HTTPS尚不能大规模普及的情况下，是否可以给用户或者终端软件提供一个规避链路劫持的安全服务呢？似乎是可以的。下图是笔者构想的一个简单的通过本地代理软件加云服务的方式规避不安全ADSL链路的解决方案。　　&lt;/p&gt;
+
+&lt;p&gt;一些浏览器的云加速也客观上实现了这个功能。对于安全性不确定的公共WiFi，也可以用类似的方法来规避风险。&lt;/p&gt;
+
+&lt;p&gt;【后记】&lt;/p&gt;
+
+&lt;p&gt;希望本文对你有帮助。在链路劫持防护这件事上，腾讯欢迎与业界讨论甚至合作。&lt;/p&gt;
+
+&lt;p&gt;来源:腾讯安全应急响应中心&lt;/p&gt;
+
+&lt;p&gt;转自：开发者kaifax&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>移动DSP的核心：有流量？用流量？优流量？</title>
