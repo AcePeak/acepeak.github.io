@@ -346,5 +346,30 @@ ssh无法无密码访问，每次都需要输入密码
 
 
 应对：
+
+重启机器；设置权限为600；
 暂时还没有更好的解决方法！
 
+
+问题4：
+
+查看log发现错误：Incompatible namespaceIDs
+
+应对：
+
+(1)停掉集群服务
+
+(2)在出问题的datanode节点上删除data目录，data目录即是在hdfs-site.xml文件中配置的dfs.data.dir目录，本机器上那个是/var/lib/hadoop-0.20/cache/hdfs/dfs/data/ (注：我们当时在所有的datanode和namenode节点上均执行了该步骤。以防删掉后不成功，可以先把data目录保存一个副本).
+
+(3)格式化namenode.
+
+(4)重新启动集群。
+
+
+问题5：
+
+Cannot lock storage /tmp/hadoop-root/dfs/name. The directory is already locked.
+
+应对：
+
+./hadoop namenode -format 命令是格式化命名空间，一定是在未启动  hadoop 服务的时候才能执行。出现这个错误提示是因为 hadoop 的服务是子运行状态。
