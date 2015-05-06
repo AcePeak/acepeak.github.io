@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Fri, 10 Apr 2015 16:59:03 +0800</pubDate>
-    <lastBuildDate>Fri, 10 Apr 2015 16:59:03 +0800</lastBuildDate>
+    <pubDate>Wed, 06 May 2015 20:02:35 +0800</pubDate>
+    <lastBuildDate>Wed, 06 May 2015 20:02:35 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.3</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,4015 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>markdown语法支持的syntax高亮</title>
+      <link>http://lilifeng.net/blogs/2015/05/06/markdown-syntax/</link>
+      <pubDate>Wed, 06 May 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Jekyll</category>
+      
+      <category>Liquid</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/05/06/markdown-syntax/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;http://pygments.org/docs/lexers/&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; ActionScript and MXML
+
+class pygments.lexers.actionscript.ActionScript3Lexer
+Short names:	as3, actionscript3
+Filenames:	*.as
+MIME types:	application/x-actionscript3, text/x-actionscript3, text/actionscript3
+For ActionScript &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 0.11.
+
+class pygments.lexers.actionscript.ActionScriptLexer
+Short names:	as, actionscript
+Filenames:	*.as
+MIME types:	application/x-actionscript, text/x-actionscript, text/actionscript
+For ActionScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 0.9.
+
+class pygments.lexers.actionscript.MxmlLexer
+Short names:	mxml
+Filenames:	*.mxml
+MIME types:	None
+For MXML markup. Nested AS3 in &amp;lt;script&amp;gt; tags is highlighted by the appropriate lexer.
+
+New in version 1.1.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; computer algebra systems
+
+class pygments.lexers.algebra.GAPLexer
+Short names:	gap
+Filenames:	*.g, *.gd, *.gi, *.gap
+MIME types:	None
+For GAP &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.algebra.MathematicaLexer
+Short names:	mathematica, mma, nb
+Filenames:	*.nb, *.cdf, *.nbp, *.ma
+MIME types:	application/mathematica, application/vnd.wolfram.mathematica, application/vnd.wolfram.mathematica.package, application/vnd.wolfram.cdf
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Mathematica &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.algebra.MuPADLexer
+Short names:	mupad
+Filenames:	*.mu
+MIME types:	None
+A MuPAD lexer. Contributed by Christopher Creutzig &amp;lt;christopher@creutzig.de&amp;gt;.
+
+New in version 0.8.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; AmbientTalk language
+
+class pygments.lexers.ambient.AmbientTalkLexer
+Short names:	at, ambienttalk, ambienttalk/2
+Filenames:	*.at
+MIME types:	text/x-ambienttalk
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; AmbientTalk &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; APL
+
+class pygments.lexers.apl.APLLexer
+Short names:	apl
+Filenames:	*.apl
+MIME types:	None
+A simple APL lexer.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; assembly languages
+
+class pygments.lexers.asm.CObjdumpLexer
+Short names:	c-objdump
+Filenames:	*.c-objdump
+MIME types:	text/x-c-objdump
+For the output of ‘objdump -Sr on compiled C files’
+
+class pygments.lexers.asm.Ca65Lexer
+Short names:	ca65
+Filenames:	*.s
+MIME types:	None
+For ca65 assembler sources.
+
+New in version 1.6.
+
+class pygments.lexers.asm.CppObjdumpLexer
+Short names:	cpp-objdump, c++-objdumb, cxx-objdump
+Filenames:	*.cpp-objdump, *.c++-objdump, *.cxx-objdump
+MIME types:	text/x-cpp-objdump
+For the output of ‘objdump -Sr on compiled C++ files’
+
+class pygments.lexers.asm.DObjdumpLexer
+Short names:	d-objdump
+Filenames:	*.d-objdump
+MIME types:	text/x-d-objdump
+For the output of ‘objdump -Sr on compiled D files’
+
+class pygments.lexers.asm.GasLexer
+Short names:	gas, asm
+Filenames:	*.s, *.S
+MIME types:	text/x-gas
+For Gas &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;AT&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;T&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; assembly code.
+
+class pygments.lexers.asm.LlvmLexer
+Short names:	llvm
+Filenames:	*.ll
+MIME types:	text/x-llvm
+For LLVM assembly code.
+
+class pygments.lexers.asm.NasmLexer
+Short names:	nasm
+Filenames:	*.asm, *.ASM
+MIME types:	text/x-nasm
+For Nasm &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Intel&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; assembly code.
+
+class pygments.lexers.asm.NasmObjdumpLexer
+Short names:	objdump-nasm
+Filenames:	*.objdump-intel
+MIME types:	text/x-nasm-objdump
+For the output of ‘objdump -d -M intel’.
+
+New in version 2.0.
+
+class pygments.lexers.asm.ObjdumpLexer
+Short names:	objdump
+Filenames:	*.objdump
+MIME types:	text/x-objdump
+For the output of ‘objdump -dr’
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; automation scripting languages
+
+class pygments.lexers.automation.AutoItLexer
+Short names:	autoit
+Filenames:	*.au3
+MIME types:	text/x-autoit
+For AutoIt files.
+
+AutoIt is a freeware BASIC-like scripting language designed &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; automating the Windows GUI and general scripting
+
+New in version 1.6.
+
+class pygments.lexers.automation.AutohotkeyLexer
+Short names:	ahk, autohotkey
+Filenames:	*.ahk, *.ahkl
+MIME types:	text/x-autohotkey
+For autohotkey &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.4.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; BASIC like languages &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;other than VB.net&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+class pygments.lexers.basic.BlitzBasicLexer
+Short names:	blitzbasic, b3d, bplus
+Filenames:	*.bb, *.decls
+MIME types:	text/x-bb
+For BlitzBasic &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.basic.BlitzMaxLexer
+Short names:	blitzmax, bmax
+Filenames:	*.bmx
+MIME types:	text/x-bmx
+For BlitzMax &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.4.
+
+class pygments.lexers.basic.CbmBasicV2Lexer
+Short names:	cbmbas
+Filenames:	*.bas
+MIME types:	None
+For CBM BASIC V2 sources.
+
+New in version 1.6.
+
+class pygments.lexers.basic.MonkeyLexer
+Short names:	monkey
+Filenames:	*.monkey
+MIME types:	text/x-monkey
+For Monkey &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+class pygments.lexers.basic.QBasicLexer
+Short names:	qbasic, basic
+Filenames:	*.BAS, *.bas
+MIME types:	text/basic
+For QBasic &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; “business-oriented” languages
+
+class pygments.lexers.business.ABAPLexer
+Short names:	abap
+Filenames:	*.abap
+MIME types:	text/x-abap
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; ABAP, SAP’s integrated language.
+
+New in version 1.1.
+
+class pygments.lexers.business.CobolFreeformatLexer
+Short names:	cobolfree
+Filenames:	*.cbl, *.CBL
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Free format OpenCOBOL code.
+
+New in version 1.6.
+
+class pygments.lexers.business.CobolLexer
+Short names:	cobol
+Filenames:	*.cob, *.COB, *.cpy, *.CPY
+MIME types:	text/x-cobol
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; OpenCOBOL code.
+
+New in version 1.6.
+
+class pygments.lexers.business.GoodDataCLLexer
+Short names:	gooddata-cl
+Filenames:	*.gdc
+MIME types:	text/x-gooddata-cl
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; GoodData-CL script files.
+
+New in version 1.4.
+
+class pygments.lexers.business.MaqlLexer
+Short names:	maql
+Filenames:	*.maql
+MIME types:	text/x-gooddata-maql, application/x-gooddata-maql
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; GoodData MAQL scripts.
+
+New in version 1.4.
+
+class pygments.lexers.business.OpenEdgeLexer
+Short names:	openedge, abl, progress
+Filenames:	*.p, *.cls
+MIME types:	text/x-openedge, application/x-openedge
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; OpenEdge ABL &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;formerly Progress&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; C/C++ languages
+
+class pygments.lexers.c_cpp.CLexer
+Short names:	c
+Filenames:	*.c, *.h, *.idc
+MIME types:	text/x-chdr, text/x-csrc
+For C &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+class pygments.lexers.c_cpp.CppLexer
+Short names:	cpp, c++
+Filenames:	*.cpp, *.hpp, *.c++, *.h++, *.cc, *.hh, *.cxx, *.hxx, *.C, *.H, *.cp, *.CPP
+MIME types:	text/x-c++hdr, text/x-c++src
+For C++ &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; other C-like languages
+
+class pygments.lexers.c_like.ClayLexer
+Short names:	clay
+Filenames:	*.clay
+MIME types:	text/x-clay
+For Clay source.
+
+New in version 2.0.
+
+class pygments.lexers.c_like.CudaLexer
+Short names:	cuda, cu
+Filenames:	*.cu, *.cuh
+MIME types:	text/x-cuda
+For NVIDIA CUDA™ source.
+
+New in version 1.6.
+
+class pygments.lexers.c_like.ECLexer
+Short names:	ec
+Filenames:	*.ec, *.eh
+MIME types:	text/x-echdr, text/x-ecsrc
+For eC &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+New in version 1.5.
+
+class pygments.lexers.c_like.MqlLexer
+Short names:	mql, mq4, mq5, mql4, mql5
+Filenames:	*.mq4, *.mq5, *.mqh
+MIME types:	text/x-mql
+For MQL4 and MQL5 &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.c_like.NesCLexer
+Short names:	nesc
+Filenames:	*.nc
+MIME types:	text/x-nescsrc
+For nesC &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+New in version 2.0.
+
+class pygments.lexers.c_like.PikeLexer
+Short names:	pike
+Filenames:	*.pike, *.pmod
+MIME types:	text/x-pike
+For Pike &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.c_like.SwigLexer
+Short names:	swig
+Filenames:	*.swg, *.i
+MIME types:	text/swig
+For SWIG &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.c_like.ValaLexer
+Short names:	vala, vapi
+Filenames:	*.vala, *.vapi
+MIME types:	text/x-vala
+For Vala &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+New in version 1.1.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Chapel language
+
+class pygments.lexers.chapel.ChapelLexer
+Short names:	chapel, chpl
+Filenames:	*.chpl
+MIME types:	None
+For Chapel source.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; configuration file formats
+
+class pygments.lexers.configs.ApacheConfLexer
+Short names:	apacheconf, aconf, apache
+Filenames:	.htaccess, apache.conf, apache2.conf
+MIME types:	text/x-apacheconf
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; configuration files following the Apache config file format.
+
+New in version 0.6.
+
+class pygments.lexers.configs.Cfengine3Lexer
+Short names:	cfengine3, cf3
+Filenames:	*.cf
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; CFEngine3 policy files.
+
+New in version 1.5.
+
+class pygments.lexers.configs.DockerLexer
+Short names:	docker, dockerfile
+Filenames:	Dockerfile, *.docker
+MIME types:	text/x-dockerfile-config
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Docker configuration files.
+
+New in version 2.0.
+
+class pygments.lexers.configs.IniLexer
+Short names:	ini, cfg, dosini
+Filenames:	*.ini, *.cfg
+MIME types:	text/x-ini
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; configuration files in INI style.
+
+class pygments.lexers.configs.KconfigLexer
+Short names:	kconfig, menuconfig, linux-config, kernel-config
+Filenames:	Kconfig, *Config.in*, external.in*, standard-modules.in
+MIME types:	text/x-kconfig
+For Linux-style Kconfig files.
+
+New in version 1.6.
+
+class pygments.lexers.configs.LighttpdConfLexer
+Short names:	lighty, lighttpd
+Filenames:	None
+MIME types:	text/x-lighttpd-conf
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Lighttpd configuration files.
+
+New in version 0.11.
+
+class pygments.lexers.configs.NginxConfLexer
+Short names:	nginx
+Filenames:	None
+MIME types:	text/x-nginx-conf
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Nginx configuration files.
+
+New in version 0.11.
+
+class pygments.lexers.configs.PropertiesLexer
+Short names:	properties, jproperties
+Filenames:	*.properties
+MIME types:	text/x-java-properties
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; configuration files in Java’s properties format.
+
+New in version 1.4.
+
+class pygments.lexers.configs.RegeditLexer
+Short names:	registry
+Filenames:	*.reg
+MIME types:	text/x-windows-registry
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Windows Registry files produced by regedit.
+
+New in version 1.6.
+
+class pygments.lexers.configs.SquidConfLexer
+Short names:	squidconf, squid.conf, squid
+Filenames:	squid.conf
+MIME types:	text/x-squidconf
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; squid configuration files.
+
+New in version 0.9.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; misc console output
+
+class pygments.lexers.console.PyPyLogLexer
+Short names:	pypylog, pypy
+Filenames:	*.pypylog
+MIME types:	application/x-pypylog
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; PyPy log files.
+
+New in version 1.5.
+
+class pygments.lexers.console.VCTreeStatusLexer
+Short names:	vctreestatus
+Filenames:	None
+MIME types:	None
+For colorizing output of version control status commands, like “hg status” or “svn status”.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; CSS and related stylesheet formats
+
+class pygments.lexers.css.CssLexer
+Short names:	css
+Filenames:	*.css
+MIME types:	text/css
+For CSS &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Cascading Style Sheets&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+class pygments.lexers.css.SassLexer
+Short names:	sass
+Filenames:	*.sass
+MIME types:	text/x-sass
+For Sass stylesheets.
+
+New in version 1.3.
+
+class pygments.lexers.css.ScssLexer
+Short names:	scss
+Filenames:	*.scss
+MIME types:	text/x-scss
+For SCSS stylesheets.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; D languages
+
+class pygments.lexers.d.CrocLexer
+Short names:	croc
+Filenames:	*.croc
+MIME types:	text/x-crocsrc
+For Croc source.
+
+class pygments.lexers.d.DLexer
+Short names:	d
+Filenames:	*.d, *.di
+MIME types:	text/x-dsrc
+For D source.
+
+New in version 1.2.
+
+class pygments.lexers.d.MiniDLexer
+Short names:	minid
+Filenames:	None
+MIME types:	text/x-minidsrc
+For MiniD source. MiniD is now known as Croc.
+
+Pygments lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Dalvik VM-related languages
+
+class pygments.lexers.dalvik.SmaliLexer
+Short names:	smali
+Filenames:	*.smali
+MIME types:	text/smali
+For Smali &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Android/Dalvik&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; assembly code.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; data file format
+
+class pygments.lexers.data.JsonLdLexer
+Short names:	jsonld, json-ld
+Filenames:	*.jsonld
+MIME types:	application/ld+json
+For JSON-LD linked data.
+
+New in version 2.0.
+
+class pygments.lexers.data.JsonLexer
+Short names:	json
+Filenames:	*.json
+MIME types:	application/json
+For JSON data structures.
+
+New in version 1.5.
+
+class pygments.lexers.data.YamlLexer
+Short names:	yaml
+Filenames:	*.yaml, *.yml
+MIME types:	text/x-yaml
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; YAML, a human-friendly data serialization language.
+
+New in version 0.11.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; diff/patch formats
+
+class pygments.lexers.diff.DarcsPatchLexer
+Short names:	dpatch
+Filenames:	*.dpatch, *.darcspatch
+MIME types:	None
+DarcsPatchLexer is a lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the various versions of the darcs patch format. Examples of this format are derived by commands such as darcs annotate --patch and darcs send.
+
+New in version 0.10.
+
+class pygments.lexers.diff.DiffLexer
+Short names:	diff, udiff
+Filenames:	*.diff, *.patch
+MIME types:	text/x-diff, text/x-patch
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; unified or context-style diffs or patches.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; .net languages
+
+class pygments.lexers.dotnet.BooLexer
+Short names:	boo
+Filenames:	*.boo
+MIME types:	text/x-boo
+For Boo &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+class pygments.lexers.dotnet.CSharpAspxLexer
+Short names:	aspx-cs
+Filenames:	*.aspx, *.asax, *.ascx, *.ashx, *.asmx, *.axd
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; highlighting C# within ASP.NET pages.
+
+class pygments.lexers.dotnet.CSharpLexer
+Short names:	csharp, c#
+Filenames:	*.cs
+MIME types:	text/x-csharp
+For C# &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Additional options accepted:
+
+unicodelevel
+Determines which Unicode characters this lexer allows &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; identifiers. The possible values are:
+
+none – only the ASCII letters and numbers are allowed. This is the fastest selection.
+basic – all Unicode characters from the specification except category Lo are allowed.
+full – all Unicode characters as specified in the C# specs are allowed. Note that this means a considerable slowdown since the Lo category has more than 40,000 characters in it!
+The default value is basic.
+
+New in version 0.8.
+
+class pygments.lexers.dotnet.FSharpLexer
+Short names:	fsharp
+Filenames:	*.fs, *.fsi
+MIME types:	text/x-fsharp
+For the F# language &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;version 3.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+AAAAACK Strings http://research.microsoft.com/en-us/um/cambridge/projects/fsharp/manual/spec.html#_Toc335818775
+
+New in version 1.5.
+
+class pygments.lexers.dotnet.NemerleLexer
+Short names:	nemerle
+Filenames:	*.n
+MIME types:	text/x-nemerle
+For Nemerle &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Additional options accepted:
+
+unicodelevel
+Determines which Unicode characters this lexer allows &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; identifiers. The possible values are:
+
+none – only the ASCII letters and numbers are allowed. This is the fastest selection.
+basic – all Unicode characters from the specification except category Lo are allowed.
+full – all Unicode characters as specified in the C# specs are allowed. Note that this means a considerable slowdown since the Lo category has more than 40,000 characters in it!
+The default value is basic.
+
+New in version 1.5.
+
+class pygments.lexers.dotnet.VbNetAspxLexer
+Short names:	aspx-vb
+Filenames:	*.aspx, *.asax, *.ascx, *.ashx, *.asmx, *.axd
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; highlighting Visual Basic.net within ASP.NET pages.
+
+class pygments.lexers.dotnet.VbNetLexer
+Short names:	vb.net, vbnet
+Filenames:	*.vb, *.bas
+MIME types:	text/x-vbnet, text/x-vba
+For Visual Basic.NET &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; various domain-specific languages
+
+class pygments.lexers.dsls.AlloyLexer
+Short names:	alloy
+Filenames:	*.als
+MIME types:	text/x-alloy
+For Alloy &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.dsls.BroLexer
+Short names:	bro
+Filenames:	*.bro
+MIME types:	None
+For Bro scripts.
+
+New in version 1.5.
+
+class pygments.lexers.dsls.MscgenLexer
+Short names:	mscgen, msc
+Filenames:	*.msc
+MIME types:	None
+For Mscgen files.
+
+New in version 1.6.
+
+class pygments.lexers.dsls.PanLexer
+Short names:	pan
+Filenames:	*.pan
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; pan &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;files.
+
+Based on tcsh lexer.
+
+New in version 2.0.
+
+class pygments.lexers.dsls.ProtoBufLexer
+Short names:	protobuf, proto
+Filenames:	*.proto
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Protocol Buffer definition files.
+
+New in version 1.4.
+
+class pygments.lexers.dsls.PuppetLexer
+Short names:	puppet
+Filenames:	*.pp
+MIME types:	None
+For Puppet configuration DSL.
+
+New in version 1.6.
+
+class pygments.lexers.dsls.RslLexer
+Short names:	rsl
+Filenames:	*.rsl
+MIME types:	text/rsl
+RSL is the formal specification language used in RAISE &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Rigorous Approach to Industrial Software Engineering&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; method.
+
+New in version 2.0.
+
+class pygments.lexers.dsls.VGLLexer
+Short names:	vgl
+Filenames:	*.rpf
+MIME types:	None
+For SampleManager VGL &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Dylan language
+
+class pygments.lexers.dylan.DylanConsoleLexer
+Short names:	dylan-console, dylan-repl
+Filenames:	*.dylan-console
+MIME types:	text/x-dylan-console
+For Dylan interactive console output like:
+
+? &lt;span class=&quot;nb&quot;&gt;let &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; 1
+? &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; 1
+This is based on a copy of the RubyConsoleLexer.
+
+New in version 1.6.
+
+class pygments.lexers.dylan.DylanLexer
+Short names:	dylan
+Filenames:	*.dylan, *.dyl, *.intr
+MIME types:	text/x-dylan
+For the Dylan language.
+
+New in version 0.7.
+
+class pygments.lexers.dylan.DylanLidLexer
+Short names:	dylan-lid, lid
+Filenames:	*.lid, *.hdp
+MIME types:	text/x-dylan-lid
+For Dylan LID &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Library Interchange Definition&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; files.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the ECL language
+
+class pygments.lexers.ecl.ECLLexer
+Short names:	ecl
+Filenames:	*.ecl
+MIME types:	application/x-ecl
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the declarative big-data ECL language.
+
+New in version 1.5.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Eiffel language
+
+class pygments.lexers.eiffel.EiffelLexer
+Short names:	eiffel
+Filenames:	*.e
+MIME types:	text/x-eiffel
+For Eiffel &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Erlang
+
+class pygments.lexers.erlang.ElixirConsoleLexer
+Short names:	iex
+Filenames:	None
+MIME types:	text/x-elixir-shellsession
+For Elixir interactive console &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;iex&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; output like:
+
+iex&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;head &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; tail&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1,2,3&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1,2,3&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+iex&amp;gt; head
+1
+iex&amp;gt; tail
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;2,3&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+iex&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;head &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; tail&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1,2,3&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+iex&amp;gt; length &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;head &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; tail&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+3
+New in version 1.5.
+
+class pygments.lexers.erlang.ElixirLexer
+Short names:	elixir, ex, exs
+Filenames:	*.ex, *.exs
+MIME types:	text/x-elixir
+For the Elixir language.
+
+New in version 1.5.
+
+class pygments.lexers.erlang.ErlangLexer
+Short names:	erlang
+Filenames:	*.erl, *.hrl, *.es, *.escript
+MIME types:	text/x-erlang
+For the Erlang functional programming language.
+
+Blame Jeremy Thurgood &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://jerith.za.net/&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 0.9.
+
+class pygments.lexers.erlang.ErlangShellLexer
+Short names:	erl
+Filenames:	*.erl-sh
+MIME types:	text/x-erl-shellsession
+Shell sessions in erl &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Erlang code&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.1.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; esoteric languages
+
+class pygments.lexers.esoteric.BefungeLexer
+Short names:	befunge
+Filenames:	*.befunge
+MIME types:	application/x-befunge
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the esoteric Befunge language.
+
+New in version 0.7.
+
+class pygments.lexers.esoteric.BrainfuckLexer
+Short names:	brainfuck, bf
+Filenames:	*.bf, *.b
+MIME types:	application/x-brainfuck
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the esoteric BrainFuck language.
+
+class pygments.lexers.esoteric.RedcodeLexer
+Short names:	redcode
+Filenames:	*.cw
+MIME types:	None
+A simple Redcode lexer based on ICWS‘94. Contributed by Adam Blinkinsop &amp;lt;blinks@acm.org&amp;gt;.
+
+New in version 0.8.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Factor language
+
+class pygments.lexers.factor.FactorLexer
+Short names:	factor
+Filenames:	*.factor
+MIME types:	text/x-factor
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Factor language.
+
+New in version 1.4.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Fantom language
+
+class pygments.lexers.fantom.FantomLexer
+Short names:	fan
+Filenames:	*.fan
+MIME types:	application/x-fantom
+For Fantom &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Felix language
+
+class pygments.lexers.felix.FelixLexer
+Short names:	felix, flx
+Filenames:	*.flx, *.flxh
+MIME types:	text/x-felix
+For Felix &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.2.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Fortran languages
+
+class pygments.lexers.fortran.FortranLexer
+Short names:	fortran
+Filenames:	*.f, *.f90, *.F, *.F90
+MIME types:	text/x-fortran
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; FORTRAN &lt;span class=&quot;m&quot;&gt;90&lt;/span&gt; code.
+
+New in version 0.10.
+
+Simple lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Microsoft Visual FoxPro &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code
+
+class pygments.lexers.foxpro.FoxProLexer
+Short names:	foxpro, vfp, clipper, xbase
+Filenames:	*.PRG, *.prg
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Microsoft Visual FoxPro language.
+
+FoxPro syntax allows to shorten all keywords and &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; names to &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; characters. Shortened forms are not recognized by this lexer.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Google Go language
+
+class pygments.lexers.go.GoLexer
+Short names:	go
+Filenames:	*.go
+MIME types:	text/x-gosrc
+For Go source.
+
+New in version 1.2.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; graph query languages
+
+class pygments.lexers.graph.CypherLexer
+Short names:	cypher
+Filenames:	*.cyp, *.cypher
+MIME types:	None
+For Cypher Query Language
+
+For the Cypher version in Neo4J 2.0
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; computer graphics and plotting related languages
+
+class pygments.lexers.graphics.AsymptoteLexer
+Short names:	asy, asymptote
+Filenames:	*.asy
+MIME types:	text/x-asymptote
+For Asymptote &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.2.
+
+class pygments.lexers.graphics.GLShaderLexer
+Short names:	glsl
+Filenames:	*.vert, *.frag, *.geo
+MIME types:	text/x-glslsrc
+GLSL &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;OpenGL Shader&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; lexer.
+
+New in version 1.1.
+
+class pygments.lexers.graphics.GnuplotLexer
+Short names:	gnuplot
+Filenames:	*.plot, *.plt
+MIME types:	text/x-gnuplot
+For Gnuplot plotting scripts.
+
+New in version 0.11.
+
+class pygments.lexers.graphics.PostScriptLexer
+Short names:	postscript, postscr
+Filenames:	*.ps, *.eps
+MIME types:	application/postscript
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; PostScript files.
+
+The PostScript Language Reference published by Adobe at &amp;lt;http://partners.adobe.com/public/developer/en/ps/PLRM.pdf&amp;gt; is the authority &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; this.
+
+New in version 1.4.
+
+class pygments.lexers.graphics.PovrayLexer
+Short names:	pov
+Filenames:	*.pov, *.inc
+MIME types:	text/x-povray
+For Persistence of Vision Raytracer files.
+
+New in version 0.11.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Haskell and related languages
+
+class pygments.lexers.haskell.AgdaLexer
+Short names:	agda
+Filenames:	*.agda
+MIME types:	text/x-agda
+For the Agda dependently typed functional programming language and proof assistant.
+
+New in version 2.0.
+
+class pygments.lexers.haskell.CryptolLexer
+Short names:	cryptol, cry
+Filenames:	*.cry
+MIME types:	text/x-cryptol
+FIXME: A Cryptol2 lexer based on the lexemes defined in the Haskell &lt;span class=&quot;m&quot;&gt;98&lt;/span&gt; Report.
+
+New in version 2.0.
+
+class pygments.lexers.haskell.HaskellLexer
+Short names:	haskell, hs
+Filenames:	*.hs
+MIME types:	text/x-haskell
+A Haskell lexer based on the lexemes defined in the Haskell &lt;span class=&quot;m&quot;&gt;98&lt;/span&gt; Report.
+
+New in version 0.8.
+
+class pygments.lexers.haskell.IdrisLexer
+Short names:	idris, idr
+Filenames:	*.idr
+MIME types:	text/x-idris
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the dependently typed programming language Idris.
+
+Based on the Haskell and Agda Lexer.
+
+New in version 2.0.
+
+class pygments.lexers.haskell.KokaLexer
+Short names:	koka
+Filenames:	*.kk, *.kki
+MIME types:	text/x-koka
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Koka language.
+
+New in version 1.6.
+
+class pygments.lexers.haskell.LiterateAgdaLexer
+Short names:	lagda, literate-agda
+Filenames:	*.lagda
+MIME types:	text/x-literate-agda
+For Literate Agda source.
+
+Additional options accepted:
+
+litstyle
+If given, must be &lt;span class=&quot;s2&quot;&gt;&amp;quot;bird&amp;quot;&lt;/span&gt; or &lt;span class=&quot;s2&quot;&gt;&amp;quot;latex&amp;quot;&lt;/span&gt;. If not given, the style is autodetected: &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; the first non-whitespace character in the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;is a backslash or percent character, LaTeX is assumed, &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; Bird.
+New in version 2.0.
+
+class pygments.lexers.haskell.LiterateCryptolLexer
+Short names:	lcry, literate-cryptol, lcryptol
+Filenames:	*.lcry
+MIME types:	text/x-literate-cryptol
+For Literate Cryptol &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Bird-style or LaTeX&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; source.
+
+Additional options accepted:
+
+litstyle
+If given, must be &lt;span class=&quot;s2&quot;&gt;&amp;quot;bird&amp;quot;&lt;/span&gt; or &lt;span class=&quot;s2&quot;&gt;&amp;quot;latex&amp;quot;&lt;/span&gt;. If not given, the style is autodetected: &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; the first non-whitespace character in the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;is a backslash or percent character, LaTeX is assumed, &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; Bird.
+New in version 2.0.
+
+class pygments.lexers.haskell.LiterateHaskellLexer
+Short names:	lhs, literate-haskell, lhaskell
+Filenames:	*.lhs
+MIME types:	text/x-literate-haskell
+For Literate Haskell &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Bird-style or LaTeX&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; source.
+
+Additional options accepted:
+
+litstyle
+If given, must be &lt;span class=&quot;s2&quot;&gt;&amp;quot;bird&amp;quot;&lt;/span&gt; or &lt;span class=&quot;s2&quot;&gt;&amp;quot;latex&amp;quot;&lt;/span&gt;. If not given, the style is autodetected: &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; the first non-whitespace character in the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;is a backslash or percent character, LaTeX is assumed, &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; Bird.
+New in version 0.9.
+
+class pygments.lexers.haskell.LiterateIdrisLexer
+Short names:	lidr, literate-idris, lidris
+Filenames:	*.lidr
+MIME types:	text/x-literate-idris
+For Literate Idris &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Bird-style or LaTeX&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; source.
+
+Additional options accepted:
+
+litstyle
+If given, must be &lt;span class=&quot;s2&quot;&gt;&amp;quot;bird&amp;quot;&lt;/span&gt; or &lt;span class=&quot;s2&quot;&gt;&amp;quot;latex&amp;quot;&lt;/span&gt;. If not given, the style is autodetected: &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; the first non-whitespace character in the &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;is a backslash or percent character, LaTeX is assumed, &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; Bird.
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Haxe and related stuff
+
+class pygments.lexers.haxe.HaxeLexer
+Short names:	hx, haxe, hxsl
+Filenames:	*.hx, *.hxsl
+MIME types:	text/haxe, text/x-haxe, text/x-hx
+For Haxe &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://haxe.org/&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.3.
+
+class pygments.lexers.haxe.HxmlLexer
+Short names:	haxeml, hxml
+Filenames:	*.hxml
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; haXe build files.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; hardware descriptor languages
+
+class pygments.lexers.hdl.SystemVerilogLexer
+Short names:	systemverilog, sv
+Filenames:	*.sv, *.svh
+MIME types:	text/x-systemverilog
+Extends verilog lexer to recognise all SystemVerilog keywords from IEEE 1800-2009 standard.
+
+New in version 1.5.
+
+class pygments.lexers.hdl.VerilogLexer
+Short names:	verilog, v
+Filenames:	*.v
+MIME types:	text/x-verilog
+For verilog &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+New in version 1.4.
+
+class pygments.lexers.hdl.VhdlLexer
+Short names:	vhdl
+Filenames:	*.vhdl, *.vhd
+MIME types:	text/x-vhdl
+For VHDL &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; HTML, XML and related markup
+
+class pygments.lexers.html.DtdLexer
+Short names:	dtd
+Filenames:	*.dtd
+MIME types:	application/xml-dtd
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; DTDs &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Document Type Definitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.5.
+
+class pygments.lexers.html.HamlLexer
+Short names:	haml
+Filenames:	*.haml
+MIME types:	text/x-haml
+For Haml markup.
+
+New in version 1.3.
+
+class pygments.lexers.html.HtmlLexer
+Short names:	html
+Filenames:	*.html, *.htm, *.xhtml, *.xslt
+MIME types:	text/html, application/xhtml+xml
+For HTML &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt; and XHTML &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; markup. Nested JavaScript and CSS is highlighted by the appropriate lexer.
+
+class pygments.lexers.html.JadeLexer
+Short names:	jade
+Filenames:	*.jade
+MIME types:	text/x-jade
+For Jade markup. Jade is a variant of Scaml, see: http://scalate.fusesource.org/documentation/scaml-reference.html
+
+New in version 1.4.
+
+class pygments.lexers.html.ScamlLexer
+Short names:	scaml
+Filenames:	*.scaml
+MIME types:	text/x-scaml
+For Scaml markup. Scaml is Haml &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Scala.
+
+New in version 1.4.
+
+class pygments.lexers.html.XmlLexer
+Short names:	xml
+Filenames:	*.xml, *.xsl, *.rss, *.xslt, *.xsd, *.wsdl, *.wsf
+MIME types:	text/xml, application/xml, image/svg+xml, application/rss+xml, application/atom+xml
+Generic lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; XML &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;eXtensible Markup Language&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+class pygments.lexers.html.XsltLexer
+Short names:	xslt
+Filenames:	*.xsl, *.xslt, *.xpl
+MIME types:	application/xsl+xml, application/xslt+xml
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; XSLT.
+
+New in version 0.10.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; IDL
+
+class pygments.lexers.idl.IDLLexer
+Short names:	idl
+Filenames:	*.pro
+MIME types:	text/idl
+Pygments Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; IDL &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Interactive Data Language&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Igor Pro
+
+class pygments.lexers.igor.IgorLexer
+Short names:	igor, igorpro
+Filenames:	*.ipf
+MIME types:	text/ipf
+Pygments Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Igor Pro procedure files &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;.ipf&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;. See http://www.wavemetrics.com/ and http://www.igorexchange.com/.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Inferno os and all the related stuff
+
+class pygments.lexers.inferno.LimboLexer
+Short names:	limbo
+Filenames:	*.b
+MIME types:	text/limbo
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Limbo programming language
+
+TODO:
+maybe implement better var declaration highlighting
+some simple syntax error highlighting
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; installer/packager DSLs and formats
+
+class pygments.lexers.installers.DebianControlLexer
+Short names:	control, debcontrol
+Filenames:	control
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Debian control files and apt-cache show &amp;lt;pkg&amp;gt; outputs.
+
+New in version 0.9.
+
+class pygments.lexers.installers.NSISLexer
+Short names:	nsis, nsi, nsh
+Filenames:	*.nsi, *.nsh
+MIME types:	text/x-nsis
+For NSIS scripts.
+
+New in version 1.6.
+
+class pygments.lexers.installers.RPMSpecLexer
+Short names:	spec
+Filenames:	*.spec
+MIME types:	text/x-rpm-spec
+For RPM .spec files.
+
+New in version 1.6.
+
+class pygments.lexers.installers.SourcesListLexer
+Short names:	sourceslist, sources.list, debsources
+Filenames:	sources.list
+MIME types:	None
+Lexer that highlights debian sources.list files.
+
+New in version 0.7.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; interactive fiction languages
+
+class pygments.lexers.int_fiction.Inform6Lexer
+Short names:	inform6, i6
+Filenames:	*.inf
+MIME types:	None
+For Inform &lt;span class=&quot;m&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.int_fiction.Inform6TemplateLexer
+Short names:	i6t
+Filenames:	*.i6t
+MIME types:	None
+For Inform &lt;span class=&quot;m&quot;&gt;6&lt;/span&gt; template code.
+
+New in version 2.0.
+
+class pygments.lexers.int_fiction.Inform7Lexer
+Short names:	inform7, i7
+Filenames:	*.ni, *.i7x
+MIME types:	None
+For Inform &lt;span class=&quot;m&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.int_fiction.Tads3Lexer
+Short names:	tads3
+Filenames:	*.t
+MIME types:	None
+For TADS &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Io language
+
+class pygments.lexers.iolang.IoLexer
+Short names:	io
+Filenames:	*.io
+MIME types:	text/x-iosrc
+For Io &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;a small, prototype-based programming language&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; source.
+
+New in version 0.10.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; JavaScript and related languages
+
+class pygments.lexers.javascript.CoffeeScriptLexer
+Short names:	coffee-script, coffeescript, coffee
+Filenames:	*.coffee
+MIME types:	text/coffeescript
+For CoffeeScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.3.
+
+class pygments.lexers.javascript.DartLexer
+Short names:	dart
+Filenames:	*.dart
+MIME types:	text/x-dart
+For Dart &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+class pygments.lexers.javascript.JavascriptLexer
+Short names:	js, javascript
+Filenames:	*.js
+MIME types:	application/javascript, application/x-javascript, text/x-javascript, text/javascript
+For JavaScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+class pygments.lexers.javascript.KalLexer
+Short names:	kal
+Filenames:	*.kal
+MIME types:	text/kal, application/kal
+For Kal &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.javascript.LassoLexer
+Short names:	lasso, lassoscript
+Filenames:	*.lasso, *.lasso&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;89&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+MIME types:	text/x-lasso
+For Lasso &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code, covering both Lasso &lt;span class=&quot;m&quot;&gt;9&lt;/span&gt; syntax and LassoScript &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Lasso 8.6 and earlier. For Lasso embedded in HTML, use the LassoHtmlLexer.
+
+Additional options accepted:
+
+builtinshighlighting
+If given and True, highlight &lt;span class=&quot;nb&quot;&gt;builtin &lt;/span&gt;types, traits, methods, and members &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+requiredelimiters
+If given and True, only highlight code between delimiters as Lasso &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+New in version 1.6.
+
+class pygments.lexers.javascript.LiveScriptLexer
+Short names:	live-script, livescript
+Filenames:	*.ls
+MIME types:	text/livescript
+For LiveScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+class pygments.lexers.javascript.MaskLexer
+Short names:	mask
+Filenames:	*.mask
+MIME types:	text/x-mask
+For Mask markup.
+
+New in version 2.0.
+
+class pygments.lexers.javascript.ObjectiveJLexer
+Short names:	objective-j, objectivej, obj-j, objj
+Filenames:	*.j
+MIME types:	text/x-objective-j
+For Objective-J &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+New in version 1.3.
+
+class pygments.lexers.javascript.TypeScriptLexer
+Short names:	ts
+Filenames:	*.ts
+MIME types:	text/x-typescript
+For TypeScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Julia language
+
+class pygments.lexers.julia.JuliaConsoleLexer
+Short names:	jlcon
+Filenames:	None
+MIME types:	None
+For Julia console sessions. Modeled after MatlabSessionLexer.
+
+New in version 1.6.
+
+class pygments.lexers.julia.JuliaLexer
+Short names:	julia, jl
+Filenames:	*.jl
+MIME types:	text/x-julia, application/x-julia
+For Julia &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+Pygments lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; JVM languages
+
+class pygments.lexers.jvm.AspectJLexer
+Short names:	aspectj
+Filenames:	*.aj
+MIME types:	text/x-aspectj
+For AspectJ &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+class pygments.lexers.jvm.CeylonLexer
+Short names:	ceylon
+Filenames:	*.ceylon
+MIME types:	text/x-ceylon
+For Ceylon &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+class pygments.lexers.jvm.ClojureLexer
+Short names:	clojure, clj
+Filenames:	*.clj
+MIME types:	text/x-clojure, application/x-clojure
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Clojure &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 0.11.
+
+class pygments.lexers.jvm.ClojureScriptLexer
+Short names:	clojurescript, cljs
+Filenames:	*.cljs
+MIME types:	text/x-clojurescript, application/x-clojurescript
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; ClojureScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.jvm.GoloLexer
+Short names:	golo
+Filenames:	*.golo
+MIME types:	None
+For Golo &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.jvm.GosuLexer
+Short names:	gosu
+Filenames:	*.gs, *.gsx, *.gsp, *.vark
+MIME types:	text/x-gosu
+For Gosu &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+class pygments.lexers.jvm.GosuTemplateLexer
+Short names:	gst
+Filenames:	*.gst
+MIME types:	text/x-gosu-template
+For Gosu templates.
+
+New in version 1.5.
+
+class pygments.lexers.jvm.GroovyLexer
+Short names:	groovy
+Filenames:	*.groovy
+MIME types:	text/x-groovy
+For Groovy &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+class pygments.lexers.jvm.IokeLexer
+Short names:	ioke, ik
+Filenames:	*.ik
+MIME types:	text/x-iokesrc
+For Ioke &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;a strongly typed, dynamic, prototype based programming language&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; source.
+
+New in version 1.4.
+
+class pygments.lexers.jvm.JasminLexer
+Short names:	jasmin, jasminxt
+Filenames:	*.j
+MIME types:	None
+For Jasmin assembly code.
+
+New in version 2.0.
+
+class pygments.lexers.jvm.JavaLexer
+Short names:	java
+Filenames:	*.java
+MIME types:	text/x-java
+For Java &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+class pygments.lexers.jvm.KotlinLexer
+Short names:	kotlin
+Filenames:	*.kt
+MIME types:	text/x-kotlin
+For Kotlin &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+class pygments.lexers.jvm.PigLexer
+Short names:	pig
+Filenames:	*.pig
+MIME types:	text/x-pig
+For Pig Latin &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.jvm.ScalaLexer
+Short names:	scala
+Filenames:	*.scala
+MIME types:	text/x-scala
+For Scala &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+class pygments.lexers.jvm.XtendLexer
+Short names:	xtend
+Filenames:	*.xtend
+MIME types:	text/x-xtend
+For Xtend &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Lispy languages
+
+class pygments.lexers.lisp.CommonLispLexer
+Short names:	common-lisp, cl, lisp, elisp, emacs, emacs-lisp
+Filenames:	*.cl, *.lisp, *.el
+MIME types:	text/x-common-lisp
+A Common Lisp lexer.
+
+New in version 0.9.
+
+class pygments.lexers.lisp.HyLexer
+Short names:	hylang
+Filenames:	*.hy
+MIME types:	text/x-hy, application/x-hy
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Hy &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.lisp.NewLispLexer
+Short names:	newlisp
+Filenames:	*.lsp, *.nl
+MIME types:	text/x-newlisp, application/x-newlisp
+For newLISP. &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;version 10.3.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.5.
+
+class pygments.lexers.lisp.RacketLexer
+Short names:	racket, rkt
+Filenames:	*.rkt, *.rktd, *.rktl
+MIME types:	text/x-racket, application/x-racket
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Racket &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;formerly known as PLT Scheme&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.6.
+
+class pygments.lexers.lisp.SchemeLexer
+Short names:	scheme, scm
+Filenames:	*.scm, *.ss
+MIME types:	text/x-scheme, application/x-scheme
+A Scheme lexer, parsing a stream and outputting the tokens needed to highlight scheme code. This lexer could be most probably easily subclassed to parse other LISP-Dialects like Common Lisp, Emacs Lisp or AutoLisp.
+
+This parser is checked with pastes from the LISP pastebin at http://paste.lisp.org/ to cover as much syntax as possible.
+
+It supports the full Scheme syntax as defined in R5RS.
+
+New in version 0.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Makefiles and similar
+
+class pygments.lexers.make.BaseMakefileLexer
+Short names:	basemake
+Filenames:	None
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; simple Makefiles &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;no preprocessing&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 0.10.
+
+class pygments.lexers.make.CMakeLexer
+Short names:	cmake
+Filenames:	*.cmake, CMakeLists.txt
+MIME types:	text/x-cmake
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; CMake files.
+
+New in version 1.2.
+
+class pygments.lexers.make.MakefileLexer
+Short names:	make, makefile, mf, bsdmake
+Filenames:	*.mak, *.mk, Makefile, makefile, Makefile.*, GNUmakefile
+MIME types:	text/x-makefile
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; BSD and GNU make extensions &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;lenient enough to handle both in the same file even&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+Rewritten in Pygments 0.10.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; non-HTML markup languages
+
+class pygments.lexers.markup.BBCodeLexer
+Short names:	bbcode
+Filenames:	None
+MIME types:	text/x-bbcode
+A lexer that highlights BBCode&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-like&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; syntax.
+
+New in version 0.6.
+
+class pygments.lexers.markup.GroffLexer
+Short names:	groff, nroff, man
+Filenames:	*.&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1234567&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, *.man
+MIME types:	application/x-troff, text/troff
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;g&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;roff typesetting language, supporting groff extensions. Mainly useful &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; highlighting manpage sources.
+
+New in version 0.6.
+
+class pygments.lexers.markup.MoinWikiLexer
+Short names:	trac-wiki, moin
+Filenames:	None
+MIME types:	text/x-trac-wiki
+For MoinMoin &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;and Trac&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Wiki markup.
+
+New in version 0.7.
+
+class pygments.lexers.markup.MozPreprocCssLexer
+Short names:	css+mozpreproc
+Filenames:	*.css.in
+MIME types:	None
+Subclass of the MozPreprocHashLexer that highlights unlexed data with the CssLexer.
+
+New in version 2.0.
+
+class pygments.lexers.markup.MozPreprocHashLexer
+Short names:	mozhashpreproc
+Filenames:	None
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Mozilla Preprocessor files &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;with ‘#’ as the marker&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+Other data is left untouched.
+
+New in version 2.0.
+
+class pygments.lexers.markup.MozPreprocJavascriptLexer
+Short names:	javascript+mozpreproc
+Filenames:	*.js.in
+MIME types:	None
+Subclass of the MozPreprocHashLexer that highlights unlexed data with the JavascriptLexer.
+
+New in version 2.0.
+
+class pygments.lexers.markup.MozPreprocPercentLexer
+Short names:	mozpercentpreproc
+Filenames:	None
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Mozilla Preprocessor files &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;with ‘%’ as the marker&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+Other data is left untouched.
+
+New in version 2.0.
+
+class pygments.lexers.markup.MozPreprocXulLexer
+Short names:	xul+mozpreproc
+Filenames:	*.xul.in
+MIME types:	None
+Subclass of the MozPreprocHashLexer that highlights unlexed data with the XmlLexer.
+
+New in version 2.0.
+
+class pygments.lexers.markup.RstLexer
+Short names:	rst, rest, restructuredtext
+Filenames:	*.rst, *.rest
+MIME types:	text/x-rst, text/prs.fallenstein.rst
+For reStructuredText markup.
+
+New in version 0.7.
+
+Additional options accepted:
+
+handlecodeblocks
+Highlight the contents of .. sourcecode:: language, .. code:: language and .. code-block:: language directives with a lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the given language &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 0.8.
+
+class pygments.lexers.markup.TexLexer
+Short names:	tex, latex
+Filenames:	*.tex, *.aux, *.toc
+MIME types:	text/x-tex, text/x-latex
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the TeX and LaTeX typesetting languages.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Matlab and related languages
+
+class pygments.lexers.matlab.MatlabLexer
+Short names:	matlab
+Filenames:	*.m
+MIME types:	text/matlab
+For Matlab &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 0.10.
+
+class pygments.lexers.matlab.MatlabSessionLexer
+Short names:	matlabsession
+Filenames:	None
+MIME types:	None
+For Matlab sessions. Modeled after PythonConsoleLexer. Contributed by Ken Schutte &amp;lt;kschutte@csail.mit.edu&amp;gt;.
+
+New in version 0.10.
+
+class pygments.lexers.matlab.OctaveLexer
+Short names:	octave
+Filenames:	*.m
+MIME types:	text/octave
+For GNU Octave &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+class pygments.lexers.matlab.ScilabLexer
+Short names:	scilab
+Filenames:	*.sci, *.sce, *.tst
+MIME types:	text/scilab
+For Scilab &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; ML family languages
+
+class pygments.lexers.ml.OcamlLexer
+Short names:	ocaml
+Filenames:	*.ml, *.mli, *.mll, *.mly
+MIME types:	text/x-ocaml
+For the OCaml language.
+
+New in version 0.7.
+
+class pygments.lexers.ml.OpaLexer
+Short names:	opa
+Filenames:	*.opa
+MIME types:	text/x-opa
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Opa language &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://opalang.org&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.5.
+
+class pygments.lexers.ml.SMLLexer
+Short names:	sml
+Filenames:	*.sml, *.sig, *.fun
+MIME types:	text/x-standardml, application/x-standardml
+For the Standard ML language.
+
+New in version 1.5.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; modeling languages
+
+class pygments.lexers.modeling.BugsLexer
+Short names:	bugs, winbugs, openbugs
+Filenames:	*.bug
+MIME types:	None
+Pygments Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; OpenBugs and WinBugs models.
+
+New in version 1.6.
+
+class pygments.lexers.modeling.JagsLexer
+Short names:	jags
+Filenames:	*.jag, *.bug
+MIME types:	None
+Pygments Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; JAGS.
+
+New in version 1.6.
+
+class pygments.lexers.modeling.ModelicaLexer
+Short names:	modelica
+Filenames:	*.mo
+MIME types:	text/x-modelica
+For Modelica &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.1.
+
+class pygments.lexers.modeling.StanLexer
+Short names:	stan
+Filenames:	*.stan
+MIME types:	None
+Pygments Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Stan models.
+
+The Stan modeling language is specified in the Stan Modeling Language User’s Guide and Reference Manual, v2.4.0, pdf.
+
+New in version 1.6.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Nimrod language
+
+class pygments.lexers.nimrod.NimrodLexer
+Short names:	nimrod, nim
+Filenames:	*.nim, *.nimrod
+MIME types:	text/x-nimrod
+For Nimrod &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Nit language
+
+class pygments.lexers.nit.NitLexer
+Short names:	nit
+Filenames:	*.nit
+MIME types:	None
+For nit source.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the NixOS Nix language
+
+class pygments.lexers.nix.NixLexer
+Short names:	nixos, nix
+Filenames:	*.nix
+MIME types:	text/x-nix
+For the Nix language.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Objective-C family languages
+
+class pygments.lexers.objective.LogosLexer
+Short names:	logos
+Filenames:	*.x, *.xi, *.xm, *.xmi
+MIME types:	text/x-logos
+For Logos + Objective-C &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+New in version 1.6.
+
+class pygments.lexers.objective.ObjectiveCLexer
+Short names:	objective-c, objectivec, obj-c, objc
+Filenames:	*.m, *.h
+MIME types:	text/x-objective-c
+For Objective-C &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+class pygments.lexers.objective.ObjectiveCppLexer
+Short names:	objective-c++, objectivec++, obj-c++, objc++
+Filenames:	*.mm, *.hh
+MIME types:	text/x-objective-c++
+For Objective-C++ &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+class pygments.lexers.objective.SwiftLexer
+Short names:	swift
+Filenames:	*.swift
+MIME types:	text/x-swift
+For Swift source.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Ooc language
+
+class pygments.lexers.ooc.OocLexer
+Short names:	ooc
+Filenames:	*.ooc
+MIME types:	text/x-ooc
+For Ooc &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code
+
+New in version 1.2.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; parser generators
+
+class pygments.lexers.parsers.AntlrActionScriptLexer
+Short names:	antlr-as, antlr-actionscript
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with ActionScript Target
+
+New in version 1.1.
+
+class pygments.lexers.parsers.AntlrCSharpLexer
+Short names:	antlr-csharp, antlr-c#
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with C# Target
+
+New in version 1.1.
+
+class pygments.lexers.parsers.AntlrCppLexer
+Short names:	antlr-cpp
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with CPP Target
+
+New in version 1.1.
+
+class pygments.lexers.parsers.AntlrJavaLexer
+Short names:	antlr-java
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with Java Target
+
+New in version 1..
+
+class pygments.lexers.parsers.AntlrLexer
+Short names:	antlr
+Filenames:	None
+MIME types:	None
+Generic ANTLR Lexer. Should not be called directly, instead use DelegatingLexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; your target language.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.AntlrObjectiveCLexer
+Short names:	antlr-objc
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with Objective-C Target
+
+New in version 1.1.
+
+class pygments.lexers.parsers.AntlrPerlLexer
+Short names:	antlr-perl
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with Perl Target
+
+New in version 1.1.
+
+class pygments.lexers.parsers.AntlrPythonLexer
+Short names:	antlr-python
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with Python Target
+
+New in version 1.1.
+
+class pygments.lexers.parsers.AntlrRubyLexer
+Short names:	antlr-ruby, antlr-rb
+Filenames:	*.G, *.g
+MIME types:	None
+ANTLR with Ruby Target
+
+New in version 1.1.
+
+class pygments.lexers.parsers.EbnfLexer
+Short names:	ebnf
+Filenames:	*.ebnf
+MIME types:	text/x-ebnf
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; ISO/IEC &lt;span class=&quot;m&quot;&gt;14977&lt;/span&gt; EBNF grammars.
+
+New in version 2.0.
+
+class pygments.lexers.parsers.RagelCLexer
+Short names:	ragel-c
+Filenames:	*.rl
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ragel in a C host file.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.RagelCppLexer
+Short names:	ragel-cpp
+Filenames:	*.rl
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ragel in a CPP host file.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.RagelDLexer
+Short names:	ragel-d
+Filenames:	*.rl
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ragel in a D host file.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.RagelEmbeddedLexer
+Short names:	ragel-em
+Filenames:	*.rl
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ragel embedded in a host language file.
+
+This will only highlight Ragel statements. If you want host language highlighting &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; call the language-specific Ragel lexer.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.RagelJavaLexer
+Short names:	ragel-java
+Filenames:	*.rl
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ragel in a Java host file.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.RagelLexer
+Short names:	ragel
+Filenames:	None
+MIME types:	None
+A pure Ragel lexer. Use this &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; fragments of Ragel. For .rl files, use RagelEmbeddedLexer instead &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;or one of the language-specific subclasses&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.RagelObjectiveCLexer
+Short names:	ragel-objc
+Filenames:	*.rl
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ragel in an Objective C host file.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.RagelRubyLexer
+Short names:	ragel-ruby, ragel-rb
+Filenames:	*.rl
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ragel in a Ruby host file.
+
+New in version 1.1.
+
+class pygments.lexers.parsers.TreetopLexer
+Short names:	treetop
+Filenames:	*.treetop, *.tt
+MIME types:	None
+A lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Treetop grammars.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Pascal family languages
+
+class pygments.lexers.pascal.AdaLexer
+Short names:	ada, ada95, ada2005
+Filenames:	*.adb, *.ads, *.ada
+MIME types:	text/x-ada
+For Ada &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.3.
+
+class pygments.lexers.pascal.DelphiLexer
+Short names:	delphi, pas, pascal, objectpascal
+Filenames:	*.pas
+MIME types:	text/x-pascal
+For Delphi &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Borland Object Pascal&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, Turbo Pascal and Free Pascal &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Additional options accepted:
+
+turbopascal
+Highlight Turbo Pascal specific keywords &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+delphi
+Highlight Borland Delphi specific keywords &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+freepascal
+Highlight Free Pascal specific keywords &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+units
+A list of units that should be considered &lt;span class=&quot;nb&quot;&gt;builtin&lt;/span&gt;, supported are System, SysUtils, Classes and Math. Default is to consider all of them builtin.
+class pygments.lexers.pascal.Modula2Lexer
+Short names:	modula2, m2
+Filenames:	*.def, *.mod
+MIME types:	text/x-modula2
+For Modula-2 &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Additional options that determine which keywords are highlighted:
+
+pim
+Select PIM Modula-2 dialect &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+iso
+Select ISO Modula-2 dialect &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+objm2
+Select Objective Modula-2 dialect &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+gm2ext
+Also highlight GNU extensions &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: False&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+New in version 1.3.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Pawn languages
+
+class pygments.lexers.pawn.PawnLexer
+Short names:	pawn
+Filenames:	*.p, *.pwn, *.inc
+MIME types:	text/x-pawn
+For Pawn &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.pawn.SourcePawnLexer
+Short names:	sp
+Filenames:	*.sp
+MIME types:	text/x-sourcepawn
+For SourcePawn &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code with preprocessor directives.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Perl and related languages
+
+class pygments.lexers.perl.Perl6Lexer
+Short names:	perl6, pl6
+Filenames:	*.pl, *.pm, *.nqp, *.p6, *.6pl, *.p6l, *.pl6, *.6pm, *.p6m, *.pm6, *.t
+MIME types:	text/x-perl6, application/x-perl6
+For Perl &lt;span class=&quot;m&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.perl.PerlLexer
+Short names:	perl, pl
+Filenames:	*.pl, *.pm, *.t
+MIME types:	text/x-perl, application/x-perl
+For Perl &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; PHP and related languages
+
+class pygments.lexers.php.PhpLexer
+Short names:	php, php3, php4, php5
+Filenames:	*.php, *.php&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;345&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, *.inc
+MIME types:	text/x-php
+For PHP &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code. For PHP embedded in HTML, use the HtmlPhpLexer.
+
+Additional options accepted:
+
+startinline
+If given and True the lexer starts highlighting with php code &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;i.e.: no starting &amp;lt;?php required&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;. The default is False.
+funcnamehighlighting
+If given and True, highlight &lt;span class=&quot;nb&quot;&gt;builtin &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; names &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+disabledmodules
+If given, must be a list of module names whose &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; names should not be highlighted. By default all modules are highlighted except the special &lt;span class=&quot;s1&quot;&gt;&amp;#39;unknown&amp;#39;&lt;/span&gt; module that includes functions that are known to php but are undocumented.
+
+To get a list of allowed modules have a look into the _php_builtins module:
+
+&amp;gt;&amp;gt;&amp;gt; from pygments.lexers._php_builtins import MODULES
+&amp;gt;&amp;gt;&amp;gt; MODULES.keys&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;PHP Options/Info&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;Zip&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;dba&amp;#39;&lt;/span&gt;, ...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+In fact the names of those modules match the module names from the php documentation.
+
+class pygments.lexers.php.ZephirLexer
+Short names:	zephir
+Filenames:	*.zep
+MIME types:	None
+For Zephir language &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Zephir is a compiled high level language aimed to the creation of C-extensions &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; PHP.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Prolog and Prolog-like languages
+
+class pygments.lexers.prolog.LogtalkLexer
+Short names:	logtalk
+Filenames:	*.lgt, *.logtalk
+MIME types:	text/x-logtalk
+For Logtalk &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 0.10.
+
+class pygments.lexers.prolog.PrologLexer
+Short names:	prolog
+Filenames:	*.ecl, *.prolog, *.pro, *.pl
+MIME types:	text/x-prolog
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Prolog files.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Python and related languages
+
+class pygments.lexers.python.CythonLexer
+Short names:	cython, pyx, pyrex
+Filenames:	*.pyx, *.pxd, *.pxi
+MIME types:	text/x-cython, application/x-cython
+For Pyrex and Cython &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.1.
+
+class pygments.lexers.python.DgLexer
+Short names:	dg
+Filenames:	*.dg
+MIME types:	text/x-dg
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; dg, a functional and object-oriented programming language running on the CPython &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; VM.
+
+New in version 1.6.
+
+class pygments.lexers.python.NumPyLexer
+Short names:	numpy
+Filenames:	None
+MIME types:	None
+A Python lexer recognizing Numerical Python builtins.
+
+New in version 0.10.
+
+class pygments.lexers.python.Python3Lexer
+Short names:	python3, py3
+Filenames:	None
+MIME types:	text/x-python3, application/x-python3
+For Python &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;version 3.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 0.10.
+
+class pygments.lexers.python.Python3TracebackLexer
+Short names:	py3tb
+Filenames:	*.py3tb
+MIME types:	text/x-python3-traceback
+For Python 3.0 tracebacks, with support &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; chained exceptions.
+
+New in version 1.0.
+
+class pygments.lexers.python.PythonConsoleLexer
+Short names:	pycon
+Filenames:	None
+MIME types:	text/x-python-doctest
+For Python console output or doctests, such as:
+
+&amp;gt;&amp;gt;&amp;gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+&amp;gt;&amp;gt;&amp;gt; print a
+foo
+&amp;gt;&amp;gt;&amp;gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; / 0
+Traceback &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+  File &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;&lt;/span&gt;, line 1, in &amp;lt;module&amp;gt;
+ZeroDivisionError: integer division or modulo by zero
+Additional options:
+
+python3
+Use Python &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt; lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; code. Default is False.
+
+New in version 1.0.
+
+class pygments.lexers.python.PythonLexer
+Short names:	python, py, sage
+Filenames:	*.py, *.pyw, *.sc, SConstruct, SConscript, *.tac, *.sage
+MIME types:	text/x-python, application/x-python
+For Python &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+class pygments.lexers.python.PythonTracebackLexer
+Short names:	pytb
+Filenames:	*.pytb
+MIME types:	text/x-python-traceback
+For Python tracebacks.
+
+New in version 0.7.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the R/S languages
+
+class pygments.lexers.r.RConsoleLexer
+Short names:	rconsole, rout
+Filenames:	*.Rout
+MIME types:	None
+For R console transcripts or R CMD BATCH output files.
+
+class pygments.lexers.r.RdLexer
+Short names:	rd
+Filenames:	*.Rd
+MIME types:	text/x-r-doc
+Pygments Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; R documentation &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Rd&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; files
+
+This is a very minimal implementation, highlighting little more than the macros. A description of Rd syntax is found in Writing R Extensions and Parsing Rd files.
+
+New in version 1.6.
+
+class pygments.lexers.r.SLexer
+Short names:	splus, s, r
+Filenames:	*.S, *.R, .Rhistory, .Rprofile, .Renviron
+MIME types:	text/S-plus, text/S, text/x-r-source, text/x-r, text/x-R, text/x-r-history, text/x-r-profile
+For S, S-plus, and R &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 0.10.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; semantic web and RDF query languages and markup
+
+class pygments.lexers.rdf.SparqlLexer
+Short names:	sparql
+Filenames:	*.rq, *.sparql
+MIME types:	application/sparql-query
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; SPARQL query language.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the REBOL and related languages
+
+class pygments.lexers.rebol.RebolLexer
+Short names:	rebol
+Filenames:	*.r, *.r3, *.reb
+MIME types:	text/x-rebol
+A REBOL lexer.
+
+New in version 1.1.
+
+class pygments.lexers.rebol.RedLexer
+Short names:	red, red/system
+Filenames:	*.red, *.reds
+MIME types:	text/x-red, text/x-red-system
+A Red-language lexer.
+
+New in version 2.0.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; resource definition files
+
+class pygments.lexers.resource.ResourceLexer
+Short names:	resource, resourcebundle
+Filenames:	*.txt
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; ICU Resource bundles.
+
+New in version 2.0.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Robot Framework
+
+class pygments.lexers.robotframework.RobotFrameworkLexer
+Short names:	robotframework
+Filenames:	*.txt, *.robot
+MIME types:	text/x-robotframework
+For Robot Framework &lt;span class=&quot;nb&quot;&gt;test &lt;/span&gt;data.
+
+Supports both space and pipe separated plain text formats.
+
+New in version 1.6.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Ruby and related languages
+
+class pygments.lexers.ruby.FancyLexer
+Short names:	fancy, fy
+Filenames:	*.fy, *.fancypack
+MIME types:	text/x-fancysrc
+Pygments Lexer For Fancy.
+
+Fancy is a self-hosted, pure object-oriented, dynamic, class-based, concurrent general-purpose programming language running on Rubinius, the Ruby VM.
+
+New in version 1.5.
+
+class pygments.lexers.ruby.RubyConsoleLexer
+Short names:	rbcon, irb
+Filenames:	None
+MIME types:	text/x-ruby-shellsession
+For Ruby interactive console &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;irb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; output like:
+
+irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:001:0&amp;gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; 1
+irb&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:002:0&amp;gt; puts a
+&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; nil
+class pygments.lexers.ruby.RubyLexer
+Short names:	rb, ruby, duby
+Filenames:	*.rb, *.rbw, Rakefile, *.rake, *.gemspec, *.rbx, *.duby
+MIME types:	text/x-ruby, application/x-ruby
+For Ruby &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Rust language
+
+class pygments.lexers.rust.RustLexer
+Short names:	rust
+Filenames:	*.rs
+MIME types:	text/x-rustsrc
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the Rust programming language &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;version 0.9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 1.6.
+
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; scripting and embedded languages
+
+class pygments.lexers.scripting.AppleScriptLexer
+Short names:	applescript
+Filenames:	*.applescript
+MIME types:	None
+For AppleScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code, including AppleScript Studio. Contributed by Andreas Amann &amp;lt;aamann@mac.com&amp;gt;.
+
+New in version 1.0.
+
+class pygments.lexers.scripting.ChaiscriptLexer
+Short names:	chai, chaiscript
+Filenames:	*.chai
+MIME types:	text/x-chaiscript, application/x-chaiscript
+For ChaiScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.scripting.HybrisLexer
+Short names:	hybris, hy
+Filenames:	*.hy, *.hyb
+MIME types:	text/x-hybris, application/x-hybris
+For Hybris &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.4.
+
+class pygments.lexers.scripting.LSLLexer
+Short names:	lsl
+Filenames:	*.lsl
+MIME types:	text/x-lsl
+For Second Life’s Linden Scripting Language &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 2.0.
+
+class pygments.lexers.scripting.LuaLexer
+Short names:	lua
+Filenames:	*.lua, *.wlua
+MIME types:	text/x-lua, application/x-lua
+For Lua &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+Additional options accepted:
+
+func_name_highlighting
+If given and True, highlight &lt;span class=&quot;nb&quot;&gt;builtin &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; names &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: True&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+disabled_modules
+If given, must be a list of module names whose &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; names should not be highlighted. By default all modules are highlighted.
+
+To get a list of allowed modules have a look into the _lua_builtins module:
+
+&amp;gt;&amp;gt;&amp;gt; from pygments.lexers._lua_builtins import MODULES
+&amp;gt;&amp;gt;&amp;gt; MODULES.keys&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;string&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;coroutine&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;modules&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;io&amp;#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&amp;#39;basic&amp;#39;&lt;/span&gt;, ...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+class pygments.lexers.scripting.MOOCodeLexer
+Short names:	moocode, moo
+Filenames:	*.moo
+MIME types:	text/x-moocode
+For MOOCode &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;the MOO scripting language&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+
+New in version 0.9.
+
+class pygments.lexers.scripting.MoonScriptLexer
+Short names:	moon, moonscript
+Filenames:	*.moon
+MIME types:	text/x-moonscript, application/x-moonscript
+For MoonScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+class pygments.lexers.scripting.RexxLexer
+Short names:	rexx, arexx
+Filenames:	*.rexx, *.rex, *.rx, *.arexx
+MIME types:	text/x-rexx
+Rexx is a scripting language available &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; a wide range of different platforms with its roots found on mainframe systems. It is popular &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; I/O- and data based tasks and can act as glue language to &lt;span class=&quot;nb&quot;&gt;bind &lt;/span&gt;different applications together.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; various shells
+
+class pygments.lexers.shell.BashLexer
+Short names:	bash, sh, ksh, shell
+Filenames:	*.sh, *.ksh, *.bash, *.ebuild, *.eclass, .bashrc, bashrc, .bash&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;, bash&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;, PKGBUILD
+MIME types:	application/x-sh, application/x-shellscript
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;ba&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;k&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;sh shell scripts.
+
+New in version 0.6.
+
+class pygments.lexers.shell.BashSessionLexer
+Short names:	console
+Filenames:	*.sh-session
+MIME types:	application/x-shell-session
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; simplistic shell sessions.
+
+New in version 1.1.
+
+class pygments.lexers.shell.BatchLexer
+Short names:	bat, batch, dosbatch, winbatch
+Filenames:	*.bat, *.cmd
+MIME types:	application/x-dos-batch
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the DOS/Windows Batch file format.
+
+New in version 0.7.
+
+class pygments.lexers.shell.PowerShellLexer
+Short names:	powershell, posh, ps1, psm1
+Filenames:	*.ps1, *.psm1
+MIME types:	text/x-powershell
+For Windows PowerShell code.
+
+New in version 1.5.
+
+class pygments.lexers.shell.ShellSessionLexer
+Short names:	shell-session
+Filenames:	*.shell-session
+MIME types:	application/x-sh-session
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; shell sessions that works with different &lt;span class=&quot;nb&quot;&gt;command &lt;/span&gt;prompts
+
+New in version 1.6.
+
+class pygments.lexers.shell.TcshLexer
+Short names:	tcsh, csh
+Filenames:	*.tcsh, *.csh
+MIME types:	application/x-csh
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; tcsh scripts.
+
+New in version 0.10.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Smalltalk and related languages
+
+class pygments.lexers.smalltalk.NewspeakLexer
+Short names:	newspeak
+Filenames:	*.ns2
+MIME types:	text/x-newspeak
+For Newspeak &amp;lt;http://newspeaklanguage.org/&amp;gt; syntax.
+
+New in version 1.1.
+
+class pygments.lexers.smalltalk.SmalltalkLexer
+Short names:	smalltalk, squeak, st
+Filenames:	*.st
+MIME types:	text/x-smalltalk
+For Smalltalk syntax. Contributed by Stefan Matthias Aust. Rewritten by Nils Winter.
+
+New in version 0.10.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the SNOBOL language
+
+class pygments.lexers.snobol.SnobolLexer
+Short names:	snobol
+Filenames:	*.snobol
+MIME types:	text/x-snobol
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the SNOBOL4 programming language.
+
+Recognizes the common ASCII equivalents of the original SNOBOL4 operators. Does not require spaces around binary operators.
+
+New in version 1.5.
+
+Special lexers
+
+class pygments.lexers.special.RawTokenLexer
+Short names:	raw
+Filenames:	None
+MIME types:	application/x-pygments-tokens
+Recreate a token stream formatted with the RawTokenFormatter. This lexer raises exceptions during parsing &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; the token stream in the file is malformed.
+
+Additional options accepted:
+
+compress
+If &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;to &lt;span class=&quot;s2&quot;&gt;&amp;quot;gz&amp;quot;&lt;/span&gt; or &lt;span class=&quot;s2&quot;&gt;&amp;quot;bz2&amp;quot;&lt;/span&gt;, decompress the token stream with the given compression algorithm before lexing &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default: &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+class pygments.lexers.special.TextLexer
+Short names:	text
+Filenames:	*.txt
+MIME types:	text/plain
+“Null” lexer, doesn’t highlight anything.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; various SQL dialects and related interactive sessions
+
+class pygments.lexers.sql.MySqlLexer
+Short names:	mysql
+Filenames:	None
+MIME types:	text/x-mysql
+Special lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; MySQL.
+
+class pygments.lexers.sql.PlPgsqlLexer
+Short names:	plpgsql
+Filenames:	None
+MIME types:	text/x-plpgsql
+Handle the extra syntax in Pl/pgSQL language.
+
+New in version 1.5.
+
+class pygments.lexers.sql.PostgresConsoleLexer
+Short names:	psql, postgresql-console, postgres-console
+Filenames:	None
+MIME types:	text/x-postgresql-psql
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; psql sessions.
+
+New in version 1.5.
+
+class pygments.lexers.sql.PostgresLexer
+Short names:	postgresql, postgres
+Filenames:	None
+MIME types:	text/x-postgresql
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the PostgreSQL dialect of SQL.
+
+New in version 1.5.
+
+class pygments.lexers.sql.RqlLexer
+Short names:	rql
+Filenames:	*.rql
+MIME types:	text/x-rql
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Relation Query Language.
+
+RQL
+
+New in version 2.0.
+
+class pygments.lexers.sql.SqlLexer
+Short names:	sql
+Filenames:	*.sql
+MIME types:	text/x-sql
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Structured Query Language. Currently, this lexer does not recognize any special syntax except ANSI SQL.
+
+class pygments.lexers.sql.SqliteConsoleLexer
+Short names:	sqlite3
+Filenames:	*.sqlite3-console
+MIME types:	text/x-sqlite3-console
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; example sessions using sqlite3.
+
+New in version 0.11.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Tcl and related languages
+
+class pygments.lexers.tcl.TclLexer
+Short names:	tcl
+Filenames:	*.tcl, *.rvt
+MIME types:	text/x-tcl, text/x-script.tcl, application/x-tcl
+For Tcl &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 0.10.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; various template engines’ markup
+
+class pygments.lexers.templates.CheetahHtmlLexer
+Short names:	html+cheetah, html+spitfire, htmlcheetah
+Filenames:	None
+MIME types:	text/html+cheetah, text/html+spitfire
+Subclass of the CheetahLexer that highlights unlexed data with the HtmlLexer.
+
+class pygments.lexers.templates.CheetahJavascriptLexer
+Short names:	js+cheetah, javascript+cheetah, js+spitfire, javascript+spitfire
+Filenames:	None
+MIME types:	application/x-javascript+cheetah, text/x-javascript+cheetah, text/javascript+cheetah, application/x-javascript+spitfire, text/x-javascript+spitfire, text/javascript+spitfire
+Subclass of the CheetahLexer that highlights unlexed data with the JavascriptLexer.
+
+class pygments.lexers.templates.CheetahLexer
+Short names:	cheetah, spitfire
+Filenames:	*.tmpl, *.spt
+MIME types:	application/x-cheetah, application/x-spitfire
+Generic cheetah templates lexer. Code that isn’t Cheetah markup is yielded as Token.Other. This also works &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; spitfire templates which use the same syntax.
+
+class pygments.lexers.templates.CheetahXmlLexer
+Short names:	xml+cheetah, xml+spitfire
+Filenames:	None
+MIME types:	application/xml+cheetah, application/xml+spitfire
+Subclass of the CheetahLexer that highlights unlexed data with the XmlLexer.
+
+class pygments.lexers.templates.ColdfusionCFCLexer
+Short names:	cfc
+Filenames:	*.cfc
+MIME types:	None
+Coldfusion markup/script components
+
+New in version 2.0.
+
+class pygments.lexers.templates.ColdfusionHtmlLexer
+Short names:	cfm
+Filenames:	*.cfm, *.cfml
+MIME types:	application/x-coldfusion
+Coldfusion markup in html
+
+class pygments.lexers.templates.ColdfusionLexer
+Short names:	cfs
+Filenames:	None
+MIME types:	None
+Coldfusion statements
+
+class pygments.lexers.templates.CssDjangoLexer
+Short names:	css+django, css+jinja
+Filenames:	None
+MIME types:	text/css+django, text/css+jinja
+Subclass of the DjangoLexer that highlights unlexed data with the CssLexer.
+
+class pygments.lexers.templates.CssErbLexer
+Short names:	css+erb, css+ruby
+Filenames:	None
+MIME types:	text/css+ruby
+Subclass of ErbLexer which highlights unlexed data with the CssLexer.
+
+class pygments.lexers.templates.CssGenshiLexer
+Short names:	css+genshitext, css+genshi
+Filenames:	None
+MIME types:	text/css+genshi
+A lexer that highlights CSS definitions in genshi text templates.
+
+class pygments.lexers.templates.CssPhpLexer
+Short names:	css+php
+Filenames:	None
+MIME types:	text/css+php
+Subclass of PhpLexer which highlights unmatched data with the CssLexer.
+
+class pygments.lexers.templates.CssSmartyLexer
+Short names:	css+smarty
+Filenames:	None
+MIME types:	text/css+smarty
+Subclass of the SmartyLexer that highlights unlexed data with the CssLexer.
+
+class pygments.lexers.templates.DjangoLexer
+Short names:	django, jinja
+Filenames:	None
+MIME types:	application/x-django-templating, application/x-jinja
+Generic django and jinja template lexer.
+
+It just highlights django/jinja code between the preprocessor directives, other data is left untouched by the lexer.
+
+class pygments.lexers.templates.ErbLexer
+Short names:	erb
+Filenames:	None
+MIME types:	application/x-ruby-templating
+Generic ERB &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Ruby Templating&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; lexer.
+
+Just highlights ruby code between the preprocessor directives, other data is left untouched by the lexer.
+
+All options are also forwarded to the RubyLexer.
+
+class pygments.lexers.templates.EvoqueHtmlLexer
+Short names:	html+evoque
+Filenames:	*.html
+MIME types:	text/html+evoque
+Subclass of the EvoqueLexer that highlights unlexed data with the HtmlLexer.
+
+New in version 1.1.
+
+class pygments.lexers.templates.EvoqueLexer
+Short names:	evoque
+Filenames:	*.evoque
+MIME types:	application/x-evoque
+For files using the Evoque templating system.
+
+New in version 1.1.
+
+class pygments.lexers.templates.EvoqueXmlLexer
+Short names:	xml+evoque
+Filenames:	*.xml
+MIME types:	application/xml+evoque
+Subclass of the EvoqueLexer that highlights unlexed data with the XmlLexer.
+
+New in version 1.1.
+
+class pygments.lexers.templates.GenshiLexer
+Short names:	genshi, kid, xml+genshi, xml+kid
+Filenames:	*.kid
+MIME types:	application/x-genshi, application/x-kid
+A lexer that highlights genshi and kid kid XML templates.
+
+class pygments.lexers.templates.GenshiTextLexer
+Short names:	genshitext
+Filenames:	None
+MIME types:	application/x-genshi-text, text/x-genshi
+A lexer that highlights genshi text templates.
+
+class pygments.lexers.templates.HandlebarsHtmlLexer
+Short names:	html+handlebars
+Filenames:	*.handlebars, *.hbs
+MIME types:	text/html+handlebars, text/x-handlebars-template
+Subclass of the HandlebarsLexer that highlights unlexed data with the HtmlLexer.
+
+New in version 2.0.
+
+class pygments.lexers.templates.HandlebarsLexer
+Short names:	handlebars
+Filenames:	None
+MIME types:	None
+Generic handlebars &amp;lt;http://handlebarsjs.com/&amp;gt; template lexer.
+
+Highlights only the Handlebars template tags &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;stuff between &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;. Everything &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; is left &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; a delegating lexer.
+
+New in version 2.0.
+
+class pygments.lexers.templates.HtmlDjangoLexer
+Short names:	html+django, html+jinja, htmldjango
+Filenames:	None
+MIME types:	text/html+django, text/html+jinja
+Subclass of the DjangoLexer that highlights unlexed data with the HtmlLexer.
+
+Nested Javascript and CSS is highlighted too.
+
+class pygments.lexers.templates.HtmlGenshiLexer
+Short names:	html+genshi, html+kid
+Filenames:	None
+MIME types:	text/html+genshi
+A lexer that highlights genshi and kid kid HTML templates.
+
+class pygments.lexers.templates.HtmlPhpLexer
+Short names:	html+php
+Filenames:	*.phtml
+MIME types:	application/x-php, application/x-httpd-php, application/x-httpd-php3, application/x-httpd-php4, application/x-httpd-php5
+Subclass of PhpLexer that highlights unhandled data with the HtmlLexer.
+
+Nested Javascript and CSS is highlighted too.
+
+class pygments.lexers.templates.HtmlSmartyLexer
+Short names:	html+smarty
+Filenames:	None
+MIME types:	text/html+smarty
+Subclass of the SmartyLexer that highlights unlexed data with the HtmlLexer.
+
+Nested Javascript and CSS is highlighted too.
+
+class pygments.lexers.templates.JavascriptDjangoLexer
+Short names:	js+django, javascript+django, js+jinja, javascript+jinja
+Filenames:	None
+MIME types:	application/x-javascript+django, application/x-javascript+jinja, text/x-javascript+django, text/x-javascript+jinja, text/javascript+django, text/javascript+jinja
+Subclass of the DjangoLexer that highlights unlexed data with the JavascriptLexer.
+
+class pygments.lexers.templates.JavascriptErbLexer
+Short names:	js+erb, javascript+erb, js+ruby, javascript+ruby
+Filenames:	None
+MIME types:	application/x-javascript+ruby, text/x-javascript+ruby, text/javascript+ruby
+Subclass of ErbLexer which highlights unlexed data with the JavascriptLexer.
+
+class pygments.lexers.templates.JavascriptGenshiLexer
+Short names:	js+genshitext, js+genshi, javascript+genshitext, javascript+genshi
+Filenames:	None
+MIME types:	application/x-javascript+genshi, text/x-javascript+genshi, text/javascript+genshi
+A lexer that highlights javascript code in genshi text templates.
+
+class pygments.lexers.templates.JavascriptPhpLexer
+Short names:	js+php, javascript+php
+Filenames:	None
+MIME types:	application/x-javascript+php, text/x-javascript+php, text/javascript+php
+Subclass of PhpLexer which highlights unmatched data with the JavascriptLexer.
+
+class pygments.lexers.templates.JavascriptSmartyLexer
+Short names:	js+smarty, javascript+smarty
+Filenames:	None
+MIME types:	application/x-javascript+smarty, text/x-javascript+smarty, text/javascript+smarty
+Subclass of the SmartyLexer that highlights unlexed data with the JavascriptLexer.
+
+class pygments.lexers.templates.JspLexer
+Short names:	jsp
+Filenames:	*.jsp
+MIME types:	application/x-jsp
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Java Server Pages.
+
+New in version 0.7.
+
+class pygments.lexers.templates.LassoCssLexer
+Short names:	css+lasso
+Filenames:	None
+MIME types:	text/css+lasso
+Subclass of the LassoLexer which highlights unhandled data with the CssLexer.
+
+New in version 1.6.
+
+class pygments.lexers.templates.LassoHtmlLexer
+Short names:	html+lasso
+Filenames:	None
+MIME types:	text/html+lasso, application/x-httpd-lasso, application/x-httpd-lasso&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;89&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+Subclass of the LassoLexer which highlights unhandled data with the HtmlLexer.
+
+Nested JavaScript and CSS is also highlighted.
+
+New in version 1.6.
+
+class pygments.lexers.templates.LassoJavascriptLexer
+Short names:	js+lasso, javascript+lasso
+Filenames:	None
+MIME types:	application/x-javascript+lasso, text/x-javascript+lasso, text/javascript+lasso
+Subclass of the LassoLexer which highlights unhandled data with the JavascriptLexer.
+
+New in version 1.6.
+
+class pygments.lexers.templates.LassoXmlLexer
+Short names:	xml+lasso
+Filenames:	None
+MIME types:	application/xml+lasso
+Subclass of the LassoLexer which highlights unhandled data with the XmlLexer.
+
+New in version 1.6.
+
+class pygments.lexers.templates.LiquidLexer
+Short names:	liquid
+Filenames:	*.liquid
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Liquid templates.
+
+New in version 2.0.
+
+class pygments.lexers.templates.MakoCssLexer
+Short names:	css+mako
+Filenames:	None
+MIME types:	text/css+mako
+Subclass of the MakoLexer that highlights unlexed data with the CssLexer.
+
+New in version 0.7.
+
+class pygments.lexers.templates.MakoHtmlLexer
+Short names:	html+mako
+Filenames:	None
+MIME types:	text/html+mako
+Subclass of the MakoLexer that highlights unlexed data with the HtmlLexer.
+
+New in version 0.7.
+
+class pygments.lexers.templates.MakoJavascriptLexer
+Short names:	js+mako, javascript+mako
+Filenames:	None
+MIME types:	application/x-javascript+mako, text/x-javascript+mako, text/javascript+mako
+Subclass of the MakoLexer that highlights unlexed data with the JavascriptLexer.
+
+New in version 0.7.
+
+class pygments.lexers.templates.MakoLexer
+Short names:	mako
+Filenames:	*.mao
+MIME types:	application/x-mako
+Generic mako templates lexer. Code that isn’t Mako markup is yielded as Token.Other.
+
+New in version 0.7.
+
+class pygments.lexers.templates.MakoXmlLexer
+Short names:	xml+mako
+Filenames:	None
+MIME types:	application/xml+mako
+Subclass of the MakoLexer that highlights unlexed data with the XmlLexer.
+
+New in version 0.7.
+
+class pygments.lexers.templates.MasonLexer
+Short names:	mason
+Filenames:	*.m, *.mhtml, *.mc, *.mi, autohandler, dhandler
+MIME types:	application/x-mason
+Generic mason templates lexer. Stolen from Myghty lexer. Code that isn’t Mason markup is HTML.
+
+New in version 1.4.
+
+class pygments.lexers.templates.MyghtyCssLexer
+Short names:	css+myghty
+Filenames:	None
+MIME types:	text/css+myghty
+Subclass of the MyghtyLexer that highlights unlexed data with the CssLexer.
+
+New in version 0.6.
+
+class pygments.lexers.templates.MyghtyHtmlLexer
+Short names:	html+myghty
+Filenames:	None
+MIME types:	text/html+myghty
+Subclass of the MyghtyLexer that highlights unlexed data with the HtmlLexer.
+
+New in version 0.6.
+
+class pygments.lexers.templates.MyghtyJavascriptLexer
+Short names:	js+myghty, javascript+myghty
+Filenames:	None
+MIME types:	application/x-javascript+myghty, text/x-javascript+myghty, text/javascript+mygthy
+Subclass of the MyghtyLexer that highlights unlexed data with the JavascriptLexer.
+
+New in version 0.6.
+
+class pygments.lexers.templates.MyghtyLexer
+Short names:	myghty
+Filenames:	*.myt, autodelegate
+MIME types:	application/x-myghty
+Generic myghty templates lexer. Code that isn’t Myghty markup is yielded as Token.Other.
+
+New in version 0.6.
+
+class pygments.lexers.templates.MyghtyXmlLexer
+Short names:	xml+myghty
+Filenames:	None
+MIME types:	application/xml+myghty
+Subclass of the MyghtyLexer that highlights unlexed data with the XmlLexer.
+
+New in version 0.6.
+
+class pygments.lexers.templates.RhtmlLexer
+Short names:	rhtml, html+erb, html+ruby
+Filenames:	*.rhtml
+MIME types:	text/html+ruby
+Subclass of the ERB lexer that highlights the unlexed data with the html lexer.
+
+Nested Javascript and CSS is highlighted too.
+
+class pygments.lexers.templates.SmartyLexer
+Short names:	smarty
+Filenames:	*.tpl
+MIME types:	application/x-smarty
+Generic Smarty template lexer.
+
+Just highlights smarty code between the preprocessor directives, other data is left untouched by the lexer.
+
+class pygments.lexers.templates.SspLexer
+Short names:	ssp
+Filenames:	*.ssp
+MIME types:	application/x-ssp
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Scalate Server Pages.
+
+New in version 1.4.
+
+class pygments.lexers.templates.TeaTemplateLexer
+Short names:	tea
+Filenames:	*.tea
+MIME types:	text/x-tea
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Tea Templates.
+
+New in version 1.5.
+
+class pygments.lexers.templates.TwigHtmlLexer
+Short names:	html+twig
+Filenames:	*.twig
+MIME types:	text/html+twig
+Subclass of the TwigLexer that highlights unlexed data with the HtmlLexer.
+
+New in version 2.0.
+
+class pygments.lexers.templates.TwigLexer
+Short names:	twig
+Filenames:	None
+MIME types:	application/x-twig
+Twig template lexer.
+
+It just highlights Twig code between the preprocessor directives, other data is left untouched by the lexer.
+
+New in version 2.0.
+
+class pygments.lexers.templates.VelocityHtmlLexer
+Short names:	html+velocity
+Filenames:	None
+MIME types:	text/html+velocity
+Subclass of the VelocityLexer that highlights unlexed data with the HtmlLexer.
+
+class pygments.lexers.templates.VelocityLexer
+Short names:	velocity
+Filenames:	*.vm, *.fhtml
+MIME types:	None
+Generic Velocity template lexer.
+
+Just highlights velocity directives and variable references, other data is left untouched by the lexer.
+
+class pygments.lexers.templates.VelocityXmlLexer
+Short names:	xml+velocity
+Filenames:	None
+MIME types:	application/xml+velocity
+Subclass of the VelocityLexer that highlights unlexed data with the XmlLexer.
+
+class pygments.lexers.templates.XmlDjangoLexer
+Short names:	xml+django, xml+jinja
+Filenames:	None
+MIME types:	application/xml+django, application/xml+jinja
+Subclass of the DjangoLexer that highlights unlexed data with the XmlLexer.
+
+class pygments.lexers.templates.XmlErbLexer
+Short names:	xml+erb, xml+ruby
+Filenames:	None
+MIME types:	application/xml+ruby
+Subclass of ErbLexer which highlights data outside preprocessor directives with the XmlLexer.
+
+class pygments.lexers.templates.XmlPhpLexer
+Short names:	xml+php
+Filenames:	None
+MIME types:	application/xml+php
+Subclass of PhpLexer that highlights unhandled data with the XmlLexer.
+
+class pygments.lexers.templates.XmlSmartyLexer
+Short names:	xml+smarty
+Filenames:	None
+MIME types:	application/xml+smarty
+Subclass of the SmartyLexer that highlights unlexed data with the XmlLexer.
+
+class pygments.lexers.templates.YamlJinjaLexer
+Short names:	yaml+jinja, salt, sls
+Filenames:	*.sls
+MIME types:	text/x-yaml+jinja, text/x-sls
+Subclass of the DjangoLexer that highlights unlexed data with the YamlLexer.
+
+Commonly used in Saltstack salt states.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; testing languages
+
+class pygments.lexers.testing.GherkinLexer
+Short names:	cucumber, gherkin
+Filenames:	*.feature
+MIME types:	text/x-gherkin
+For Gherkin &amp;lt;http://github.com/aslakhellesoy/gherkin/&amp;gt; syntax.
+
+New in version 1.2.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; languages related to text processing
+
+class pygments.lexers.textedit.AwkLexer
+Short names:	awk, gawk, mawk, nawk
+Filenames:	*.awk
+MIME types:	application/x-awk
+For Awk scripts.
+
+New in version 1.5.
+
+class pygments.lexers.textedit.VimLexer
+Short names:	vim
+Filenames:	*.vim, .vimrc, .exrc, .gvimrc, vimrc, exrc, gvimrc, vimrc, gvimrc
+MIME types:	text/x-vim
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; VimL script files.
+
+New in version 0.8.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; various text formats
+
+class pygments.lexers.textfmts.GettextLexer
+Short names:	pot, po
+Filenames:	*.pot, *.po
+MIME types:	application/x-gettext, text/x-gettext, text/gettext
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Gettext catalog files.
+
+New in version 0.9.
+
+class pygments.lexers.textfmts.HttpLexer
+Short names:	http
+Filenames:	None
+MIME types:	None
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; HTTP sessions.
+
+New in version 1.5.
+
+class pygments.lexers.textfmts.IrcLogsLexer
+Short names:	irc
+Filenames:	*.weechatlog
+MIME types:	text/x-irclog
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; IRC logs in irssi, xchat or weechat style.
+
+class pygments.lexers.textfmts.TodotxtLexer
+Short names:	todotxt
+Filenames:	todo.txt, *.todotxt
+MIME types:	text/x-todo
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Todo.txt todo list format.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; theorem-proving languages
+
+class pygments.lexers.theorem.CoqLexer
+Short names:	coq
+Filenames:	*.v
+MIME types:	text/x-coq
+For the Coq theorem prover.
+
+New in version 1.5.
+
+class pygments.lexers.theorem.IsabelleLexer
+Short names:	isabelle
+Filenames:	*.thy
+MIME types:	text/x-isabelle
+For the Isabelle proof assistant.
+
+New in version 2.0.
+
+class pygments.lexers.theorem.LeanLexer
+Short names:	lean
+Filenames:	*.lean
+MIME types:	text/x-lean
+For the Lean theorem prover.
+
+New in version 2.0.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; UrbiScript language
+
+class pygments.lexers.urbi.UrbiscriptLexer
+Short names:	urbiscript
+Filenames:	*.u
+MIME types:	application/x-urbiscript
+For UrbiScript &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;code.
+
+New in version 1.5.
+
+Lexers &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; misc. web stuff
+
+class pygments.lexers.webmisc.CirruLexer
+Short names:	cirru
+Filenames:	*.cirru
+MIME types:	text/x-cirru
+Syntax rules of Cirru can be found at: http://cirru.org/
+
+using &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; to markup blocks, but limited in the same line
+using &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt; to markup strings, allow &lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;to escape
+using &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;as a shorthand &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; till indentation end or &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+using indentations &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; create nesting
+New in version 2.0.
+
+class pygments.lexers.webmisc.DuelLexer
+Short names:	duel, jbst, jsonml+bst
+Filenames:	*.duel, *.jbst
+MIME types:	text/x-duel, text/x-jbst
+Lexer &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; Duel Views Engine &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;formerly JBST&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; markup with JavaScript code blocks. See http://duelengine.org/. See http://jsonml.org/jbst/.
+
+New in version 1.4.
+
+class pygments.lexers.webmisc.QmlLexer
+Short names:	qml
+Filenames:	*.qml
+MIME types:	application/x-qml
+For QML files. See http://doc.qt.digia.com/4.7/qdeclarativeintroduction.html.
+
+New in version 1.6.
+
+class pygments.lexers.webmisc.SlimLexer
+Short names:	slim
+Filenames:	*.slim
+MIME types:	text/x-slim
+For Slim markup.
+
+New in version 2.0.
+
+class pygments.lexers.webmisc.XQueryLexer
+Short names:	xquery, xqy, xq, xql, xqm
+Filenames:	*.xqy, *.xquery, *.xq, *.xql, *.xqm
+MIME types:	text/xquery, application/xquery
+An XQuery lexer, parsing a stream and outputting the tokens needed to highlight xquery code.
+
+New in version 1.4.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>MacOSX上ab并发测试常见报错及解决办法</title>
+      <link>http://lilifeng.net/blogs/2015/05/05/ab-issues-in-mac/</link>
+      <pubDate>Tue, 05 May 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/05/05/ab-issues-in-mac/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;1、apr_socket_recv: Connection reset by peer (54)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Mac:~ air&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ab -n &lt;span class=&quot;m&quot;&gt;10000&lt;/span&gt; -c &lt;span class=&quot;m&quot;&gt;2000&lt;/span&gt; http://127.0.0.1:80/
+This is ApacheBench, Version 2.3 &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;lt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Revision&lt;/span&gt;: &lt;span class=&quot;m&quot;&gt;655654&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;amp;&lt;/span&gt;gt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+Copyright &lt;span class=&quot;m&quot;&gt;1996&lt;/span&gt; Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;be patient&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+apr_socket_recv: Connection reset by peer &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;54&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Mac:~ air&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这个报错一般是由于使用的MacOSX默认自带的ab限制了并发数导致的。&lt;/p&gt;
+
+&lt;p&gt;解决办法：&lt;/p&gt;
+
+&lt;p&gt;下载最新的apache并重新编译，备份原来的ab并将新编译的ab替换到原来的路径&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./configure --prefix&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/webserver/httpd-2.4.10
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make install
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/local/webserver/httpd-2.4.10
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo mv /usr/sbin/ab /usr/sbin/ab.bak
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo cp bin/ab /usr/sbin/ab&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2、socket: Too many open files (24)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;一般这种报错是由于MacOSX默认的open files数值过小导致的。
+查看当前系统的默认文件打开数：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ulimit&lt;/span&gt; -a
+core file size          &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;blocks, -c&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 0
+data seg size           &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kbytes, -d&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; unlimited
+file size               &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;blocks, -f&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; unlimited
+max locked memory       &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kbytes, -l&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; unlimited
+max memory size         &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kbytes, -m&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; unlimited
+open files                      &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-n&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 256
+pipe size            &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;512&lt;/span&gt; bytes, -p&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 1
+stack size              &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kbytes, -s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 8192
+cpu &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt;               &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;seconds, -t&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; unlimited
+max user processes              &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-u&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 709
+virtual memory          &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;kbytes, -v&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; unlimited&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;可以看到默认的open files数值为256，解决办法将此数值调大即可。
+先查看以下两个数值：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sysctl kern.maxfiles
+kern.maxfiles: 50000
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sysctl kern.maxfilesperproc
+kern.maxfilesperproc: 50000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;要修改成的数值不能大于以上两个数值，如果直接执行ulimit -n 65535则会报以下错误：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;-bash: &lt;span class=&quot;nb&quot;&gt;ulimit&lt;/span&gt;: open files: cannot modify limit: Operation not permitted&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;所以执行以下命令：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;ulimit&lt;/span&gt; -n 49999&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;或者直接调大上述两个配置的数值：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo sysctl -w kern.maxfiles&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1048600
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo sysctl -w kern.maxfilesperproc&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1048576&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;继续ab测试：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ab -n &lt;span class=&quot;m&quot;&gt;10000&lt;/span&gt; -c &lt;span class=&quot;m&quot;&gt;2000&lt;/span&gt; http://127.0.0.1:80/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;现在应该一切OK了&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>几个HTTP服务器的横向测试比较</title>
+      <link>http://lilifeng.net/blogs/2015/05/04/perf-tests-http-servers/</link>
+      <pubDate>Mon, 04 May 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>原生</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/05/04/perf-tests-http-servers/</guid>
+      <description>&lt;p&gt;===
+测试环境
+===&lt;/p&gt;
+
+&lt;p&gt;192.168.8.161		测试发起服务器
+192.168.8.91		被测试Linux服务器
+192.168.8.8		被测试Windows服务器&lt;/p&gt;
+
+&lt;p&gt;其中被测试机器的配置一样&lt;/p&gt;
+
+&lt;p&gt;===
+测试类型
+===&lt;/p&gt;
+
+&lt;p&gt;192.168.8.8:9000		Windows+IIS+Asp.net&lt;/p&gt;
+
+&lt;p&gt;使用asp.net技术，写了一个Handler.ashx，内容如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;%&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WebHandler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Language&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;C#&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Handler&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;%&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Web&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Handler&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IHttpHandler&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ProcessRequest&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpContext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ContentType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;text/plain&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ 
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IsReusable&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;192.168.8.91:1337	Linux+Nodejs&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;text/plain&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello World\n&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9702&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;127.0.0.1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Server running at http://127.0.0.1:9702/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;192.168.8.91:1338	Linux+Nodejs+Express+Cluster&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cluster&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;cluster&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numCPUs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;os&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cpus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isMaster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numCPUs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;text/plain&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+                &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello World\n&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1338&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;listen on 1338&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;192.168.8.91:1339	Linux+Nodejs+Cluster&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cluster&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;cluster&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numCPUs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;os&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cpus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isMaster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;numCPUs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;text/plain&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+		&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello World\n&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1339&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;192.168.8.161&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Server running at http://127.0.0.1:1339/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;192.168.8.91:1340	Linux+Proxygen&lt;/p&gt;
+
+&lt;p&gt;===
+测试结果
+===&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td&gt;测试方法1：ab -r -c [10000&lt;/td&gt;
+        &lt;td&gt;1000&lt;/td&gt;
+        &lt;td&gt;100] -n 100000 http://xxx&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;16core+8G&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;类型&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;RPS(c=10000)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;RPS(c=1000)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;RPS(c=100)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Windows+IIS+Asp.net&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;6770.54&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;9996.72&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;10381.01&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;CentOS+Nodejs&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;X&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;6036.13&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;6641.44&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;CentOS+Nodejs+Express+Cluster&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;4354.29&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;12757.53&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;11832.70&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;CentOS+Nodejs+Cluster&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;5214.44&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;12170.55&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;12501.20&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;CentOS+DE&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;2330.63&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;14022.68&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;13397.61&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;CentOS+Nodejs+Dsp&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;4945.00&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;6772.59&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;7157.34&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;4core+4G&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;类型&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;RPS(c=10000)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;RPS(c=1000)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;RPS(c=100)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Ubuntu+Nodejs+Express+Cluster&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;4157.49&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;6920.84&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;8935.38&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Ubuntu+Proxygen&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;3272.74&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;9051.58&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;7332.77&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Ubuntu+Nodejs+Dsp(POST)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;3436.93&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;6231.99&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;6676.61&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>书评-《大型网站技术架构-核心原理与案例分析》李智慧著</title>
+      <link>http://lilifeng.net/blogs/2015/04/24/book-large-site-tech-arch/</link>
+      <pubDate>Fri, 24 Apr 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>书评</category>
+      
+      <category>Web</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/04/24/book-large-site-tech-arch/</guid>
+      <description>&lt;p&gt;`原文出处： &lt;a href=&quot;http://www.oschina.net/translate/hadoop-when-to-use&quot;&gt;oschina&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;为你的业务使用大数据技术是一个非常有吸引力的事情，现在Apache Hadoop使得它更加吸引人了。&lt;/p&gt;
+
+&lt;p&gt;Hadoop是一个大规模可伸缩的数据存储平台，被用作许多大数据项目的基础。&lt;/p&gt;
+
+&lt;p&gt;Hadoop很强大，但是它有一个很陡峭的学习曲线，需要公司在时间和其他资源上作大量的投资。&lt;/p&gt;
+
+&lt;p&gt;如果正确地应用它，对你的公司来说，Hadoop可以成为一个真正的游戏规则改变者，但它存在很多被错误使用的可能。&lt;/p&gt;
+
+&lt;p&gt;另一方面，许多企业(不像是谷歌、Facebook或Twitter)都没有真正的“大数据”来需要用一个巨大的hadoop集群分析事物，然而 hadoop 这个流行语却吸引着他们。&lt;/p&gt;
+
+&lt;p&gt;如大卫惠勒所说的：“所有计算机科学的问题都可以用另一个间接的中间层来解决”。 Hadoop提供了这样一种间接层；作为一个软件架构师，当你的最高管理层对一些流行语有很不专业的偏颇认识时，也许真的很难采取正确的决定。&lt;/p&gt;
+
+&lt;p&gt;在本文中，我想要建议“应在投资到Hadoop之前尝试一些替代品”。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;了解你的数据&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;总体数据的大小&lt;/h2&gt;
+
+&lt;p&gt;Hadoop被设计用来在大型数据集上能进行有效的工作。简单给点提示：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hadoop有一个专为大尺寸文件（如几G）设计的文件系统(HDFS)。因此，如果你的数据文件尺寸只是几M的话，建议你合并(通过zip或tar)多个文件到一个文件中，使其尺寸在几百M到几G范围内。&lt;/li&gt;
+  &lt;li&gt;HDFS把大文件们拆分存储到以64MB或128MB或更大的块单元中。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果你的数据集相对较小，那它就不会是hadoop的巨型生态系统的最佳使用之地。这需要你去对你的数据比以往理解更多一些，分析需要什么类型的查询，看看你的数据是否真得“大”。&lt;/p&gt;
+
+&lt;p&gt;另一方面，只是通过数据库的大小来测量数据可能是骗人的，因为你的计算量可能会更大。 有时你可能会做更多的数学计算或分析小数据集的排列，这些可以远远大于实际的数据。所以关键是要“了解你的数据，并且很清楚它”。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;数据增长数度（增长速率）&lt;/h2&gt;
+
+&lt;p&gt;你的数据仓库或是其它数据源中可能拥有数个TB的数据。然而，在建立 Hadoop 集群前，你必须考虑到数据的增长。&lt;/p&gt;
+
+&lt;p&gt;向数据分析师问几个简单的问题：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;数据增长的有多快？这个数据增长的步伐很快么？&lt;/li&gt;
+  &lt;li&gt;数月或数年之后，这个数据将会达到什么样的尺寸？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;许多公司的数据增长是以数年而非数月或数日计算的。如果你的数据增长数度非常快，我见建议你考虑一下归档及清理技术（将在本文后面的内容中详述），而非立即上马 Hadoop 集群。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;如何减少你的数据量&lt;/h1&gt;
+
+&lt;p&gt;如果你觉得你的数据实在是太大了，你可以考虑使用下面的方法将数据减少到相对可控的规模上。下面的几个选项都已经被业内成功使用多年。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;归档&lt;/h2&gt;
+
+&lt;p&gt;数据归档是将陈旧数据移动到一个独立数据储存器以长期保留（如果需要）的过程。&lt;/p&gt;
+
+&lt;p&gt;这需要对数据、对应用使用情况的充分了解。处理大数据的电子商务公司在现场数据库中保存近期3个月的订单细节数据，而早期订单则保存在一个独立的数据存储器中。&lt;/p&gt;
+
+&lt;p&gt;这个方法也可以使用到你的数据仓库中。你可以保存近期的数据以便更快的查询和报告，而将访问频率较低的数据保存在一个其它不同的存储设备中。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;考虑清除数据&lt;/h2&gt;
+
+&lt;p&gt;我们忙于收集数据时经常并不真正确定我们应该保留多少。如果你存储大量可能不是很有用的数据，它就会拖慢你近期数据的处理。弄清你的业务需求,看看是否可以删除旧的数据，把从那些数据分析的趋势存储起来以供后用。这不仅会节省你的空间,而且还可以在分析近期数据时帮助你加快速度。&lt;/p&gt;
+
+&lt;p&gt;对这种情况的一个常见的最佳实践是在您的数据仓库中有一些标准列，像创建日期，创建者，更新日期，更新者。现在根据这些列创建一个每日/每月的cron作业，用它清除你不想在你的数据仓库中看到的时段的数据。清除数据的逻辑基于你的领域可能不同，因此在实施它之前应作一些考虑。&lt;/p&gt;
+
+&lt;p&gt;如果您正在使用一个归档工具,它也可能是通过很轻松地配置就能清除无用的存档数据。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;所有的数据都不重要&lt;/h2&gt;
+
+&lt;p&gt;你可能受不了为你的业务保留所有数据的诱惑。你的数据有各种各样的来源，比如日志文件、现场交易、供应商整合、ETL工作、营销活动数据等等。但你应该知道，不是所有的数据都是关键业务，把它们都保存在一个数据仓库中可能不是很有帮助反而有害。在它们被存储到你的数据仓库之前，应从源头上过滤不需要的数据。如果你真需要在你的数据库的表里每一列存储和分析那些数据，就准备好发疯吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;想好你想收集哪些作为数据&lt;/h2&gt;
+
+&lt;p&gt;假设你进入一个在线视频编辑的业务。你想保存你的用户在每个视频上做的全部更改吗？这会产生巨大的体积。当你感觉到你的数据仓库可能无法处理它的情况下，你可能需要考虑只存储元数据。视频编辑是一个很可能的例子,不过它可能适用于许多其他与你存储数据相关的信息。&lt;/p&gt;
+
+&lt;p&gt;一般来说,如果你有一些有关系的数据，你就有机会从多个来源得到它们，而且不是所有的都需要存储在你的数据仓库中。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-8&quot;&gt;更智能的分析&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;聘请理解业务的分析师&lt;/h2&gt;
+
+&lt;p&gt;现在,你可能已经明白“了解数据”对于有效地管理它们来说是非常重要的。相信我，当你觉得我已经试了所有这些东西时，这一步会帮到你。是时候让我们进入一个如Hadoop这样的大数据解决方案中了。&lt;/p&gt;
+
+&lt;p&gt;如果你的数据分析师不懂应从中提取什么出来，Hadoop就将几乎无用。应寄希望于那些理解业务的人。鼓励他们做实验和学习新的方法来看待相同的数据。找出哪些可以与现有基础设施取得唾手可得的收益。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-10&quot;&gt;为制订决策使用统计抽样&lt;/h2&gt;
+
+&lt;p&gt;统计抽样是研究人员和数学家为了对大型数据推断合理结论而使用的一种非常古老的技术。&lt;/p&gt;
+
+&lt;p&gt;通过执行一个统计的样本，我们的体积可以极大地减少。不用跟踪数百万或数十亿的数据点，我们只需要随机挑选几千或几百个即可。&lt;/p&gt;
+
+&lt;p&gt;该技术不能提供准确的结果,但是它可以被用于对一个大型数据集获得高水平的理解。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;定标技术&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;你真地把关系数据库的处理发挥到极致了吗？&lt;/h3&gt;
+
+&lt;p&gt;在你真去探索其他技术之前，我希望你去看看关系型数据库是否能够处理它。人们使用关系数据库已经很久了，已经托管了一些几T字节大小的数据仓库。在你决定进入hadoop之前，你可以对关系数据库尝试以下方法。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;数据分区&lt;/h3&gt;
+
+&lt;p&gt;数据分区就是逻辑上和/或物理上把数据划分成一些更容易维护或访问的部分的过程。分区支持最流行的开放源代码关系数据库(MySQL 分区 和 Postgres 分区 )。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-14&quot;&gt;对关系数据库尝试数据库分片的方法&lt;/h2&gt;
+
+&lt;p&gt;数据库分片可以作为对关系数据库的处理速度发挥到极限的最后一个手段。这种方法可以应用于你可以逻辑上分离数据到不同的节点，并在你的分析中有更少的交叉节点连接的时候。在web应用程序中,一个常见的分片方法是基于把用户和所有与一个用户相关的信息存储在一个节点上来确保最佳的速度。&lt;/p&gt;
+
+&lt;p&gt;分片并不容易，如果你有很多复杂的关系，并且没有简单的方法来分离数据到不同的节点上，这个方案可能不适合你。如果你的应用需要有很多交叉节点连接，分片的打算可能会失败。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-15&quot;&gt;结论&lt;/h1&gt;
+
+&lt;p&gt;我曾在不同的公司被高层管理人员要求把Hadoop作为一个可选项去做某些事。要说服他们总是很难，但是当我把这个信息告诉他们后，他们不得不三思而后行。我很幸运，能为我工作的这些公司节省一些钱。&lt;/p&gt;
+
+&lt;p&gt;如果你发现为了扩大你的关系数据库，你已经尝试了所有可能的选项，这才是你应该开始考虑建立一个Hadoop集群的时候。&lt;/p&gt;
+
+&lt;p&gt;首先,您可能应该使用cloudera提供的虚拟机镜像。它们对于在你现有的基础设施上使用hadoop做快速的概念证明真的是很方便。&lt;/p&gt;
+
+&lt;p&gt;你对大数据有何经验？请在评论部分与我们分享。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>你不需要 Hadoop做数据分析的10个理由 —— 使用之前必须测试其他替代品</title>
+      <link>http://lilifeng.net/blogs/2015/04/23/hadoop-when-to-use/</link>
+      <pubDate>Thu, 23 Apr 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Hadoop</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/04/23/hadoop-when-to-use/</guid>
+      <description>&lt;p&gt;`原文出处： &lt;a href=&quot;http://www.oschina.net/translate/hadoop-when-to-use&quot;&gt;oschina&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;为你的业务使用大数据技术是一个非常有吸引力的事情，现在Apache Hadoop使得它更加吸引人了。&lt;/p&gt;
+
+&lt;p&gt;Hadoop是一个大规模可伸缩的数据存储平台，被用作许多大数据项目的基础。&lt;/p&gt;
+
+&lt;p&gt;Hadoop很强大，但是它有一个很陡峭的学习曲线，需要公司在时间和其他资源上作大量的投资。&lt;/p&gt;
+
+&lt;p&gt;如果正确地应用它，对你的公司来说，Hadoop可以成为一个真正的游戏规则改变者，但它存在很多被错误使用的可能。&lt;/p&gt;
+
+&lt;p&gt;另一方面，许多企业(不像是谷歌、Facebook或Twitter)都没有真正的“大数据”来需要用一个巨大的hadoop集群分析事物，然而 hadoop 这个流行语却吸引着他们。&lt;/p&gt;
+
+&lt;p&gt;如大卫惠勒所说的：“所有计算机科学的问题都可以用另一个间接的中间层来解决”。 Hadoop提供了这样一种间接层；作为一个软件架构师，当你的最高管理层对一些流行语有很不专业的偏颇认识时，也许真的很难采取正确的决定。&lt;/p&gt;
+
+&lt;p&gt;在本文中，我想要建议“应在投资到Hadoop之前尝试一些替代品”。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;了解你的数据&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;总体数据的大小&lt;/h2&gt;
+
+&lt;p&gt;Hadoop被设计用来在大型数据集上能进行有效的工作。简单给点提示：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hadoop有一个专为大尺寸文件（如几G）设计的文件系统(HDFS)。因此，如果你的数据文件尺寸只是几M的话，建议你合并(通过zip或tar)多个文件到一个文件中，使其尺寸在几百M到几G范围内。&lt;/li&gt;
+  &lt;li&gt;HDFS把大文件们拆分存储到以64MB或128MB或更大的块单元中。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果你的数据集相对较小，那它就不会是hadoop的巨型生态系统的最佳使用之地。这需要你去对你的数据比以往理解更多一些，分析需要什么类型的查询，看看你的数据是否真得“大”。&lt;/p&gt;
+
+&lt;p&gt;另一方面，只是通过数据库的大小来测量数据可能是骗人的，因为你的计算量可能会更大。 有时你可能会做更多的数学计算或分析小数据集的排列，这些可以远远大于实际的数据。所以关键是要“了解你的数据，并且很清楚它”。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;数据增长数度（增长速率）&lt;/h2&gt;
+
+&lt;p&gt;你的数据仓库或是其它数据源中可能拥有数个TB的数据。然而，在建立 Hadoop 集群前，你必须考虑到数据的增长。&lt;/p&gt;
+
+&lt;p&gt;向数据分析师问几个简单的问题：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;数据增长的有多快？这个数据增长的步伐很快么？&lt;/li&gt;
+  &lt;li&gt;数月或数年之后，这个数据将会达到什么样的尺寸？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;许多公司的数据增长是以数年而非数月或数日计算的。如果你的数据增长数度非常快，我见建议你考虑一下归档及清理技术（将在本文后面的内容中详述），而非立即上马 Hadoop 集群。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-3&quot;&gt;如何减少你的数据量&lt;/h1&gt;
+
+&lt;p&gt;如果你觉得你的数据实在是太大了，你可以考虑使用下面的方法将数据减少到相对可控的规模上。下面的几个选项都已经被业内成功使用多年。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;归档&lt;/h2&gt;
+
+&lt;p&gt;数据归档是将陈旧数据移动到一个独立数据储存器以长期保留（如果需要）的过程。&lt;/p&gt;
+
+&lt;p&gt;这需要对数据、对应用使用情况的充分了解。处理大数据的电子商务公司在现场数据库中保存近期3个月的订单细节数据，而早期订单则保存在一个独立的数据存储器中。&lt;/p&gt;
+
+&lt;p&gt;这个方法也可以使用到你的数据仓库中。你可以保存近期的数据以便更快的查询和报告，而将访问频率较低的数据保存在一个其它不同的存储设备中。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;考虑清除数据&lt;/h2&gt;
+
+&lt;p&gt;我们忙于收集数据时经常并不真正确定我们应该保留多少。如果你存储大量可能不是很有用的数据，它就会拖慢你近期数据的处理。弄清你的业务需求,看看是否可以删除旧的数据，把从那些数据分析的趋势存储起来以供后用。这不仅会节省你的空间,而且还可以在分析近期数据时帮助你加快速度。&lt;/p&gt;
+
+&lt;p&gt;对这种情况的一个常见的最佳实践是在您的数据仓库中有一些标准列，像创建日期，创建者，更新日期，更新者。现在根据这些列创建一个每日/每月的cron作业，用它清除你不想在你的数据仓库中看到的时段的数据。清除数据的逻辑基于你的领域可能不同，因此在实施它之前应作一些考虑。&lt;/p&gt;
+
+&lt;p&gt;如果您正在使用一个归档工具,它也可能是通过很轻松地配置就能清除无用的存档数据。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;所有的数据都不重要&lt;/h2&gt;
+
+&lt;p&gt;你可能受不了为你的业务保留所有数据的诱惑。你的数据有各种各样的来源，比如日志文件、现场交易、供应商整合、ETL工作、营销活动数据等等。但你应该知道，不是所有的数据都是关键业务，把它们都保存在一个数据仓库中可能不是很有帮助反而有害。在它们被存储到你的数据仓库之前，应从源头上过滤不需要的数据。如果你真需要在你的数据库的表里每一列存储和分析那些数据，就准备好发疯吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;想好你想收集哪些作为数据&lt;/h2&gt;
+
+&lt;p&gt;假设你进入一个在线视频编辑的业务。你想保存你的用户在每个视频上做的全部更改吗？这会产生巨大的体积。当你感觉到你的数据仓库可能无法处理它的情况下，你可能需要考虑只存储元数据。视频编辑是一个很可能的例子,不过它可能适用于许多其他与你存储数据相关的信息。&lt;/p&gt;
+
+&lt;p&gt;一般来说,如果你有一些有关系的数据，你就有机会从多个来源得到它们，而且不是所有的都需要存储在你的数据仓库中。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-8&quot;&gt;更智能的分析&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;聘请理解业务的分析师&lt;/h2&gt;
+
+&lt;p&gt;现在,你可能已经明白“了解数据”对于有效地管理它们来说是非常重要的。相信我，当你觉得我已经试了所有这些东西时，这一步会帮到你。是时候让我们进入一个如Hadoop这样的大数据解决方案中了。&lt;/p&gt;
+
+&lt;p&gt;如果你的数据分析师不懂应从中提取什么出来，Hadoop就将几乎无用。应寄希望于那些理解业务的人。鼓励他们做实验和学习新的方法来看待相同的数据。找出哪些可以与现有基础设施取得唾手可得的收益。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-10&quot;&gt;为制订决策使用统计抽样&lt;/h2&gt;
+
+&lt;p&gt;统计抽样是研究人员和数学家为了对大型数据推断合理结论而使用的一种非常古老的技术。&lt;/p&gt;
+
+&lt;p&gt;通过执行一个统计的样本，我们的体积可以极大地减少。不用跟踪数百万或数十亿的数据点，我们只需要随机挑选几千或几百个即可。&lt;/p&gt;
+
+&lt;p&gt;该技术不能提供准确的结果,但是它可以被用于对一个大型数据集获得高水平的理解。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;定标技术&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;你真地把关系数据库的处理发挥到极致了吗？&lt;/h3&gt;
+
+&lt;p&gt;在你真去探索其他技术之前，我希望你去看看关系型数据库是否能够处理它。人们使用关系数据库已经很久了，已经托管了一些几T字节大小的数据仓库。在你决定进入hadoop之前，你可以对关系数据库尝试以下方法。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;数据分区&lt;/h3&gt;
+
+&lt;p&gt;数据分区就是逻辑上和/或物理上把数据划分成一些更容易维护或访问的部分的过程。分区支持最流行的开放源代码关系数据库(MySQL 分区 和 Postgres 分区 )。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-14&quot;&gt;对关系数据库尝试数据库分片的方法&lt;/h2&gt;
+
+&lt;p&gt;数据库分片可以作为对关系数据库的处理速度发挥到极限的最后一个手段。这种方法可以应用于你可以逻辑上分离数据到不同的节点，并在你的分析中有更少的交叉节点连接的时候。在web应用程序中,一个常见的分片方法是基于把用户和所有与一个用户相关的信息存储在一个节点上来确保最佳的速度。&lt;/p&gt;
+
+&lt;p&gt;分片并不容易，如果你有很多复杂的关系，并且没有简单的方法来分离数据到不同的节点上，这个方案可能不适合你。如果你的应用需要有很多交叉节点连接，分片的打算可能会失败。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-15&quot;&gt;结论&lt;/h1&gt;
+
+&lt;p&gt;我曾在不同的公司被高层管理人员要求把Hadoop作为一个可选项去做某些事。要说服他们总是很难，但是当我把这个信息告诉他们后，他们不得不三思而后行。我很幸运，能为我工作的这些公司节省一些钱。&lt;/p&gt;
+
+&lt;p&gt;如果你发现为了扩大你的关系数据库，你已经尝试了所有可能的选项，这才是你应该开始考虑建立一个Hadoop集群的时候。&lt;/p&gt;
+
+&lt;p&gt;首先,您可能应该使用cloudera提供的虚拟机镜像。它们对于在你现有的基础设施上使用hadoop做快速的概念证明真的是很方便。&lt;/p&gt;
+
+&lt;p&gt;你对大数据有何经验？请在评论部分与我们分享。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Web基础架构：负载均衡和LVS</title>
+      <link>http://lilifeng.net/blogs/2015/04/22/load-balance-lvs/</link>
+      <pubDate>Wed, 22 Apr 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Web</category>
+      
+      <category>Load Balance</category>
+      
+      <category>LVS</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/04/22/load-balance-lvs/</guid>
+      <description>&lt;p&gt;&lt;code&gt;在大规模互联网应用中，负载均衡设备是必不可少的一个节点，源于互联网应用的高并发和大流量的冲击压力，我们通常会在服务端部署多个无状态的应用服务器和若干有状态的存储服务器（数据库、缓存等等）。&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;一、负载均衡的作用&lt;/h1&gt;
+
+&lt;p&gt;负载均衡设备的任务就是作为应用服务器流量的入口，挑选最合适的一台服务器，将客户端的请求转发给它处理，实现客户端到真实服务端的透明转发。最近几年很火的「云计算」以及分布式架构，本质上也是将后端服务器作为计算资源、存储资源，由某台管理服务器封装成一个服务对外提供，客户端不需要关心真正提供服务的是哪台机器，在它看来，就好像它面对的是一台拥有近乎无限能力的服务器，而本质上，真正提供服务的，是后端的集群。&lt;/p&gt;
+
+&lt;p&gt;一个典型的互联网应用的拓扑结构是这样的：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150422_1.png&quot; alt=&quot;互联网应用的拓扑结构&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;二、负载均衡的类型&lt;/h1&gt;
+
+&lt;p&gt;负载均衡可以采用硬件设备，也可以采用软件负载。&lt;/p&gt;
+
+&lt;p&gt;商用硬件负载设备成本通常较高（一台几十万上百万很正常），所以在条件允许的情况下我们会采用软负载，软负载解决的两个核心问题是：选谁、转发，其中最著名的是LVS（Linux Virtual Server）。&lt;/p&gt;
+
+&lt;h1 id=&quot;lvs&quot;&gt;三、软负载——LVS&lt;/h1&gt;
+
+&lt;p&gt;LVS是四层负载均衡，也就是说建立在OSI模型的第四层——传输层之上，传输层上有我们熟悉的TCP/UDP，LVS支持TCP/UDP的负载均衡。&lt;/p&gt;
+
+&lt;p&gt;LVS的转发主要通过修改IP地址（NAT模式，分为源地址修改SNAT和目标地址修改DNAT）、修改目标MAC（DR模式）来实现。&lt;/p&gt;
+
+&lt;p&gt;那么为什么LVS是在第四层做负载均衡？&lt;/p&gt;
+
+&lt;p&gt;首先LVS不像HAProxy等七层软负载面向的是HTTP包，所以七层负载可以做的URL解析等工作，LVS无法完成。其次，某次用户访问是与服务端建立连接后交换数据包实现的，如果在第三层网络层做负载均衡，那么将失去「连接」的语义。软负载面向的对象应该是一个已经建立连接的用户，而不是一个孤零零的IP包。后面会看到，实际上LVS的机器代替真实的服务器与用户通过TCP三次握手建立了连接，所以LVS是需要关心「连接」级别的状态的。&lt;/p&gt;
+
+&lt;p&gt;LVS的工作模式主要有4种：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DR&lt;/li&gt;
+  &lt;li&gt;NAT&lt;/li&gt;
+  &lt;li&gt;TUNNEL&lt;/li&gt;
+  &lt;li&gt;Full-NAT&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这里挑选常用的DR、NAT、Full-NAT来简单介绍一下。&lt;/p&gt;
+
+&lt;h2 id=&quot;dr&quot;&gt;1、DR&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150422_2.png&quot; alt=&quot;DR架构&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;请求由LVS接受，由真实提供服务的服务器（RealServer, RS）直接返回给用户，返回的时候不经过LVS。&lt;/p&gt;
+
+&lt;p&gt;DR模式下需要LVS和绑定同一个VIP（RS通过将VIP绑定在loopback实现）。&lt;/p&gt;
+
+&lt;p&gt;一个请求过来时，LVS只需要将网络帧的MAC地址修改为某一台RS的MAC，该包就会被转发到相应的RS处理，注意此时的源IP和目标IP都没变，LVS只是做了一下移花接木。&lt;/p&gt;
+
+&lt;p&gt;RS收到LVS转发来的包，链路层发现MAC是自己的，到上面的网络层，发现IP也是自己的，于是这个包被合法地接受，RS感知不到前面有LVS的存在。&lt;/p&gt;
+
+&lt;p&gt;而当RS返回响应时，只要直接向源IP（即用户的IP）返回即可，不再经过LVS。&lt;/p&gt;
+
+&lt;p&gt;DR模式是性能最好的一种模式。&lt;/p&gt;
+
+&lt;h2 id=&quot;nat&quot;&gt;2、NAT&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150422_3.png&quot; alt=&quot;NAT架构&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;NAT（Network Address Translation）是一种外网和内网地址映射的技术。&lt;/p&gt;
+
+&lt;p&gt;NAT模式下，网络报的进出都要经过LVS的处理。LVS需要作为RS的网关。&lt;/p&gt;
+
+&lt;p&gt;当包到达LVS时，LVS做目标地址转换（DNAT），将目标IP改为RS的IP。RS接收到包以后，仿佛是客户端直接发给它的一样。&lt;/p&gt;
+
+&lt;p&gt;RS处理完，返回响应时，源IP是RS IP，目标IP是客户端的IP。&lt;/p&gt;
+
+&lt;p&gt;这时RS的包通过网关（LVS）中转，LVS会做源地址转换（SNAT），将包的源地址改为VIP，这样，这个包对客户端看起来就仿佛是LVS直接返回给它的。客户端无法感知到后端RS的存在。&lt;/p&gt;
+
+&lt;h2 id=&quot;full-nat&quot;&gt;3、Full-NAT&lt;/h2&gt;
+
+&lt;p&gt;无论是DR还是NAT模式，不可避免的都有一个问题：LVS和RS必须在同一个VLAN下，否则LVS无法作为RS的网关。&lt;/p&gt;
+
+&lt;p&gt;这引发的两个问题是：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1、同一个VLAN的限制导致运维不方便，跨VLAN的RS无法接入。&lt;/li&gt;
+  &lt;li&gt;2、LVS的水平扩展受到制约。当RS水平扩容时，总有一天其上的单点LVS会成为瓶颈。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Full-NAT由此而生，解决的是LVS和RS跨VLAN的问题，而跨VLAN问题解决后，LVS和RS不再存在VLAN上的从属关系，可以做到多个LVS对应多个RS，解决水平扩容的问题。&lt;/p&gt;
+
+&lt;p&gt;Full-NAT相比NAT的主要改进是，在SNAT/DNAT的基础上，加上另一种转换，转换过程如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150422_4.png&quot; alt=&quot;Full-NAT转换过程&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在包从LVS转到RS的过程中，源地址从客户端IP被替换成了LVS的内网IP。&lt;/p&gt;
+
+&lt;p&gt;内网IP之间可以通过多个交换机跨VLAN通信。&lt;/p&gt;
+
+&lt;p&gt;当RS处理完接受到的包，返回时，会将这个包返回给LVS的内网IP，这一步也不受限于VLAN。&lt;/p&gt;
+
+&lt;p&gt;LVS收到包后，在NAT模式修改源地址的基础上，再把RS发来的包中的目标地址从LVS内网IP改为客户端的IP。&lt;/p&gt;
+
+&lt;p&gt;Full-NAT主要的思想是把网关和其下机器的通信，改为了普通的网络通信，从而解决了跨VLAN的问题。采用这种方式，LVS和RS的部署在VLAN上将不再有任何限制，大大提高了运维部署的便利性。&lt;/p&gt;
+
+&lt;h2 id=&quot;session&quot;&gt;4、Session&lt;/h2&gt;
+
+&lt;p&gt;客户端与服务端的通信，一次请求可能包含多个TCP包，LVS必须保证同一连接的TCP包，必须被转发到同一台RS，否则就乱套了。为了确保这一点，LVS内部维护着一个Session的Hash表，通过客户端的某些信息可以找到应该转发到哪一台RS上。&lt;/p&gt;
+
+&lt;h2 id=&quot;lvs-1&quot;&gt;5、LVS集群化&lt;/h2&gt;
+
+&lt;p&gt;采用Full-NAT模式后，可以搭建LVS的集群，拓扑结构如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150422_5.png&quot; alt=&quot;LVS集群化&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;6、容灾&lt;/h2&gt;
+
+&lt;p&gt;容灾分为RS的容灾和LVS的容灾。&lt;/p&gt;
+
+&lt;p&gt;RS的容灾可以通过LVS定期健康检测实现，如果某台RS失去心跳，则认为其已经下线，不会在转发到该RS上。&lt;/p&gt;
+
+&lt;p&gt;LVS的容灾可以通过主备+心跳的方式实现。主LVS失去心跳后，备LVS可以作为热备立即替换。&lt;/p&gt;
+
+&lt;p&gt;容灾主要是靠KeepAlived来做的。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>你的DSP能RTB么？</title>
+      <link>http://lilifeng.net/blogs/2015/04/21/can-dsp-rtb/</link>
+      <pubDate>Tue, 21 Apr 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>市场</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/04/21/can-dsp-rtb/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;By zach coelius， CEO of Triggit&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;（2010年2月左右）上个礼拜在纽约的时代华纳中心， Admeld* 公司的朋友们主办了一个关于RTB(实时竞价)的大型讨论会。上百个与会者讨论了和RTB，DSP(需求方平台)以及它们的应用前景有关的 话题。其中有一个议题是”怎样定义相关的专业术语，特别是DSP”。 作为一个在”DSP”这个词还没出现之前就从事这方面工作的最早的开拓者之一，看到大家有这么大的热情来讨论DSP的定义，让我非常振奋。&lt;/p&gt;
+
+&lt;p&gt;那到底什么是DSP的恰当的定义呢?作为一个技术工作者，我倾向于用为DSP开创了生存空间的技术创新来解释。其中最重要的就是RTB。 RTB使得一个单独的平台能够和多个不同的广告库存来源连接，并且对每一个广告展现作出实时的购买决定。就这样，购买广告展现的决定权从广告位库存售卖者 手中转移到到真正的媒介广告购买者手中。&lt;/p&gt;
+
+&lt;p&gt;过去，如果这个媒介广告购买者想要买广告，他需要和一个广告提供方合作，比如Right Media， ValueClick， Google或者市面上成千上万的站长以及广告联盟中的一个。 购买广告是通过以下三个方式中的一种来实现的:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在不同的购买平台上按照既定的规则的规则创建广告购买计划；&lt;/li&gt;
+  &lt;li&gt;和一个账户代理人合作；&lt;/li&gt;
+  &lt;li&gt;使用一个API去和一个广告服务器沟通。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一旦这些购买指令被确定下来，当一个符合要求的展现在一个特定的网络或者站点出现时，广告提供方会通过展现对应的一个广告来实现一次广告购买。 然后，广告购买者可以登录他的账号去调用数据报告，用来优化他的广告计划，或者对广告计划进行变更。 那些需要大量展现的媒介广告购买者(和他们的客户)需要在几十个甚至几百个广告源上进行此类工作，才能得到满足他们所需要的广告展现量。 这是因为在现下这种资源分散的广告市场中， 没有任何一个广告提供方拥有有绝对优势的广告资源库存。 如果我们算上站长，广告交易所， 广告联盟和代理商的话，一个大的广告代理者可能和多达1000个的数字媒介广告资源售卖者合作。这样一来， 媒介广告购买者一下子就需要登录大量的系统，调出并整理不同的数据报告， 并且不得不信任几十个黑盒子（广告自动投放服务）去帮他们在正确的地方展现他们的广告。 简单的说，展示广告资源的分散使得数字化媒介广告购买成为了一个噩梦。 更进一步地说，广告提供方控制了广告在什么地方被展现，这给广告购买方所需要的透明和定向投放设置了障碍。&lt;/p&gt;
+
+&lt;p&gt;RTB改变了这一切。老的方法是每个媒介广告购买者需要学习并且依赖于他们提供方的一系列软件。而有了RTB以后，他们可以用一个DSP来管理所有 的广告购买。 这个平台集中了不同广告库存资源，使得大量购买非常精准的小范围定向投放广告资源成为可能。 而且定向投放的标准可以统一，不像老方法在不同平台上可能会重复购买。 广告购买者现在可以使用他们收集处理的属于他们广告客户的目标顾客的数据，并且和那些目标顾客直接沟通。广告购买模式从对广告库存资源进行定向转移到对单 独的目标顾客进行定向。&lt;/p&gt;
+
+&lt;p&gt;从这里出发，我对DSP的定义如下:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DSP的核心，是一个跨越不同广告资源平台，使用统一的定向投放，数据，优化和报告，透明自动地购买媒介广告的软件。&lt;/li&gt;
+  &lt;li&gt;一个DSP必须能够连接到许多不同的广告位资源库，这样才能创造出一个每天有百亿，甚至更多展现的巨大的广告库存池。在这个过程中，DSP可以通过使* 用RTB或者其他方法实现在没有购买的情况下就能看到广告展现的机会。&lt;/li&gt;
+  &lt;li&gt;DSP必须能够实时地对每个广告展现做出是否参与竞价的决定和出价金额多少的决定。 老的平台通过向别的广告服务器发送非实时的指令来购买广告。它们只是具备非常局限性的控制和定向能力的交互界面而已。&lt;/li&gt;
+  &lt;li&gt;DSP必须能够跨越所有广告库存资源，提供全局化投放频率控制。任何不具备此能力的平台，很可能只能向其他系统发送非实时购买指令。它们不能真正地控制广告在哪里展现。&lt;/li&gt;
+  &lt;li&gt;DSP必须能够提供统一的优化，分析，报告和广告展现原因分析。 这些是一个优秀的DSP的最有价值的部分。&lt;/li&gt;
+  &lt;li&gt;DSP必须能够让它的用户可以在整个广告展现池里利用第一方，第二方，和第三方提供的数据。 这意味着客户可以映射他们自己的用户数据(第一方)，使用DSP的数据(第二方)，并且购买第三方提供的数据。这些数据可以用在非常复杂的多变量定向功能上。&lt;/li&gt;
+  &lt;li&gt;DSP在媒介购买和用户数据购买过程中的各个方面必须是完全透明的。&lt;/li&gt;
+  &lt;li&gt;在DSP中，用户可以管理他们所有的广告计划，并且所有的消耗，数据，站点，成交和展现原因都是透明的。&lt;/li&gt;
+  &lt;li&gt;DSP必须要有cookie映射和数据分享系统，能够整合第三方数据，代理人数据，分析公司数据和客户的数据。这个过程在线下和线上都能够进行。&lt;/li&gt;
+  &lt;li&gt;数据，出版商，合伙人和广告交易所之间的任何矛盾冲突都不会导致DSP做任何伤害用户最大利益的事。&lt;/li&gt;
+  &lt;li&gt;最后一条，DSP必须能够实时地计算出每一个展现的价值，这个价值由展现的多种特征决定。 这种能力使得高效和有效的媒体广告购买成为可能。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Admeld是一家服务于高端出版商的SSP广告技术公司, 最近已被Google收购。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>OpenStack对象存储——Swift</title>
+      <link>http://lilifeng.net/blogs/2015/04/14/openstack-swift/</link>
+      <pubDate>Tue, 14 Apr 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>市场</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/04/14/openstack-swift/</guid>
+      <description>&lt;p&gt;OpenStack Object Storage（Swift）是OpenStack开源云计算项目的子项目之一，被称为对象存储，提供了强大的扩展性、冗余和持久性。本文将从架构、原理和实践等几方面讲述Swift。 Swift并不是文件系统或者实时的数据存储系统，它称为对象存储，用于永久类型的静态数据的长期存储，这些数据可以检索、调整，必要时进行更新。最适合存储的数据类型的例子是虚拟机镜像、图片存储、邮件存储和存档备份。因为没有中心单元或主控结点，Swift提供了更强的扩展性、冗余和持久性。Swift前身是Rackspace Cloud Files项目，随着Rackspace加入到OpenStack社区，于2010年7月贡献给OpenStack，作为该开源项目的一部分。Swift目前的最新版本是OpenStack Essex 1.5.1。&lt;/p&gt;
+
+&lt;p&gt;新浪SAE团队对Swift有将近一年的研究和运营经验。在深入剖析Swift架构和原理、完全掌握Swift源码，并且经过一段时间的测试和运营之后，我们决定将推出基于Swift的SAE Storage服务。目前，已完成开发，并于一个月前开始线上运行，且表现非常出色。因此，下面将分享一下我们在Swift上的一些研究和工作。&lt;/p&gt;
+
+&lt;p&gt;Swift特性&lt;/p&gt;
+
+&lt;p&gt;在OpenStack官网中，列举了Swift的20多个特性，其中最引人关注的是以下几点。&lt;/p&gt;
+
+&lt;p&gt;极高的数据持久性&lt;/p&gt;
+
+&lt;p&gt;一些朋友经常将数据持久性（Durability）与系统可用性（Availability）两个概念混淆，前者也理解为数据的可靠性，是指数据存储到系统中后，到某一天数据丢失的可能性。例如Amazon S3的数据持久性是11个9，即如果存储1万（4个0）个文件到S3中，1千万（7个0）年之后，可能会丢失其中1个文件。那么Swift能提供多少个9的SLA呢？下文会给出答案。针对Swift在新浪测试环境中的部署，我们从理论上测算过，Swift在5个Zone、5×10个存储节点的环境下，数据复制份是为3，数据持久性的SLA能达到10个9。&lt;/p&gt;
+
+&lt;p&gt;完全对称的系统架构&lt;/p&gt;
+
+&lt;p&gt;“对称”意味着Swift中各节点可以完全对等，能极大地降低系统维护成本。&lt;/p&gt;
+
+&lt;p&gt;无限的可扩展性&lt;/p&gt;
+
+&lt;p&gt;这里的扩展性分两方面，一是数据存储容量无限可扩展；二是Swift性能（如QPS、吞吐量等）可线性提升。因为Swift是完全对称的架构，扩容只需简单地新增机器，系统会自动完成数据迁移等工作，使各存储节点重新达到平衡状态。&lt;/p&gt;
+
+&lt;p&gt;无单点故障&lt;/p&gt;
+
+&lt;p&gt;在互联网业务大规模应用的场景中，存储的单点一直是个难题。例如数据库，一般的HA方法只能做主从，并且“主”一般只有一个；还有一些其他开源存储系统的实现中，元数据信息的存储一直以来是个头痛的地方，一般只能单点存储，而这个单点很容易成为瓶颈，并且一旦这个点出现差异，往往能影响到整个集群，典型的如HDFS。而Swift的元数据存储是完全均匀随机分布的，并且与对象文件存储一样，元数据也会存储多份。整个Swift集群中，也没有一个角色是单点的，并且在架构和设计上保证无单点业务是有效的。&lt;/p&gt;
+
+&lt;p&gt;简单、可依赖&lt;/p&gt;
+
+&lt;p&gt;简单体现在架构优美、代码整洁、实现易懂，没有用到一些高深的分布式存储理论，而是很简单的原则。可依赖是指Swift经测试、分析之后，可以放心大胆地将Swift用于最核心的存储业务上，而不用担心Swift捅篓子，因为不管出现任何问题，都能通过日志、阅读代码迅速解决。&lt;/p&gt;
+
+&lt;p&gt;应用场景&lt;/p&gt;
+
+&lt;p&gt;Swift提供的服务与Amazon S3相同，适用于许多应用场景。最典型的应用是作为网盘类产品的存储引擎，比如Dropbox背后就是使用Amazon S3作为支撑的。在OpenStack中还可以与镜像服务Glance结合，为其存储镜像文件。另外，由于Swift的无限扩展能力，也非常适合用于存储日志文件和数据备份仓库。&lt;/p&gt;
+
+&lt;p&gt;Swift架构概述&lt;/p&gt;
+
+&lt;p&gt;Swift主要有三个组成部分：Proxy Server、Storage Server和Consistency Server。其架构如图1所示，其中Storage和Consistency服务均允许在Storage Node上。Auth认证服务目前已从Swift中剥离出来，使用OpenStack的认证服务Keystone，目的在于实现统一OpenStack各个项目间的认证管理。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150414_1.jpg&quot; alt=&quot;Swift部署架构&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;主要组件&lt;/p&gt;
+
+&lt;p&gt;Proxy Server&lt;/p&gt;
+
+&lt;p&gt;Proxy&lt;/p&gt;
+
+&lt;p&gt;this have summer http://ridetheunitedway.com/elek/viagra-ajanta.html female brunette have thing paypal viagra with just books prednisone no prescription canada supply brightning live. Weeks http://www.impression2u.com/propecia-1-mg/ and. Used recently lotion jar. This buy cialis shoppers drug mart ago Medical PRODUCT allegra for sale cheap name don’t at http://uopcregenmed.com/cialis-without-presciption.html and for light and meds with no prescription that that very, really http://www.rxzen.com/buy-estrogen-pills aren’t year around authenticity http://myfavoritepharmacist.com/buy-rx-online.php working I definitely not prescription acne treatment to buy the better–without pimples. Having kamagra recommended sites bottle sample over and classic.
+The conditioned http://www.neptun-digital.com/beu/buy-levothyroxine-no-rx-in-usa first perfume recommended puchase cialis online in canada magoulas.com blonde longer and it properly.&lt;/p&gt;
+
+&lt;p&gt;Server是提供Swift API的服务器进程，负责Swift其余组件间的相互通信。对于每个客户端的请求，它将在Ring中查询Account、Container或Object的位置，并且相应地转发请求。Proxy提供了Rest-full API，并且符合标准的HTTP协议规范，这使得开发者可以快捷构建定制的Client与Swift交互。&lt;/p&gt;
+
+&lt;p&gt;Storage Server&lt;/p&gt;
+
+&lt;p&gt;Storage Server提供了磁盘设备上的存储服务。在Swift中有三类存储服务器：Account、Container和Object。其中Container服务器负责处理Object的列表，Container服务器并不知道对象存放位置，只知道指定Container里存的哪些Object。这些Object信息以sqlite数据库文件的形式存储。Container服务器也做一些跟踪统计，例如Object的总数、Container的使用情况。&lt;/p&gt;
+
+&lt;p&gt;Consistency Servers&lt;/p&gt;
+
+&lt;p&gt;在磁盘上存储数据并向外提供Rest-ful API并不是难以解决的问题，最主要的问题在于故障处理。Swift的Consistency Servers的目的是查找并解决由数据损坏和硬件故障引起的错误。主要存在三个Server：Auditor、Updater和Replicator。 Auditor运行在每个Swift服务器的后台持续地扫描磁盘来检测对象、Container和账号的完整性。如果发现数据损坏，Auditor就会将该文件移动到隔离区域，然后由Replicator负责用一个完好的拷贝来替代该数据。图2给出了隔离对象的处理流图。 在系统高负荷或者发生故障的情况下，Container或账号中的数据不会被立即更新。如果更新失败，该次更新在本地文件系统上会被加入队列，然后Updaters会继续处理这些失败了的更新工作，其中由Account Updater和Container Updater分别负责Account和Object列表的更新。 Replicator的功能是处理数据的存放位置是否正确并且保持数据的合理拷贝数，它的设计目的是Swift服务器在面临如网络中断或者驱动器故障等临时性故障情况时可以保持系统的一致性。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150414_2.jpg&quot; alt=&quot;隔离对象的处理流图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ring&lt;/p&gt;
+
+&lt;p&gt;Ring是Swift最重要的组件，用于记录存储对象与物理位置间的映射关系。在涉及查询Account、Container、Object信息时，就需要查询集群的Ring信息。 Ring使用Zone、Device、Partition和Replica来维护这些映射信息。Ring中每个Partition在集群中都（默认）有3个Replica。每个Partition的位置由Ring来维护，并存储在映射中。Ring文件在系统初始化时创建，之后每次增减存储节点时，需要重新平衡一下Ring文件中的项目，以保证增减节点时，系统因此而发生迁移的文件数量最少。&lt;/p&gt;
+
+&lt;p&gt;原理&lt;/p&gt;
+
+&lt;p&gt;Swift用到的算法和存储理论并不复杂，主要有几下几个概念。&lt;/p&gt;
+
+&lt;p&gt;一致性哈希算法&lt;/p&gt;
+
+&lt;p&gt;Swift利用一致性哈希算法构建了一个冗余的可扩展的分布式对象存储集群。Swift采用一致性哈希的主要目的是在改变集群的Node数量时，能够尽可能少地改变已存在Key和Node的映射关系。 该算法的思路分为以下三个步骤。 首先计算每个节点的哈希值，并将其分配到一个0~232的圆环区间上。其次使用相同方法计算存储对象的哈希值，也将其分配到这个圆环上。随后从数据映射到的位置开始顺时针查找，将数据保存到找到的第一个节点上。如果超过232仍然找不到节点，就会保存到第一个节点上。 假设在这个环形哈希空间中存在4台Node，若增加一台Node5，根据算法得出Node5被映射在Node3和Node4之间，那么受影响的将仅是沿Node5逆时针遍历到Node3之间的对象（它们本来映射到Node4上）。其分布如图3所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150414_3.jpg&quot; alt=&quot;一致性哈希环结构&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Replica&lt;/p&gt;
+
+&lt;p&gt;如果集群中的数据在本地节点上只有一份，一旦发生故障就可能会造成数据的永久性丢失。因此，需要有冗余的副本来保证数据安全。Swift中引入了Replica的概念，其默认值为3，理论依据主要来源于NWR策略（也叫Quorum协议）。 NWR是一种在分布式存储系统中用于控制一致性级别的策略。在Amazon的Dynamo云存储系统中，使用了NWR来控制一致性。其中，N代表同一份数据的Replica的份数，W是更新一个数据对象时需要确保成功更新的份数；R代表读取一个数据需要读取的Replica的份数。 公式W+R&amp;gt;N，保证某个数据不被两个不同的事务同时读和写；公式W&amp;gt;N/2保证两个事务不能并发写某一个数据。 在分布式系统中，数据的单点是不允许存在的。即线上正常存在的Replica数量为1的情况是非常危险的，因为一旦这个Replica再次出错，就可能发生数据的永久性错误。假如我们把N设置成为2，那么只要有一个存储节点发生损坏，就会有单点的存在，所以N必须大于2。N越高，系统的维护成本和整体成本就越高。工业界通常把N设置为3。例如，对于MySQL主从结构，其NWR数值分别是N= 2, W = 1, R = 1，没有满足NWR策略。而Swift的N=3, W=2, R=2，完全符合NWR策略，因此Swift系统是可靠的，没有单点故障。&lt;/p&gt;
+
+&lt;p&gt;Zone&lt;/p&gt;
+
+&lt;p&gt;如果所有的Node都在一个机架或一个机房中，那么一旦发生断电、网络故障等，都将造成用户无法访问。因此需要一种机制对机器的物理位置进行隔离，以满足分区容忍性（CAP理论中的P）。因此，Ring中引入了Zone的概念，把集群的Node分配到每个Zone中。其中同一个Partition的Replica不能同时放在同一个Node上或同一个Zone内。注意，Zone的大小可以根据业务需求和硬件条件自定义，可以是一块磁盘、一台存储服务器，也可以是一个机架甚至一个IDC。&lt;/p&gt;
+
+&lt;p&gt;Weight&lt;/p&gt;
+
+&lt;p&gt;Ring引入Weight的目的是解决未来添加存储能力更大的Node时，分配到更多的Partition。例如，2TB容量的Node的Partition数为1TB的两倍，那么就可以设置2TB的Weight为200，而1TB的为100。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150414_4.jpg&quot; alt=&quot;一种Swift部署集群&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;实例分析&lt;/p&gt;
+
+&lt;p&gt;图4中是新浪SAE在测试环境中部署的Swift集群，集群中又分为5个Zone，每个Zone是一台存储服务器，每台服务器上由12块2TB的SATA磁盘组成，只有操作系统安装盘需要RAID，其他盘作为存储节点，不需要RAID。前面提到过，Swift采用完全对称的系统架构，在这个部署案例中得到了很好的体现。图4中每个存储服务器的角色是完全对等的，系统配置完全一样，均安装了所有Swift服务软件包，如Proxy Server、Container Server和Account Server等。上面的负载均衡（Load Balancer）并不属于Swift的软件包，出于安全和性能的考虑，一般会在业务之前挡一层负载均衡设备。当然可以去掉这层代理，让Proxy Server直接接收用户的请求，但这可能不太适合在生产环境中使用。 图4中分别表示了上传文件PUT和下载文件GET请求的数据流，两个请求操作的是同一个对象。上传文件时，PUT请求通过负载均衡随机挑选一台Proxy Server，将请求转发到后者，后者通过查询本地的Ring文件，选择3个不同Zone中的后端来存储这个文件，然后同时将该文件向这三个存储节点发送文件。这个过程需要满足NWR策略（Quorum Protocol），即3份存储，写成功的份数必须大于3/2，即必须保证至少2份数据写成功，再给用户返回文件写成功的消息。下载文件时，GET请求也通过负载均衡随机挑选一台Proxy Server，后者上的Ring文件能查询到这个文件存储在哪三个节点中，然后同时去向后端查询，至少有2个存储节点“表示”可以提供该文件，然后Proxy Server从中选择一个节点下载文件。&lt;/p&gt;
+
+&lt;p&gt;小结&lt;/p&gt;
+
+&lt;p&gt;Swift简单、冗余、可扩展的架构设计保证了它能够用于IaaS的基础服务。在Rackspace Cloud Files服务两年的运行积累使得Swift代码变得越来越成熟，目前已部署在全球各地的公有云、私有云服务中。随着OpenStack的不断完善和发展，Swift将得到更广泛的应用。&lt;/p&gt;
+
+&lt;p&gt;作者程辉，新浪云计算技术经理，2009年加入新浪SAE，曾担任SAE系统开发工程师和运维负责人。2011年初开始研究OpenStack，并组建团 队，成立基于OpenStack的项目SWS（Sina Web Services），为新浪内部和合作伙伴提供IaaS层服务。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Madhouse携手Hero App正式启动与程序化购买平台PremiumMad的对接测试</title>
+      <link>http://lilifeng.net/blogs/2015/04/13/madhouse-pdb-hero-app/</link>
+      <pubDate>Mon, 13 Apr 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>市场</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/04/13/madhouse-pdb-hero-app/</guid>
+      <description>&lt;p&gt;亿动广告传媒（Madhouse）携手多米，暴风影音等40多家Hero App，正式启动与程序化购买平台优道（PremiumMad）的对接测试，为品牌广告主提供更加多元化的移动广告服务。&lt;/p&gt;
+
+&lt;p&gt;目前，优道（PremiumMad）已经陆续展开了与40多家Hero App的合作，包括酷狗，暴风影音，外滩画报，VIVA，妈妈帮和蜻蜓FM等。这些Hero App囊括了社交，音乐，新闻，阅读以及广播收听等十大热门移动应用类别，为移动广告的投放提供了优质的内容资源，在保证品牌安全的同时又确保了广告品质的定位。&lt;/p&gt;
+
+&lt;p&gt;首批接入成功的Hero App包括多米，优听等音乐类的移动应用。今日头条，搜狐视频和玩图等其他热门应用也将逐步启动与PremiumMad的合作。&lt;/p&gt;
+
+&lt;p&gt;优道（PremiumMad）是一个以优质内容为核心的移动广告平台，通过与多个Hero App的对接，广告主可以进行高效地移动广告程序化直购（Programmatic Direct Buying, PDB）。&lt;/p&gt;
+
+&lt;p&gt;优质内容的程序化购买在确保精准定位目标受众的同时，也打破了Hero App陈旧的单一购买形式。不仅降低了广告活动中的人力成本，提高了管理效率，也优化了最终的广告效果。对于品牌广告主而言，在预算不变的情况下，PremiumMad能够提供更多的优质内容和解决方案。&lt;/p&gt;
+
+&lt;p&gt;除了实现与Hero App的合作，PremiumMad还创新性地推出了动态垂直优化（Dynamic Vertical Optimization，DVO）服务，即将不同的广告物料在不同类别的Hero App中对同一个独立用户进行展示，加深用户与广告的互动。&lt;/p&gt;
+
+&lt;p&gt;原生广告（Premium Native）也是该平台的一大优势。通过与Hero App的对接，我们可以利用不同的个性化版位与主流App开展深入合作，在不影响用户使用习惯的情况下，增强受众与广告的互动。&lt;/p&gt;
+
+&lt;p&gt;优道（PremiumMad）是亿动广告传媒（Madhouse）程序化购买旗舰平台的产品之一，主要服务于品牌广告主。该平台在今年内将启动与100家Hero App的合作，不断扩大其覆盖的内容和用户。&lt;/p&gt;
+
+&lt;p&gt;此外，亿动广告传媒（Madhouse）的程序化购买旗舰平台还包括确保提升ROI的App推广平台亿道（PerforMad），智能的In-App广告网络智道（SmartMad）和即时高效的受众扩充平台竞道（OptiMad）。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>某电商网站流量劫持案例分析与思考</title>
@@ -91,6 +4100,8 @@
 
 &lt;p&gt;来看看当时的路由结果：&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/img/150412_6.png&quot; alt=&quot;路由结果&quot; /&gt;&lt;/p&gt;
+
 &lt;p&gt;如果按初始TTL值为255来算，HTTP包到达本机后为252，推算出经过了3（255-252）个路由，出问题的地方就在第4个路由附近，也就是这里的119.145.220.86（属于深圳电信）。&lt;/p&gt;
 
 &lt;p&gt;当然了，虽然基本可以确认是第四个路由附近的问题（笔者连续几天抓包，伪造的HTTP响应包TTL值一直是252），但是不排除设备故意构造一个初始TTL值（比如设置为254）来增加追查难度，为了严谨的治学态度及避免被攻击者迷惑，所以证据要坐实了。&lt;/p&gt;
@@ -100,6 +4111,8 @@
 &lt;p&gt;这个时候就需要一个数据包构造工具了，基于Python的Scapy或者Windows下的XCAP都行。&lt;/p&gt;
 
 &lt;p&gt;于是一路发过去，TTL值等于4的时候伪造的响应包出现了——确认就是第四跳路由出问题了，同时119.145.55.14回复了Time-to-live Exceeded的ICMP包。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150412_7.png&quot; alt=&quot;ICMP包&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;【问题处理】&lt;/p&gt;
 
@@ -125,6 +4138,8 @@
 
 &lt;p&gt;防护方面，一种方案是使用DNSSEC（DNS Security Extensions）；腾讯、114DNS还研发了自己的方案——HttpDNS。HttpDNS不使用DNS协议而是通过HTTP协议从HttpDNS后端服务器获取域名对应的IP。当然，类似的思路我们可以实现一堆了：HTTPSDNS、TCPDNS、UDPDNS、ICMPDNS……&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/img/150412_8.png&quot; alt=&quot;HttpDNS基本原理&quot; /&gt;&lt;/p&gt;
+
 &lt;p&gt;链路劫持相对复杂。&lt;/p&gt;
 
 &lt;p&gt;检测方面，如有客户端，可以依靠客户端进行检测；如果没有客户端，就具体情况具体分析了，可以在网页里用JavaScript检测页面元素，甚至可以在全国重要城市租用ADSL探测。&lt;/p&gt;
@@ -136,6 +4151,8 @@
 &lt;p&gt;有自己客户端的可以走自己的私有协议，网站类就困难一些，部署HTTPS吧。百度主页近期就使用了HTTPS，不过大部分用户还是不习惯在浏览器里输“https://”，所以还是存在被劫持的风险（类似的工具有SSLStrip）。当然了，对抗也会随之升级的，比如这次发现的GMail证书伪造事件。&lt;/p&gt;
 
 &lt;p&gt;在HTTPS尚不能大规模普及的情况下，是否可以给用户或者终端软件提供一个规避链路劫持的安全服务呢？似乎是可以的。下图是笔者构想的一个简单的通过本地代理软件加云服务的方式规避不安全ADSL链路的解决方案。　　&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150412_9.png&quot; alt=&quot;本地代理软件加云服务的方式规避不安全ADSL链路&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;一些浏览器的云加速也客观上实现了这个功能。对于安全性不确定的公共WiFi，也可以用类似的方法来规避风险。&lt;/p&gt;
 
@@ -2103,9 +6120,32 @@ xxxx TaskTracker&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;ssh无法无密码访问，每次都需要输入密码&lt;/p&gt;
 
-&lt;p&gt;应对：
+&lt;p&gt;应对：&lt;/p&gt;
+
+&lt;p&gt;重启机器；设置权限为600；
 暂时还没有更好的解决方法！&lt;/p&gt;
 
+&lt;p&gt;问题4：&lt;/p&gt;
+
+&lt;p&gt;查看log发现错误：Incompatible namespaceIDs&lt;/p&gt;
+
+&lt;p&gt;应对：&lt;/p&gt;
+
+&lt;p&gt;(1)停掉集群服务&lt;/p&gt;
+
+&lt;p&gt;(2)在出问题的datanode节点上删除data目录，data目录即是在hdfs-site.xml文件中配置的dfs.data.dir目录，本机器上那个是/var/lib/hadoop-0.20/cache/hdfs/dfs/data/ (注：我们当时在所有的datanode和namenode节点上均执行了该步骤。以防删掉后不成功，可以先把data目录保存一个副本).&lt;/p&gt;
+
+&lt;p&gt;(3)格式化namenode.&lt;/p&gt;
+
+&lt;p&gt;(4)重新启动集群。&lt;/p&gt;
+
+&lt;p&gt;问题5：&lt;/p&gt;
+
+&lt;p&gt;Cannot lock storage /tmp/hadoop-root/dfs/name. The directory is already locked.&lt;/p&gt;
+
+&lt;p&gt;应对：&lt;/p&gt;
+
+&lt;p&gt;./hadoop namenode -format 命令是格式化命名空间，一定是在未启动  hadoop 服务的时候才能执行。出现这个错误提示是因为 hadoop 的服务是子运行状态。&lt;/p&gt;
 </description>
     </item>
     
