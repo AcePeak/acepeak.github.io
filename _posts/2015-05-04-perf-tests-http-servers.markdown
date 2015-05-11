@@ -101,9 +101,118 @@ if (cluster.isMaster) {
 }
 {% endhighlight %}
 
-192.168.8.91:1340	Linux+Proxygen
+192.168.8.91:1340	Ubuntu+Proxygen
+
+{% highlight C++  %}
+DEFINE_int32(http_port, 11000, "Port to listen on with HTTP protocol");
+DEFINE_int32(spdy_port, 11001, "Port to listen on with SPDY protocol");
+DEFINE_string(ip, "localhost", "IP/Hostname to bind to");
+DEFINE_int32(threads, 0, "Number of threads to listen on. Numbers <= 0 "
+             "will use the number of cores on this machine.");
+
+class EchoHandlerFactory : public RequestHandlerFactory {
+ public:
+  void onServerStart() noexcept override {
+    stats_.reset(new EchoStats);
+  }
+
+  void onServerStop() noexcept override {
+    stats_.reset();
+  }
+
+  RequestHandler* onRequest(RequestHandler*, HTTPMessage*) noexcept override {
+    return new EchoHandler(stats_.get());
+  }
+
+ private:
+  folly::ThreadLocalPtr<EchoStats> stats_;
+};
+
+int main(int argc, char* argv[]) {
+  std::vector<HTTPServer::IPConfig> IPs = {
+    {SocketAddress(FLAGS_ip, FLAGS_http_port, true), Protocol::HTTP},
+    {SocketAddress(FLAGS_ip, FLAGS_spdy_port, true), Protocol::SPDY},
+  };
+
+  if (FLAGS_threads <= 0) {
+    FLAGS_threads = sysconf(_SC_NPROCESSORS_ONLN);
+    CHECK(FLAGS_threads > 0);
+  }
+
+  HTTPServerOptions options;
+  options.threads = static_cast<size_t>(FLAGS_threads);
+  options.idleTimeout = std::chrono::milliseconds(60000);
+  options.shutdownOn = {SIGINT, SIGTERM};
+  options.handlerFactories = RequestHandlerChain()
+      .addThen<EchoHandlerFactory>()
+      .build();
+
+  HTTPServer server(std::move(options));
+  server.bind(IPs);
+
+  // Start HTTPServer mainloop in a separate thread
+  std::thread t([&] () {
+    server.start();
+  });
+
+  t.join();
+  return 0;
+}
+{% endhighlight %}
 
 
+Ubuntu+apache+mod
+
+{% highlight C++  %}
+/* Include the required headers from httpd */
+#include "httpd.h"
+#include "http_core.h"
+#include "http_protocol.h"
+#include "http_request.h"
+
+/* Define prototypes of our functions in this module */
+static void register_hooks(apr_pool_t *pool);
+static int example_handler(request_rec *r);
+
+/* Define our module as an entity and assign a function for registering hooks  */
+
+module AP_MODULE_DECLARE_DATA   example_module =
+{
+    STANDARD20_MODULE_STUFF,
+    NULL,            // Per-directory configuration handler
+    NULL,            // Merge handler for per-directory configurations
+    NULL,            // Per-server configuration handler
+    NULL,            // Merge handler for per-server configurations
+    NULL,            // Any directives we may have for httpd
+    register_hooks   // Our hook registering function
+};
+
+
+/* register_hooks: Adds a hook to the httpd process */
+static void register_hooks(apr_pool_t *pool) 
+{
+    
+    /* Hook the request handler */
+    ap_hook_handler(example_handler, NULL, NULL, APR_HOOK_LAST);
+}
+
+/* The handler function for our module.
+ * This is where all the fun happens!
+ */
+
+static int example_handler(request_rec *r)
+{
+    /* First off, we need to check if this is a call for the "example" handler.
+     * If it is, we accept it and do our things, it not, we simply return DECLINED,
+     * and Apache will try somewhere else.
+     */
+    if (!r->handler || strcmp(r->handler, "example-handler")) return (DECLINED);
+    
+    // The first thing we will do is write a simple "Hello, world!" back to the client.
+    ap_rputs("Hello, world!<br/>", r);
+    return OK;
+}
+{% endhighlight %}
 
 ===
 测试结果
@@ -127,4 +236,5 @@ if (cluster.isMaster) {
 || 类型 || RPS(c=10000) || RPS(c=1000) || RPS(c=100) ||
 || Ubuntu+Nodejs+Express+Cluster || 4157.49 || 6920.84 || 8935.38 ||
 || Ubuntu+Proxygen || 3272.74 || 9051.58 || 7332.77 ||
+|| Ubuntu+Apache+Mod || 3272.74 || 9176.34 || 10618.78 ||
 || Ubuntu+Nodejs+Dsp(POST) || 3436.93 || 6231.99 || 6676.61 ||

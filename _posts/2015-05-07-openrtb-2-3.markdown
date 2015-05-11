@@ -1,0 +1,19 @@
+---
+layout: blogs_item
+title: OpenRTB有关的国际标准文档
+author: AcePeak
+categories: [广告平台]
+tags: 
+- RTB
+- DSP
+- OpenRTB
+---
+
+OpenRTB API v2.3 已发布，可以从下面的链接查看
+
+[OpenRTB-API-Specification-Version-2-3]({{ site.url }}/file/OpenRTB-API-Specification-Version-2-3.pdf)
+
+
+OpenRTB Native Ads SPEC v1.0也已经发布，请点这里：
+
+[OpenRTB-Native-Ads-Specification-1_0-Final]({{ site.url }}/file/OpenRTB-Native-Ads-Specification-1_0-Final.pdf)
