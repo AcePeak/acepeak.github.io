@@ -10,8 +10,11 @@ tags:
 > 系列列表：
 > 
 > [网络通信IO多路复用之Select【1】]({{site.url}}/blogs/2012/05/18/net-select/)
+> 
 > [网络通信IO多路复用之Poll【2】]({{site.url}}/blogs/2012/05/19/net-poll/)
+> 
 > [网络通信IO多路复用之ePoll【3】]({{site.url}}/blogs/2012/05/20/net-epoll/)
+> 
 > [网络通信IO多路复用之总结【4】]({{site.url}}/blogs/2012/05/21/net-select-poll-epoll/)
 
 
