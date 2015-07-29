@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 10 Jun 2015 11:58:50 +0800</pubDate>
-    <lastBuildDate>Wed, 10 Jun 2015 11:58:50 +0800</lastBuildDate>
+    <pubDate>Wed, 29 Jul 2015 18:43:11 +0800</pubDate>
+    <lastBuildDate>Wed, 29 Jul 2015 18:43:11 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.3</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,781 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>广告特征工程+人工智能：大数据结果引入并特征相关化（二）</title>
+      <link>http://lilifeng.net/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/</link>
+      <pubDate>Thu, 30 Jul 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>DSP</category>
+      
+      <category>算法</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/</guid>
+      <description>&lt;h1 id=&quot;section&quot;&gt;大数据结果引入并特征相关化&lt;/h1&gt;
+
+&lt;p&gt;1 平均年龄：微型轿车33.3，小型轿车33.6，紧凑型轿车34.6，中型轿车35.1，中大型轿车37.0，轿车34.4，SUV35.6，MPV35.3&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;33.3
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F3&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;33.6
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F4&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;34.6
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F5&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;35.1
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;37.0
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F7&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;34.4
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F8&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;35.6
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F1&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F9&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;35.3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;2 性别比例：微型轿车（男性50.3%，女性49.7%），小型轿车（55.1%，44.9%），紧凑型轿车（56.7%，43.3%），中型轿车（61.3%，38.7%），中大型轿车（64.3%，35.7%），轿车（56.9%，43.1%），SUV（74.1%，25.9%），MPV（77.7%，22.3%）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;50.3%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F3&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;55.1%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F4&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;56.7%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F5&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;61.3%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;64.3%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F7&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F7&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;56.9%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F8&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F8&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;74.1%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F9&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F9&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;77.7%,&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3 婚姻状况：微型轿车（已婚有子女64.7%，已婚无子女11.6%，未婚23.7%），小型轿车（61.0%，19.9%，19.0%），紧凑型轿车（68.5%，13.9%，17.5%）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F12,F15,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;64.7%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F12,F16,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;11.6%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F12,F15,F3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F3&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;61.0%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F12,F16,F3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F3&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;19.9%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;4 家庭人数：轿车（3.07人），SUV（3.11人），MPV（3.20人）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F17&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F7&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;3.07
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F17&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F8&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;3.11
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F17&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F9&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;3.20&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;5 最高学历：微型轿车（高中及以下35.5%，大专40.9%，本科22.7%），中大型轿车（19.5%，34.6%，43.6%）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F18,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;35.5%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F19,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;40.9%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F18,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;19.5%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F19,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;34.6%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;6 所在行业：零售批发（微型15.8%，中大型轿车8.7%，SUV12.9%），贸易进出口（微型5.6%，中大型11.3%，SUV9.3%）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F22,F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;15.8%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F22,F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;8.7%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F22,F8&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;12.9%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;7 职业：雇员人数在20人及以上的企业业主（微型3.8%，中大型14.7%，SUV5.9%），外资企业高级管理人员（微型0.8%，中大型4.5%，SUV3.2%）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F32,F27,F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;3.8%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F32,F27,F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;14.7%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F32,F27,F8&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;5.9%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F29,F26,F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;0.8%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F29,F26,F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;4.5%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F29,F26,F8&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;3.2%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;8 个人家庭收入：微型轿车（个人5728，家庭11821），中大型轿车（个人20225，家庭37705），SUV（11206，19536）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F34&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;5728
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F35&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;11821
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F34&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;20225
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F35&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;37705&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;9 购车动机：在接受调查的人中，上下班方便（微型86.7%，中大型轿车71.4%，SUV70.9%）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F36,F38,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F38&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;86.7%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F36,F38,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F38&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;71.4%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;10 油耗：微型车（不开空调6.7，开空调7.9），中大型轿车（11.0，12.3）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F45&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F47&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;6.7
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F46&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F47&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;7.9
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F45&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F51&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;11.0
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, MEAN&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F46&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;F51&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;12.3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;特征历史数据指导特征计算&lt;/h1&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>机器学习算法：逻辑回归（Logistic Regression）</title>
+      <link>http://lilifeng.net/blogs/2015/07/29/algorithm-machine-learning-logistic-regression/</link>
+      <pubDate>Wed, 29 Jul 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>DSP</category>
+      
+      <category>算法</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/07/29/algorithm-machine-learning-logistic-regression/</guid>
+      <description>&lt;p&gt;机器学习算法一般是这样一个步骤：&lt;/p&gt;
+
+&lt;p&gt;1）对于一个问题，我们用数学语言来描述它，然后建立一个模型，例如回归模型或者分类模型等来描述这个问题；&lt;/p&gt;
+
+&lt;p&gt;2）通过最大似然、最大后验概率或者最小化分类误差等等建立模型的代价函数，也就是一个最优化问题。找到最优化问题的解，也就是能拟合我们的数据的最好的模型参数；&lt;/p&gt;
+
+&lt;p&gt;3）然后我们需要求解这个代价函数，找到最优解。这求解也就分很多种情况了：&lt;/p&gt;
+
+&lt;p&gt;3.1）如果这个优化函数存在解析解。例如我们求最值一般是对代价函数求导，找到导数为0的点，也就是最大值或者最小值的地方了。如果代价函数能简单求导，并且求导后为0的式子存在解析解，那么我们就可以直接得到最优的参数了。&lt;/p&gt;
+
+&lt;p&gt;3.2）如果式子很难求导，例如函数里面存在隐含的变量或者变量相互间存在耦合，也就互相依赖的情况。或者求导后式子得不到解释解，例如未知参数的个数大于已知方程组的个数等。这时候我们就需要借助迭代算法来一步一步找到最有解了。迭代是个很神奇的东西，它将远大的目标（也就是找到最优的解，例如爬上山顶）记在心上，然后给自己定个短期目标（也就是每走一步，就离远大的目标更近一点），脚踏实地，心无旁贷，像个蜗牛一样，一步一步往上爬，支撑它的唯一信念是：只要我每一步都爬高一点，那么积跬步，肯定能达到自己人生的巅峰，尽享山登绝顶我为峰的豪迈与忘我。&lt;/p&gt;
+
+&lt;p&gt;另外需要考虑的情况是，如果代价函数是凸函数，那么就存在全局最优解，方圆五百里就只有一个山峰，那命中注定了，它就是你要找的唯一了。但如果是非凸的，那么就会有很多局部最优的解，有一望无际的山峰，人的视野是伟大的也是渺小的，你不知道哪个山峰才是最高的，可能你会被命运作弄，很无辜的陷入一个局部最优里面，坐井观天，以为自己找到的就是最好的。没想到山外有山，人外有人，光芒总在未知的远处默默绽放。但也许命运眷恋善良的你，带给你的总是最好的归宿。也有很多不信命的人，觉得人定胜天的人，誓要找到最好的，否则不会罢休，永不向命运妥协，除非自己有一天累了，倒下了，也要靠剩下的一口气，迈出一口气能支撑的路程。好悲凉啊……哈哈。&lt;/p&gt;
+
+&lt;p&gt;呃，不知道扯那去了，也不知道自己说的有没有错，有错的话请大家不吝指正。那下面就进入正题吧。正如上面所述，逻辑回归就是这样的一个过程：面对一个回归或者分类问题，建立代价函数，然后通过优化方法迭代求解出最优的模型参数，然后测试验证我们这个求解的模型的好坏，冥冥人海，滚滚红尘，我们是否找到了最适合的那个她。&lt;/p&gt;
+
+&lt;h1 id=&quot;logisticregression&quot;&gt;一、逻辑回归（LogisticRegression）&lt;/h1&gt;
+
+&lt;p&gt;Logistic regression（逻辑回归）是当前业界比较常用的机器学习方法，用于估计某种事物的可能性。之前在经典之作《数学之美》中也看到了它用于广告预测，也就是根据某广告被用户点击的可能性，把最可能被用户点击的广告摆在用户能看到的地方，然后叫他“你点我啊！”用户点了，你就有钱收了。这就是为什么我们的电脑现在广告泛滥的原因了。&lt;/p&gt;
+
+&lt;p&gt;还有类似的某用户购买某商品的可能性，某病人患有某种疾病的可能性啊等等。这个世界是随机的（当然了，人为的确定性系统除外，但也有可能有噪声或产生错误的结果，只是这个错误发生的可能性太小了，小到千万年不遇，小到忽略不计而已），所以万物的发生都可以用可能性或者几率（Odds）来表达。“几率”指的是某事物发生的可能性与不发生的可能性的比值。&lt;/p&gt;
+
+&lt;p&gt;Logistic regression可以用来回归，也可以用来分类，主要是二分类。还记得上几节讲的支持向量机SVM吗？它就是个二分类的例如，它可以将两个不同类别的样本给分开，思想是找到最能区分它们的那个分类超平面。但当你给一个新的样本给它，它能够给你的只有一个答案，你这个样本是正类还是负类。例如你问SVM，某个女生是否喜欢你，它只会回答你喜欢或者不喜欢。这对我们来说，显得太粗鲁了，要不希望，要不绝望，这都不利于身心健康。那如果它可以告诉我，她很喜欢、有一点喜欢、不怎么喜欢或者一点都不喜欢，你想都不用想了等等，告诉你她有49%的几率喜欢你，总比直接说她不喜欢你，来得温柔。而且还提供了额外的信息，她来到你的身边你有多少希望，你得再努力多少倍，知己知彼百战百胜，哈哈。Logistic regression就是这么温柔的，它给我们提供的就是你的这个样本属于正类的可能性是多少。&lt;/p&gt;
+
+&lt;p&gt;还得来点数学。（更多的理解，请参阅参考文献）假设我们的样本是{x, y}，y是0或者1，表示正类或者负类，x是我们的m维的样本特征向量。那么这个样本x属于正类，也就是y=1的“概率”可以通过下面的逻辑函数来表示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_6.png&quot; alt=&quot;逻辑函数&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里θ是模型参数，也就是回归系数，σ是sigmoid函数。实际上这个函数是由下面的对数几率（也就是x属于正类的可能性和负类的可能性的比值的对数）变换得到的：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_7.png&quot; alt=&quot;对数几率&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;换句话说，y也就是我们关系的变量，例如她喜不喜欢你，与多个自变量（因素）有关，例如你人品怎样、车子是两个轮的还是四个轮的、长得胜过潘安还是和犀利哥有得一拼、有千尺豪宅还是三寸茅庐等等，我们把这些因素表示为x1, x2,…, xm。那这个女的怎样考量这些因素呢？最快的方式就是把这些因素的得分都加起来，最后得到的和越大，就表示越喜欢。但每个人心里其实都有一杆称，每个人考虑的因素不同，萝卜青菜，各有所爱嘛。例如这个女生更看中你的人品，人品的权值是0.6，不看重你有没有钱，没钱了一起努力奋斗，那么有没有钱的权值是0.001等等。我们将这些对应x1, x2,…, xm的权值叫做回归系数，表达为θ1, θ2,…, θm。他们的加权和就是你的总得分了。请选择你的心仪男生，非诚勿扰！哈哈。&lt;/p&gt;
+
+&lt;p&gt;所以说上面的logistic回归就是一个线性分类模型，它与线性回归的不同点在于：为了将线性回归输出的很大范围的数，例如从负无穷到正无穷，压缩到0和1之间，这样的输出值表达为“可能性”才能说服广大民众。当然了，把大值压缩到这个范围还有个很好的好处，就是可以消除特别冒尖的变量的影响（不知道理解的是否正确）。而实现这个伟大的功能其实就只需要平凡一举，也就是在输出加一个logistic函数。另外，对于二分类来说，可以简单的认为：如果样本x属于正类的概率大于0.5，那么就判定它是正类，否则就是负类。实际上，SVM的类概率就是样本到边界的距离，这个活实际上就让logistic regression给干了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_1.png&quot; alt=&quot;SVM vs LR&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;所以说，Logistic Regression 就是一个被logistic方程归一化后的线性回归，仅此而已。&lt;/p&gt;
+
+&lt;p&gt;好了，关于LR的八卦就聊到这。归入到正统的机器学习框架下，模型选好了，只是模型的参数θ还是未知的，我们需要用我们收集到的数据来训练求解得到它。那我们下一步要做的事情就是建立代价函数了。&lt;/p&gt;
+
+&lt;p&gt;LogisticRegression最基本的学习算法是最大似然。&lt;/p&gt;
+
+&lt;p&gt;假设我们有n个独立的训练样本{(x1, y1) ,(x2, y2),…, (xn, yn)}，y={0, 1}。那每一个观察到的样本(xi, yi)出现的概率是：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_8.png&quot; alt=&quot;单样本概率&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上面为什么是这样呢？当y=1的时候，后面那一项是不是没有了，那就只剩下x属于1类的概率，当y=0的时候，第一项是不是没有了，那就只剩下后面那个x属于0的概率（1减去x属于1的概率）。所以不管y是0还是1，上面得到的数，都是(x, y)出现的概率。那我们的整个样本集，也就是n个独立的样本出现的似然函数为（因为每个样本都是独立的，所以n个样本出现的概率就是他们各自出现的概率相乘）：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_9.png&quot; alt=&quot;似然函数&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那最大似然法就是求模型中使得似然函数最大的系数取值θ*。这个最大似然就是我们的代价函数（cost function）了。&lt;/p&gt;
+
+&lt;p&gt;OK，那代价函数有了，我们下一步要做的就是优化求解了。我们先尝试对上面的代价函数求导，看导数为0的时候可不可以解出来，也就是有没有解析解，有这个解的时候，就皆大欢喜了，一步到位。如果没有就需要通过迭代了，耗时耗力。&lt;/p&gt;
+
+&lt;p&gt;我们先变换下L(θ)：取自然对数，然后化简（不要看到一堆公式就害怕哦，很简单的哦，只需要耐心一点点，自己动手推推就知道了。注：有xi的时候，表示它是第i个样本，下面没有做区分了，相信你的眼睛是雪亮的），得到：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_10.png&quot; alt=&quot;变换L(θ)去对数化简&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这时候，用L(θ)对θ求导，得到：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_11.png&quot; alt=&quot;L(θ)对θ求导&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后我们令该导数为0，你会很失望的发现，它无法解析求解。不信你就去尝试一下。所以没办法了，只能借助高大上的迭代来搞定了。这里选用了经典的梯度下降算法。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;二、优化求解&lt;/h1&gt;
+
+&lt;h2 id=&quot;gradient-descent&quot;&gt;2.1、梯度下降(gradient descent)&lt;/h2&gt;
+
+&lt;p&gt;Gradient descent 又叫 steepest descent，是利用一阶的梯度信息找到函数局部最优解的一种方法，也是机器学习里面最简单最常用的一种优化方法。它的思想很简单，和我开篇说的那样，要找最小值，我只需要每一步都往下走（也就是每一步都可以让代价函数小一点），然后不断的走，那肯定能走到最小值的地方，例如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_2.png&quot; alt=&quot;梯度下降&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但，我同时也需要更快的到达最小值啊，怎么办呢？我们需要每一步都找下坡最快的地方，也就是每一步我走某个方向，都比走其他方法，要离最小值更近。而这个下坡最快的方向，就是梯度的负方向了。&lt;/p&gt;
+
+&lt;p&gt;对logistic Regression来说，梯度下降算法新鲜出炉，如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_12.png&quot; alt=&quot;梯度下降算法&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中，参数α叫学习率，就是每一步走多远，这个参数蛮关键的。如果设置的太多，那么很容易就在最优值附加徘徊，因为你步伐太大了。例如要从广州到上海，但是你的一步的距离就是广州到北京那么远，没有半步的说法，自己能迈那么大步，是幸运呢？还是不幸呢？事物总有两面性嘛，它带来的好处是能很快的从远离最优值的地方回到最优值附近，只是在最优值附近的时候，它有心无力了。但如果设置的太小，那收敛速度就太慢了，向蜗牛一样，虽然会落在最优的点，但是这速度如果是猴年马月，我们也没这耐心啊。所以有的改进就是在这个学习率这个地方下刀子的。我开始迭代是，学习率大，慢慢的接近最优值的时候，我的学习率变小就可以了。所谓采两者之精华啊！这个优化具体见2.3 。&lt;/p&gt;
+
+&lt;p&gt;梯度下降算法的伪代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;################################################&lt;/span&gt;
+初始化回归系数为1
+重复下面步骤直到收敛&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   计算整个数据集的梯度
+   使用alpha x gradient来更新回归系数
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+返回回归系数值
+&lt;span class=&quot;c&quot;&gt;################################################&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;注：因为本文中是求解的Logit回归的代价函数是似然函数，需要最大化似然函数。所以我们要用的是梯度上升算法。但因为其和梯度下降的原理是一样的，只是一个是找最大值，一个是找最小值。找最大值的方向就是梯度的方向，最小值的方向就是梯度的负方向。不影响我们的说明，所以当时自己就忘了改过来了，谢谢评论下面@wxltt的指出。另外，最大似然可以通过取负对数，转化为求最小值。代码里面的注释也是有误的，写的代码是梯度上升，注销成了梯度下降，对大家造成的不便，希望大家海涵。&lt;/p&gt;
+
+&lt;h2 id=&quot;sgd-stochastic-gradient-descent&quot;&gt;2.2、随机梯度下降SGD (stochastic gradient descent)&lt;/h2&gt;
+
+&lt;p&gt;梯度下降算法在每次更新回归系数的时候都需要遍历整个数据集（计算整个数据集的回归误差），该方法对小数据集尚可。但当遇到有数十亿样本和成千上万的特征时，就有点力不从心了，它的计算复杂度太高。改进的方法是一次仅用一个样本点（的回归误差）来更新回归系数。这个方法叫随机梯度下降算法。由于可以在新的样本到来的时候对分类器进行增量的更新（假设我们已经在数据库A上训练好一个分类器h了，那新来一个样本x。对非增量学习算法来说，我们需要把x和数据库A混在一起，组成新的数据库B，再重新训练新的分类器。但对增量学习算法，我们只需要用新样本x来更新已有分类器h的参数即可），所以它属于在线学习算法。与在线学习相对应，一次处理整个数据集的叫“批处理”。&lt;/p&gt;
+
+&lt;p&gt;随机梯度下降算法的伪代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;################################################&lt;/span&gt;
+初始化回归系数为1
+重复下面步骤直到收敛&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        对数据集中每个样本
+               计算该样本的梯度
+                使用alpha xgradient来更新回归系数
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+返回回归系数值
+&lt;span class=&quot;c&quot;&gt;################################################&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;2.3、改进的随机梯度下降&lt;/h2&gt;
+
+&lt;p&gt;评价一个优化算法的优劣主要是看它是否收敛，也就是说参数是否达到稳定值，是否还会不断的变化？收敛速度是否快？&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_3.png&quot; alt=&quot;随机梯度下降算法在200次迭代中三个回归系数的变化过程&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上图展示了随机梯度下降算法在200次迭代中（请先看第三和第四节再回来看这里。我们的数据库有100个二维样本，每个样本都对系数调整一次，所以共有200*100=20000次调整）三个回归系数的变化过程。其中系数X2经过50次迭代就达到了稳定值。但系数X1和X0到100次迭代后稳定。而且可恨的是系数X1和X2还在很调皮的周期波动，迭代次数很大了，心还停不下来。产生这个现象的原因是存在一些无法正确分类的样本点，也就是我们的数据集并非线性可分，但我们的logistic regression是线性分类模型，对非线性可分情况无能为力。然而我们的优化程序并没能意识到这些不正常的样本点，还一视同仁的对待，调整系数去减少对这些样本的分类误差，从而导致了在每次迭代时引发系数的剧烈改变。对我们来说，我们期待算法能避免来回波动，从而快速稳定和收敛到某个值。&lt;/p&gt;
+
+&lt;p&gt;对随机梯度下降算法，我们做两处改进来避免上述的波动问题：&lt;/p&gt;
+
+&lt;p&gt;1）在每次迭代时，调整更新步长alpha的值。随着迭代的进行，alpha越来越小，这会缓解系数的高频波动（也就是每次迭代系数改变得太大，跳的跨度太大）。当然了，为了避免alpha随着迭代不断减小到接近于0（这时候，系数几乎没有调整，那么迭代也没有意义了），我们约束alpha一定大于一个稍微大点的常数项，具体见代码。&lt;/p&gt;
+
+&lt;p&gt;2）每次迭代，改变样本的优化顺序。也就是随机选择样本来更新回归系数。这样做可以减少周期性的波动，因为样本顺序的改变，使得每次迭代不再形成周期性。&lt;/p&gt;
+
+&lt;p&gt;改进的随机梯度下降算法的伪代码如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;################################################&lt;/span&gt;
+初始化回归系数为1
+重复下面步骤直到收敛&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+       对随机遍历的数据集中的每个样本
+              随着迭代的逐渐进行，减小alpha的值
+              计算该样本的梯度
+              使用alpha x gradient来更新回归系数
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+返回回归系数值
+&lt;span class=&quot;c&quot;&gt;################################################&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_4.png&quot; alt=&quot;改进后的梯度下降算法在200次迭代中三个回归系数的变化过程&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;比较原始的随机梯度下降和改进后的梯度下降，可以看到两点不同：&lt;/p&gt;
+
+&lt;p&gt;1）系数不再出现周期性波动。&lt;/p&gt;
+
+&lt;p&gt;2）系数可以很快的稳定下来，也就是快速收敛。这里只迭代了20次就收敛了。而上面的随机梯度下降需要迭代200次才能稳定。&lt;/p&gt;
+
+&lt;h1 id=&quot;python&quot;&gt;三、Python实现&lt;/h1&gt;
+
+&lt;p&gt;我使用的Python是2.7.5版本的。附加的库有Numpy和Matplotlib。具体的安装和配置见前面的博文。在代码中已经有了比较详细的注释了。不知道有没有错误的地方，如果有，还望大家指正（每次的运行结果都有可能不同）。里面我写了个可视化结果的函数，但只能在二维的数据上面使用。直接贴代码：&lt;/p&gt;
+
+&lt;p&gt;logRegression.py&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#################################################  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# logRegression: Logistic Regression  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Author : zouxy  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Date   : 2014-03-02  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# HomePage : http://blog.csdn.net/zouxy09  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Email  : zouxy09@qq.com  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#################################################  &lt;/span&gt;
+  
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;  
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;  
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;  
+  
+  
+&lt;span class=&quot;c&quot;&gt;# calculate the sigmoid function  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;  
+  
+  
+&lt;span class=&quot;c&quot;&gt;# train a logistic regression model using some optional optimize algorithm  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# input: train_x is a mat datatype, each row stands for one sample  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#        train_y is mat datatype too, each row is the corresponding label  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#        opts is optimize option include step and maximum number of iterations  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;trainLogRegres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+    &lt;span class=&quot;c&quot;&gt;# calculate training time  &lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;startTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+  
+    &lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numFeatures&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;alpha&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;maxIter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;maxIter&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ones&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numFeatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;  
+  
+    &lt;span class=&quot;c&quot;&gt;# optimize through gradient descent algorilthm  &lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxIter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;optimizeType&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;gradDescent&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# gradient descent algorilthm  &lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+            &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;  
+            &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transpose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;optimizeType&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;stocGradDescent&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# stochastic gradient descent  &lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transpose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;optimizeType&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;smoothStocGradDescent&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# smooth stochastic gradient descent  &lt;/span&gt;
+            &lt;span class=&quot;c&quot;&gt;# randomly select samples to optimize for reducing cycle fluctuations   &lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;dataIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;randIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;  
+                &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transpose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;  
+                &lt;span class=&quot;k&quot;&gt;del&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dataIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# during one interation, delete the optimized sample  &lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  
+            &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ne&quot;&gt;NameError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Not support optimize method type!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+      
+  
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Congratulations, training complete! Took &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;s!&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;startTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;  
+  
+  
+&lt;span class=&quot;c&quot;&gt;# test your trained Logistic Regression model given test set  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testLogRegres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numFeatures&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;matchCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sigmoid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;predict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;bool&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]):&lt;/span&gt;  
+            &lt;span class=&quot;n&quot;&gt;matchCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matchCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt;  
+  
+  
+&lt;span class=&quot;c&quot;&gt;# show your trained logistic regression model only available with 2-D data  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showLogRegres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+    &lt;span class=&quot;c&quot;&gt;# notice: train_x and train_y is mat datatype  &lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numFeatures&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numFeatures&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Sorry! I can not draw because the dimension of your data is not 2!&amp;quot;&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+  
+    &lt;span class=&quot;c&quot;&gt;# draw all samples  &lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numSamples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  
+            &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;or&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  
+            &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;ob&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+  
+    &lt;span class=&quot;c&quot;&gt;# draw the classify line  &lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;min_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;max_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# convert mat to array  &lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;y_min_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;y_max_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_min_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_max_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;-g&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;X1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;X2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;四、测试结果&lt;/h1&gt;
+
+&lt;p&gt;测试代码：&lt;/p&gt;
+
+&lt;p&gt;test_logRegression.py&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;c&quot;&gt;#################################################  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# logRegression: Logistic Regression  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Author : zouxy  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Date   : 2014-03-02  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# HomePage : http://blog.csdn.net/zouxy09  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Email  : zouxy09@qq.com  &lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#################################################  &lt;/span&gt;
+  
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;  
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;  
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;  
+  
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;loadData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;  
+    &lt;span class=&quot;n&quot;&gt;fileIn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;E:/Python/Machine Learning in Action/testSet.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readlines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;lineArr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lineArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]),&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lineArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])])&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lineArr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transpose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+  
+  
+&lt;span class=&quot;c&quot;&gt;## step 1: load data  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;step 1: load data...&amp;quot;&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;loadData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;test_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;  
+  
+&lt;span class=&quot;c&quot;&gt;## step 2: training...  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;step 2: training...&amp;quot;&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;alpha&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;maxIter&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;optimizeType&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;smoothStocGradDescent&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;optimalWeights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;trainLogRegres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+  
+&lt;span class=&quot;c&quot;&gt;## step 3: testing  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;step 3: testing...&amp;quot;&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;testLogRegres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;optimalWeights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+  
+&lt;span class=&quot;c&quot;&gt;## step 4: show the result  &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;step 4: show the result...&amp;quot;&lt;/span&gt;    
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;The classify accuracy is: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%.3f%%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;accuracy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;showLogRegres&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;optimalWeights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;train_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;测试数据是二维的，共100个样本。有2个类。如下：&lt;/p&gt;
+
+&lt;p&gt;testSet.txt&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.017612&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;14.053064&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.395634&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;4.662541&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.752157&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;6.538620&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.322371&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;7.152853&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.423363&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;11.054677&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.406704&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;7.067335&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.667394&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;12.741452&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.460150&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;6.866805&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.569411&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.548755&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.026632&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;10.427743&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.850433&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;6.920334&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.347183&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;13.175500&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.176813&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;3.167020&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.781871&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;9.097953&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.566606&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;5.749003&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.931635&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;1.589505&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.024205&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;6.151823&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.036453&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;2.690988&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.196949&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;0.444165&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.014459&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;5.754399&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.985298&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;3.230619&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.693453&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.557540&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.576525&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;11.778922&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.346811&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.678730&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.124484&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;2.672471&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.217916&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.597015&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.733928&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;9.098687&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.642001&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.618087&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.315985&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;3.523953&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.416614&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.619232&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.386323&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;3.989286&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.556921&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;8.294984&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.224863&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;11.587360&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.347803&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.406051&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.196604&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;4.951851&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.275221&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.543647&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.470575&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.332488&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.889567&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;9.542662&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.527893&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;12.150579&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.185247&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;11.309318&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.445678&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;3.297303&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.042222&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;6.105155&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.618787&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;10.320986&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.152083&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;0.548467&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.828534&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;2.676045&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.237728&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;10.549033&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.683565&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.166125&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.229456&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;5.921938&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.959885&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;11.555336&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.492911&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;10.993324&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.184992&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;8.721488&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.355715&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;10.325976&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.397822&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;8.058397&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.824839&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;13.730343&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.507278&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;5.027866&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.099671&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;6.835839&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.344008&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;10.717485&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.785928&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;7.718645&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.918801&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;11.560217&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.364009&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;4.747300&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.841722&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;4.119083&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.490426&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;1.960539&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.007194&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;9.075792&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.356107&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;12.447863&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.342578&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;12.281162&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.810823&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.466018&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;2.530777&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;6.476801&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.296683&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;11.607559&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.475487&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;12.040035&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.783277&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;11.009725&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.074798&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;11.023650&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.337472&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;0.468339&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.102781&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;13.763651&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.147324&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;2.874846&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.518389&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.887035&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.015399&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;7.571882&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.658086&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.027255&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.319944&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;2.171228&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;2.056216&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;5.019981&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.851633&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;4.375691&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.510047&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;6.061992&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.076637&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.181888&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.821096&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;10.283990&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;3.010150&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;8.401766&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.099458&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;1.688274&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.834872&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.733869&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.846637&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;3.849075&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.400102&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;12.628781&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.752842&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;5.468166&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.078557&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;0.059736&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.089392&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.715300&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.825662&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;12.693808&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.197445&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.744638&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.126117&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;0.922311&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.679797&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;1.220530&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.677983&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;2.556666&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.761349&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;10.693862&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.168791&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;0.143632&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;1.388610&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;9.341997&lt;/span&gt;    &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  
+&lt;span class=&quot;mf&quot;&gt;0.317029&lt;/span&gt;    &lt;span class=&quot;mf&quot;&gt;14.739025&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;训练结果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150729_5.png&quot; alt=&quot;训练结果&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(a)梯度下降算法迭代500次。&lt;/p&gt;
+
+&lt;p&gt;(b)随机梯度下降算法迭代200次。&lt;/p&gt;
+
+&lt;p&gt;(c)改进的随机梯度下降算法迭代20次。&lt;/p&gt;
+
+&lt;p&gt;(d)改进的随机梯度下降算法迭代200次。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>广告特征工程+人工智能：在线程序化特征定义（一）</title>
+      <link>http://lilifeng.net/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/</link>
+      <pubDate>Tue, 28 Jul 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>DSP</category>
+      
+      <category>算法</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/</guid>
+      <description>&lt;h1 id=&quot;section&quot;&gt;在线程序化特征定义&lt;/h1&gt;
+
+&lt;p&gt;例子，请参考&lt;a href=&quot;http://wenku.baidu.com/link?url=G3GSS98khJorXesmyl1uWMq-EHJgFyngkn-w6xxZEshkwJ6unOqs-5QZa5JGek37Ye8N3UD4zGA5G7IkjJ6DmLGfvYR3rwNN2d86kt9K_B3&quot;&gt;新华信2011年上半年的研究报告&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;TIME＝2011HY1
+SOURCE＝XINHUAXIN
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Data&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.年龄
+&lt;span class=&quot;nv&quot;&gt;F17&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.子女.count
+&lt;span class=&quot;nv&quot;&gt;F34&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.月均税前收入
+&lt;span class=&quot;nv&quot;&gt;F35&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.月均税前收入+用户.配偶.月均税前收入
+&lt;span class=&quot;nv&quot;&gt;F45&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.调研.平均油耗不开空调
+&lt;span class=&quot;nv&quot;&gt;F46&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.调研.平均油耗开空调
+&lt;span class=&quot;nv&quot;&gt;F54&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.满意度
+
+
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Feature&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;微型&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;小型&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;紧凑型&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;中型&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;中大型&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F7&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.count&amp;gt;0
+&lt;span class=&quot;nv&quot;&gt;F8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;轿车.type&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;SUV&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.轿车.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;轿车.type&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;MPV&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.性别＝＝男性
+&lt;span class=&quot;nv&quot;&gt;F11&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.性别＝＝女性
+&lt;span class=&quot;nv&quot;&gt;F12&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.已婚
+&lt;span class=&quot;nv&quot;&gt;F13&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.未婚
+&lt;span class=&quot;nv&quot;&gt;F14&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.离异
+&lt;span class=&quot;nv&quot;&gt;F15&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.子女.count&amp;gt;0
+&lt;span class=&quot;nv&quot;&gt;F16&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.子女.count&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+&lt;span class=&quot;nv&quot;&gt;F18&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.学历&amp;lt;＝高中及以下
+&lt;span class=&quot;nv&quot;&gt;F19&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.学历＝＝大专
+&lt;span class=&quot;nv&quot;&gt;F20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.学历＝＝本科
+&lt;span class=&quot;nv&quot;&gt;F21&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.学历&amp;gt;＝硕士
+&lt;span class=&quot;nv&quot;&gt;F22&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.行业.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;行业.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;零售批发&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F23&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.行业.Exists&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;行业.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;贸易进出口&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F24&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.职级＝＝一般
+&lt;span class=&quot;nv&quot;&gt;F25&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.职级＝＝中级管理
+&lt;span class=&quot;nv&quot;&gt;F26&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.职级＝＝高级管理
+&lt;span class=&quot;nv&quot;&gt;F27&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.职级＝＝所有者
+&lt;span class=&quot;nv&quot;&gt;F28&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.单位.性质＝＝私营企业
+&lt;span class=&quot;nv&quot;&gt;F29&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.单位.性质＝＝外资企业
+&lt;span class=&quot;nv&quot;&gt;F30&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.单位.性质＝＝国营集体企业
+&lt;span class=&quot;nv&quot;&gt;F31&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.单位.性质＝＝政府机关事业单位
+&lt;span class=&quot;nv&quot;&gt;F32&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.单位.人数&amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20
+&lt;span class=&quot;nv&quot;&gt;F33&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;用户.职业.当前.单位.人数&amp;lt;20
+&lt;span class=&quot;nv&quot;&gt;F36&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.购车动机.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;上下班方便&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F37&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.购车动机.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;与客户打交道时获得信任&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F38&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.购车动机.count&amp;gt;0
+&lt;span class=&quot;nv&quot;&gt;F39&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.购车考虑因素.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;外观&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F40&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.购车考虑因素.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;安全性&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F41&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.车辆使用用途.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;上下班代步&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F42&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.车辆使用用途.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;购物外出就餐&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F43&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.车辆行驶路面.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;市内道路&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F44&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;调研.用户.车辆行驶路面.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;高速公路&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;F47&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;微型
+&lt;span class=&quot;nv&quot;&gt;F48&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;＝小型
+&lt;span class=&quot;nv&quot;&gt;F49&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;＝紧凑型
+&lt;span class=&quot;nv&quot;&gt;F50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;＝中型
+&lt;span class=&quot;nv&quot;&gt;F51&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.cat&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;＝中大型
+&lt;span class=&quot;nv&quot;&gt;F52&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.type＝&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;SUV
+&lt;span class=&quot;nv&quot;&gt;F53&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;轿车.type＝&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;MPV
+
+&lt;span class=&quot;nv&quot;&gt;F39&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;上下文.ua.Contains&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;...&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Linux琐碎记录之统计源码的行数</title>
+      <link>http://lilifeng.net/blogs/2015/07/27/linux-sourcecode-line-counting/</link>
+      <pubDate>Mon, 27 Jul 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Linux</category>
+      
+      
+      <category>desktop</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/07/27/linux-sourcecode-line-counting/</guid>
+      <description>&lt;p&gt;Linux下wc命令是统计代码行数的，其用法如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;用法：wc &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;选项&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;... &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;文件&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;...
+　或：wc &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;选项&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;... --files0-from&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;F
+输出每个指定文件的行数、单词计数和字节数，如果指定了
+多于一个文件，继续给出所有相关数据的总计。如果没有指定
+文件，或者文件为&lt;span class=&quot;s2&quot;&gt;&amp;quot;-&amp;quot;&lt;/span&gt;，则从标准输入读取数据。
+  -c, --bytes        输出字节数统计
+  -m, --chars        输出字符数统计
+  -l, --lines        输出行数统计
+      --files0-from&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;文件    从指定文件读取以NUL 终止的名称，如果该文件被
+                    指定为&lt;span class=&quot;s2&quot;&gt;&amp;quot;-&amp;quot;&lt;/span&gt;则从标准输入读文件名
+  -L, --max-line-length    显示最长行的长度
+  -w, --words            显示单词计数
+      --help        显示此帮助信息并退出
+      --version        显示版本信息并退出&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;wc -l *.c *.h 就可以知道当前目录下的所有c 和 h 文件的行数的详细信息。很不错&lt;/p&gt;
+
+&lt;p&gt;如果要递归，可以配合其他命令一起使用&lt;/p&gt;
+
+&lt;p&gt;当前目录及子目录：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;find . -name *.c &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;xargs wc -l
+	find . -name *.cpp &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; xargs wc -l
+	find . -name *.h &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;xargs wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;想一下子 ，或许简单的可以 使用重定向技术 使用&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;find -name &lt;span class=&quot;s2&quot;&gt;&amp;quot;*.c&amp;quot;&lt;/span&gt;&amp;gt;/tmp/file.list &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;find -name &lt;span class=&quot;s2&quot;&gt;&amp;quot;*.h&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt;/tmp/file.list&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;cat /tmp/file.list &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;xargs wc -l&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;rm /tmp/file.list&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;或者这个比较方便：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;wc -l &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;find ./ -name &lt;span class=&quot;s2&quot;&gt;&amp;quot;*.c&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;find -name &lt;span class=&quot;s2&quot;&gt;&amp;quot;*.h&amp;quot;&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;tail -n1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;2.统计文件数量&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;find . -name *.c &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3.统计代码行数（过滤空行）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;find . -name *.c&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;xargs cat&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;grep -v ^&lt;span class=&quot;nv&quot;&gt;$|&lt;/span&gt;wc -l&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find --help
+用法: find &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-H&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-L&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-P&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-Olevel&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-D &lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;tree&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;search&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;stat&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;rates&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;opt&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;path...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;expression&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+默认路径为当前目录；默认表达式为 -print
+表达式可能由下列成份组成：操作符、选项、测试表达式以及动作：
+
+操作符 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;优先级递减；未做任何指定时默认使用 -and&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+      &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; EXPR &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;   ! EXPR   -not EXPR   EXPR1 -a EXPR2   EXPR1 -and EXPR2
+      EXPR1 -o EXPR2   EXPR1 -or EXPR2   EXPR1 , EXPR2
+
+位置选项 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;总是真&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: -daystart -follow -regextype
+
+普通选项 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;总是真，在其它表达式前指定&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+      -depth --help -maxdepth LEVELS -mindepth LEVELS -mount -noleaf
+      --version -xdev -ignore_readdir_race -noignore_readdir_race
+
+测试&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;N可以是 +N 或-N 或 N&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:-amin N -anewer FILE -atime N -cmin  
+      -cnewer 文件 -ctime N -empty -false -fstype 类型 -gid N -group 名称
+      -ilname 匹配模式 -iname 匹配模式 -inum N -ipath 匹配模式 -iregex 匹配模式
+      -links N -lname 匹配模式 -mmin N -mtime N -name 匹配模式 -newer 文件
+      -nouser -nogroup -path 匹配模式 -perm &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;+-&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;访问模式 -regex 匹配模式
+      -readable -writable -executable
+      -wholename PATTERN -size N&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;bcwkMG&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; -true -type &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;bcdpflsD&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; -uid N
+      -used N -user NAME -xtype &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;bcdpfls&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+动作: -delete -print0 -printf FORMAT -fprintf FILE FORMAT -print 
+      -fprint0 FILE -fprint FILE -ls -fls FILE -prune -quit
+      -exec COMMAND &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; -exec COMMAND &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; + -ok COMMAND &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      -execdir COMMAND &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; -execdir COMMAND &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; + -okdir COMMAND &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+通过 findutils 错误报告页 http://savannah.gnu.org/ 报告错误及跟踪修定过程。如果您无法浏览网页，请发电子邮件至 &amp;lt;bug-findutils@gnu.org&amp;gt;。&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>特征提取算法：TF-IDF算法</title>
+      <link>http://lilifeng.net/blogs/2015/06/17/feature-algorithm-tf-idf/</link>
+      <pubDate>Wed, 17 Jun 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>DSP</category>
+      
+      <category>算法</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/06/17/feature-algorithm-tf-idf/</guid>
+      <description>&lt;p&gt;有一篇很长的文章，我要用计算机提取它的关键词（Automatic Keyphrase extraction），完全不加以人工干预，请问怎样才能正确做到？&lt;/p&gt;
+
+&lt;p&gt;这个问题涉及到数据挖掘、文本处理、信息检索等很多计算机前沿领域，但是出乎意料的是，有一个非常简单的经典算法，可以给出令人相当满意的结果。它简单到都不需要高等数学，普通人只用10分钟就可以理解，这就是我今天想要介绍的TF-IDF算法。&lt;/p&gt;
+
+&lt;p&gt;让我们从一个实例开始讲起。假定现在有一篇长文《中国的蜜蜂养殖》，我们准备用计算机提取它的关键词。&lt;/p&gt;
+
+&lt;p&gt;一个容易想到的思路，就是找到出现次数最多的词。如果某个词很重要，它应该在这篇文章中多次出现。于是，我们进行”词频”（Term Frequency，缩写为TF）统计。&lt;/p&gt;
+
+&lt;p&gt;结果你肯定猜到了，出现次数最多的词是—-“的”、”是”、”在”—-这一类最常用的词。它们叫做”停用词”（stop words），表示对找到结果毫无帮助、必须过滤掉的词。&lt;/p&gt;
+
+&lt;p&gt;假设我们把它们都过滤掉了，只考虑剩下的有实际意义的词。这样又会遇到了另一个问题，我们可能发现”中国”、”蜜蜂”、”养殖”这三个词的出现次数一样多。这是不是意味着，作为关键词，它们的重要性是一样的？&lt;/p&gt;
+
+&lt;p&gt;显然不是这样。因为”中国”是很常见的词，相对而言，”蜜蜂”和”养殖”不那么常见。如果这三个词在一篇文章的出现次数一样多，有理由认为，”蜜蜂”和”养殖”的重要程度要大于”中国”，也就是说，在关键词排序上面，”蜜蜂”和”养殖”应该排在”中国”的前面。&lt;/p&gt;
+
+&lt;p&gt;所以，我们需要一个重要性调整系数，衡量一个词是不是常见词。如果某个词比较少见，但是它在这篇文章中多次出现，那么它很可能就反映了这篇文章的特性，正是我们所需要的关键词。&lt;/p&gt;
+
+&lt;p&gt;用统计学语言表达，就是在词频的基础上，要对每个词分配一个”重要性”权重。最常见的词（”的”、”是”、”在”）给予最小的权重，较常见的词（”中国”）给予较小的权重，较少见的词（”蜜蜂”、”养殖”）给予较大的权重。这个权重叫做”逆文档频率”（Inverse Document Frequency，缩写为IDF），它的大小与一个词的常见程度成反比。&lt;/p&gt;
+
+&lt;p&gt;知道了”词频”（TF）和”逆文档频率”（IDF）以后，将这两个值相乘，就得到了一个词的TF-IDF值。某个词对文章的重要性越高，它的TF-IDF值就越大。所以，排在最前面的几个词，就是这篇文章的关键词。&lt;/p&gt;
+
+&lt;p&gt;下面就是这个算法的细节。&lt;/p&gt;
+
+&lt;p&gt;第一步，计算词频。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150617_1.png&quot; alt=&quot;TF词频&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中TF(i)是第i个词的词频（Term Frequency），WC(i)是第i个词在当前文档中出现的次数（Word Count），WC是当前文档的总词数。&lt;/p&gt;
+
+&lt;p&gt;第二步，计算逆文档频率。&lt;/p&gt;
+
+&lt;p&gt;这时，需要一个语料库（corpus），用来模拟语言的使用环境。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150617_2.png&quot; alt=&quot;IDF逆文档词频&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中IDF(i)是第i个词的逆文档词频，DC是语料库的文档总数（Document Count），DC(i)是在语料库中包含第i个词的文档总数。&lt;/p&gt;
+
+&lt;p&gt;如果一个词越常见，那么分母就越大，逆文档频率就越小越接近0。分母之所以要加1，是为了避免分母为0（即所有文档都不包含该词）。log表示对得到的值取对数。&lt;/p&gt;
+
+&lt;p&gt;第三步，计算TF-IDF。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150617_3.png&quot; alt=&quot;TF-IDF公式&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看到，TF-IDF与一个词在文档中的出现次数成正比，与该词在整个语言中的出现次数成反比。所以，自动提取关键词的算法就很清楚了，就是计算出文档的每个词的TF-IDF值，然后按降序排列，取排在最前面的几个词。&lt;/p&gt;
+
+&lt;p&gt;还是以《中国的蜜蜂养殖》为例，假定该文长度为1000个词，”中国”、”蜜蜂”、”养殖”各出现20次，则这三个词的”词频”（TF）都为0.02。然后，搜索Google发现，包含”的”字的网页共有250亿张，假定这就是中文网页总数。包含”中国”的网页共有62.3亿张，包含”蜜蜂”的网页为0.484亿张，包含”养殖”的网页为0.973亿张。则它们的逆文档频率（IDF）和TF-IDF如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/150617_4.png&quot; alt=&quot;中国的蜜蜂养殖的TF-IDF公式&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从上表可见，”蜜蜂”的TF-IDF值最高，”养殖”其次，”中国”最低。（如果还计算”的”字的TF-IDF，那将是一个极其接近0的值。）所以，如果只选择一个词，”蜜蜂”就是这篇文章的关键词。&lt;/p&gt;
+
+&lt;p&gt;除了自动提取关键词，TF-IDF算法还可以用于许多别的地方。比如，信息检索时，对于每个文档，都可以分别计算一组搜索词（”中国”、”蜜蜂”、”养殖”）的TF-IDF，将它们相加，就可以得到整个文档的TF-IDF。这个值最高的文档就是与搜索词最相关的文档。&lt;/p&gt;
+
+&lt;p&gt;TF-IDF算法的优点是简单快速，结果比较符合实际情况。缺点是，单纯以”词频”衡量一个词的重要性，不够全面，有时重要的词可能出现次数并不多。而且，这种算法无法体现词的位置信息，出现位置靠前的词与出现位置靠后的词，都被视为重要性相同，这是不正确的。（一种解决方法是，对全文的第一段和每一段的第一句话，给予较大的权重。）&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>半小时读懂PMP私有广告交易市场</title>
