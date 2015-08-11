@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 29 Jul 2015 19:17:26 +0800</pubDate>
-    <lastBuildDate>Wed, 29 Jul 2015 19:17:26 +0800</lastBuildDate>
+    <pubDate>Tue, 11 Aug 2015 14:04:12 +0800</pubDate>
+    <lastBuildDate>Tue, 11 Aug 2015 14:04:12 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.3</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,557 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>Perforce意外重启后无法启动的问题</title>
+      <link>http://lilifeng.net/blogs/2015/08/10/perforce-unexpect-restart-fix/</link>
+      <pubDate>Mon, 10 Aug 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Perforce</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/08/10/perforce-unexpect-restart-fix/</guid>
+      <description>&lt;p&gt;1 首先删除p4.protect，备份并删除p4.counters&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;rm -rf p4.protect
+mv p4.counters p4.counters.bak&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;2 备份用户信息文件并删除&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mv p4.users p4.users.bak&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3 重启perforce服务&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;services perforce start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;4 连接Perforce服务器并建立新用户&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;./p4v.exe
+new user aaa //密码需要符合要求，如大小写+数字+8位以上&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;5 以新用户登录进入Perforce Admin并成为sole administrator&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;login aaa
+admin login aaa as sole administrator&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;6 在Perforce Admin中重新创建所有用户并进行权限重新设置&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;user create xxx
+user permission xxx&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;7 打开命令行工具，根据p4.counters.bak中的key和value进行p4 counter update&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;//example: change 1576&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; maxCommitChange 1576&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; upgrade 1576&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+p4 -C utf8 counter -f change 1576
+p4 -C utf8 counter -f maxCommitChange 1576&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>HTTP请求头系列（3）-Cookies</title>
+      <link>http://lilifeng.net/blogs/2015/08/05/http-header-cookies/</link>
+      <pubDate>Wed, 05 Aug 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>HTTP</category>
+      
+      <category>Header</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/08/05/http-header-cookies/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Cookie相关的Http头&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;有 两个Http头部和Cookie有关：Set-Cookie和Cookie。
+Set-Cookie由服务器发送，它包含在响应请求的头部中。它用于在客户端创建一个Cookie
+Cookie头由客户端发送，包含在HTTP请求的头部中。注意，只有cookie的domain和path与请求的URL匹配才会发送这个cookie。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Set-Cookie Header 
+    Set-Cookie响应头的格式如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Set-Cookie: &amp;lt;name&amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;value&amp;gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &amp;lt;name&amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;value&amp;gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;...
+                    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;expires&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;date&amp;gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;domain_name&amp;gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+                    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;some_path&amp;gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; secure&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; httponly&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;expires&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;date&amp;gt;: 设置cookie的有效期，如果cookie超过date所表示的日期时，cookie将失效。
+                    如果没有设置这个选项，那么cookie将在浏览器关闭时失效。
+                    注意：date是格林威治时间&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;GMT&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;，使用如下格式表示：
+                        DAY, DD MMM YYYY HH:MM:SS GMT
+
+                        DAY
+                            The day of the week &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Sun, Mon, Tue, Wed, Thu, Fri, Sat&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+                        DD
+                            The day in the month &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;such as &lt;span class=&quot;m&quot;&gt;01&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the first day of the month&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+                        MMM
+                            The three-letter abbreviation &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; the month &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+                        YYYY
+                            The year.
+                        HH
+                            The hour value in military &lt;span class=&quot;nb&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;22&lt;/span&gt; would be 10:00 P.M., &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; example&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.
+                        MM
+                            The minute value.
+                        SS
+                            The second value.
+
+    &lt;span class=&quot;nv&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;domain_name&amp;gt; : 
+    &lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;lt;some_path&amp;gt;:
+                    注：临时cookie&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;没有expires参数的cookie&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;不能带有domain选项。
+                    当客户端发送一个http请求时，会将有效的cookie一起发送给服务器。
+                    如果一个cookie的domain和path参数和URL匹配，那么这个cookie就是有效的。
+                    一个URL中包含有domain和path，可以参考&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;http://www.w3school.com.cn/html/html_url.asp&lt;span class=&quot;o&quot;&gt;](&lt;/span&gt;http://www.w3school.com.cn/html/html_url.asp&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+ 
+
+
+    secure   : 表示cookie只能被发送到http服务器。
+    httponly : 表示cookie不能被客户端脚本获取到。&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在程序中生成expires&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C的方式 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;time_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gmTime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gmtime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;curTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strExperis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strTimeBuf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot; %a, %d %b %Y %X GMT;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gmTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre&gt;&lt;code&gt;JavaScript的方式 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expires&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toGMTString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>HTTP请求头系列（2）-P3P</title>
+      <link>http://lilifeng.net/blogs/2015/08/04/http-header-P3P/</link>
+      <pubDate>Tue, 04 Aug 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>HTTP</category>
+      
+      <category>Header</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/08/04/http-header-P3P/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;对于IE来说(默认安全级别下)，iframe、img、link等标签都是只发送session cookie（又叫 第一方cookie），拦截本地cookie发送（又叫第三方cookie）。当这些标签跨域引用一个页面，实际上是发起了一次GET请求。&lt;/p&gt;
+
+&lt;p&gt;如果这个跨域的请求，HTTP返回头中带有Set-Cookie ， 那么这个cookie对浏览器来说，实际上是无效的。&lt;/p&gt;
+
+&lt;p&gt;看如下测试&lt;/p&gt;
+
+&lt;p&gt;假设有 www.a.com    与 www.b.com 两个域&lt;/p&gt;
+
+&lt;p&gt;在 www.b.com 上有一个页面，其中包含一个指向 www.a.com 的iframe&lt;/p&gt;
+
+&lt;p&gt;http://www.b.com/test.html 的内容为：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;iframe&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;300&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;300&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://www.a.com/test.php&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;http://www.a.com/test.php 是一个对 a.com 域设置 cookie的页面，其内容为：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Set-Cookie: test=axis; domain=.a.com; path=/&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    alert(document.cookie);&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;此时我们请求 http://www.b.com/test.html , 他包含一个iframe，会去跨域请求 www.a.com/test.php ，该php页面会尝试 set-cookie&lt;/p&gt;
+
+&lt;p&gt;第一次请求， test.php 会 set-cookie，所以浏览器会收到一个cookie。&lt;/p&gt;
+
+&lt;p&gt;如果 set-cookie 成功，再次请求该页面，浏览器应该会 sent 刚才 recieve 到的cookie。可是由于前面说的跨域限制，在IE里的iframe标签是 set-cookie不成功的，所以无法sent刚才收到的cookie。 这里无论是 session cookie 还是本地cookie都是一样。&lt;/p&gt;
+
+&lt;p&gt;可以看到，第二次发包，还是没能sent出去cookie&lt;/p&gt;
+
+&lt;p&gt;但是这种情况在加入了P3P header 后会改变。&lt;/p&gt;
+
+&lt;p&gt;P3P header允许跨域访问隐私数据，从而可以跨域set-cookie成功&lt;/p&gt;
+
+&lt;p&gt;我们修改 www.a.com/test.php 为&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;P3P: CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Set-Cookie: test=axis; expires=Sun, 23-Dec-2018 08:13:02 GMT; domain=.a.com; path=/&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;    alert(document.cookie);&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;再次访问两次上面的测试过程&lt;/p&gt;
+
+&lt;p&gt;可以看到第二个包已经发送出了收到的cookie&lt;/p&gt;
+
+&lt;p&gt;而我们写的javascript也能够弹出cookie了。&lt;/p&gt;
+
+&lt;p&gt;值得注意的是，P3P header只需要设置一次，这样跟在这个P3P header后面的所有 set-cookie，都可以跨域访问了。也就是说: 被P3P header设置过一次后，之后的请求不再需要P3P header，也能够在iframe里跨域发送这些cookie。&lt;/p&gt;
+
+&lt;p&gt;但是如果用 set-cookie 去改变设置好的cookie，则不再具有这种跨域访问特性。&lt;/p&gt;
+
+&lt;p&gt;P3P header 还有一个特点就是同一个包里只能设置一次，后面的P3P Header不会覆盖前面的P3P header，浏览器只认第一个。&lt;/p&gt;
+
+&lt;p&gt;P3P 是 The Platform for Privacy Preferences 的简称&lt;/p&gt;
+
+&lt;p&gt;更多具体的内容可以参阅W3C的标准 &lt;a href=&quot;http://www.w3.org/TR/P3P/&quot;&gt;http://www.w3.org/TR/P3P/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在这里，我们看到的很乱的 P3P header里的东西，都不知道是什么乱七八糟的策略内容，实际上这是一些简写&lt;/p&gt;
+
+&lt;p&gt;比如 上面用到的&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;P3P: &lt;span class=&quot;nv&quot;&gt;CP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;CP 是 Compact Policy 的简写&lt;/p&gt;
+
+&lt;p&gt;CURa 中 CUR 是 &lt;current&gt;&lt;/current&gt; 的简写， a 是 always 的简写&lt;/p&gt;
+
+&lt;p&gt;当然P3P header也可以直接 引用一个 xml 策略文件&lt;/p&gt;
+
+&lt;p&gt;比如这么写&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;HTTP/1.1 &lt;span class=&quot;m&quot;&gt;200&lt;/span&gt; OK
+P3P: &lt;span class=&quot;nv&quot;&gt;policyref&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://catalog.example.com/P3P/PolicyReferences.xml&amp;quot;&lt;/span&gt;
+Content-Type: text/html
+Content-Length: 7413
+Server: CC-Galaxy/1.3.18&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;使用P3P的方法还有很多，这里不一一列举了。&lt;/p&gt;
+
+&lt;p&gt;最后，利用P3P Header 的这种特性，在实际攻击中，还是可以利用一下的。&lt;/p&gt;
+
+&lt;p&gt;比如利用CRLF插入一个P3P header后，改变一个本地cookie的值，该cookie在之后的过程中可以被iframe引用到，也许会发生一些很奇妙的事情。&lt;/p&gt;
+
+&lt;p&gt;具体会变成什么样我也不知道，毕竟web应用安全和环境的关系是越来越紧密了。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>HTTP请求头系列（1）-总览</title>
+      <link>http://lilifeng.net/blogs/2015/08/03/http-header-overall/</link>
+      <pubDate>Mon, 03 Aug 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>HTTP</category>
+      
+      <category>Header</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/08/03/http-header-overall/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;先来看一个现成的http请求头：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;http://192.168.10.214/track?platform&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;hello&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1,2,3,4&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;www.baidu.com&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1111
+
+General
+	Remote Address:192.168.10.214:80
+	Request URL:http://192.168.10.214/track?platform&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;hello&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1,2,3,4&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;www.baidu.com&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1111
+	Request Method:GET
+	Status Code:200 OK
+Response Headers
+	Cache-Control:private, no-cache, no-cache&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Set-Cookie, proxy-revalidate
+	Connection:keep-alive
+	Content-Length:43
+	Content-Type:image/gif
+	Date:Tue, &lt;span class=&quot;m&quot;&gt;11&lt;/span&gt; Aug &lt;span class=&quot;m&quot;&gt;2015&lt;/span&gt; 02:38:28 GMT
+	P3p:CP&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR
+	Pragma:no-cache
+	Server:nginx/1.8.0
+	Set-Cookie:mmsid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0000000000000031&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;expires&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Wed, &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt; Aug &lt;span class=&quot;m&quot;&gt;2016&lt;/span&gt; 02:38:28 GMT&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.10.214&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/
+	X-Content-Type-Options:nosniff
+	Last-Modified:Tue, &lt;span class=&quot;m&quot;&gt;14&lt;/span&gt; Jan &lt;span class=&quot;m&quot;&gt;2014&lt;/span&gt; 07:16:10 GMT
+Request Headers
+	Accept:text/html,application/xhtml+xml,application/xml&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.9,image/webp,*/*&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.8
+	Accept-Encoding:gzip, deflate, sdch
+	Accept-Language:en-US,en&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.8,zh-CN&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.6,zh&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.4,zh-TW&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.2
+	Cache-Control:no-cache
+	Connection:keep-alive
+	Cookie:mmsid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0000000000000031
+	Host:192.168.10.214
+	Pragma:no-cache
+	User-Agent:Mozilla/5.0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Macintosh&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; Intel Mac OS X 10_10_4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; AppleWebKit/537.36 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;KHTML, like Gecko&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Chrome/43.0.2357.134 Safari/537.36
+	Referer:http://192.168.10.214/test
+Query String Parameters
+	platform:1
+	&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;:1
+	item:hello
+	pos:1,2,3,4
+	url:www.baidu.com
+	aid:1111&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;针对不同的条目，进行一个简单的解释：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Remote Address:192.168.10.214:80&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Request URL:http://192.168.10.214/track?platform&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;hello&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1,2,3,4&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;www.baidu.com&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1111&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;请求的url，当前请求的是一个API接口/track，后面跟了一些参数，实际上参数需要urlencode的，但是这里是手动请求所以没有。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Request Method:GET&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;请求的方法，当前是GET。&lt;/p&gt;
+
+&lt;p&gt;这个字段是大小写敏感的，包括OPTIONS、GET、HEAD、POST、PUT、DELETE、 TRACE。&lt;/p&gt;
+
+&lt;p&gt;方法GET和HEAD应该被所有的通用WEB服务器支持，其他所有方法的实现是可选的。
+webservice标准REST，一个请求就是请求一个资源，而用HTTP协议中自带的方法定义请求资源的状态（GET、POST、PUT、DELETE）。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Status Code:200 OK&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;http状态码，表明这个请求响应的状态，是服务器返回来的，也就是8.su.bdimg.com返回的。&lt;/p&gt;
+
+&lt;p&gt;一个数字定义响应的类别，后两个数字没有分类的作用。第一个数字可能取5个不同的值：
+1xx:信息响应类，表示接收到请求并且继续处理
+2xx:处理成功响应类，表示动作被成功接收、理解和接受
+3xx:重定向响应类，为了完成指定的动作，必须接受进一步处理
+4xx:客户端错误，客户请求包含语法错误或者是不能正确执行
+5xx:服务端错误，服务器不能正确执行一个正确的请求&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Cache-Control:private, no-cache, no-cache&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Set-Cookie, proxy-revalidate&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;cache-control是用于控制网页的缓存，跟Expires同个意思。&lt;/p&gt;
+
+&lt;p&gt;max-age单位是秒，就是从现在开始到15552000之间都是有用的，这张图片都是被缓存下来的。
+Cache-Control是HTTP1.1才有的，不适用与HTTP1.0，而Expires既适用于HTTP1.0，也适用于HTTP1.1。
+Ctrl+F5时缓存无效，都会重新获取。&lt;/p&gt;
+
+&lt;p&gt;有以下几种取值：&lt;/p&gt;
+
+&lt;p&gt;max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象）
+max-stale：（可以接受过去的对象，但是过期时间必须小于 max-stale 值）
+min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象）
+响应：public(可以用 Cached 内容回应任何用户)
+private（只能用缓存内容回应先前请求该内容的那个用户）
+no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端）&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Connection:keep-alive&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;客户端与服务器连接的类型。keep-alive和close两种，可以理解为长连接和短连接。其实是对应tcp的长连接和短连接。&lt;/p&gt;
+
+&lt;p&gt;HTTP是一个无状态的面向连接的协议。是在tcp上的应用层协议。
+在HTTP/1.0中默认是close，短连接。就是每次请求完毕都立即关闭连接。
+从 HTTP/1.1起，默认使用keep-alive，长连接。就是每次请求完毕仍然保持一段时间连接。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Content-Length:43&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;服务器告诉浏览器自己响应的对象的长度。不包含http头的大小。这里就是指图片的大小，7183.png就是322B大小。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Content-Type:image/gif&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;服务器返回的数据的mineType，是符合Accept要求的。一张png图片，是官方定义的资源类型。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Date:Tue, &lt;span class=&quot;m&quot;&gt;11&lt;/span&gt; Aug &lt;span class=&quot;m&quot;&gt;2015&lt;/span&gt; 02:38:28 GMT&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;信息发送的时间，GMT格林威治时间。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;P3p:CP&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;P3P 是 The Platform for Privacy Preferences 的简称，P3P header允许跨域访问隐私数据，从而可以跨域set-cookie成功。值得注意的是，P3P header只需要设置一次，这样跟在这个P3P header后面的所有 set-cookie，都可以跨域访问了。也就是说: 被P3P header设置过一次后，之后的请求不再需要P3P header，也能够在iframe里跨域发送这些cookie。但是如果用 set-cookie 去改变设置好的cookie，则不再具有这种跨域访问特性。P3P header 还有一个特点就是同一个包里只能设置一次，后面的P3P Header不会覆盖前面的P3P header，浏览器只认第一个。&lt;/p&gt;
+
+&lt;p&gt;可参考&lt;a href=&quot;/blogs/2012/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Pragma:no-cache&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pragma头域用来包含实现特定的指令，最常用的是Pragma:no-cache。在HTTP/1.1协议中，它的含义和Cache-Control:no-cache相同。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Server:nginx/1.8.0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;服务器的类型和版本&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Set-Cookie:mmsid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0000000000000031&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;expires&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Wed, &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt; Aug &lt;span class=&quot;m&quot;&gt;2016&lt;/span&gt; 02:38:28 GMT&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;192.168.10.214&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Set-Cookie由服务器发送，它包含在响应请求的头部中。它用于在客户端创建一个Cookie。mmsid设置了一个自定义的键值对，expires定义了cookie的过期时间，domain定义了cookie生效的域名，path定义了cookie生效的路径。&lt;/p&gt;
+
+&lt;p&gt;请参考&lt;a href=&quot;/blogs/2012/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;X-Content-Type-Options:nosniff&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这个header主要用来防止在IE9、chrome和safari中的MIME类型混淆攻击。firefox目前对此还存在争议。通常浏览器可以通过嗅探内容本身的方法来决定它是什么类型，而不是看响应中的content-type值。通过设置 X-Content-Type-Options：如果content-type和期望的类型匹配，则不需要嗅探，只能从外部加载确定类型的资源。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Last-Modified:Tue, &lt;span class=&quot;m&quot;&gt;14&lt;/span&gt; Jan &lt;span class=&quot;m&quot;&gt;2014&lt;/span&gt; 07:16:10 GMT&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在浏览器第一次请求某一个URL时，服务器端的返回状态会是200，内容是请求的资源，同时将Last-Modified属性标记此文件在服务期端最后被修改的时间。
+客户端第二次请求此URL时，根据 HTTP 协议的规定，浏览器会向服务器传送 If-Modified-Since 报头，询问该时间之后文件是否有被修改过：&lt;/p&gt;
+
+&lt;p&gt;Tue, 14 Jan 2014 07:16:10 GMT&lt;/p&gt;
+
+&lt;p&gt;如果服务器端的资源没有变化，则自动返回 HTTP 304 （Not Changed.）状态码，内容为空，这样就节省了传输数据量。当服务器端代码发生改变或者重启服务器时，则重新发出资源，返回和第一次请求时类似。从而保证不向客户端重复发出资源，也保证当服务器有变化时，客户端能够得到最新的资源。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Accept:text/html,application/xhtml+xml,application/xml&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.9,image/webp,*/*&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.8&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;告诉服务器自己接受什么介质类型（mineType），&lt;em&gt;/&lt;/em&gt; 表示任何类型，type/* 表示该类型下的所有子类型，type/sub-type。&lt;/p&gt;
+
+&lt;p&gt;image/webp是指一种webp的图片格式，是google弄出来的。这种mineType不是官方定义的。&lt;/p&gt;
+
+&lt;p&gt;在质量相同的情况下，WebP格式图像的体积要比JPEG格式图像小40%。美中不足的是，WebP格式图像的编码时间“比JPEG格式图像长8倍”。&lt;/p&gt;
+
+&lt;p&gt;q是权重，&lt;em&gt;/&lt;/em&gt;的权重是0.8，而image/webp的权重是默认值1.（q为0时，不接受这种类型）&lt;/p&gt;
+
+&lt;p&gt;这个句子的意思是我这个浏览器优先接受webp格式的图片，但是如果没有这种图片，那给我随便什么东西。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Accept-Encoding:gzip, deflate, sdch&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;浏览器可以解码的编码方法（压缩方法）&lt;/p&gt;
+
+&lt;p&gt;gzip是 GNU zip 的缩写，它是一个 GNU 自由软件的文件压缩程序，也经常用来表示 gzip 这种文件格式。
+deflate是同时使用了 LZ77 算法与哈夫曼编码（Huffman Coding）的一个无损数据压缩算法。
+sdch是Chrome自己定义的压缩方法。
+这些编码方法，都是为了减少传输的数据，需要服务器的支持。&lt;/p&gt;
+
+&lt;p&gt;假设8.su.bdimg.com服务器是nginx，可以开启gzip压缩功能，那么当我们的Chrome发送这个请求时，服务器会先将png用gzip算法压缩，再发到Chrome。然后Chrome解压缩，显示出来。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Accept-Language:en-US,en&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.8,zh-CN&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.6,zh&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.4,zh-TW&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;q&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;浏览器支持的语言，中文简体和中文。优先支持中文。（上面解释过了q是权重的意思，zh-CN权重是1，zh权重是0.8）。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Cookie:mmsid&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0000000000000031&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;请求串将存在于当前域和当前路径的cookie发送给服务器。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Host:192.168.10.214&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;主机是192.168.10.214，这个可以从request url里面看出来。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;User-Agent:Mozilla/5.0 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Macintosh&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; Intel Mac OS X 10_10_4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; AppleWebKit/537.36 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;KHTML, like Gecko&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Chrome/43.0.2357.134 Safari/537.36&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;最复杂的一个字段。user-Agent每个浏览器都不同，但都类似。&lt;/p&gt;
+
+&lt;p&gt;Mozilla/5.0基本上所有的浏览器都以Mozilla开头，表明兼容Mozilla的网站，历史问题，因为以前Mozilla是老大。&lt;/p&gt;
+
+&lt;p&gt;Macintosh  苹果的内核，表明我的电脑是苹果系统&lt;/p&gt;
+
+&lt;p&gt;Intel Mac OS X 10_10_4  操作系统具体版本及版本号&lt;/p&gt;
+
+&lt;p&gt;AppleWebKit/537.36 chrome内核类型与版本，是现在最流行的内核之一，开源。&lt;/p&gt;
+
+&lt;p&gt;KHTML, like Gecko KHTML排版引擎，AppleWebKit用的排版引擎WebCore的鼻祖是KHTML。Gecko排版引擎，Firefox的排版引擎。不知为什么这里要写like，有关系吗？难道KHTML是模仿Gecko？呵呵。&lt;/p&gt;
+
+&lt;p&gt;Chrome/43.0.2357.134 当前Chrome的版本&lt;/p&gt;
+
+&lt;p&gt;Safari/537.36 不知道什么意思，但是Safari是苹果浏览器，而AppleWebKit也是苹果开发用于Safari，因此可能是AppleWebKit需要一部分Safari的功能。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Referer:http://192.168.10.214/test&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;发送这个请求的页面地址。我们这个请求是在百度首页发出的请求一张图片。故这个参数是百度的网址。&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>广告特征工程+人工智能：特征历史数据指导特征计算（三）</title>
+      <link>http://lilifeng.net/blogs/2015/08/01/algorithm-ad-feature-history-teach/</link>
+      <pubDate>Sat, 01 Aug 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>DSP</category>
+      
+      <category>算法</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/08/01/algorithm-ad-feature-history-teach/</guid>
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;特征历史数据指导特征计算&lt;/h1&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;按照概率的计算方式&lt;/h2&gt;
+
+&lt;p&gt;假设用户A已经拥有如下标签：&lt;strong&gt;F10男性&lt;/strong&gt;，&lt;strong&gt;F12已婚&lt;/strong&gt;，&lt;strong&gt;F16无子女&lt;/strong&gt;，&lt;strong&gt;F20本科&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;待投的广告有2个：&lt;strong&gt;微型轿车&lt;/strong&gt;、&lt;strong&gt;大中型轿车&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;那么我们将市场平均概率与该人的相应实际情况进行比较，也就是市场概率即此人的购车期望与此人的目前实际情况进行比较，涉及到期望的数据为：&lt;/p&gt;
+
+&lt;p&gt;与待投广告有关的市场期望标签：&lt;strong&gt;F2=用户.轿车.Exists(轿车.cat=微型)&lt;/strong&gt;,&lt;strong&gt;F6=用户.轿车.Exists(轿车.cat=中大型)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;根据往年历史调研，与此有关的几项数据有：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;50.3%
+P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;64.3%
+P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F12,F16,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;11.6%
+P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F20,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;22.7%
+P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F20,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;43.6%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;那么分别计算此人对某广告的期望与实际情况：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F12,F16,F20,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;为有车概率
+P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F12,F16,F20&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;或P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F12,F16,F20,^F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;为无车的概率&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;那么我们是需要计算&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F12,F16,F20,F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;1-^P
+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1-^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F12&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F20&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1-^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F12,F16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;^P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F20&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1-&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1-P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F2&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;按照均值的计算方式&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;来源的影响&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;时间的影响&lt;/h2&gt;
+
+</description>
+    </item>
     
     <item>
       <title>广告特征工程+人工智能：大数据结果引入并特征相关化（二）</title>
@@ -41,7 +592,17 @@
       <category>广告平台</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/</guid>
-      <description>&lt;h1 id=&quot;section&quot;&gt;大数据结果引入并特征相关化&lt;/h1&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;大数据结果引入并特征相关化&lt;/h1&gt;
 
 &lt;p&gt;1 平均年龄：微型轿车33.3，小型轿车33.6，紧凑型轿车34.6，中型轿车35.1，中大型轿车37.0，轿车34.4，SUV35.6，MPV35.3&lt;/p&gt;
 
@@ -82,8 +643,10 @@ from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&q
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F18,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;35.5%
 from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F19,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;40.9%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F20,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F2&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;22.7%
 from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F18,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;19.5%
-from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F19,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;34.6%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F19,F6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;34.6%
+from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&quot;nv&quot;&gt;$TIME&lt;/span&gt;, P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F20,F2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;/P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F6&lt;span class=&quot;o&quot;&gt;)=&lt;/span&gt;43.6%&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;6 所在行业：零售批发（微型15.8%，中大型轿车8.7%，SUV12.9%），贸易进出口（微型5.6%，中大型11.3%，SUV9.3%）&lt;/p&gt;
 
@@ -569,7 +1132,17 @@ from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&q
       <category>广告平台</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/</guid>
-      <description>&lt;h1 id=&quot;section&quot;&gt;在线程序化特征定义&lt;/h1&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;在线程序化特征定义&lt;/h1&gt;
 
 &lt;p&gt;例子，请参考&lt;a href=&quot;http://wenku.baidu.com/link?url=G3GSS98khJorXesmyl1uWMq-EHJgFyngkn-w6xxZEshkwJ6unOqs-5QZa5JGek37Ye8N3UD4zGA5G7IkjJ6DmLGfvYR3rwNN2d86kt9K_B3&quot;&gt;新华信2011年上半年的研究报告&lt;/a&gt;&lt;/p&gt;
 

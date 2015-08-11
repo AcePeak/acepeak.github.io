@@ -9,6 +9,15 @@ tags:
 - 算法
 ---
 
+> 系列列表：
+> 
+> [广告特征工程+人工智能：在线程序化特征定义（一）]({{site.url}}/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/)
+> 
+> [广告特征工程+人工智能：大数据结果引入并特征相关化（二）]({{site.url}}/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/)
+> 
+> [广告特征工程+人工智能：特征历史数据指导特征计算（三）]({{site.url}}/blogs/2012/08/01/algorithm-ad-feature-history-teach/)
+
+
 #大数据结果引入并特征相关化
 
 1 平均年龄：微型轿车33.3，小型轿车33.6，紧凑型轿车34.6，中型轿车35.1，中大型轿车37.0，轿车34.4，SUV35.6，MPV35.3
@@ -60,8 +69,10 @@ from $SOURCE, at $TIME, MEAN(F17|F9)=3.20
 {% highlight bash %}
 from $SOURCE, at $TIME, P(F18,F2)/P(F2)=35.5%
 from $SOURCE, at $TIME, P(F19,F2)/P(F2)=40.9%
+from $SOURCE, at $TIME, P(F20,F2)/P(F2)=22.7%
 from $SOURCE, at $TIME, P(F18,F6)/P(F6)=19.5%
 from $SOURCE, at $TIME, P(F19,F6)/P(F6)=34.6%
+from $SOURCE, at $TIME, P(F20,F2)/P(F6)=43.6%
 {% endhighlight %}
 
 6 所在行业：零售批发（微型15.8%，中大型轿车8.7%，SUV12.9%），贸易进出口（微型5.6%，中大型11.3%，SUV9.3%）

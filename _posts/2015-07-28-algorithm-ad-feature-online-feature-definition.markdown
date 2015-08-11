@@ -8,7 +8,15 @@ tags:
 - DSP
 - 算法
 ---
- 
+
+> 系列列表：
+> 
+> [广告特征工程+人工智能：在线程序化特征定义（一）]({{site.url}}/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/)
+> 
+> [广告特征工程+人工智能：大数据结果引入并特征相关化（二）]({{site.url}}/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/)
+> 
+> [广告特征工程+人工智能：特征历史数据指导特征计算（三）]({{site.url}}/blogs/2012/08/01/algorithm-ad-feature-history-teach/)
+
 #在线程序化特征定义
 
 例子，请参考[新华信2011年上半年的研究报告](http://wenku.baidu.com/link?url=G3GSS98khJorXesmyl1uWMq-EHJgFyngkn-w6xxZEshkwJ6unOqs-5QZa5JGek37Ye8N3UD4zGA5G7IkjJ6DmLGfvYR3rwNN2d86kt9K_B3)
