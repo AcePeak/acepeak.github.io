@@ -4,7 +4,7 @@ title: 基于C++的Hadoop Map/Reduce框架--HCE
 author: AcePeak
 categories: [Internet]
 tags: 
-- Web
+- 大数据
 - Hadoop
 ---
 

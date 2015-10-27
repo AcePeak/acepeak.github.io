@@ -4,8 +4,8 @@ title: 你不需要 Hadoop做数据分析的10个理由 —— 使用之前必�
 author: AcePeak
 categories: [Internet]
 tags: 
-- Web
 - Hadoop
+- 大数据
 ---
 
 `原文出处： [oschina](http://www.oschina.net/translate/hadoop-when-to-use)
