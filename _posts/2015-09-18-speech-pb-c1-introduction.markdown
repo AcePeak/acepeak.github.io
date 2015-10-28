@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【程序化购买】系列讲座之一：入门与简介
+title: 【程序化购买】系列之一：入门与简介
 author: AcePeak
 categories: [广告平台]
 tags: 
@@ -14,4 +14,4 @@ tags:
 20多年后，现如今互联网上的网络横幅广告总体的点击率一般在0.2%-0.5%之间，20年间相差了100-200倍的差距。
 
 
-[程序化购买】系列讲座之一：入门与简介]({{ site.url }}/file/PBC1-Introduction.pdf)
+[程序化购买】系列之一：入门与简介]({{ site.url }}/file/PBC1-Introduction.pdf)
