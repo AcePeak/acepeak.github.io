@@ -52,7 +52,8 @@ user permission xxx
 7 打开命令行工具，根据p4.counters.bak中的key和value进行p4 counter update
 
 {% highlight bash %}
-//example: change 1576; maxCommitChange 1576; upgrade 1576;
-p4 -C utf8 counter -f change 1576
-p4 -C utf8 counter -f maxCommitChange 1576
+//example: change 2794; maxCommitChange 2794; upgrade 23;
+p4 -p localhost:1666 -u ace -C utf8 counter -f change 2794
+p4 -p localhost:1666 -u ace -C utf8 counter -f maxCommitChange 2794
+p4 -p localhost:1666 -u ace -C utf8 counter -f upgrade 23
 {% endhighlight %}

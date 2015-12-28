@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Tue, 11 Aug 2015 14:04:12 +0800</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2015 14:04:12 +0800</lastBuildDate>
+    <pubDate>Tue, 17 Nov 2015 12:42:25 +0800</pubDate>
+    <lastBuildDate>Tue, 17 Nov 2015 12:42:25 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v2.5.3</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,2042 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>正则表达式中各种字符的含义</title>
+      <link>http://lilifeng.net/blogs/2015/11/01/regex/</link>
+      <pubDate>Sun, 01 Nov 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>spark</category>
+      
+      <category>大数据</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/11/01/regex/</guid>
+      <description>&lt;p&gt;【原文地址  http://www.cnblogs.com/afarmer/archive/2011/08/29/2158860.html#3291424】&lt;/p&gt;
+
+&lt;p&gt;正则表达式(regular expression)描述了一种字符串匹配的模式，可以用来检查一个串是否含有某种子串、将匹配的子串做替换或者从某个串中取出符合某个条件的子串等。&lt;/p&gt;
+
+&lt;p&gt;列目录时， dir &lt;em&gt;.txt或ls *.txt中的&lt;/em&gt;.txt就不是一个正则表达式,因为这里&lt;em&gt;与正则式的&lt;/em&gt;的含义是不同的。&lt;/p&gt;
+
+&lt;p&gt;正则表达式是由普通字符（例如字符 a 到 z）以及特殊字符（称为元字符）组成的文字模式。正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配。&lt;/p&gt;
+
+&lt;p&gt;3.1 普通字符&lt;/p&gt;
+
+&lt;p&gt;由所有那些未显式指定为元字符的打印和非打印字符组成。这包括所有的大写和小写字母字符，所有数字，所有标点符号以及一些符号。&lt;/p&gt;
+
+&lt;p&gt;3.2 非打印字符&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;字符&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;含义&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\cx&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配由x指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\f&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个换页符。等价于 \x0c 和 \cL。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\n&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个换行符。等价于 \x0a 和 \cJ。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\r&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个回车符。等价于 \x0d 和 \cM。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\s&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\S&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\t&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个制表符。等价于 \x09 和 \cI。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\v&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个垂直制表符。等价于 \x0b 和 \cK。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;3.3 特殊字符&lt;/p&gt;
+
+&lt;p&gt;所谓特殊字符，就是一些有特殊含义的字符，如上面说的”&lt;em&gt;.txt”中的&lt;/em&gt;，简单的说就是表示任何字符串的意思。如果要查找文件名中有＊的文件，则需要对＊进行转义，即在其前加一个\。ls *.txt。正则表达式有以下特殊字符。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;特别字符&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;说明&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配输入字符串的结尾位置。如果设置了 RegExp 对象的 Multiline 属性，则 $ 也匹配 ‘\n’ 或 ‘\r’。要匹配 $ 字符本身，请使用 $。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;( )&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;+&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;.&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配除换行符 \n之外的任何单字符。要匹配 .，请使用 \。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;标记一个中括号表达式的开始。要匹配 [，请使用 [。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 \?。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\’ 匹配 “\”，而 ‘(’ 则匹配 “(”。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配输入字符串的开始位置，除非在方括号表达式中使用，此时它表示不接受该字符集合。要匹配 ^ 字符本身，请使用 \^。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;标记限定符表达式的开始。要匹配 {，请使用 {。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;|&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;指明两项之间的一个选择。要匹配 &lt;code&gt;|&lt;/code&gt;，请使用 &lt;code&gt;\|&lt;/code&gt;。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;构造正则表达式的方法和创建数学表达式的方法一样。也就是用多种元字符与操作符将小的表达式结合在一起来创建更大的表达式。正则表达式的组件可以是单个的字符、字符集合、字符范围、字符间的选择或者所有这些组件的任意组合。&lt;/p&gt;
+
+&lt;p&gt;3.4 限定符&lt;/p&gt;
+
+&lt;p&gt;限定符用来指定正则表达式的一个给定组件必须要出现多少次才能满足匹配。有*或+或?或{n}或{n,}或{n,m}共6种。&lt;/p&gt;
+
+&lt;p&gt;*、+和?限定符都是贪婪的，因为它们会尽可能多的匹配文字，只有在它们的后面加上一个?就可以实现非贪婪或最小匹配。&lt;/p&gt;
+
+&lt;p&gt;正则表达式的限定符有：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;字符&lt;/em&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;em&gt;描述&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;+&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或一次。例如，”do(es)?” 可以匹配 “do” 或 “does” 中的”do” 。? 等价于 {0,1}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n,}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;n 是一个非负整数。至少匹配n 次。例如，’o{2,}’ 不能匹配 “Bob” 中的 ‘o’，但能匹配 “foooood” 中的所有 o。’o{1,}’ 等价于 ‘o+’。’o{0,}’ 则等价于 ‘o*’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n,m}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;m 和 n 均为非负整数，其中n &amp;lt;= m。最少匹配 n 次且最多匹配 m 次。例如，”o{1,3}” 将匹配 “fooooood” 中的前三个 o。’o{0,1}’ 等价于 ‘o?’。请注意在逗号和两个数之间不能有空格。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;3.5 定位符&lt;/p&gt;
+
+&lt;p&gt;用来描述字符串或单词的边界，^和$分别指字符串的开始与结束，\b描述单词的前或后边界，\B表示非单词边界。不能对定位符使用限定符。&lt;/p&gt;
+
+&lt;p&gt;3.6 选择&lt;/p&gt;
+
+&lt;p&gt;用圆括号将所有选择项括起来，相邻的选择项之间用&lt;code&gt;|&lt;/code&gt;分隔。但用圆括号会有一个副作用，是相关的匹配会被缓存，此时可用?:放在第一个选项前来消除这种副作用。&lt;/p&gt;
+
+&lt;p&gt;其中?:是非捕获元之一，还有两个非捕获元是?=和?!，这两个还有更多的含义，前者为正向预查，在任何开始匹配圆括号内的正则表达式模式的位置来匹配搜索字符串，后者为负向预查，在任何开始不匹配该正则表达式模式的位置来匹配搜索字符串。&lt;/p&gt;
+
+&lt;p&gt;3.7 后向引用&lt;/p&gt;
+
+&lt;p&gt;对一个正则表达式模式或部分模式两边添加圆括号将导致相关匹配存储到一个临时缓冲区中，所捕获的每个子匹配都按照在正则表达式模式中从左至右所遇到的内容存储。存储子匹配的缓冲区编号从 1 开始，连续编号直至最大 99 个子表达式。每个缓冲区都可以使用 ‘\n’ 访问，其中 n 为一个标识特定缓冲区的一位或两位十进制数。&lt;/p&gt;
+
+&lt;p&gt;可以使用非捕获元字符 ‘?:’, ‘?=’, or ‘?!’ 来忽略对相关匹配的保存。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;各种操作符的运算优先级&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;相同优先级的从左到右进行运算，不同优先级的运算先高后低。各种操作符的优先级从高到低如下：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;操作符&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;转义符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(), (?:), (?=), []&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;圆括号和方括号&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;*, +, ?, {n}, {n,}, {n,m}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;限定符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^, $, \anymetacharacter&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;位置和顺序&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;|&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;“或”操作&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;全部符号解释&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，’n’ 匹配字符 “n”。’\n’ 匹配一个换行符。序列 ‘\’ 匹配 “\” 而 “(” 则匹配 “(”。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 ‘\n’ 或 ‘\r’ 之后的位置。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 ‘\n’ 或 ‘\r’ 之前的位置。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;+&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或一次。例如，”do(es)?” 可以匹配 “do” 或 “does” 中的”do” 。? 等价于 {0,1}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n,}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;n 是一个非负整数。至少匹配n 次。例如，’o{2,}’ 不能匹配 “Bob” 中的 ‘o’，但能匹配 “foooood” 中的所有 o。’o{1,}’ 等价于 ‘o+’。’o{0,}’ 则等价于 ‘o*’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n,m}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;m 和 n 均为非负整数，其中n &amp;lt;= m。最少匹配 n 次且最多匹配 m 次。例如，”o{1,3}” 将匹配 “fooooood” 中的前三个 o。’o{0,1}’ 等价于 ‘o?’。请注意在逗号和两个数之间不能有空格。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串 “oooo”，’o+?’ 将匹配单个 “o”，而 ‘o+’ 将匹配所有 ‘o’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;.&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配除 “\n” 之外的任何单个字符。要匹配包括 ‘\n’ 在内的任何字符，请使用象 ‘[.\n]’ 的模式。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在VBScript 中使用 SubMatches 集合，在JScript 中则使用 $0…$9 属性。要匹配圆括号字符，请使用 ‘(’ 或 ‘)’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?:pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 “或” 字符 &lt;code&gt;(|)&lt;/code&gt; 来组合一个模式的各个部分是很有用。例如， &lt;code&gt;‘industr(?:y|ies)&lt;/code&gt; 就是一个比 &lt;code&gt;‘industry|industries’&lt;/code&gt; 更简略的表达式。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?=pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;正向预查，在任何匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，&lt;code&gt;’Windows (?=95|98|NT|2000)’&lt;/code&gt; 能匹配 “Windows 2000″ 中的 “Windows” ，但不能匹配 “Windows 3.1″ 中的 “Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?!pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;负向预查，在任何不匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如&lt;code&gt;’Windows (?!95|98|NT|2000)’&lt;/code&gt; 能匹配 “Windows 3.1″ 中的 “Windows”，但不能匹配 “Windows 2000″ 中的 “Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;x&lt;code&gt;|&lt;/code&gt;y&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 x 或 y。例如，’z&lt;code&gt;|&lt;/code&gt;food’ 能匹配 “z” 或 “food”。’(z&lt;code&gt;|&lt;/code&gt;f)ood’ 则匹配 “zood” 或 “food”。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[xyz]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符集合。匹配所包含的任意一个字符。例如， ‘[abc]’ 可以匹配 “plain” 中的 ‘a’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^xyz]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;负值字符集合。匹配未包含的任意字符。例如， ‘[^abc]’ 可以匹配 “plain” 中的’p’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[a-z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符范围。匹配指定范围内的任意字符。例如，’[a-z]’ 可以匹配 ‘a’ 到 ‘z’ 范围内的任意小写字母字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^a-z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;负值字符范围。匹配任何不在指定范围内的任意字符。例如，’[^a-z]’ 可以匹配任何不在 ‘a’ 到 ‘z’ 范围内的任意字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\b&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个单词边界，也就是指单词和空格间的位置。例如， ‘er\b’ 可以匹配”never” 中的 ‘er’，但不能匹配 “verb” 中的 ‘er’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\B&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配非单词边界。’er\B’ 能匹配 “verb” 中的 ‘er’，但不能匹配 “never” 中的 ‘er’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\cx&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\d&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个数字字符。等价于 [0-9]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\D&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个非数字字符。等价于 [^0-9]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\f&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个换页符。等价于 \x0c 和 \cL。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\n&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个换行符。等价于 \x0a 和 \cJ。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\r&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个回车符。等价于 \x0d 和 \cM。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\s&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\S&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\t&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个制表符。等价于 \x09 和 \cI。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\v&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个垂直制表符。等价于 \x0b 和 \cK。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\w&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配包括下划线的任何单词字符。等价于’[A-Za-z0-9_]’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\W&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何非单词字符。等价于 ‘[^A-Za-z0-9_]’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\xn&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，’\x41′ 匹配 “A”。’\x041′ 则等价于 ‘\x04′ &amp;amp; “1″。正则表达式中可以使用 ASCII 编码。.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\num&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，’(.)\1′ 匹配两个连续的相同字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\n&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\nm&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\nml&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\un&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 n，其中 n 是一个用四个十六进制数字表示的 Unicode 字符。例如， \u00A9 匹配版权符号 (?)。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;部分例子&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;正则表达式&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;说明&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/\b([a-z]+) \1\b/gi&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;一个单词连续出现的位置&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/(\w+):\/\/([^/:]+)(:\d&lt;em&gt;)?([^# ]&lt;/em&gt;)/&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;将一个URL解析为协议、域、端口及相对路径&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;/^(?:Chapter|Section) [1-9][0-9]{0,1}$/&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;定位章节的位置&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/[-a-z]/&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;A至z共26个字母再加一个-号。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/ter\b/&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;可匹配chapter，而不能terminal&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/\Bapt/&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;可匹配chapter，而不能aptitude&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;/Windows(?=95 |98 |NT )/&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;可匹配Windows95或Windows98或WindowsNT,当找到一个匹配后，从Windows后面开始进行下一次&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;正则表达式匹配规则&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;7.1 基本模式匹配&lt;/p&gt;
+
+&lt;p&gt;一切从最基本的开始。模式，是正规表达式最基本的元素，它们是一组描述字符串特征的字符。模式可以很简单，由普通的字符串组成，也可以非常复杂，往往用特殊的字符表示一个范围内的字符、重复出现，或表示上下文。例如：&lt;/p&gt;
+
+&lt;p&gt;^once&lt;/p&gt;
+
+&lt;p&gt;这个模式包含一个特殊的字符^，表示该模式只匹配那些以once开头的字符串。例如该模式与字符串”once upon a time”匹配，与”There once was a man from NewYork”不匹配。正如如^符号表示开头一样，$符号用来匹配那些以给定模式结尾的字符串。&lt;/p&gt;
+
+&lt;p&gt;bucket$&lt;/p&gt;
+
+&lt;p&gt;这个模式与”Who kept all of this cash in a bucket”匹配，与”buckets”不匹配。字符^和$同时使用时，表示精确匹配（字符串与模式一样）。例如：&lt;/p&gt;
+
+&lt;p&gt;^bucket$&lt;/p&gt;
+
+&lt;p&gt;只匹配字符串”bucket”。如果一个模式不包括^和$，那么它与任何包含该模式的字符串匹配。例如：模式&lt;/p&gt;
+
+&lt;p&gt;once&lt;/p&gt;
+
+&lt;p&gt;与字符串&lt;/p&gt;
+
+&lt;p&gt;There once was a man from NewYork 
+Who kept all of his cash in a bucket.&lt;/p&gt;
+
+&lt;p&gt;是匹配的。&lt;/p&gt;
+
+&lt;p&gt;在该模式中的字母(o-n-c-e)是字面的字符，也就是说，他们表示该字母本身，数字也是一样的。其他一些稍微复杂的字符，如标点符号和白字符（空格、制表符等），要用到转义序列。所有的转义序列都用反斜杠()打头。制表符的转义序列是：\t。所以如果我们要检测一个字符串是否以制表符开头，可以用这个模式：&lt;/p&gt;
+
+&lt;p&gt;^\t&lt;/p&gt;
+
+&lt;p&gt;类似的，用\n表示“新行”，\r表示回车。其他的特殊符号，可以用在前面加上反斜杠，如反斜杠本身用\表示，句号.用.表示，以此类推。&lt;/p&gt;
+
+&lt;p&gt;7.2 字符簇&lt;/p&gt;
+
+&lt;p&gt;在INTERNET的程序中，正规表达式通常用来验证用户的输入。当用户提交一个FORM以后，要判断输入的电话号码、地址、EMAIL地址、信用卡号码等是否有效，用普通的基于字面的字符是不够的。&lt;/p&gt;
+
+&lt;p&gt;所以要用一种更自由的描述我们要的模式的办法，它就是字符簇。要建立一个表示所有元音字符的字符簇，就把所有的元音字符放在一个方括号里：&lt;/p&gt;
+
+&lt;p&gt;[AaEeIiOoUu]&lt;/p&gt;
+
+&lt;p&gt;这个模式与任何元音字符匹配，但只能表示一个字符。用连字号可以表示一个字符的范围，如：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[a-z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//匹配所有的小写字母&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[A-Z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//匹配所有的大写字母&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[a-zA-Z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//匹配所有的字母&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[0-9]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//匹配所有的数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[0-9.-]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//匹配所有的数字，句号和减号&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[ \f\r\t\n]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//匹配所有的白字符&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;同样的，这些也只表示一个字符，这是一个非常重要的。如果要匹配一个由一个小写字母和一位数字组成的字符串，比如”z2″、”t6″或”g7″，但不是”ab2″、”r2d3″ 或”b52″的话，用这个模式：&lt;/p&gt;
+
+&lt;p&gt;^[a-z][0-9]$&lt;/p&gt;
+
+&lt;p&gt;尽管[a-z]代表26个字母的范围，但在这里它只能与第一个字符是小写字母的字符串匹配。&lt;/p&gt;
+
+&lt;p&gt;前面曾经提到^表示字符串的开头，但它还有另外一个含义。当在一组方括号里使用^是，它表示“非”或“排除”的意思，常常用来剔除某个字符。还用前面的例子，我们要求第一个字符不能是数字：&lt;/p&gt;
+
+&lt;p&gt;^[^0-9][0-9]$&lt;/p&gt;
+
+&lt;p&gt;这个模式与”&amp;amp;5″、”g7″及”-2″是匹配的，但与”12″、”66″是不匹配的。下面是几个排除特定字符的例子：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^a-z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//除了小写字母以外的所有字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^\\/\^]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//除了()(/)(^)之外的所有字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^\”\’]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//除了双引号(”)和单引号(’)之外的所有字符&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;特殊字符”.” (点，句号)在正规表达式中用来表示除了“新行”之外的所有字符。所以模式”^.5$”与任何两个字符的、以数字5结尾和以其他非“新行”字符开头的字符串匹配。模式”.”可以匹配任何字符串，除了空串和只包括一个“新行”的字符串。&lt;/p&gt;
+
+&lt;p&gt;PHP的正规表达式有一些内置的通用字符簇，列表如下：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符簇&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;含义&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:alpha:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何字母&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:digit:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:alnum:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何字母和数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:space:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何白字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:upper:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何大写字母&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:lower:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何小写字母&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:punct:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何标点符号&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[[:xdigit:]]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;任何16进制的数字，相当于[0-9a-fA-F]&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;7.3 确定重复出现&lt;/p&gt;
+
+&lt;p&gt;到现在为止，你已经知道如何去匹配一个字母或数字，但更多的情况下，可能要匹配一个单词或一组数字。一个单词有若干个字母组成，一组数字有若干个单数组成。跟在字符或字符簇后面的花括号({})用来确定前面的内容的重复出现的次数。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符簇&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;含义&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[a-zA-Z_]$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;所有的字母和下划线&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[[:alpha:]]{3}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;所有的3个字母的单词&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^a$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字母a&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^a{4}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;aaaa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^a{2,4}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;aa,aaa或aaaa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^a{1,3}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;a,aa或aaa&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^a{2,}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;包含多于两个a的字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^a{2,}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;如：aardvark和aaab，但apple不行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;a{2,}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;如：baad和aaa，但Nantucket不行&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\t{2}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;两个制表符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;.{2}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;所有的两个字符&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;这些例子描述了花括号的三种不同的用法。一个数字，{x}的意思是“前面的字符或字符簇只出现x次”；一个数字加逗号，{x,}的意思是“前面的内容出现x或更多的次数”；两个用逗号分隔的数字，{x,y}表示“前面的内容至少出现x次，但不超过y次”。我们可以把模式扩展到更多的单词或数字：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[a-zA-Z0-9_]{1,}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有包含一个以上的字母、数字或下划线的字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[0-9]{1,}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有的正数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^-{0,1}[0-9]{1,}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有的整数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^-{0,1}[0-9]{0,}.{0,1}[0-9]{0,}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有的小数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;最后一个例子不太好理解，是吗？这么看吧：与所有以一个可选的负号(-{0,1})开头(^)、跟着0个或更多的数字([0-9]{0,})、和一个可选的小数点(.{0,1})再跟上0个或多个数字([0-9]{0,})，并且没有其他任何东西($)。下面你将知道能够使用的更为简单的方法。&lt;/p&gt;
+
+&lt;p&gt;特殊字符”?”与{0,1}是相等的，它们都代表着：“0个或1个前面的内容”或“前面的内容是可选的”。所以刚才的例子可以简化为：&lt;/p&gt;
+
+&lt;p&gt;^-?[0-9]{0,}.?[0-9]{0,}$&lt;/p&gt;
+
+&lt;p&gt;特殊字符”*”与{0,}是相等的，它们都代表着“0个或多个前面的内容”。最后，字符”+”与 {1,}是相等的，表示“1个或多个前面的内容”，所以上面的4个例子可以写成：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[a-zA-Z0-9_]+$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有包含一个以上的字母、数字或下划线的字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[0-9]+$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有的正数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^-?[0-9]+$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有的整数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^-?[0-9]&lt;em&gt;.?[0-9]&lt;/em&gt;$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;//所有的小数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;当然这并不能从技术上降低正规表达式的复杂性，但可以使它们更容易阅读。&lt;/p&gt;
+
+&lt;p&gt;转自：http://blog.sina.com.cn/s/blog_461c24d50100dtnz.html&lt;/p&gt;
+
+&lt;p&gt;正则表达式非常有用，查找、匹配、处理字符串、替换和转换字符串，输入输出等。而且各种语言都支持，例如.NET正则库，JDK正则包, Perl, JavaScript等各种脚本语言都支持正则表达式。下面整理一些常用的正则表达式。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;描述&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;将下一个字符标记为一个特殊字符、或一个原义字符、或一个 向后引用、或一个八进制转义符。例如，’n’ 匹配字符 “n”。’\n’ 匹配一个换行符。序列 ‘\’ 匹配 “&quot; 而 “(” 则匹配 “(“。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配输入字符串的开始位置。如果设置了 RegExp 对象的 Multiline 属性，^ 也匹配 ‘\n’ 或 ‘\r’ 之后的位置。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配输入字符串的结束位置。如果设置了RegExp 对象的 Multiline 属性，$ 也匹配 ‘\n’ 或 ‘\r’ 之前的位置。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;*&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;+&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配前面的子表达式零次或一次。例如，”do(es)?” 可以匹配 “do” 或 “does” 中的”do” 。? 等价于 {0,1}。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n,}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;n 是一个非负整数。至少匹配n 次。例如，’o{2,}’ 不能匹配 “Bob” 中的 ‘o’，但能匹配 “foooood” 中的所有 o。’o{1,}’ 等价于 ‘o+’。’o{0,}’ 则等价于 ‘o*‘。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;{n,m}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;m 和 n 均为非负整数，其中n &amp;lt;= m。最少匹配 n 次且最多匹配 m 次。例如，”o{1,3}” 将匹配 “fooooood” 中的前三个 o。’o{0,1}’ 等价于 ‘o?’。请注意在逗号和两个数之间不能有空格。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;当该字符紧跟在任何一个其他限制符 (*, +, ?, {n}, {n,}, {n,m}) 后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串 “oooo”，’o+?’ 将匹配单个 “o”，而 ‘o+’ 将匹配所有 ‘o’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;.&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配除 “\n” 之外的任何单个字符。要匹配包括 ‘\n’ 在内的任何字符，请使用象 ‘[.\n]’ 的模式。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 pattern 并获取这一匹配。所获取的匹配可以从产生的 Matches 集合得到，在VBScript 中使用 SubMatches 集合，在JScript 中则使用 $0…$9 属性。要匹配圆括号字符，请使用 ‘(’ 或 ‘)‘。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?:pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 “或” 字符 (&lt;code&gt;|&lt;/code&gt;) 来组合一个模式的各个部分是很有用。例如， &lt;code&gt;&#39;industr(?:y|ies)&lt;/code&gt; 就是一个比 &lt;code&gt;&#39;industry|industries&#39;&lt;/code&gt; 更简略的表达式。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?=pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;正向预查，在任何匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，&lt;code&gt;&#39;Windows (?=95|98|NT|2000)&#39;&lt;/code&gt; 能匹配 “Windows 2000” 中的 “Windows” ，但不能匹配 “Windows 3.1” 中的 “Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?!pattern)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;负向预查，在任何不匹配 pattern 的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如&lt;code&gt;&#39;Windows (?!95|98|NT|2000)&#39;&lt;/code&gt; 能匹配 “Windows 3.1” 中的 “Windows”，但不能匹配 “Windows 2000” 中的 “Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;x|y&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 x 或 y。例如，&lt;code&gt;&#39;z|food&#39;&lt;/code&gt; 能匹配 “z” 或 “food”。&lt;code&gt;&#39;(z|f)ood&#39;&lt;/code&gt; 则匹配 “zood” 或 “food”。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[xyz]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符集合。匹配所包含的任意一个字符。例如， ‘[abc]’ 可以匹配 “plain” 中的 ‘a’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^xyz]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;负值字符集合。匹配未包含的任意字符。例如， ‘[^abc]’ 可以匹配 “plain” 中的’p’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[a-z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;字符范围。匹配指定范围内的任意字符。例如，’[a-z]’ 可以匹配 ‘a’ 到 ‘z’ 范围内的任意小写字母字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^a-z]&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;负值字符范围。匹配任何不在指定范围内的任意字符。例如，’[^a-z]’ 可以匹配任何不在 ‘a’ 到 ‘z’ 范围内的任意字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\b&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个单词边界，也就是指单词和空格间的位置。例如， ‘er\b’ 可以匹配”never” 中的 ‘er’，但不能匹配 “verb” 中的 ‘er’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\B&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配非单词边界。’er\B’ 能匹配 “verb” 中的 ‘er’，但不能匹配 “never” 中的 ‘er’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\cx&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配由 x 指明的控制字符。例如， \cM 匹配一个 Control-M 或回车符。x 的值必须为 A-Z 或 a-z 之一。否则，将 c 视为一个原义的 ‘c’ 字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\d&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个数字字符。等价于 [0-9]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\D&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个非数字字符。等价于 [^0-9]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\f&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个换页符。等价于 \x0c 和 \cL。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\n&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个换行符。等价于 \x0a 和 \cJ。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\r&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个回车符。等价于 \x0d 和 \cM。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\s&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\S&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\t&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个制表符。等价于 \x09 和 \cI。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\v&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配一个垂直制表符。等价于 \x0b 和 \cK。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\w&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配包括下划线的任何单词字符。等价于’[A-Za-z0-9_]’。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\W&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配任何非单词字符。等价于 ‘[^A-Za-z0-9_]‘。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\xn&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 n，其中 n 为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，’\x41’ 匹配 “A”。’\x041’ 则等价于 ‘\x04’ &amp;amp; “1”。正则表达式中可以使用 ASCII 编码。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\num&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配 num，其中 num 是一个正整数。对所获取的匹配的引用。例如，’(.)\1’ 匹配两个连续的相同字符。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\n&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;标识一个八进制转义值或一个向后引用。如果 \n 之前至少 n 个获取的子表达式，则 n 为向后引用。否则，如果 n 为八进制数字 (0-7)，则 n 为一个八进制转义值。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\nm&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;标识一个八进制转义值或一个向后引用。如果 \nm 之前至少有 nm 个获得子表达式，则 nm 为向后引用。如果 \nm 之前至少有 n 个获取，则 n 为一个后跟文字 m 的向后引用。如果前面的条件都不满足，若 n 和 m 均为八进制数字 (0-7)，则 \nm 将匹配八进制转义值 nm。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;\nml&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;如果 n 为八进制数字 (0-3)，且 m 和 l 均为八进制数字 (0-7)，则匹配八进制转义值 nml。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/i&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;使正则表达式对大小写不敏感, (?-i)是关闭大小写不敏感 (?i)te(?-i)st应该匹配TEst，但是不能匹配teST或TEST.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/s&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;开启“单行模式”，即点号“.”匹配新行符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;/m&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;开启“多行模式”，即“^”和“$”匹配新行符的前面和后面的位置。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[0-9]*$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^\d{n}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入n位的数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^\d{n,}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入至少n位的数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^\d{m,n}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入m~n位的数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;^(0|[1-9][0-9]*)$	&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入零和非零开头的数字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[0-9]+(.[0-9]{2})?$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入有两位小数的正实数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[0-9]+(.[0-9]{1,3})?$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入有1~3位小数的正实数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^+?[1-9][0-9]*$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入非零的正整数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^-[1-9][]0-9”*$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入非零的负整数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^.{3}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入长度为3的字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[A-Za-z]+$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入由26个英文字母组成的字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[A-Za-z0-9]+$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入由数字和26个英文字母组成的字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^\w+$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入由数字、26个英文字母或者下划线组成的字符串&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[a-zA-Z]\w{5,17}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;验证用户密码：以字母开头，长度在6~18之间，只能包含字符、数字和下划线。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;[^%&amp;amp;’,;=?$\x22]+&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;验证是否含有^%&amp;amp;’,;=?$&quot;等字符&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^[\u4e00-\u9fa5]{0,}$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;只能输入汉字&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^\w+([-+.]\w+)&lt;em&gt;@\w+([-.]\w+)&lt;/em&gt;.\w+([-.]\w+)*$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;验证Email地址&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;^http://([\w-]+.)+[\w-]+(/[\w-./?%&amp;amp;=]*)?$&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;验证InternetURL&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;^\d{15}|\d{18}$&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;验证身份证号（15位或18位数字）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code&gt;^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;验证IP地址&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(\w)\1&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配两个两个重叠出现的字符 例如，”aabbc11asd”， 返回结果为aa bb 11三组match&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&amp;lt;(?&lt;tag&gt;[^\s&amp;gt;]+)[^&amp;gt;]*&amp;gt;.*&amp;lt;/\k&lt;tag&gt;&amp;gt;&lt;/tag&gt;&lt;/tag&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配成对的HTML标签&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?!)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;不出现，负声明&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;下例演示如何取得一个&lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt;标签对中的全部内容，即使其中包含别的HTML tag。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newsContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;url:&amp;lt;a href=&amp;quot;&amp;quot;1.html&amp;quot;&amp;quot;&amp;gt;&amp;lt;img src=&amp;quot;&amp;quot;1.gif&amp;quot;&amp;quot;&amp;gt;test&amp;lt;span style=&amp;quot;&amp;quot;color:red;&amp;quot;&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;Regex&amp;lt;/span&amp;gt;&amp;lt;/a&amp;gt;.&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;Regex&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;regEnd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Regex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@`&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;lt;\s*a[^&amp;gt;]*&amp;gt;([^&amp;lt;]|&amp;lt;(?!/a))*&amp;lt;\s*/a\s*&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RegexOptions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Multiline&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;匹配组&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;常用的组匹配：(实用)&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(exp)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配exp并且捕获到一个自动命名的组&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?&lt;name&gt;exp)&lt;/name&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;匹配exp并且捕获到组’name’&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;(?=exp)&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;exp出现在声明右侧，但exp不作为匹配&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;括号中的模式必须出现在声明右侧，但不作为匹配的一部分 ，例如：&lt;/p&gt;
+
+&lt;p&gt;输入： public keywod string “abc”; 
+正则：\b\w+(?=ing\b)，返回“str”， 
+意思为：匹配以ing结束的单词，但ing不作为返回
+(?&amp;lt;=exp)	exp出现在声明左侧，但exp不作为匹配&lt;/p&gt;
+
+&lt;p&gt;括号中的模式必须出现在声明左侧，但不作为匹配的一部分 ，例如：&lt;/p&gt;
+
+&lt;p&gt;输入： public remember string “abc”; 
+正则：(?&amp;lt;=\bre)\w+\b，返回“member”， 
+意思为：匹配以re开头的单词，但re不作为返回
+(?!exp)&lt;/p&gt;
+
+&lt;p&gt;exp不出现在声明右侧，但exp不作为匹配&lt;/p&gt;
+
+&lt;p&gt;括号中的模式必须不出现在声明右侧 ，例如：&lt;/p&gt;
+
+&lt;p&gt;输入： remember aqa bqu “abc”; 
+正则：\b\w&lt;em&gt;q(?!u)\w&lt;/em&gt;\b，返回“aqa”， 
+意思为：匹配带q后面不是跟随u的单词
+(?&amp;lt;!exp)&lt;/p&gt;
+
+&lt;p&gt;exp不出现在声明左侧，但exp不作为匹配&lt;/p&gt;
+
+&lt;p&gt;输入：public string keywod = “abc”; string value = “test”;&lt;/p&gt;
+
+&lt;p&gt;目的：匹配 关键字=”“，例如获得关键字keyword，value；获得等于的值abc和test&lt;/p&gt;
+
+&lt;p&gt;表达式：string (?&lt;x&gt;[^=]*?) *= *(?&lt;y&gt;[^;]*?);&lt;/y&gt;&lt;/x&gt;&lt;/p&gt;
+
+&lt;p&gt;代码：&lt;/p&gt;
+
+&lt;p&gt;private void ParseKeywords(string input)
+{
+ System.Text.RegularExpressions.MatchCollection mc = 
+ System.Text.RegularExpressions.Regex.Matches(input, @”string (?&lt;x&gt;[^=]*?) *= *(?&lt;y&gt;[^;]*?);&quot;);&lt;/y&gt;&lt;/x&gt;&lt;/p&gt;
+
+&lt;p&gt;if (mc != null &amp;amp;&amp;amp; mc.Count &amp;gt; 0)
+ {
+ foreach (System.Text.RegularExpressions.Match m in mc)
+ {
+ string keyword = m.Groups[“x”].Value;
+ string value = m.Groups[“y”].Value;
+ }
+ }
+}
+2. 匹配并替换&lt;/p&gt;
+
+&lt;p&gt;输入：public &amp;lt;%=classname%&amp;gt;Extension : IExt&lt;/p&gt;
+
+&lt;p&gt;目的：匹配 &amp;lt;%= %&amp;gt;中间的classname并替换&lt;/p&gt;
+
+&lt;p&gt;表达式：&amp;lt;%=.*%&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;代码：&lt;/p&gt;
+
+&lt;p&gt;private string Replace(string input)
+{
+ return Regex.Replace(input, @”&amp;lt;%=.*%&amp;gt;”, new MatchEvaluator(RefineCodeTag), RegexOptions.Singleline);
+}&lt;/p&gt;
+
+&lt;p&gt;string RefineCodeTag(Match m)
+{
+ string x = m.ToString();&lt;/p&gt;
+
+&lt;p&gt;x = Regex.Replace(x, “&amp;lt;%=”, “”);
+ x = Regex.Replace(x, “%&amp;gt;”, “”);&lt;/p&gt;
+
+&lt;p&gt;return x.Trim() + “,”;
+}
+正则表达式选项RegexOptions:&lt;/p&gt;
+
+&lt;p&gt;ExplicitCapture&lt;/p&gt;
+
+&lt;p&gt;n	
+只有定义了命名或编号的组才捕获&lt;/p&gt;
+
+&lt;p&gt;IgnoreCase	i	不区分大小写
+IgnorePatternWhitespace	x	消除模式中的非转义空白并启用由 # 标记的注释。
+MultiLine	m	
+多行模式，其原理是修改了^和$的含义&lt;/p&gt;
+
+&lt;p&gt;SingleLine	s	
+单行模式，和MultiLine相对应&lt;/p&gt;
+
+&lt;p&gt;正则表达式替换的其他功能：&lt;/p&gt;
+
+&lt;p&gt;$number	把匹配的第number组替换成替换表达式&lt;/p&gt;
+
+&lt;p&gt;这段代码返回的是 “01 012 03 05”&lt;/p&gt;
+
+&lt;p&gt;就是说，对组一的每个匹配结果都用”0$1”这个表达式来替换，”0$1”中”$1”由组1匹配的结果代入&lt;/p&gt;
+
+&lt;p&gt;public static void Main()
+{ 
+ string s = “1 12 3 5”;
+ s = Regex.Replace(s,@”(\d+)(?#这个是注释)”,”0$1”,RegexOptions.Compiled|RegexOptions.IgnoreCase);
+ Console.WriteLine(s);
+ Console.ReadLine();
+ }
+${name}&lt;/p&gt;
+
+&lt;p&gt;把匹配的组名为”name”的组替换成表达式，&lt;/p&gt;
+
+&lt;p&gt;上例的Regex expression改成@”(?&lt;name&gt;\d+)(?#这个是注释)&quot;后面的替换式改为&quot;0${name}&quot;结果是一样的&lt;/name&gt;&lt;/p&gt;
+
+&lt;p&gt;$$&lt;/p&gt;
+
+&lt;p&gt;做$的转义符，如上例表达式改成@”(?&lt;name&gt;\d+)(?#这个是注释)&quot;和&quot;$$${name}&quot;，则结果为&quot;$1 $12 $3 $5&quot;&lt;/name&gt;&lt;/p&gt;
+
+&lt;p&gt;$&amp;amp;	替换整个匹配
+$`	替换匹配前的字符
+$’	替换匹配后的字符
+$+	替换最后匹配的组
+$_	替换整个字符串&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;匹配URL中文件名&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;输入：http://www.9499.net/page1.htm&lt;/p&gt;
+
+&lt;p&gt;目的：从URL地址中提取文件名&lt;/p&gt;
+
+&lt;p&gt;表达式：s=s.replace(/(.&lt;em&gt;\/){0,}([^.]+).&lt;/em&gt;/ig,”$2”) ;&lt;/p&gt;
+
+&lt;p&gt;代码：&lt;/p&gt;
+
+&lt;p&gt;string s = “http://www.9499.net/page1.htm”; 
+s = s.replace(/(.&lt;em&gt;\/){0,}([^.]+).&lt;/em&gt;/ig, “$2”) ;&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Spark&amp;Spark性能调优实战</title>
+      <link>http://lilifeng.net/blogs/2015/10/26/spark-optimization/</link>
+      <pubDate>Mon, 26 Oct 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>spark</category>
+      
+      <category>大数据</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/10/26/spark-optimization/</guid>
+      <description>&lt;p&gt;【原文地址  http://blog.csdn.net/zcc_0015/article/details/38460917】&lt;/p&gt;
+
+&lt;p&gt;Spark特别适用于多次操作特定的数据，分mem-only和mem &amp;amp; disk。其中mem-only:效率高，但占用大量的内存，成本很高;mem &amp;amp; disk:内存用完后，会自动向磁盘迁移，解决了内存不足的问题，却带来了数据的置换的消费。Spark常见的调优工具有nman、Jmeter和Jprofile,以下是Spark调优的一个实例分析：&lt;/p&gt;
+
+&lt;p&gt;1、场景：精确客户群&lt;/p&gt;
+
+&lt;p&gt;对一个容量为300g的客户信息表在spark上进行查询优化，该大宽表有1800多列，有效使用的有20列。&lt;/p&gt;
+
+&lt;p&gt;2、优化达到的效果：查询由原来的40.232s降低为2.7s&lt;/p&gt;
+
+&lt;p&gt;3、优化过程分析&lt;/p&gt;
+
+&lt;p&gt;第一步：首先发现磁盘存在大量的iowait，通过查看相关日志文件，发现一个block的大小进而推算出整个数据文件大小为300G整个内存无法容纳，采用压缩的方法实现优化，结合本数据文件的特点，存在大量的0和1，选 Gzip算法进行压缩，压缩后的大小为1.9G，该步使得查询从40.232降为了20.12s。&lt;/p&gt;
+
+&lt;p&gt;第二步：大宽表存在1800多列，而有效使用的只有20多列，故通过RCFILE只将有效的列加载，该步使得查询从20s降为12s。&lt;/p&gt;
+
+&lt;p&gt;第三步：通过Jprofile分析出CPU的负载过高，到底是什么原因造成的，仔细发现序列化机制有问题。Spark的serialization框架有两种：java自身的和kryo的。其中kryo 是一个快速高效的Java对象图形序列化框架,主要特点是性能、高效和易用，换成kryo后，查询从12s降到7s。&lt;/p&gt;
+
+&lt;p&gt;第四步：进一步分析CPU各核负载量很不均匀，内存也没有用满，系统的资源没有得到充分利用，该如何利用？ (1)Spark的RDD的partition个数创建task的个数是对应的;(2)Partition的个数在hadoop的RDD中由block的个数决定的，内存：系统总内存数=work内存大小&lt;em&gt;work数=SPARK_WORKER_MEMORY&lt;/em&gt;SPARK_WORKER_INSTANCES;&lt;/p&gt;
+
+&lt;p&gt;CPU:系统总的task数=work数×work所占的cores数=SPARK_WORKER_INSTANCES*SPARK_WORKER_CORES，计算task并行度，内存分配情况，调优参数：&lt;/p&gt;
+
+&lt;p&gt;SPARK_WORKER_INSTANCES=4&lt;/p&gt;
+
+&lt;p&gt;SPARK_WORKER_CORES = 3&lt;/p&gt;
+
+&lt;p&gt;SPARK_WORKER_MEMORY = 6G&lt;/p&gt;
+
+&lt;p&gt;Cpu(12core)  mem(24G)，通过这几个参数的优化，查询由7s降到5s。&lt;/p&gt;
+
+&lt;p&gt;第五步：进一步发现Sharkserver端出现明显的fullGC,通过调优参数&lt;/p&gt;
+
+&lt;p&gt;Export SHARK_MASTER_MEM=2g,该步由6s降到3sl;&lt;/p&gt;
+
+&lt;p&gt;第六步：又发现当两表关联时，cpu 出现瓶颈，分析原因是日表做了gzip压缩，优化方法：日表不使用gzip压缩，将日表做成内存表。查询从3s降到2s。&lt;/p&gt;
+
+&lt;p&gt;4、总结&lt;/p&gt;
+
+&lt;p&gt;优化是一个逐步求精的过程，回顾该优化过程，主要是从以下几个因素考虑：(1)mem;(2)cpu;(3)dis;(4)网络IO;(5)序列化机制。认真这些因素为主线，挖掘与其相关的内容时行大胆尝试。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Flume1.6.0连接Kafka0.8.2以及其中可能出现的问题</title>
+      <link>http://lilifeng.net/blogs/2015/10/15/flume-with-kafka/</link>
+      <pubDate>Thu, 15 Oct 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>Flume</category>
+      
+      <category>Kafka</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/10/15/flume-with-kafka/</guid>
+      <description>&lt;p&gt;最终正确的example.conf文件如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;example.conf: A single-node Flume configuration
+
+&lt;span class=&quot;c&quot;&gt;# Name the components on this agent&lt;/span&gt;
+a1.sources &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; r2
+a1.sinks &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; k1
+a1.channels &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; c1
+
+a1.sources.r1.type &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; netcat
+a1.sources.r1.bind &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; localhost
+a1.sources.r1.port &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 44444
+
+a1.sources.r2.type &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; org.apache.flume.source.kafka.KafkaSource
+a1.sources.r2.zookeeperConnect &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; localhost:2181
+a1.sources.r2.topic &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; my-replicated-topic
+
+&lt;span class=&quot;c&quot;&gt;# Describe the sink&lt;/span&gt;
+a1.sinks.k1.type &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; logger
+
+&lt;span class=&quot;c&quot;&gt;# Use a channel which buffers events in memory&lt;/span&gt;
+a1.channels.c1.type &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; memory
+a1.channels.c1.capacity &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1000
+a1.channels.c1.transactionCapacity &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 100
+
+&lt;span class=&quot;c&quot;&gt;# Bind the source and sink to the channel&lt;/span&gt;
+a1.sources.r1.channels &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; c1
+a1.sources.r2.channels &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; c1
+a1.sinks.k1.channel &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; c1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;问题：&lt;/p&gt;
+
+&lt;p&gt;1 Class Not Found&lt;/p&gt;
+
+&lt;p&gt;需要使用正确的type即KafkaSource，网上有些type是&lt;code&gt;org.apache.flume.plugins.KafkaSource&lt;/code&gt;，已经与Flume1.6.0不兼容了。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;a1.sources.r2.type &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; org.apache.flume.source.kafka.KafkaSource&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;2 Unable to start PollableSourceRunner&lt;/p&gt;
+
+&lt;p&gt;主要原因是zookeeper.jar没有被Flume找到，因此解决这个问题的步骤如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;clone flume.env.template and rename one to flume.env.&lt;/li&gt;
+  &lt;li&gt;edit flume.env and set the zookeeper path like this:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;FLUME_CLASSPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;/Codes/apache-kafka/kafka_2.10-0.8.2.2/libs/zookeeper-3.4.6.jar&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;restart flume&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3 Flume与kafka通讯速度慢&lt;/p&gt;
+
+&lt;p&gt;把partition.key和partition.class配置去掉，调整flume日志级别为ERROR级，处理性能可以提升不少。&lt;/p&gt;
+
+&lt;p&gt;80万数据不到10S处理完成。&lt;/p&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Spark的硬件配置</title>
+      <link>http://lilifeng.net/blogs/2015/10/11/spark-hardware/</link>
+      <pubDate>Sun, 11 Oct 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>spark</category>
+      
+      <category>大数据</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/10/11/spark-hardware/</guid>
+      <description>&lt;p&gt;从MapReduce的兴起，就带来一种思路，就是希望通过大量廉价的机器来处理以前需要耗费昂贵资源的海量数据。这种方式事实上是一种架构的水平伸缩模式——真正的以量取胜。毕竟，以现在的硬件发展来看，CPU的核数、内存的容量以及海量存储硬盘，都慢慢变得低廉而高效。然而，对于商业应用的海量数据挖掘或分析来看，硬件成本依旧是开发商非常关注的。当然最好的结果是：既要马儿跑得快，还要马儿少吃草。&lt;/p&gt;
+
+&lt;p&gt;Spark相对于Hadoop的MapReduce而言，确乎要跑得迅捷许多。然而，Spark这种In-Memory的计算模式，是否在硬件资源尤其是内存资源的消耗上，要求更高呢？我既找不到这么多机器，也无法租用多台虚拟instance，再没法测评的情况下，只要寻求Spark的官方网站，又或者通过Google搜索。从Spark官方网站，Databricks公司Patrick Wendell的演讲以及Matei Zaharia的Spark论文，找到了一些关于Spark硬件配置的支撑数据。&lt;/p&gt;
+
+&lt;p&gt;Spark与存储系统&lt;/p&gt;
+
+&lt;p&gt;如果Spark使用HDFS作为存储系统，则可以有效地运用Spark的standalone mode cluster，让Spark与HDFS部署在同一台机器上。这种模式的部署非常简单，且读取文件的性能更高。当然，Spark对内存的使用是有要求的，需要合理分配它与HDFS的资源。因此，需要配置Spark和HDFS的环境变量，为各自的任务分配内存和CPU资源，避免相互之间的资源争用。&lt;/p&gt;
+
+&lt;p&gt;若HDFS的机器足够好，这种部署可以优先考虑。若数据处理的执行效率要求非常高，那么还是需要采用分离的部署模式，例如部署在Hadoop YARN集群上。&lt;/p&gt;
+
+&lt;p&gt;Spark对磁盘的要求&lt;/p&gt;
+
+&lt;p&gt;Spark是in memory的迭代式运算平台，因此它对磁盘的要求不高。Spark官方推荐为每个节点配置4-8块磁盘，且并不需要配置为RAID（即将磁盘作为单独的mount point）。然后，通过配置spark.local.dir来指定磁盘列表。&lt;/p&gt;
+
+&lt;p&gt;Spark对内存的要求&lt;/p&gt;
+
+&lt;p&gt;Spark虽然是in memory的运算平台，但从官方资料看，似乎本身对内存的要求并不是特别苛刻。官方网站只是要求内存在8GB之上即可（Impala要求机器配置在128GB）。当然，真正要高效处理，仍然是内存越大越好。若内存超过200GB，则需要当心，因为JVM对超过200GB的内存管理存在问题，需要特别的配置。&lt;/p&gt;
+
+&lt;p&gt;内存容量足够大，还得真正分给了Spark才行。Spark建议需要提供至少75%的内存空间分配给Spark，至于其余的内存空间，则分配给操作系统与buffer cache。这就需要部署Spark的机器足够干净。&lt;/p&gt;
+
+&lt;p&gt;考虑内存消耗问题，倘若我们要处理的数据仅仅是进行一次处理，用完即丢弃，就应该避免使用cache或persist，从而降低对内存的损耗。若确实需要将数据加载到内存中，而内存又不足以加载，则可以设置Storage Level。0.9版本的Spark提供了三种Storage Level：MEMORY_ONLY（这是默认值），MEMORY_AND_DISK，以及DISK_ONLY。&lt;/p&gt;
+
+&lt;p&gt;关于数据的持久化，Spark默认是持久化到内存中。但它也提供了三种持久化RDD的存储方式：&lt;/p&gt;
+
+&lt;p&gt;in-memory storage as deserialized Java objects&lt;/p&gt;
+
+&lt;p&gt;in-memory storage as serialised data&lt;/p&gt;
+
+&lt;p&gt;on-disk storage&lt;/p&gt;
+
+&lt;p&gt;第一种存储方式性能最优，第二种方式则对RDD的展现方式（Representing）提供了扩展，第三种方式则用于内存不足时。&lt;/p&gt;
+
+&lt;p&gt;然而，在最新版（V1.0.2）的Spark中，提供了更多的Storage Level选择。一个值得注意的选项是OFF_HEAP，它能够将RDD以序列化格式存储到Tachyon中。相比MEMORY_ONLY_SER，这一选项能够减少执行垃圾回收，使Spark的执行器（executor）更小，并能共享内存池。Tachyon是一个基于内存的分布式文件系统，性能远超HDFS。Tachyon与Spark同源同宗，都烙有伯克利AMPLab的印记。目前，Tachyon的版本为0.5.0，还处于实验阶段。&lt;/p&gt;
+
+&lt;p&gt;注意，RDDs是Lazy的，在执行Transformation操作如map、filter时，并不会提交Job，只有在执行Action操作如count、first时，才会执行Job，此时才会进行数据的加载。当然，对于一些shuffle操作，例如reduceByKey，虽然仅是Transformation操作，但它在执行时会将一些中间数据进行持久化，而无需显式调用persist()函数。这是为了应对当节点出现故障时，能够避免针对大量数据进行重计算。要计算Spark加载的Dataset大小，可以通过Spark提供的Web UI Monitoring工具来帮助分析与判断。&lt;/p&gt;
+
+&lt;p&gt;Spark的RDD是具有分区（partition）的，Spark并非是将整个RDD一次性加载到内存中。Spark针对partition提供了eviction policy，这一Policy采用了LRU（Least Recently Used）机制。当一个新的RDD分区需要计算时，如果没有合适的空间存储，就会根据LRU策略，将最少访问的RDD分区弹出，除非这个新分区与最少访问的分区属于同一个RDD。这也在一定程度上缓和了对内存的消耗。&lt;/p&gt;
+
+&lt;p&gt;Spark对内存的消耗主要分为三部分：&lt;/p&gt;
+
+&lt;p&gt;数据集中对象的大小；&lt;/p&gt;
+
+&lt;p&gt;访问这些对象的内存消耗；&lt;/p&gt;
+
+&lt;p&gt;垃圾回收GC的消耗。&lt;/p&gt;
+
+&lt;p&gt;一个通常的内存消耗计算方法是：内存消耗大小= 对象字段中原生数据 * (2~5)。 这是因为Spark运行在JVM之上，操作的Java对象都有定义的“object header”，而数据结构（如Map，LinkedList）对象自身也需要占用内存空间。此外，对于存储在数据结构中的基本类型，还需要装箱（Boxing）。Spark也提供了一些内存调优机制，例如执行对象的序列化，可以释放一部分内存空间。还可以通过为JVM设置flag来标记存放的字节数（选择4个字节而非8个字节）。在JDK 7下，还可以做更多优化，例如对字符编码的设置。这些配置都可以在spark-env.sh中设置。&lt;/p&gt;
+
+&lt;p&gt;Spark对网络的要求&lt;/p&gt;
+
+&lt;p&gt;Spark属于网络绑定型系统，因而建议使用10G及以上的网络带宽。&lt;/p&gt;
+
+&lt;p&gt;Spark对CPU的要求&lt;/p&gt;
+
+&lt;p&gt;Spark可以支持一台机器扩展至数十个CPU core，它实现的是线程之间最小共享。若内存足够大，则制约运算性能的就是网络带宽与CPU数。&lt;/p&gt;
+
+&lt;p&gt;Spark官方利用Amazon EC2的环境对Spark进行了基准测评。例如，在交互方式下进行数据挖掘（Interative Data Mining），租用Amazon EC2的100个实例，配置为8核、68GB的内存。对1TB的维基百科页面查阅日志（维基百科两年的数据）进行数据挖掘。在查询时，针对整个输入数据进行全扫描，只需要耗费5-7秒的时间。如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151011_1.png&quot; alt=&quot;DataSize&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在Matei Zaharia的Spark论文中还给出了一些使用Spark的真实案例。视频处理公司Conviva，使用Spark将数据子集加载到RDD中。报道说明，对于200GB压缩过的数据进行查询和聚合操作，并运行在两台Spark机器上，占用内存为96GB，执行完全部操作需要耗费30分钟左右的时间。同比情况下，Hadoop需要耗费20小时。注意：之所以200GB的压缩数据只占用96GB内存，是因为RDD的处理方式，使得我们可以只加载匹配客户过滤的行和列，而非所有压缩数据。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hadoop VS Spark</title>
+      <link>http://lilifeng.net/blogs/2015/10/10/spark-vs-hadoop/</link>
+      <pubDate>Sat, 10 Oct 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>spark</category>
+      
+      <category>hadoop</category>
+      
+      <category>大数据</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/10/10/spark-vs-hadoop/</guid>
+      <description>&lt;p&gt;Hadoop
+首先看一下Hadoop解决了什么问题，Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
+HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。
+MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_1.jpg&quot; alt=&quot;Map&amp;amp;Reduce&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;用MapReduce统计一个文本文件中单词出现的频率的示例WordCount请参见：WordCount - Hadoop Wiki，如果对MapReduce不恨熟悉，通过该示例对MapReduce进行一些了解对理解下文有帮助。&lt;/p&gt;
+
+&lt;p&gt;在MapReduce中，Shuffle是一个非常重要的过程，正是有了看不见的Shuffle过程，才可以使在MapReduce之上写数据处理的开发者完全感知不到分布式和并发的存在。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_2.jpg&quot; alt=&quot;Hadoop Definitive Guide By Tom White&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;广义的Shuffle是指图中在Map和Reuce之间的一系列过程。&lt;/p&gt;
+
+&lt;p&gt;Hadoop的局限和不足
+但是，MapRecue存在以下局限，使用起来比较困难。
+抽象层次低，需要手工编写代码来完成，使用上难以上手。
+只提供两个操作，Map和Reduce，表达力欠缺。
+一个Job只有Map和Reduce两个阶段（Phase），复杂的计算需要大量的Job完成，Job之间的依赖关系是由开发者自己管理的。
+处理逻辑隐藏在代码细节中，没有整体逻辑
+中间结果也放在HDFS文件系统中
+ReduceTask需要等待所有MapTask都完成后才可以开始
+时延高，只适用Batch数据处理，对于交互式数据处理，实时数据处理的支持不够
+对于迭代式数据处理性能比较差&lt;/p&gt;
+
+&lt;p&gt;比如说，用MapReduce实现两个表的Join都是一个很有技巧性的过程，如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_3.jpg&quot; alt=&quot;用MapReduce实现两个表的Join&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;因此，在Hadoop推出之后，出现了很多相关的技术对其中的局限进行改进，如Pig，Cascading，JAQL，OOzie，Tez，Spark等。&lt;/p&gt;
+
+&lt;p&gt;Apache Pig
+Apache Pig也是Hadoop框架中的一部分，Pig提供类SQL语言（Pig Latin）通过MapReduce来处理大规模半结构化数据。而Pig Latin是更高级的过程语言，通过将MapReduce中的设计模式抽象为操作，如Filter，GroupBy，Join，OrderBy，由这些操作组成有向无环图（DAG）。例如如下程序：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;visits&lt;/span&gt;             &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visits&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gVisits&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visits&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;visitCounts&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gVisits&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;urlInfo&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlInfo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pRank&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;visitCounts&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;join&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visitCounts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urlInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;gCategories&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;group&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visitCounts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;by&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;topUrls&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gCategories&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visitCounts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;store&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;topUrls&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;into&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;‘&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;topUrls&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;’&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;描述了数据处理的整个过程。&lt;/p&gt;
+
+&lt;p&gt;而Pig Latin又是通过编译为MapReduce，在Hadoop集群上执行的。上述程序被编译成MapReduce时，会产生如下图所示的Map和Reduce：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_4.jpg&quot; alt=&quot;Pig Latin被编译成MapReduce&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Apache Pig解决了MapReduce存在的大量手写代码，语义隐藏，提供操作种类少的问题。类似的项目还有Cascading，JAQL等。&lt;/p&gt;
+
+&lt;p&gt;Apache Tez
+Apache Tez，Tez是HortonWorks的Stinger Initiative的的一部分。作为执行引擎，Tez也提供了有向无环图（DAG），DAG由顶点（Vertex）和边（Edge）组成，Edge是对数据的移动的抽象，提供了One-To-One，BroadCast，和Scatter-Gather三种类型，只有Scatter-Gather才需要进行Shuffle。&lt;/p&gt;
+
+&lt;p&gt;以如下SQL为例：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;AVERAGE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;JOIN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;itemId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;itemId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;state&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_5.jpg&quot; alt=&quot;MapReduce VS Tez&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;途中蓝色方块表示Map，绿色方块表示Reduce，云状表示写屏障（write barrier，一种内核机制，可以理解为持久的写），Tez的优化主要体现在：
+去除了连续两个作业之间的写屏障
+去除了每个工作流中多余的Map阶段（Stage）
+通过提供DAG语义和操作，提供了整体的逻辑，通过减少不必要的操作，Tez提升了数据处理的执行性能。&lt;/p&gt;
+
+&lt;p&gt;Apache Spark
+Apache Spark是一个新兴的大数据处理的引擎，主要特点是提供了一个集群的分布式内存抽象，以支持需要工作集的应用。&lt;/p&gt;
+
+&lt;p&gt;这个抽象就是RDD（Resilient Distributed Dataset），RDD就是一个不可变的带分区的记录集合，RDD也是Spark中的编程模型。Spark提供了RDD上的两类操作，转换和动作。转换是用来定义一个新的RDD，包括map, flatMap, filter, union, sample, join, groupByKey, cogroup, ReduceByKey, cros, sortByKey, mapValues等，动作是返回一个结果，包括collect, reduce, count, save, lookupKey。&lt;/p&gt;
+
+&lt;p&gt;Spark的API非常简单易用，Spark的WordCount的示例如下所示：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spark&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SparkContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;appName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sparkHome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;jars&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spark&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;textFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;hdfs://...&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counts&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flatMap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+                 &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+                 &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reduceByKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;counts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;saveAsTextFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;hdfs://...&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;其中的file是根据HDFS上的文件创建的RDD，后面的flatMap，map，reduceByKe都创建出一个新的RDD，一个简短的程序就能够执行很多个转换和动作。&lt;/p&gt;
+
+&lt;p&gt;在Spark中，所有RDD的转换都是是惰性求值的。RDD的转换操作会生成新的RDD，新的RDD的数据依赖于原来的RDD的数据，每个RDD又包含多个分区。那么一段程序实际上就构造了一个由相互依赖的多个RDD组成的有向无环图（DAG）。并通过在RDD上执行动作将这个有向无环图作为一个Job提交给Spark执行。&lt;/p&gt;
+
+&lt;p&gt;例如，上面的WordCount程序就会生成如下的DAG&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;scala&amp;gt; counts.toDebugString
+res0: &lt;span class=&quot;nv&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+MapPartitionsRDD&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;7&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; at reduceByKey at &amp;lt;console&amp;gt;:14 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  ShuffledRDD&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;6&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; at reduceByKey at &amp;lt;console&amp;gt;:14 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    MapPartitionsRDD&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;5&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; at reduceByKey at &amp;lt;console&amp;gt;:14 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+      MappedRDD&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;4&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; at map at &amp;lt;console&amp;gt;:14 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        FlatMappedRDD&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;3&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; at flatMap at &amp;lt;console&amp;gt;:14 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+          MappedRDD&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; at textFile at &amp;lt;console&amp;gt;:12 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            HadoopRDD&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;0&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; at textFile at &amp;lt;console&amp;gt;:12 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Spark对于有向无环图Job进行调度，确定阶段（Stage），分区（Partition），流水线（Pipeline），任务（Task）和缓存（Cache），进行优化，并在Spark集群上运行Job。RDD之间的依赖分为宽依赖（依赖多个分区）和窄依赖（只依赖一个分区），在确定阶段时，需要根据宽依赖划分阶段。根据分区划分任务。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_6.jpg&quot; alt=&quot;Spark DAG&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Spark支持故障恢复的方式也不同，提供两种方式，Linage，通过数据的血缘关系，再执行一遍前面的处理，Checkpoint，将数据集存储到持久存储中。&lt;/p&gt;
+
+&lt;p&gt;Spark为迭代式数据处理提供更好的支持。每次迭代的数据可以保存在内存中，而不是写入文件。&lt;/p&gt;
+
+&lt;p&gt;Spark的性能相比Hadoop有很大提升，2014年10月，Spark完成了一个Daytona Gray类别的Sort Benchmark测试，排序完全是在磁盘上进行的，与Hadoop之前的测试的对比结果如表格所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_7.jpg&quot; alt=&quot;Spark Sort Benchmark&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从表格中可以看出排序100TB的数据（1万亿条数据），Spark只用了Hadoop所用1/10的计算资源，耗时只有Hadoop的1/3。&lt;/p&gt;
+
+&lt;p&gt;Spark的优势不仅体现在性能提升上的，Spark框架为批处理（Spark Core），交互式（Spark SQL），流式（Spark Streaming），机器学习（MLlib），图计算（GraphX）提供一个统一的数据处理平台，这相对于使用Hadoop有很大优势。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_8.jpg&quot; alt=&quot;Spark Architect&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;按照Databricks的连城的说法是One Stack To Rule Them All&lt;/p&gt;
+
+&lt;p&gt;特别是在有些情况下，你需要进行一些ETL工作，然后训练一个机器学习的模型，最后进行一些查询，如果是使用Spark，你可以在一段程序中将这三部分的逻辑完成形成一个大的有向无环图（DAG），而且Spark会对大的有向无环图进行整体优化。&lt;/p&gt;
+
+&lt;p&gt;例如下面的程序：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;points&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqlContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sql&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;   &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;latitude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;longitude&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;historic_tweets&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KMeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;sc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;twitterStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;closestCenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reduceByWindow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;”&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;（示例来源：http://www.slideshare.net/Hadoop_Summit/building-a-unified-data-pipeline-in-apache-spark）
+这段程序的第一行是用Spark SQL 查寻出了一些点，第二行是用MLlib中的K-means算法使用这些点训练了一个模型，第三行是用Spark Streaming处理流中的消息，使用了训练好的模型。&lt;/p&gt;
+
+&lt;p&gt;Lambda Architecture
+Lambda Architecture是一个大数据处理平台的参考模型，如下图所示：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/151010_9.jpg&quot; alt=&quot;Lambda Architecture&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中包含3层，Batch Layer，Speed Layer和Serving Layer，由于Batch Layer和Speed Layer的数据处理逻辑是一致的，如果用Hadoop作为Batch Layer，而用Storm作为Speed Layer，你需要维护两份使用不同技术的代码。&lt;/p&gt;
+
+&lt;p&gt;而Spark可以作为Lambda Architecture一体化的解决方案,大致如下：
+Batch Layer，HDFS+Spark Core，将实时的增量数据追加到HDFS中，使用Spark Core批量处理全量数据，生成全量数据的视图。，
+Speed Layer，Spark Streaming来处理实时的增量数据，以较低的时延生成实时数据的视图。
+Serving Layer，HDFS+Spark SQL（也许还有BlinkDB），存储Batch Layer和Speed Layer输出的视图，提供低时延的即席查询功能，将批量数据的视图与实时数据的视图合并。
+总结
+如果说，MapReduce是公认的分布式数据处理的低层次抽象，类似逻辑门电路中的与门，或门和非门，那么Spark的RDD就是分布式大数据处理的高层次抽象，类似逻辑电路中的编码器或译码器等。&lt;/p&gt;
+
+&lt;p&gt;RDD就是一个分布式的数据集合（Collection），对这个集合的任何操作都可以像函数式编程中操作内存中的集合一样直观、简便，但集合操作的实现确是在后台分解成一系列Task发送到几十台上百台服务器组成的集群上完成的。最近新推出的大数据处理框架Apache Flink也使用数据集（Data Set）和其上的操作作为编程模型的。&lt;/p&gt;
+
+&lt;p&gt;由RDD组成的有向无环图（DAG）的执行是调度程序将其生成物理计划并进行优化，然后在Spark集群上执行的。Spark还提供了一个类似于MapReduce的执行引擎，该引擎更多地使用内存，而不是磁盘，得到了更好的执行性能。&lt;/p&gt;
+
+&lt;p&gt;那么Spark解决了Hadoop的哪些问题呢？
+抽象层次低，需要手工编写代码来完成，使用上难以上手。
+=&amp;gt;基于RDD的抽象，实数据处理逻辑的代码非常简短。。
+只提供两个操作，Map和Reduce，表达力欠缺。
+=&amp;gt;提供很多转换和动作，很多基本操作如Join，GroupBy已经在RDD转换和动作中实现。
+一个Job只有Map和Reduce两个阶段（Phase），复杂的计算需要大量的Job完成，Job之间的依赖关系是由开发者自己管理的。
+=&amp;gt;一个Job可以包含RDD的多个转换操作，在调度时可以生成多个阶段（Stage），而且如果多个map操作的RDD的分区不变，是可以放在同一个Task中进行。
+处理逻辑隐藏在代码细节中，没有整体逻辑
+=&amp;gt;在Scala中，通过匿名函数和高阶函数，RDD的转换支持流式API，可以提供处理逻辑的整体视图。代码不包含具体操作的实现细节，逻辑更清晰。
+中间结果也放在HDFS文件系统中
+=&amp;gt;中间结果放在内存中，内存放不下了会写入本地磁盘，而不是HDFS。
+ReduceTask需要等待所有MapTask都完成后才可以开始
+=&amp;gt; 分区相同的转换构成流水线放在一个Task中运行，分区不同的转换需要Shuffle，被划分到不同的Stage中，需要等待前面的Stage完成后才可以开始。
+时延高，只适用Batch数据处理，对于交互式数据处理，实时数据处理的支持不够
+=&amp;gt;通过将流拆成小的batch提供Discretized Stream处理流数据。
+对于迭代式数据处理性能比较差
+=&amp;gt;通过在内存中缓存数据，提高迭代式计算的性能。&lt;/p&gt;
+
+&lt;p&gt;因此，Hadoop MapReduce会被新一代的大数据处理平台替代是技术发展的趋势，而在新一代的大数据处理平台中，Spark目前得到了最广泛的认可和支持，从参加Spark Summit 2014的厂商的各种基于Spark平台进行的开发就可以看出一二。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Linux下用Shell批量修改文本类型文件格式</title>
+      <link>http://lilifeng.net/blogs/2015/10/09/linux-shell-change-file-encoding/</link>
+      <pubDate>Fri, 09 Oct 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>shell</category>
+      
+      <category>linux</category>
+      
+      
+      <category>internet</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/10/09/linux-shell-change-file-encoding/</guid>
+      <description>
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;find ./ -type f -iname &lt;span class=&quot;s1&quot;&gt;&amp;#39;*.txt&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;i&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+	&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%.*&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+	iconv -f gbk -t utf-8 &lt;span class=&quot;s2&quot;&gt;&amp;quot;`echo ${i%.*}.txt`&amp;quot;&lt;/span&gt;&amp;gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;`echo ${i}.tmp`&amp;quot;&lt;/span&gt;
+	mv &lt;span class=&quot;s2&quot;&gt;&amp;quot;`echo ${i}.tmp`&amp;quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;`echo ${i%.*}.txt`&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>【程序化购买】系列之一：入门与简介</title>
+      <link>http://lilifeng.net/blogs/2015/09/18/speech-pb-c1-introduction/</link>
+      <pubDate>Fri, 18 Sep 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原生</category>
+      
+      <category>程序化购买</category>
+      
+      <category>讲座</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/09/18/speech-pb-c1-introduction/</guid>
+      <description>&lt;p&gt;20多年前，也就是1994年10月27日，有史以来第一个网络横幅广告登上了hotwired.com网。在之后的四个月里，看到这个广告的网民中有44％的人点击了它。
+20多年后，现如今互联网上的网络横幅广告总体的点击率一般在0.2%-0.5%之间，20年间相差了100-200倍的差距。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/file/PBC1-Introduction.pdf&quot;&gt;程序化购买】系列之一：入门与简介&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Stay Hungry, Stay Foolish - Jobs</title>
+      <link>http://lilifeng.net/blogs/2015/08/11/stay-hungry-stay-foolish/</link>
+      <pubDate>Tue, 11 Aug 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>Jobs</category>
+      
+      
+      <category>博文</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/08/11/stay-hungry-stay-foolish/</guid>
+      <description>&lt;p&gt;‘You’ve got to find what you love,’ Jobs says&lt;/p&gt;
+
+&lt;p&gt;This is the text of the Commencement address by Steve Jobs, CEO of Apple Computer and of Pixar Animation Studios, delivered on June 12, 2005.&lt;/p&gt;
+
+&lt;p&gt;I am honored to be with you today at your commencement from one of the finest universities in the world. Truth be told, I never graduated from college and this is the closest I’ve ever gotten to a college graduation. Today I want to tell you three stories from my life. That’s it. No big deal. Just 3 stories.&lt;/p&gt;
+
+&lt;p&gt;The first story is about connecting the dots.&lt;/p&gt;
+
+&lt;p&gt;I dropped out of Reed College after the first 6 months, but then stayed around as a drop-in for another 18 months or so before I really quit. So why did I drop out?&lt;/p&gt;
+
+&lt;p&gt;It started before I was born. My biological mother was a young, unwed college graduate student, and she decided to put me up for adoption. She felt very strongly that I should be adopted by college graduates, so everything was all set for me to be adopted at birth by a lawyer and his wife. Except that when I popped out they decided at the last minute that they really wanted a girl. So my parents, who were on a waiting list, got a call in the middle of the night asking: “We’ve got an unexpected baby boy; do you want him?” They said: “Of course.” My biological mother found out later that my mother had never graduated from college and that my father had never graduated from high school. She refused to sign the final adoption papers. She only relented a few months later when my parents promised that I would go to the college. This was the start in my life.&lt;/p&gt;
+
+&lt;p&gt;And 17 years later I did go to college. But I naively chose a college that was almost as expensive as Stanford, and all of my working-class parents’ savings were being spent on my college tuition. After six months, I couldn’t see the value in it. I had no idea what I wanted to do with my life and no idea how college was going to help me figure it out. And here I was spending all of the money my parents had saved their entire life. So I decided to drop out and trust that it would all work out OK. It was pretty scary at the time, but looking back it was one of the best decisions I ever made. The minute I dropped out I could stop taking the required classes that didn’t interest me, and begin dropping in on the ones that looked far more interesting.&lt;/p&gt;
+
+&lt;p&gt;It wasn’t all romantic. I didn’t have a dorm room, so I slept on the floor in friends’ rooms, I returned coke bottles for the 5¢ deposits to buy food with, and I would walk the 7 miles across town every Sunday night to get one good meal a week at the Hare Krishna temple. I loved it. And much of what I stumbled into by following my curiosity and intuition turned out to be priceless later on. Let me give you one example:&lt;/p&gt;
+
+&lt;p&gt;Reed College at that time offered perhaps the best calligraphy instruction in the country. Throughout the campus every poster, every label on every drawer, was beautifully hand calligraphed. Because I had dropped out and didn’t have to take the normal classes, I decided to take a calligraphy class to learn how to do this. I learned about serif and san serif typefaces, about varying the amount of space between different letter combinations, about what makes great typography great. It was beautiful, historical, artistically subtle in a way that science can’t capture, and I found it fascinating.&lt;/p&gt;
+
+&lt;p&gt;None of this had even a hope of any practical application in my life. But ten years later, when we were designing the first Macintosh computer, it all came back to me. And we designed it all into the Mac. It was the first computer with beautiful typography. If I had never dropped in on that single course in college, the Mac would have never had multiple typefaces or proportionally spaced fonts. And since Windows just copied the Mac, its likely that no personal computer would have them. If I had never dropped out, I would have never dropped in on this calligraphy class, and personal computers might not have the wonderful typography that they do. Of course it was impossible to connect the dots looking forward when I was in college. But it was very, very clear looking backwards ten years later.&lt;/p&gt;
+
+&lt;p&gt;Again, you can’t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something — your gut, destiny, life, karma, whatever, because believing that the dots will connect down the road would give you the confidence to follow your heart even when it will lead you off the well worn path and that will make all the difference.&lt;/p&gt;
+
+&lt;p&gt;My second story is about love and loss.&lt;/p&gt;
+
+&lt;p&gt;I was lucky — I found what I loved to do early in life. Woz and I started Apple in my parents garage when I was 20. We worked hard, and in 10 years Apple had grown from just the two of us in a garage into a $2 billion company with over 4000 employees. We had just released our finest creation — the Macintosh — a year earlier, and I had just turned 30. And then I got fired. How can you get fired from a company you started? Well, as Apple grew we hired someone who I thought was very talented to run the company with me, and for the first year or so things went well. But then our visions of the future began to diverge and eventually we had a falling out. When we did, our Board of Directors sided with him. So at 30 I was out. And very publicly out. What had been the focus of my entire adult life was gone, and it was devastating.&lt;/p&gt;
+
+&lt;p&gt;I really didn’t know what to do for a few months. I felt that I had let the previous generation of entrepreneurs down - that I had dropped the baton as it was being passed to me. I met with David Packard and Bob Noyce and tried to apologize for screwing up so badly. I was a very public failure, and I even thought about running away from the valley. But something slowly began to dawn on me — I still loved what I did. The turn of events at Apple had not changed that one bit. I had been rejected, but I was still in love. And so I decided to start over.&lt;/p&gt;
+
+&lt;p&gt;I didn’t see it then, but it turned out that getting fired from Apple was the best thing that could have ever happened to me. The heaviness of being successful was replaced by the lightness of being a beginner again, less sure about everything. It freed me to enter one of the most creative periods of my life.&lt;/p&gt;
+
+&lt;p&gt;During the next five years, I started a company named NeXT, another company named Pixar, and fell in love with an amazing woman who would become my wife. Pixar went on to create the world’s first computer animated feature film, Toy Story, and is now the most successful animation studio in the world. In a remarkable turn of events, Apple bought NeXT, I returned to Apple, and the technology we developed at NeXT is at the heart of Apple’s current renaissance. And Laurene and I have a wonderful family together.&lt;/p&gt;
+
+&lt;p&gt;I’m pretty sure none of this would have happened if I hadn’t been fired from Apple. It was awful tasting medicine, but I guess the patient needed it. Sometimes life hits you in the head with a brick. Don’t lose faith. I’m convinced that the only thing that kept me going was that I loved what I did. You’ve got to find what you love. And that is as true for your work as it is for your lovers. Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle. As with all matters of the heart, you’ll know when you find it. And, like any great relationship, it just gets better and better as the years roll on. So keep looking. Don’t settle.&lt;/p&gt;
+
+&lt;p&gt;My third story is about death.&lt;/p&gt;
+
+&lt;p&gt;When I was 17, I read a quote that went something like: “If you live each day as if it was your last, someday you’ll most certainly be right.” It made an impression on me, and since then, for the past 33 years, I have looked in the mirror every morning and asked myself: “If today were the last day of my life, would I want to do what I am about to do today?” And whenever the answer has been “No” for too many days in a row, I know I need to change something.&lt;/p&gt;
+
+&lt;p&gt;Remembering that I’ll be dead soon is the most important tool I’ve ever encountered to help me make the big choices in life. Because almost everything — all external expectations, all pride, all fear of embarrassment or failure - these things just fall away in the face of death, leaving only what is truly important. Remembering that you are going to die is the best way I know to avoid the trap of thinking you have something to lose. You are already naked. There is no reason not to follow your heart.&lt;/p&gt;
+
+&lt;p&gt;About a year ago I was diagnosed with cancer. I had a scan at 7:30 in the morning, and it clearly showed a tumor on my pancreas. I didn’t even know what a pancreas was. The doctors told me this was almost certainly a type of cancer that is incurable, and that I should expect to live no longer than three to six months. My doctor advised me to go home and get my affairs in order, which is doctor’s code for prepare to die. It means to try and to tell your kids everything you thought you’d have the next 10 years to tell them in just a few months. It means to make sure everything is buttoned up so that it will be as easy as possible for your family. It means to say your goodbyes.&lt;/p&gt;
+
+&lt;p&gt;I lived with that diagnosis all day. Later that evening I had a biopsy, where they stuck an endoscope down my throat, through my stomach and into my intestines, put a needle into my pancreas and got a few cells from the tumor. I was sedated, but my wife, who was there, told me that when they viewed the cells under a microscope the doctors started crying because it turned out to be a very rare form of pancreatic cancer that is curable with surgery. I had the surgery and I’m fine now.&lt;/p&gt;
+
+&lt;p&gt;This was the closest I’ve been to facing death, and I hope its the closest I get for a few more decades. Having lived through it, I can now say this to you with a bit more certainty than when death was a useful but purely intellectual concept:&lt;/p&gt;
+
+&lt;p&gt;No one wants to die. Even people who want to go to heaven don’t want to die to get there. And yet death is the destination we all share. No one has ever escaped it. And that is as it should be, because Death is very likely the single best invention of Life. It is Life’s change agent. It clears out the old to make way for the new. Right now the new is you, but someday not too long from now, you will gradually become the old and be cleared away. Sorry to be so dramatic, but it is quite true.&lt;/p&gt;
+
+&lt;p&gt;Your time is limited, so don’t waste it living someone else’s life. Don’t be trapped by dogma — which is living with the results of other people’s thinking. Don’t let the noise of others’ opinions drown out your own inner voice. And most important, have the courage to follow your heart and intuition. They somehow already know what you truly want to become. Everything else is secondary.&lt;/p&gt;
+
+&lt;p&gt;When I was young, there was an amazing publication called The Whole Earth Catalog, which was one of the bibles of my generation. It was created by a fellow named Stewart Brand not far from here in Menlo Park, and he brought it to life with his poetic touch. This was in the late 1960’s, before personal computers and desktop publishing, so it was all made with typewriters, scissors, and polaroid cameras. It was sort of like Google in paperback form, 35 years before Google came along: it was idealistic, and overflowing with neat tools and great notions.&lt;/p&gt;
+
+&lt;p&gt;Stewart and his team put out several issues of The Whole Earth Catalog, and then when it had run its course, they put out a final issue. It was the mid-1970s, and I was your age. On the back cover of their final issue was a photograph of an early morning country road, the kind you might find yourself hitchhiking on if you were so adventurous. Beneath it were the words: “Stay Hungry. Stay Foolish.” It was their farewell message as they signed off. Stay Hungry. Stay Foolish. And I have always wished that for myself. And now, as you graduate to begin anew, I wish that for you.&lt;/p&gt;
+
+&lt;p&gt;Stay Hungry. Stay Foolish.&lt;/p&gt;
+
+&lt;p&gt;Thank you all very much.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Perforce意外重启后无法启动的问题</title>
@@ -69,10 +2105,101 @@ user permission xxx&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;7 打开命令行工具，根据p4.counters.bak中的key和value进行p4 counter update&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;//example: change 1576&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; maxCommitChange 1576&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; upgrade 1576&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-p4 -C utf8 counter -f change 1576
-p4 -C utf8 counter -f maxCommitChange 1576&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;//example: change 2794&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; maxCommitChange 2794&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; upgrade 23&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+p4 -p localhost:1666 -u ace -C utf8 counter -f change 2794
+p4 -p localhost:1666 -u ace -C utf8 counter -f maxCommitChange 2794
+p4 -p localhost:1666 -u ace -C utf8 counter -f upgrade 23&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
+</description>
+    </item>
+    
+    <item>
+      <title>网络广告术语之IAB用语</title>
+      <link>http://lilifeng.net/blogs/2015/08/07/Advertise-glossary-iab/</link>
+      <pubDate>Fri, 07 Aug 2015 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>术语</category>
+      
+      
+      <category>广告平台</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2015/08/07/Advertise-glossary-iab/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Deal ID&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cross-Device Targeting&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Cookie Usage&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Ad Serving&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Campaign Optimization&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Audience Extensions&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Dynamic Allocation&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Tech Stack&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Emerging Technology &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Viewability Standards&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Real Time Bidding (RTB)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Supply Side Platforms (SSP)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Demand Side Platforms (DSP)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Exchanges&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Data Management Platforms (DMP)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Yield Management&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Audience Buying&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Open Marketplace&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Private Marketplace&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Automated Guaranteed&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Unreserved Fixed Rate&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Invitation Only Auction&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Open Auction&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Trading Desks&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;New Ad Networks&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Managed Services&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Programmatic IPOs/M&amp;amp;A activity&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Campaign Optimization&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Price Transparency&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Audience Discovery&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Buying process&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Programmatic vendors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Multi-channel programmatic&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Mobile Targeting&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Social vendors&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Automated Native&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Linear TV&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Radio&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -6799,9 +8926,9 @@ kern.maxfilesperproc: 50000&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       <pubDate>Thu, 23 Apr 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
-      <category>Web</category>
-      
       <category>Hadoop</category>
+      
+      <category>大数据</category>
       
       
       <category>internet</category>
@@ -7516,7 +9643,7 @@ The conditioned http://www.neptun-digital.com/beu/buy-levothyroxine-no-rx-in-usa
       <pubDate>Tue, 31 Mar 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
-      <category>Web</category>
+      <category>大数据</category>
       
       <category>Hadoop</category>
       
@@ -11398,8 +13525,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 
 &lt;p&gt;在网页上出现的企业和产品的标识(商标，C1)等，规格多为120X60Pixies，投放位置常出现在网站首页或二级主页面上。与按钮广告相比，两种广告在表现形式和效果上区别不大，都是引导浏览者与企业沟通的途径。标识广告形象、生动，标识性强，有利于塑造商家晶牌形象。同时点击标识，可链接商家的有关信息或网站。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/img/141228_2.png&quot; alt=&quot;标识广告&quot; /&gt;
-&lt;img src=&quot;/img/141228_4.png&quot; alt=&quot;下拉式标识广告&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/141228_2.png&quot; alt=&quot;标识广告&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Full Column: 通栏广告&lt;/code&gt;&lt;/p&gt;
 
@@ -11460,6 +13586,8 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 
 &lt;p&gt;Crazy Ad是雅虎取的名称，其实也就是流媒体这种广告形式。在频道首页下载后出现几秒的大尺寸图片广告，第一时间吸引用户的注意力 ，然后慢慢收缩成一个button，或者是消失。&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/img/141228_4.png&quot; alt=&quot;流媒体广告&quot; /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;code&gt;iCast: 多媒体视窗广告/网视广告&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;是一种不需要受众安装任何插件就可以播放的整合视频、音频、动画图像、双向信息通信和用户交互功能的新一代网络广告解决方案。iCast广告突破了传统Internet广告带宽瓶颈对内容容量的限制，采用了独创的“Transparent Download”（透明下载）技术，利用带宽空闲时在后台进行广告下载，对于用户正常浏览网页的行为没有任何影响。&lt;/p&gt;
@@ -11471,13 +13599,19 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 &lt;p&gt;视频广告，分为传统视频广告和移动视频广告两类。传统视频广告是在视频内的广告进行设置和投放，而移动视频广告分为传统贴片广告和In-App视频广告，是指在移动设备内进行的插播视频的模式。
 移动视频广告，则主要通过移动互联网在移动设备中（手机、PSP、平板电脑等）所展现的一种方式，其技术主要采用数码及HTML5技术，融合视频、音频、图像及动画，在手机用户开启或退出移动应用等“碎片时间” 来插播视频。移动视频广告主要应用于移动互联网，在移动设备中展示，作为一种新的展示模式，用户正处于慢慢接受的过程，因此，过度频繁的移动视频展示，不仅不能树立品牌效果，还可能导致用户体验受损。&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/img/141228_18.png&quot; alt=&quot;视频广告&quot; /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;code&gt;Pre-movie Adverts: 贴片广告/随片广告&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;将企业产品广告或企业形象广告与影片一同拷贝，在电影放映前播出的广告。广告的运营商与电影的制作方、发行方、放映方合作，在每部电影放映前播放客户的品牌广告，它是电影广告最明显最外在的形式，属于电影中的“硬广告”。尽管这种广告形式常常在播放前引起大量观众的唏嘘声，但是调查显示它的传达效果较电视广告有更深刻的观众记忆度。&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&quot;/img/141228_19.png&quot; alt=&quot;贴片广告&quot; /&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;code&gt;product placement: 植入广告&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;把产品及其服务具有代表性的视听品牌符号融入影视或舞台产品中的一种广告方式，给观众留下相当的印象，以达到营销目的。“植入式广告”是随着电影、电视、游戏等的发展而兴起的一种广告形式，它是指在影视剧情、游戏中刻意插入商家的产品或表示，以达到潜移默化的宣传效果。由于受众对广告有天生的抵触心理，把商品融入这些娱乐方式的做法往往比硬性推销的效果好得多。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_20.png&quot; alt=&quot;植入广告&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Sponserships: 赞助式广告&lt;/code&gt;&lt;/p&gt;
 
@@ -11498,6 +13632,12 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
 &lt;p&gt;在功能开启、暂停、退出时以半屏或全屏的形式弹出，展示时机巧妙避开用户对应用的正常体验。插屏广告采用了自动广告适配和缓存优化技术，可支持炫酷广告特效，视觉冲击力强，是目前比较有效的精准广告推广形式，比起推送广告，用户可以选择点击或者忽略，不会强制看广告，而且是通过cpa来计费，对开发者来说这是一种比较好的形式，对于广告主来说这种精准的广告推送形式更加有效!&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/141228_15.png&quot; alt=&quot;插屏广告&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;Splash Ad: 开屏广告&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;开屏广告出现在应用启动时，一般会全屏展现 3～5秒，广告内容无法点击跳转，主要适用于品牌广告。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/141228_21.png&quot; alt=&quot;开屏广告&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;Offer Wall: 积分墙广告&lt;/code&gt;&lt;/p&gt;
 
