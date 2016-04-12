@@ -16,7 +16,7 @@ Linux允许用户通过插入模块，实现干预内核的目的。一直以来
 我们通过创建一个简单的模块进行测试。首先是源文件main.c和Makefile。
 
 
-```
+{% highlight c++ %}
 florian@florian-pc:~/module$ cat main.c
 #include<linux/module.h>
 #include<linux/init.h>
@@ -34,7 +34,8 @@ static void __exit exit(void)
 
 module_init(init);
 module_exit(exit);
-```
+{% endhighlight %}
+
 
 其中init为模块入口函数，在模块加载时被调用执行，exit为模块出口函数，在模块卸载被调用执行。
 
@@ -116,7 +117,7 @@ ELF Header:
 
 首先，我们了解一下模块的内核数据结构。
 
-{% highlight bash %}
+{% highlight c++ %}
 linux3.5.2/kernel/module.h:220
 struct module
 {
@@ -136,7 +137,7 @@ struct module
 
 模块加载由内核的系统调用init_module完成。
 
-{% highlight bash %}
+{% highlight c++ %}
 linux3.5.2/kernel/module.c:3009
 /* This is where the real work happens */
 SYSCALL_DEFINE3(init_module, void __user *, umod,
@@ -160,7 +161,7 @@ SYSCALL_DEFINE3(init_module, void __user *, umod,
 
 函数load_module的实现为。
 
-{% highlight bash %}
+{% highlight c++ %}
 linux3.5.2/kernel/module.c:2864
 /* Allocate and load the module: note that size of section 0 is always
    zero, and we rely on this for optional sections. */
@@ -200,7 +201,7 @@ static struct module *load_module(void __user *umod,
 
 至于函数do_one_initcall的实现就比较简单了。
 
-{% highlight bash %}
+{% highlight c++ %}
 linux3.5.2/kernel/init.c:673
 int __init_or_module do_one_initcall(initcall_t fn)
 {
@@ -221,7 +222,7 @@ int __init_or_module do_one_initcall(initcall_t fn)
 
 模块卸载由内核的系统调用delete_module完成。
 
-{% highlight bash %}
+{% highlight c++ %}
 linux3.5.2/kernel/module.c:768
 SYSCALL_DEFINE2(delete_module, const char __user *, name_user,
         unsigned int, flags)
