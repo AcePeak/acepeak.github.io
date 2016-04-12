@@ -1,12 +1,14 @@
 ---
 layout: blogs_item
-title: '网络广告术语之一般术语'
+title: 网络广告术语之一般术语
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 术语
+categories:
+  - 积累
+tags:
+  - 术语
+  - 原创
+  - 广告平台
 ---
-
 
 `Campaign: 广告活动`
 
@@ -55,7 +57,7 @@ Advertising Campaign(广告活动) 指在某一特定市场上为实现某一目
 
 `IGA(In-Game Advertising): 游戏内广告`
 
-是指在游戏中的嵌入式商业广告. 通常分为内嵌式、外挂式和独立交互式三种. 
+是指在游戏中的嵌入式商业广告. 通常分为内嵌式、外挂式和独立交互式三种.
 
 
 `Landing Site: 点击跳转网站`
@@ -87,5 +89,3 @@ Android上通用的设备唯一标识符。
 
 
 `DUID(Device_Unique_ Identifier): 微软 WP 操作系统唯一设备身份识别码。
-
-

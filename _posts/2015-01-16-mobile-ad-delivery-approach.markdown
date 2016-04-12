@@ -2,11 +2,13 @@
 layout: blogs_item
 title: 2015年移动广告投放攻略 解析广告主亲睐的广告投放形式
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 市场
+categories:
+  - 积累
+tags:
+  - 市场
+  - 转载
+  - 广告平台
 ---
-
 
 ##移动广告已然成营销利器
 

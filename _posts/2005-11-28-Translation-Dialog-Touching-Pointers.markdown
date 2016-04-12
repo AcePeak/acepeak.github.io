@@ -1,15 +1,14 @@
 ---
 layout: blogs_item
-title: 【翻译】 对话：接触指针
+title: 【翻译】对话：接触指针
 author: AcePeak
-categories: [Desktop]
-tags: 
-- 原生
-- C++
-- boost
-- 翻译
+categories:
+  - 积累
+tags:
+  - C++
+  - boost
+  - 原创
 ---
-
 
 “哎呀！”
 

@@ -1,11 +1,13 @@
 ---
 layout: blogs_item
-title: Spark&Spark性能调优实战
+title: 'Spark性能调优实战'
 author: AcePeak
-categories: [Internet]
-tags: 
-- spark
-- 大数据
+categories:
+  - 积累
+tags:
+  - spark
+  - 大数据
+  - 转载
 ---
 
 【原文地址  http://blog.csdn.net/zcc_0015/article/details/38460917】

@@ -2,13 +2,13 @@
 layout: blogs_item
 title: Hadoop1.2.1系统分布式配置
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Web
-- Hadoop
+categories:
+  - 积累
+tags:
+  - 原创
+  - Web
+  - Hadoop
 ---
-
 
 环境：CentOS6.5、hadoop1.2.1、jdk1.8.0
 
@@ -102,14 +102,14 @@ centos1
 
 
 > 注意点：
-> 
+>
 > 不进行以下步骤SSH免密码登录设置会不成功
-> 
+>
 > .ssh目录要设成700 有执行权限
 > authorized_keys要设成600 否则会出错
 > 还有ssh 登陆要加入用户名的 比如
 > ssh root@localhost
-> 
+>
 > 这时从centos1向其他机器发起SSH连接，只有第一次登录时需要输入密码，以后则不需要
 
 
@@ -119,7 +119,7 @@ centos1
 
 {% highlight bash %}
 [grid@centos1 ~] $ wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz
-[grid@centos1 ~] $ tar -xf hadoop-1.2.1.tar.gz 
+[grid@centos1 ~] $ tar -xf hadoop-1.2.1.tar.gz
 [grid@centos1 ~] $ cd hadoop-1.2.1
 {% endhighlight %}
 
@@ -284,7 +284,7 @@ xxxx TaskTracker
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop fs -copyFromLocal /home/grid/word.txt  /tmp/wordcount/word.txt
 {% endhighlight %}
 
- 
+
 
 3、通过命令运行例子，使用命令如下：
 
@@ -293,7 +293,7 @@ xxxx TaskTracker
 {% endhighlight %}
 
 
-4、查看运行结果，查看例子的输出结果使用命令： 
+4、查看运行结果，查看例子的输出结果使用命令：
 
 {% highlight bash %}
 [grid@centos1 hadoop-1.2.1] $ bin/hadoop fs -ls /tmp/wordcount/out

@@ -2,9 +2,11 @@
 layout: blogs_item
 title: HTTP KeepAlive模式如何判断数据完成
 author: AcePeak
-categories: [Internet]
-tags: 
-- http
+categories:
+  - 积累
+tags:
+  - http
+  - 转载
 ---
 
 > 当HTTP采用keepalive模式，当客户端向服务器发生请求之后，客户端如何判断服务器的数据已经发生完成？`
@@ -35,7 +37,7 @@ http 1.0中默认是关闭的，需要在http头加入"Connection: Keep-Alive"�
 >Network congestion is reduced by reducing the number of packets caused by TCP opens, and by allowing TCP sufficient time to determine the congestion state of the network.
 >
 >Latency on subsequent requests is reduced since there is no time spent in TCP's connection opening handshake.
-> 
+>
 >HTTP can evolve more gracefully, since errors can be reported without the penalty of closing the TCP connection. Clients using future versions of HTTP might optimistically try a new feature, but if communicating with an older server, retry with old   semantics after an error is reported.
 
 
@@ -65,19 +67,19 @@ chunk编码将数据分成一块一块的发生。Chunked编码将使用若干�
 Chunk编码的格式如下：
 
 {% highlight http %}
-Chunked-Body = *chunk 
-                                    "0" CRLF 
-                                    footer 
+Chunked-Body = *chunk
+                                    "0" CRLF
+                                    footer
                                     CRLF  
-chunk = chunk-size [ chunk-ext ] CRLF 
+chunk = chunk-size [ chunk-ext ] CRLF
                   chunk-data CRLF
 
 hex-no-zero = <HEX excluding "0">
 
-chunk-size = hex-no-zero *HEX 
-chunk-ext = *( ";" chunk-ext-name [ "=" chunk-ext-value ] ) 
-chunk-ext-name = token 
-chunk-ext-val = token | quoted-string 
+chunk-size = hex-no-zero *HEX
+chunk-ext = *( ";" chunk-ext-name [ "=" chunk-ext-value ] )
+chunk-ext-name = token
+chunk-ext-val = token | quoted-string
 chunk-data = chunk-size(OCTET)
 
 footer = *entity-header
@@ -103,4 +105,3 @@ footer = *entity-header
 
 
 所有HTTP/1.1的接收者应用程序必须接受“chunked” transfer-coding (传输编码)，因此当不能事先知道消息的长度，允许使用这种机制来传输消息。消息不应该够同时包含 Content-Length头字段和non-identity transfer-coding。如果一个消息同时包含non-identity transfer-coding和Content-Length ，必须忽略Content-Length 。
-

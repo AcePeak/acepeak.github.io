@@ -2,9 +2,11 @@
 layout: blogs_item
 title: 技术管理的技术与艺术
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 管理
+categories:
+  - 深度
+tags:
+  - 管理
+  - 原创
 ---
 
 1 让每个人负责一块独立功能不如leader负责主体设计，member负责模块设计+具体实现并对主体设计挑刺

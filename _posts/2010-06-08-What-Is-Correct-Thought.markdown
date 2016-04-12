@@ -2,11 +2,12 @@
 layout: blogs_item
 title: 你的观点正确吗?
 author: AcePeak
-categories: [博文]
-tags: 
-- 原生
+categories:
+  - 日记
+tags:
+  - 对话
+  - 原创
 ---
-
 
 [Y] 我是个进化论者, 你相信进化论吗?
 

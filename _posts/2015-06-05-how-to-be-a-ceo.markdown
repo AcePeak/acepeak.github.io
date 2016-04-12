@@ -2,9 +2,11 @@
 layout: blogs_item
 title: 傅盛：一家公司CEO该如何做战略?
 author: AcePeak
-categories: [Internet]
-tags: 
-- http
+categories:
+  - 积累
+tags:
+  - 管理
+  - 转载
 ---
 
 最近，我开始重新思考一家公司的管理。

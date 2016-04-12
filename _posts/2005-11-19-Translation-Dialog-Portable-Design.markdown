@@ -1,15 +1,14 @@
 ---
 layout: blogs_item
-title: 【翻译】 对话：究竟谁才是可移植的程序员？
+title: 【翻译】对话：究竟谁才是可移植的程序员？
 author: AcePeak
-categories: [Desktop]
-tags: 
-- 原生
-- C++
-- OOP
-- 翻译
+categories:
+  - 积累
+tags:
+  - C++
+  - OOP
+  - 原创
 ---
-
 
 “嗨，小鬼。”Jeannine走过来坐在我对面，我现在很邋遢。“听说消息了吗？”
 

@@ -2,9 +2,12 @@
 layout: blogs_item
 title: MacOSX上ab并发测试常见报错及解决办法
 author: AcePeak
-categories: [Internet]
-tags: 
-- Web
+categories:
+  - 积累
+tags:
+  - Web
+  - 测试
+  - 原创
 ---
 
 > 1、apr_socket_recv: Connection reset by peer (54)

@@ -2,11 +2,13 @@
 layout: blogs_item
 title: OpenRTB有关的国际标准文档
 author: AcePeak
-categories: [广告平台]
-tags: 
-- RTB
-- DSP
-- OpenRTB
+categories:
+  - 积累
+tags:
+  - 市场
+  - 广告平台
+  - 转载
+  - OpenRTB
 ---
 
 OpenRTB API v2.3 已发布，可以从下面的链接查看

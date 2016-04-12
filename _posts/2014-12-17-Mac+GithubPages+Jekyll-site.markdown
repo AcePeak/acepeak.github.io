@@ -1,14 +1,15 @@
 ---
 layout: blogs_item
-title: 'Mac+GithubPages+Jekyll配置个人网站'
+title: Mac+GithubPages+Jekyll配置个人网站
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Mac
-- Github
-- Jekyll
-- WebSite
+categories:
+  - 积累
+tags:
+  - 原创
+  - Mac
+  - Github
+  - Jekyll
+  - WebSite
 ---
 
 `1 Github官网注册账号`

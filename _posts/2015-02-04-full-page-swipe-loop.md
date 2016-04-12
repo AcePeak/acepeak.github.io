@@ -2,17 +2,13 @@
 layout: blogs_item
 title: fullPageSwipeLoop published!
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Web
-- Website
-- HTML
-- Javascript
+categories:
+  - 积累
+tags:
+  - HTML
+  - Javascript
+  - 原创
 ---
-
-
-
 
 # [ap.fullPageSwipeLoop.js](https://github.com/AcePeak/fullPageSwipeLoop)
 
@@ -24,9 +20,9 @@ Based on [fullPage](http://alvarotrigo.com/fullPage/) but make it swipes more sm
 As you can see the swipeloop.html file in the example files, you will need to include:
 
  - [jQuery library](http://jquery.com/). (1.6.0 minimum)
- 
+
  - The JavaScript file `ap.fullPageSwipeLoop.js` (or its minified version `ap.fullPageSwipeLoop.min.js`)
- 
+
  - The css file `ap.fullPageSwipeLoop.css`
 
 
@@ -84,4 +80,3 @@ $(document).ready(function() {
 	});
 });
 {% endhighlight %}
-

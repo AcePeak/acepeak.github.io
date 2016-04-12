@@ -2,11 +2,11 @@
 layout: blogs_item
 title: 【转】SEO经验（四）之工具篇
 author: AcePeak
-categories: [Internet]
-tags: 
-- Web
-- Website
-- SEO
+categories:
+  - 积累
+tags:
+  - SEO
+  - 转载
 ---
 
 
@@ -161,4 +161,3 @@ SEO工作者经常需要一些SEO工具的辅助，比如网站收录查询、PR
 2、[爱站](http://www.aizhan.com/): 爱站网以百度权重查询起家，之后提供了多种站长常用查询工具。
 
 3、[网站历史查询工具](http://www.archive.org/): 美国互联网档案馆(The Internet Archive)保存了自1996年开始的各类网站的首页截图资料，不过该网站已经被中国屏蔽了。
-

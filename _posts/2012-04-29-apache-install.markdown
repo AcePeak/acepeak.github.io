@@ -2,12 +2,13 @@
 layout: blogs_item
 title: Linux系统安装Apache
 author: AcePeak
-categories: [Internet]
-tags: 
-- Apache
-- Web
+categories:
+  - 积累
+tags:
+  - Apache
+  - Web
+  - 原创
 ---
-
 
 1 首先安装[APR](http://apr.apache.org/)
 
@@ -71,6 +72,6 @@ make install
 5 启动Apache
 
 {% highlight bash  %}
-~/publishes/httpd/bin/apachectl start 
+~/publishes/httpd/bin/apachectl start
 curl http://localhost
 {% endhighlight %}

@@ -2,19 +2,21 @@
 layout: blogs_item
 title: 广告特征工程+人工智能：大数据结果引入并特征相关化（二）
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 原生
-- DSP
-- 算法
+categories:
+  - 深度
+tags:
+  - 原创
+  - DSP
+  - DMP
+  - 算法
 ---
 
 > 系列列表：
-> 
+>
 > [广告特征工程+人工智能：在线程序化特征定义（一）]({{site.url}}/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/)
-> 
+>
 > [广告特征工程+人工智能：大数据结果引入并特征相关化（二）]({{site.url}}/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/)
-> 
+>
 > [广告特征工程+人工智能：特征历史数据指导特征计算（三）]({{site.url}}/blogs/2012/08/01/algorithm-ad-feature-history-teach/)
 
 
@@ -44,7 +46,7 @@ from $SOURCE, at $TIME, P(F10,F5)/P(F5)=61.3%
 from $SOURCE, at $TIME, P(F10,F6)/P(F6)=64.3%
 from $SOURCE, at $TIME, P(F10,F7)/P(F7)=56.9%
 from $SOURCE, at $TIME, P(F10,F8)/P(F8)=74.1%
-from $SOURCE, at $TIME, P(F10,F9)/P(F9)=77.7%, 
+from $SOURCE, at $TIME, P(F10,F9)/P(F9)=77.7%,
 {% endhighlight %}
 
 3 婚姻状况：微型轿车（已婚有子女64.7%，已婚无子女11.6%，未婚23.7%），小型轿车（61.0%，19.9%，19.0%），紧凑型轿车（68.5%，13.9%，17.5%）
@@ -121,5 +123,3 @@ from $SOURCE, at $TIME, MEAN(F46|F51)=12.3
 
 
 #特征历史数据指导特征计算
-
-

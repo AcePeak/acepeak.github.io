@@ -2,19 +2,20 @@
 layout: blogs_item
 title: HTTP请求头系列（1）-总览
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- HTTP
-- Header
+categories:
+  - 积累
+tags:
+  - 原创
+  - HTTP
+  - Header
 ---
 
 > 系列列表：
-> 
+>
 > [HTTP请求头系列（1）-总览]({{site.url}}/blogs/2012/08/03/http-header-overall/)
-> 
+>
 > [HTTP请求头系列（2）-P3P]({{site.url}}/blogs/2012/08/04/http-header-P3P/)
-> 
+>
 > [HTTP请求头系列（3）-Cookies]({{site.url}}/blogs/2012/08/05/http-header-cookies/)
 
 
@@ -57,7 +58,7 @@ Query String Parameters
 	item:hello
 	pos:1,2,3,4
 	url:www.baidu.com
-	aid:1111	
+	aid:1111
 {% endhighlight %}
 
 针对不同的条目，进行一个简单的解释：
@@ -77,7 +78,7 @@ Query String Parameters
 {% highlight bash %}
 	Request Method:GET
 {% endhighlight %}
-	
+
 请求的方法，当前是GET。
 
 这个字段是大小写敏感的，包括OPTIONS、GET、HEAD、POST、PUT、DELETE、 TRACE。
@@ -226,15 +227,15 @@ sdch是Chrome自己定义的压缩方法。
 {% highlight bash %}
 	Cookie:mmsid=0000000000000031
 {% endhighlight %}
-	
+
 请求串将存在于当前域和当前路径的cookie发送给服务器。
-	
+
 {% highlight bash %}
 	Host:192.168.10.214
 {% endhighlight %}
-	
+
 主机是192.168.10.214，这个可以从request url里面看出来。
-	
+
 {% highlight bash %}
 	User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36
 {% endhighlight %}
@@ -260,4 +261,3 @@ Safari/537.36 不知道什么意思，但是Safari是苹果浏览器，而AppleW
 {% endhighlight %}
 
 发送这个请求的页面地址。我们这个请求是在百度首页发出的请求一张图片。故这个参数是百度的网址。
-	

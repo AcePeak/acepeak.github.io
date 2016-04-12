@@ -2,11 +2,13 @@
 layout: blogs_item
 title: Web基础架构：负载均衡和LVS
 author: AcePeak
-categories: [Internet]
-tags: 
-- Web
-- Load Balance
-- LVS
+categories:
+  - 积累
+tags:
+  - Web
+  - Load Balance
+  - LVS
+  - 转载
 ---
 
 `在大规模互联网应用中，负载均衡设备是必不可少的一个节点，源于互联网应用的高并发和大流量的冲击压力，我们通常会在服务端部署多个无状态的应用服务器和若干有状态的存储服务器（数据库、缓存等等）。`

@@ -1,12 +1,15 @@
 ---
-layout: blogs_item
-title: 【程序化购买】系列之三：算法基础
+layout: docs
+title: 三 算法基础
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 原生
-- 程序化购买
-- 讲座
+permalink: /docs/pbc3/
+prev_section: pbc2
+categories:
+  - 系列
+tags:
+  - 原创
+  - 程序化购买
+  - 讲座
 ---
 
 

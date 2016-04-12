@@ -2,9 +2,12 @@
 layout: blogs_item
 title: 留存率
 author: AcePeak
-categories: [广告平台]
-tags: 
-- Web
+categories:
+  - 积累
+tags:
+  - Web
+  - 广告平台
+  - 转载
 ---
 
 ##用户留存率

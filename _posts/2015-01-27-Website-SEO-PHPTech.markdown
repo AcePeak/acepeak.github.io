@@ -2,13 +2,12 @@
 layout: blogs_item
 title: 【转】SEO经验（二）之PHP技术篇
 author: AcePeak
-categories: [Internet]
-tags: 
-- Web
-- Website
-- SEO
+categories:
+  - 积累
+tags:
+  - SEO
+  - 转载
 ---
-
 
 现在SEO基本上已经是在广泛的应用了，php程序的企业网站也越来越多，其实我之前一直喜欢用asp的，但是发现很多国外的空间现在不支持asp，所以也就研究了一下php，网站建好，当然也想要有一个好的网站排名，带来流量和销量，本文我和大家总结一下在apache服务器下PHP网站的几个seo建议吧!
 
@@ -50,4 +49,3 @@ URL地址优化包括URL地址静态化(又叫伪静态)和URL地址转向两个
 (1))把网页上带链接的地方，都换上新的静态化链接。搜索引擎和浏览器将通过该链接来发生请求。
 
 (2)Apache服务器中在httpd.conf或.htaccess使用”/dir/([^./]*).html”来实现新的重写规则，告诉Apache服务执行这个重写规则之后的操作。通过这样一个重写规则使得PHP生成的动态页面转化为静态页面展现给搜索引擎。当搜索引擎蜘蛛爬行到这里页面的时候，就会记录下这个新的页面，从而达到URL地址优化的目的。在执行这样的操作后，要保留原链接只需在httpd.conf中使用Alias指令(仅适用于apache服务器)。
-

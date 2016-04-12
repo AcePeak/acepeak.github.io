@@ -2,13 +2,14 @@
 layout: blogs_item
 title: Hadoop VS Spark
 author: AcePeak
-categories: [Internet]
-tags: 
-- spark
-- hadoop
-- 大数据
+categories:
+  - 积累
+tags:
+  - spark
+  - hadoop
+  - 大数据
+  - 转载
 ---
-
 
 Hadoop
 首先看一下Hadoop解决了什么问题，Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。

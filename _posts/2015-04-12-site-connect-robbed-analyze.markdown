@@ -2,9 +2,11 @@
 layout: blogs_item
 title: 某电商网站流量劫持案例分析与思考
 author: AcePeak
-categories: [mobile]
-tags: 
-- 网络安全
+categories:
+  - 积累
+tags:
+  - 网络安全
+  - 转载
 ---
 
 

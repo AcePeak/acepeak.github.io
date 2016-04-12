@@ -2,11 +2,11 @@
 layout: blogs_item
 title: 西山居士的宇宙模型遐想
 author: AcePeak
-categories: [博文]
-tags: 
-- 原生
-- 宇宙
-- 遐想
+categories:
+  - 日记
+tags:
+  - 探索
+  - 原创
 ---
 
 以前学习了物理中原子等知识的时候我就有这种想法了，后来不时又在这么想，现在有了blog那就放上来好了：

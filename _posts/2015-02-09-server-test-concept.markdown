@@ -2,13 +2,13 @@
 layout: blogs_item
 title: 服务器测试概念及标准
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Web
-- 测试
+categories:
+  - 积累
+tags:
+  - 原创
+  - Web
+  - 测试
 ---
-
 
 > a点：性能期望值
 > b点：高于期望，系统资源处于临界点
@@ -17,7 +17,7 @@ tags:
 
 
 
-##性能测试 
+##性能测试
 
 a点到b点之间的系统性能
 

@@ -2,13 +2,14 @@
 layout: blogs_item
 title: 在国内配置Yum源的方法
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Linux
+categories:
+  - 积累
+tags:
+  - Linux
+  - 原创
 ---
 
-系统默认的yum 源速度往往不尽人意，为了达到快速安装的目的，在这里修改yum源为国内源。
+系统默认的yum源速度往往不尽人意，为了达到快速安装的目的，在这里修改yum源为国内源。
 
 上海交通大学yum源
 
@@ -23,7 +24,7 @@ a. 修改/etc/yum.repos.d/CentOS-Base.repo为：
 # geographically close to the client.  You should use this for CentOS updates
 # unless you are manually picking other mirrors.
 #
-# If the mirrorlist= does not work for you, as a fall back you can try the 
+# If the mirrorlist= does not work for you, as a fall back you can try the
 # remarked out baseurl= line instead.
 #
 #
@@ -35,7 +36,7 @@ baseurl=http://ftp.sjtu.edu.cn/centos/$releasever/os/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
 
-#released updates 
+#released updates
 [updates]
 name=CentOS-$releasever - Updates
 #mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates
@@ -147,4 +148,3 @@ http://mirror.neu.edu.cn/ (IPv4 only)
 http://mirror.neu6.edu.cn/ (IPv6 only)
 
 电子科技大学：http://ubuntu.uestc.edu.cn/
-

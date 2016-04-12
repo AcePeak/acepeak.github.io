@@ -1,46 +1,16 @@
-- title: Getting Started
+- title: 设计模式
   docs:
-  - home
-  - quickstart
-  - installation
-  - usage
-  - structure
-  - configuration
+  - dpc0
+  - dpc1
+  - dpc2
+  - dpc3
+  - dpc4
+  - dpc5
+  - dpc6
 
-- title: Your Content
+- title: 程序化购买
   docs:
-  - frontmatter
-  - posts
-  - drafts
-  - pages
-  - variables
-  - collections
-  - datafiles
-  - assets
-  - migrations
-
-- title: Customization
-  docs:
-  - templates
-  - permalinks
-  - pagination
-  - plugins
-  - extras
-
-- title: Deployment
-  docs:
-  - github-pages
-  - deployment-methods
-  - continuous-integration
-
-- title: Miscellaneous
-  docs:
-  - troubleshooting
-  - sites
-  - resources
-  - upgrading
-
-- title: Meta
-  docs:
-  - contributing
-  - history
+  - pbc0
+  - pbc1
+  - pbc2
+  - pbc3

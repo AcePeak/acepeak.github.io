@@ -1,14 +1,14 @@
 ---
 layout: blogs_item
-title: 'GithubPages+Jekyll模板中各类型对象的方法介绍'
+title: GithubPages+Jekyll模板中各类型对象的方法介绍
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Jekyll
-- Liquid
+categories:
+  - 积累
+tags:
+  - 转载
+  - Jekyll
+  - Liquid
 ---
-
 
 Jekyll 使用Liquid来处理模板数据。在建立中文博客的过程中，常常会苦于无法在文章中显示中文或阿拉伯数字形式日期的问题，而网上绝大多数给出的方案都只是官方的文档给出的 {{ page.date | date_to_string }}。为了能够了解Jekyll模板中不同对象究竟有哪些可以使用的方法，写下此文。
 
@@ -143,7 +143,7 @@ Jekyll 使用Liquid来处理模板数据。在建立中文博客的过程中，�
 
 ###ceil
 
-{% highlight ruby %}{% raw %}{{ 4.6 | ceil }} 
+{% highlight ruby %}{% raw %}{{ 4.6 | ceil }}
 {{ 4.3 | ceil }} {% endraw %}{% endhighlight %}
 =>
 {% highlight ruby %}{% raw %}5
@@ -323,7 +323,7 @@ $1.45 CAD
 ###newline_to_br
 
 {% highlight ruby %}{% raw %}{% capture var %}
-One 
+One
 Two
 Three
 {% endcapture %}
@@ -411,7 +411,7 @@ Second word: {{ words[1] }}
 Last word: {{ words.last }}
 All words: {{ words | join: ', ' }}
 {% for word in words %}
-{{ word }} 
+{{ word }}
 {% endfor %}{% endraw %}{% endhighlight %}
 =>
 {% highlight ruby %}{% raw %}First word: Uses
@@ -437,7 +437,7 @@ Uses cheat codes, calls the game boring.
 {% highlight ruby %}{% raw %}{{ '   too many spaces           ' | lstrip }}{% endraw %}{% endhighlight %}
 =>
 {% highlight ruby %}{% raw %}<!-- Notice the empty spaces to the right of the string -->
-too many spaces           
+too many spaces
 {% endraw %}
 {% endhighlight %}
 
@@ -445,7 +445,7 @@ too many spaces
 
 {% highlight ruby %}{% raw %}{{ '   too many spaces      ' | rstrip }}{% endraw %}{% endhighlight %}
 =>
-{% highlight ruby %}{% raw %}                 too many spaces     
+{% highlight ruby %}{% raw %}                 too many spaces
 {% endraw %}
 {% endhighlight %}
 
@@ -659,7 +659,7 @@ too many spaces
 
 {% highlight ruby %}{% raw %}{{ article.published_at | date: "%k" }}{% endraw %}{% endhighlight %}
 =>
-{% highlight ruby %}{% raw %}<!-- 14 --> 
+{% highlight ruby %}{% raw %}<!-- 14 -->
 {% endraw %}
 {% endhighlight %}
 
@@ -825,7 +825,7 @@ too many spaces
 {% highlight ruby %}{% raw %}Dear {{ customer.name | default: "customer" }}{% endraw %}{% endhighlight %}
 =>
 {% highlight ruby %}{% raw %}<!-- if customer.name is nil -->
-Dear customer 
+Dear customer
 {% endraw %}
 {% endhighlight %}
 
@@ -846,7 +846,7 @@ Please enter a valid email address.
 =>
 {% highlight ruby %}{% raw %}<span class="page current">1</span>
 <span class="page"><a href="/collections/all?page=2" title="">2</a></span>
-<span class="page"><a href="/collections/all?page=3" title="">3</a></span> 
+<span class="page"><a href="/collections/all?page=3" title="">3</a></span>
 <span class="deco">&hellip;</span>
 <span class="page"><a href="/collections/all?page=17" title="">17</a></span>
 <span class="next"><a href="/collections/all?page=2" title="">Next &raquo;</a></span>
@@ -858,7 +858,7 @@ Please enter a valid email address.
 {% highlight ruby %}{% raw %}{{ item.content | highlight: search.terms }}{% endraw %}{% endhighlight %}
 =>
 {% highlight ruby %}{% raw %}<!-- If the search term was "Yellow" -->
-<strong class="highlight">Yellow</strong> shirts are the best! 
+<strong class="highlight">Yellow</strong> shirts are the best!
 {% endraw %}
 {% endhighlight %}
 

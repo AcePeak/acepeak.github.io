@@ -2,10 +2,12 @@
 layout: blogs_item
 title: 基于C++的Hadoop Map/Reduce框架--HCE
 author: AcePeak
-categories: [Internet]
-tags: 
-- 大数据
-- Hadoop
+categories:
+  - 积累
+tags:
+  - 大数据
+  - Hadoop
+  - 转载
 ---
 
 Hadoop系统提供了MapReduce计算框架的开源实现，像Yahoo!、Facebook、淘宝、中移动、百度、腾讯等公司都在借助Hadoop进行海量数据处理。Hadoop系统性能不仅取决于任务调度器的分配策略，还受到分配后实际任务执行效率的影响，任务执行常常涉及读取、排序、归并、压缩、写入等具体阶段。

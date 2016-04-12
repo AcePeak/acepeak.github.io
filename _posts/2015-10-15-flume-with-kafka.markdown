@@ -2,15 +2,13 @@
 layout: blogs_item
 title: Flume1.6.0连接Kafka0.8.2以及其中可能出现的问题
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Flume
-- Kafka
+categories:
+  - 积累
+tags:
+  - 原创
+  - Flume
+  - Kafka
 ---
-
-
-
 
 最终正确的example.conf文件如下：
 
@@ -76,4 +74,3 @@ FLUME_CLASSPATH="/Codes/apache-kafka/kafka_2.10-0.8.2.2/libs/zookeeper-3.4.6.jar
 把partition.key和partition.class配置去掉，调整flume日志级别为ERROR级，处理性能可以提升不少。
 
 80万数据不到10S处理完成。
-

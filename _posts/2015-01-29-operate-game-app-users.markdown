@@ -2,9 +2,11 @@
 layout: blogs_item
 title: 干货:如何运营手游用户与快速建立口碑传播
 author: AcePeak
-categories: [mobile]
-tags: 
-- 市场
+categories:
+  - 积累
+tags:
+  - 转载
+  - 市场
 ---
 
 

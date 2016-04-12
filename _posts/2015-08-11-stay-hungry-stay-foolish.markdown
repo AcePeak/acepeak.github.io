@@ -1,10 +1,12 @@
 ---
 layout: blogs_item
-title: Stay Hungry, Stay Foolish - Jobs
+title: 'Stay Hungry, Stay Foolish - Jobs'
 author: AcePeak
-categories: [博文]
-tags: 
-- Jobs
+categories:
+  - 日记
+tags:
+  - 乔布斯
+  - 转载
 ---
 
 'You've got to find what you love,' Jobs says

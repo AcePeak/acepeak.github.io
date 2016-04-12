@@ -2,9 +2,12 @@
 layout: blogs_item
 title: '网络广告术语之广告形式'
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 术语
+categories:
+  - 积累
+tags:
+  - 术语
+  - 原创
+  - 广告平台
 ---
 
 

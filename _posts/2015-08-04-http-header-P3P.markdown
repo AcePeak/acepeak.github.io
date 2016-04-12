@@ -2,20 +2,21 @@
 layout: blogs_item
 title: HTTP请求头系列（2）-P3P
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- HTTP
-- Header
+categories:
+  - 积累
+tags:
+  - 原创
+  - HTTP
+  - Header
 ---
 
 
 > 系列列表：
-> 
+>
 > [HTTP请求头系列（1）-总览]({{site.url}}/blogs/2012/08/03/http-header-overall/)
-> 
+>
 > [HTTP请求头系列（2）-P3P]({{site.url}}/blogs/2012/08/04/http-header-P3P/)
-> 
+>
 > [HTTP请求头系列（3）-Cookies]({{site.url}}/blogs/2012/08/05/http-header-cookies/)
 
 
@@ -72,7 +73,7 @@ header("Set-Cookie: test=axis; expires=Sun, 23-Dec-2018 08:13:02 GMT; domain=.a.
     alert(document.cookie);
 </script>
 {% endhighlight %}
- 
+
 
 再次访问两次上面的测试过程
 

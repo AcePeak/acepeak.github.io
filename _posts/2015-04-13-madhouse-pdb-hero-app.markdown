@@ -2,9 +2,12 @@
 layout: blogs_item
 title: Madhouse携手Hero App正式启动与程序化购买平台PremiumMad的对接测试
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 市场
+categories:
+  - 积累
+tags:
+  - 市场
+  - 广告平台
+  - 转载
 ---
 
 亿动广告传媒（Madhouse）携手多米，暴风影音等40多家Hero App，正式启动与程序化购买平台优道（PremiumMad）的对接测试，为品牌广告主提供更加多元化的移动广告服务。

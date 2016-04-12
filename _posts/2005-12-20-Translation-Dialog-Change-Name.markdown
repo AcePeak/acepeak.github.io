@@ -1,16 +1,15 @@
 ---
 layout: blogs_item
-title: 【翻译】 对话：换个名字
+title: 【翻译】对话：换个名字
 author: AcePeak
-categories: [Desktop]
-tags: 
-- 原生
-- C++
-- OOP
-- Design Pattern
-- 翻译
+categories:
+  - 积累
+tags:
+  - C++
+  - OOP
+  - Design Pattern
+  - 原创
 ---
-
 
 仅仅挂起100公里的距离，小行星就迅速占满了我们的视线。它的表面看起来就像碎过又用冰粘起来的杯子。很多的冰河在交错的小山脊间静静的流淌。木卫二，荒凉而美丽的地方。
 
@@ -49,7 +48,7 @@ public:
  virtual void Pay (/**/ ) = 0;
  virtual void Promote( /**/ ) = 0;
  virtual void Accept ( PersonnelV& ) = 0;
- // other functions 
+ // other functions
 }
 
 class Officer : public Personnel { /* override virtuals */ };

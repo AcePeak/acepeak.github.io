@@ -2,11 +2,13 @@
 layout: blogs_item
 title: 蓝色光标斥资3.6亿美元收购Domob和MadHouse
 author: AcePeak
-categories: [广告平台]
-tags: 
-- DSP
-- ADX
-- News
+categories:
+  - 积累
+tags:
+  - DSP
+  - ADX
+  - 市场
+  - 转载
 ---
 
 蓝色光标(300058)今日发布公告，宣布同时收购中国两大移动广告公司，其中，以2.89亿美元收购Domob Limited100%的股权和多盟智胜网络技术(北京)有限公司95%的股权(以下简称“Domob”或“多盟”)；以6120万美元收购Madhouse Inc.(以下简称“Madhouse”或“亿动”)51%的股权，同时以1000万美元对亿动进行增资，上述投资完成后，蓝色光标将持有亿动54.77%的股权。

@@ -2,9 +2,10 @@
 layout: blogs_item
 title: 奔跑，奔跑
 author: AcePeak
-categories: [博文]
-tags: 
-- 原生
+categories:
+  - 日记
+tags:
+  - 原创
 ---
 
 有段时间没来写一段日志了，今天加班，天气良好，写一些最近的感受吧。

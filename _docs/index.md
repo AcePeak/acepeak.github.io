@@ -1,8 +1,10 @@
 ---
 layout: docs
-title: Welcome
+title: 西山居－系列心得
 next_section: quickstart
-permalink: /docs/home/
+permalink: /series/
+categories:
+  - 系列
 ---
 
 This site aims to be a comprehensive guide to Jekyll. We’ll cover topics such

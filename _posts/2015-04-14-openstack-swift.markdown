@@ -2,9 +2,11 @@
 layout: blogs_item
 title: OpenStack对象存储——Swift
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 市场
+categories:
+  - 积累
+tags:
+  - Swift
+  - 转载
 ---
 
 OpenStack Object Storage（Swift）是OpenStack开源云计算项目的子项目之一，被称为对象存储，提供了强大的扩展性、冗余和持久性。本文将从架构、原理和实践等几方面讲述Swift。 Swift并不是文件系统或者实时的数据存储系统，它称为对象存储，用于永久类型的静态数据的长期存储，这些数据可以检索、调整，必要时进行更新。最适合存储的数据类型的例子是虚拟机镜像、图片存储、邮件存储和存档备份。因为没有中心单元或主控结点，Swift提供了更强的扩展性、冗余和持久性。Swift前身是Rackspace Cloud Files项目，随着Rackspace加入到OpenStack社区，于2010年7月贡献给OpenStack，作为该开源项目的一部分。Swift目前的最新版本是OpenStack Essex 1.5.1。
@@ -108,6 +110,6 @@ Ring引入Weight的目的是解决未来添加存储能力更大的Node时，分
 
 Swift简单、冗余、可扩展的架构设计保证了它能够用于IaaS的基础服务。在Rackspace Cloud Files服务两年的运行积累使得Swift代码变得越来越成熟，目前已部署在全球各地的公有云、私有云服务中。随着OpenStack的不断完善和发展，Swift将得到更广泛的应用。
 
- 
+
 
 作者程辉，新浪云计算技术经理，2009年加入新浪SAE，曾担任SAE系统开发工程师和运维负责人。2011年初开始研究OpenStack，并组建团 队，成立基于OpenStack的项目SWS（Sina Web Services），为新浪内部和合作伙伴提供IaaS层服务。

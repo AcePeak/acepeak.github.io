@@ -2,14 +2,16 @@
 layout: blogs_item
 title: Apache中实现C++ Module【1】
 author: AcePeak
-categories: [Internet]
-tags: 
-- Apache
-- C++
+categories:
+  - 积累
+tags:
+  - Apache
+  - C++
+  - 原创
 ---
 
 > 系列列表：
-> 
+>
 > [Apache中实现C++ Module【1】]({{site.url}}/blogs/2012/05/01/apache-cpp-mod/)
 > [Apache中实现C++ Module【2】]({{site.url}}/blogs/2012/05/02/apache-cpp-mod-2/)
 

@@ -2,19 +2,21 @@
 layout: blogs_item
 title: 网络通信IO多路复用之Poll
 author: AcePeak
-categories: [Internet]
-tags: 
-- C++
+categories:
+  - 积累
+tags:
+  - C++
+  - 转载
 ---
 
 > 系列列表：
-> 
+>
 > [网络通信IO多路复用之Select【1】]({{site.url}}/blogs/2012/05/18/net-select/)
-> 
+>
 > [网络通信IO多路复用之Poll【2】]({{site.url}}/blogs/2012/05/19/net-poll/)
-> 
+>
 > [网络通信IO多路复用之ePoll【3】]({{site.url}}/blogs/2012/05/20/net-epoll/)
-> 
+>
 > [网络通信IO多路复用之总结【4】]({{site.url}}/blogs/2012/05/21/net-select-poll-epoll/)
 
 
@@ -39,7 +41,7 @@ struct pollfd {
 	int fd;         /* 文件描述符 */
 	short events;         /* 等待的事件 */
 	short revents;       /* 实际发生了的事件 */
-} ; 
+} ;
 {% endhighlight %}
 
 　　每一个pollfd结构体指定了一个被监视的文件描述符，可以传递多个结构体，指示poll()监视多个文件描述符。每个结构体的events域是监视该文件描述符的事件掩码，由用户来设置这个域。revents域是文件描述符的操作结果事件掩码，内核在调用返回时设置这个域。events域中请求的任何事件都可能在revents域中返回。合法的事件如下：

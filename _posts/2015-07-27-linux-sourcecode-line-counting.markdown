@@ -2,9 +2,11 @@
 layout: blogs_item
 title: Linux琐碎记录之统计源码的行数
 author: AcePeak
-categories: [Desktop]
-tags: 
-- Linux
+categories:
+  - 积累
+tags:
+  - Linux
+  - 转载
 ---
 
 Linux下wc命令是统计代码行数的，其用法如下：
@@ -26,8 +28,8 @@ Linux下wc命令是统计代码行数的，其用法如下：
       --version        显示版本信息并退出
 {% endhighlight %}
 
-	  
-	  
+
+
 wc -l *.c *.h 就可以知道当前目录下的所有c 和 h 文件的行数的详细信息。很不错
 
 如果要递归，可以配合其他命令一起使用
@@ -49,7 +51,7 @@ wc -l *.c *.h 就可以知道当前目录下的所有c 和 h 文件的行数的�
 或者这个比较方便：
 
 {% highlight bash %}
-	wc -l `find ./ -name "*.c";find -name "*.h"`|tail -n1 
+	wc -l `find ./ -name "*.c";find -name "*.h"`|tail -n1
 {% endhighlight %}
 
 2.统计文件数量
@@ -92,7 +94,7 @@ $ find --help
       -wholename PATTERN -size N[bcwkMG] -true -type [bcdpflsD] -uid N
       -used N -user NAME -xtype [bcdpfls]
 
-动作: -delete -print0 -printf FORMAT -fprintf FILE FORMAT -print 
+动作: -delete -print0 -printf FORMAT -fprintf FILE FORMAT -print
       -fprint0 FILE -fprint FILE -ls -fls FILE -prune -quit
       -exec COMMAND ; -exec COMMAND {} + -ok COMMAND ;
       -execdir COMMAND ; -execdir COMMAND {} + -okdir COMMAND ;

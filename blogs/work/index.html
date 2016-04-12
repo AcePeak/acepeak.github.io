@@ -1,15 +1,14 @@
 ---
 layout: blogs
 title: 博文
-permalink: /blogs/journal/
+permalink: /work/
 author: all
-categories: [博文]
+categories: [积累]
 ---
-
 <article>
   <ul style="list-style-type:none">
     {% for post in site.posts %}
-    {% if post.categories[0] == '博文' %}
+    {% if post.categories[0] != '积累' %}
     <li> {{ post.date | date: "%F"  }} <a href="{{ post.url }}">{{ post.title }}</a> </li>
     {% endif %}
     {% endfor %}

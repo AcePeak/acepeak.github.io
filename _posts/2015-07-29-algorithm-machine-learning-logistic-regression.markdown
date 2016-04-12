@@ -2,10 +2,12 @@
 layout: blogs_item
 title: 机器学习算法：逻辑回归（Logistic Regression）
 author: AcePeak
-categories: [广告平台]
-tags: 
-- DSP
-- 算法
+categories:
+  - 积累
+tags:
+  - DSP
+  - 算法
+  - 转载
 ---
 
 机器学习算法一般是这样一个步骤：
@@ -75,7 +77,7 @@ OK，那代价函数有了，我们下一步要做的就是优化求解了。我
 
 然后我们令该导数为0，你会很失望的发现，它无法解析求解。不信你就去尝试一下。所以没办法了，只能借助高大上的迭代来搞定了。这里选用了经典的梯度下降算法。
 
- 
+
 
 #二、优化求解
 
@@ -108,7 +110,7 @@ Gradient descent 又叫 steepest descent，是利用一阶的梯度信息找到�
 
 注：因为本文中是求解的Logit回归的代价函数是似然函数，需要最大化似然函数。所以我们要用的是梯度上升算法。但因为其和梯度下降的原理是一样的，只是一个是找最大值，一个是找最小值。找最大值的方向就是梯度的方向，最小值的方向就是梯度的负方向。不影响我们的说明，所以当时自己就忘了改过来了，谢谢评论下面@wxltt的指出。另外，最大似然可以通过取负对数，转化为求最小值。代码里面的注释也是有误的，写的代码是梯度上升，注销成了梯度下降，对大家造成的不便，希望大家海涵。
 
- 
+
 
 ##2.2、随机梯度下降SGD (stochastic gradient descent)
 
@@ -128,7 +130,7 @@ Gradient descent 又叫 steepest descent，是利用一阶的梯度信息找到�
 ################################################
 {% endhighlight %}
 
- 
+
 
 ##2.3、改进的随机梯度下降
 
@@ -182,17 +184,17 @@ logRegression.py
 # HomePage : http://blog.csdn.net/zouxy09  
 # Email  : zouxy09@qq.com  
 #################################################  
-  
+
 from numpy import *  
 import matplotlib.pyplot as plt  
 import time  
-  
-  
+
+
 # calculate the sigmoid function  
 def sigmoid(inX):  
     return 1.0 / (1 + exp(-inX))  
-  
-  
+
+
 # train a logistic regression model using some optional optimize algorithm  
 # input: train_x is a mat datatype, each row stands for one sample  
 #        train_y is mat datatype too, each row is the corresponding label  
@@ -200,11 +202,11 @@ def sigmoid(inX):
 def trainLogRegres(train_x, train_y, opts):  
     # calculate training time  
     startTime = time.time()  
-  
+
     numSamples, numFeatures = shape(train_x)  
     alpha = opts['alpha']; maxIter = opts['maxIter']  
     weights = ones((numFeatures, 1))  
-  
+
     # optimize through gradient descent algorilthm  
     for k in range(maxIter):  
         if opts['optimizeType'] == 'gradDescent': # gradient descent algorilthm  
@@ -217,7 +219,7 @@ def trainLogRegres(train_x, train_y, opts):
                 error = train_y[i, 0] - output  
                 weights = weights + alpha * train_x[i, :].transpose() * error  
         elif opts['optimizeType'] == 'smoothStocGradDescent': # smooth stochastic gradient descent  
-            # randomly select samples to optimize for reducing cycle fluctuations   
+            # randomly select samples to optimize for reducing cycle fluctuations
             dataIndex = range(numSamples)  
             for i in range(numSamples):  
                 alpha = 4.0 / (1.0 + k + i) + 0.01  
@@ -228,12 +230,12 @@ def trainLogRegres(train_x, train_y, opts):
                 del(dataIndex[randIndex]) # during one interation, delete the optimized sample  
         else:  
             raise NameError('Not support optimize method type!')  
-      
-  
+
+
     print 'Congratulations, training complete! Took %fs!' % (time.time() - startTime)  
     return weights  
-  
-  
+
+
 # test your trained Logistic Regression model given test set  
 def testLogRegres(weights, test_x, test_y):  
     numSamples, numFeatures = shape(test_x)  
@@ -244,8 +246,8 @@ def testLogRegres(weights, test_x, test_y):
             matchCount += 1  
     accuracy = float(matchCount) / numSamples  
     return accuracy  
-  
-  
+
+
 # show your trained logistic regression model only available with 2-D data  
 def showLogRegres(weights, train_x, train_y):  
     # notice: train_x and train_y is mat datatype  
@@ -253,14 +255,14 @@ def showLogRegres(weights, train_x, train_y):
     if numFeatures != 3:  
         print "Sorry! I can not draw because the dimension of your data is not 2!"  
         return 1  
-  
+
     # draw all samples  
     for i in xrange(numSamples):  
         if int(train_y[i, 0]) == 0:  
             plt.plot(train_x[i, 1], train_x[i, 2], 'or')  
         elif int(train_y[i, 0]) == 1:  
             plt.plot(train_x[i, 1], train_x[i, 2], 'ob')  
-  
+
     # draw the classify line  
     min_x = min(train_x[:, 1])[0, 0]  
     max_x = max(train_x[:, 1])[0, 0]  
@@ -288,11 +290,11 @@ test_logRegression.py
 # HomePage : http://blog.csdn.net/zouxy09  
 # Email  : zouxy09@qq.com  
 #################################################  
-  
+
 from numpy import *  
 import matplotlib.pyplot as plt  
 import time  
-  
+
 def loadData():  
     train_x = []  
     train_y = []  
@@ -302,26 +304,26 @@ def loadData():
         train_x.append([1.0, float(lineArr[0]), float(lineArr[1])])  
         train_y.append(float(lineArr[2]))  
     return mat(train_x), mat(train_y).transpose()  
-  
-  
+
+
 ## step 1: load data  
 print "step 1: load data..."  
 train_x, train_y = loadData()  
 test_x = train_x; test_y = train_y  
-  
+
 ## step 2: training...  
 print "step 2: training..."  
 opts = {'alpha': 0.01, 'maxIter': 20, 'optimizeType': 'smoothStocGradDescent'}  
 optimalWeights = trainLogRegres(train_x, train_y, opts)  
-  
+
 ## step 3: testing  
 print "step 3: testing..."  
 accuracy = testLogRegres(optimalWeights, test_x, test_y)  
-  
+
 ## step 4: show the result  
-print "step 4: show the result..."    
+print "step 4: show the result..."
 print 'The classify accuracy is: %.3f%%' % (accuracy * 100)  
-showLogRegres(optimalWeights, train_x, train_y)   
+showLogRegres(optimalWeights, train_x, train_y)
 {% endhighlight %}
 
 

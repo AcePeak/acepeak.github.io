@@ -2,14 +2,14 @@
 layout: blogs_item
 title: C++ STL 习题
 author: AcePeak
-categories: [Desktop]
-tags: 
-- 原生
-- C++
-- STL
-- 试题
+categories:
+  - 积累
+tags:
+  - C++
+  - STL
+  - 试题
+  - 原创
 ---
-
 
 #Questions:
 
@@ -55,7 +55,7 @@ int main()
 ##ADVANCED:
 
 1.What are the types of std::cin and std::cout? Write a console program ECHO that can be invoked by the following ways:
-    
+
 {% highlight ruby %}
     ECHO [infile] [outfile]                             //[] indicates the infile is not necessary.
                                                         //there must be one and only one between -i and -s.
@@ -64,7 +64,7 @@ The test case are :
     ECHO infile.txt outfile.txt                         //read from infile.txt and write to outfile.txt.
     ECHO infile.txt                                     //read from infile.txt and write to screen.
     ECHO                                                //read from standard input and write to standard output.
-    
+
 //related:ofstream, ifstream, ostream, istream.
 {% endhighlight %}
 
@@ -73,7 +73,7 @@ The test case are :
 {% highlight C++ %}
     int a[10][10];
     a[0][0] = 5;
-    
+
     YourClass<int> yc(10,10);
     yc[0][0] = 5;
 {% endhighlight %}
@@ -95,7 +95,7 @@ The test case are :
 //token - a set of characters bound on either side by spaces, the beginning of
 //the input string parameter or the end of the input String parameter.
 //word - a token that contains only letters (a-z or A-Z) and may end with a
-//single period or a single comma. A word must have at least one letter. 
+//single period or a single comma. A word must have at least one letter.
 //
 //  this is a word.
 //          //token(4) : this is a word.
@@ -175,7 +175,7 @@ class C
 
 2.try the following code in VC6 and VC.net 2003 seperately:
 
- 
+
 
 {% highlight C++ %}
 #include <iostream>

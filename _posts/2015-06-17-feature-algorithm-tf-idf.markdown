@@ -2,10 +2,12 @@
 layout: blogs_item
 title: 特征提取算法：TF-IDF算法
 author: AcePeak
-categories: [广告平台]
-tags: 
-- DSP
-- 算法
+categories:
+  - 积累
+tags:
+  - DSP
+  - 算法
+  - 转载
 ---
 
 有一篇很长的文章，我要用计算机提取它的关键词（Automatic Keyphrase extraction），完全不加以人工干预，请问怎样才能正确做到？

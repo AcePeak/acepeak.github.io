@@ -1,14 +1,17 @@
 ---
-layout: blogs_item
-title: 【程序化购买】系列之二：技术特点
+layout: docs
+title: 二 技术特点
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 原生
-- 程序化购买
-- 讲座
+permalink: /docs/pbc2/
+prev_section: pbc1
+next_section: pbc3
+categories:
+  - 系列
+tags:
+  - 原创
+  - 程序化购买
+  - 讲座
 ---
-
 
 * 技术和计算导向
 * 效果的可衡量

@@ -2,9 +2,12 @@
 layout: blogs_item
 title: 【深挖】品牌程序化购买具体细节Programmatic Buying tech stack
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 市场
+categories:
+  - 积累
+tags:
+  - 市场
+  - 广告平台
+  - 转载
 ---
 
 

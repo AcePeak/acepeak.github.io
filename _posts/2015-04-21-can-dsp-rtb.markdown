@@ -2,9 +2,12 @@
 layout: blogs_item
 title: 你的DSP能RTB么？
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 市场
+categories:
+  - 积累
+tags:
+  - 市场
+  - 广告平台
+  - 转载
 ---
 
 > By zach coelius， CEO of Triggit

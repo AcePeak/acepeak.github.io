@@ -2,17 +2,13 @@
 layout: blogs_item
 title: Web前端研发工程师面试题及答案
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Web
-- HTML
-- HTML5
-- CSS
-- CSS3
-- Javascript
-- Ajax
-- 试题
+categories:
+  - 积累
+tags:
+  - 原创
+  - Javascript
+  - CSS
+  - 试题
 ---
 
 
@@ -56,7 +52,7 @@ Css盒模型:内容，border ,margin，padding
 
 `5.CSS引入的方式有哪些? link和@import的区别是?`
 
-内联 内嵌 外链 导入   
+内联 内嵌 外链 导入
 
 区别 ：同时加载
 
@@ -369,4 +365,3 @@ function oSort(arr)
             return oSort(left).concat([oNumVode],oSort(right))
         }
 {% endhighlight %}
-

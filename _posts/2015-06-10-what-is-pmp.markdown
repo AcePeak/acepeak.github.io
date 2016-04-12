@@ -2,10 +2,12 @@
 layout: blogs_item
 title: 半小时读懂PMP私有广告交易市场
 author: AcePeak
-categories: [广告平台]
-tags: 
-- DSP
-- PMP
+categories:
+  - 积累
+tags:
+  - DSP
+  - PMP
+  - 转载
 ---
 
 在程序化广告购买领域，现在没有什么比PMP更热门的了。我之前所写的这篇文章——《PMP私有交易市场——程序化广告的新高度》引起了很多反响，很多朋友问，到底什么是PMP，在它之上广告是怎么交易的，有哪些好处，又有什么样的局限？

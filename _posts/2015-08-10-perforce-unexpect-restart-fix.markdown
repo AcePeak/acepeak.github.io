@@ -2,12 +2,12 @@
 layout: blogs_item
 title: Perforce意外重启后无法启动的问题
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Perforce
+categories:
+  - 积累
+tags:
+  - 原创
+  - Perforce
 ---
-
 
 1 首先删除p4.protect，备份并删除p4.counters
 

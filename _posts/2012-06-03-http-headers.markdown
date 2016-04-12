@@ -2,43 +2,45 @@
 layout: blogs_item
 title: HTTP头字段简介
 author: AcePeak
-categories: [Internet]
-tags: 
-- http
+categories:
+  - 积累
+tags:
+  - http
+  - 原创
 ---
 
 * Accept：告诉WEB服务器自己接受什么介质类型，*/* 表示任何类型，type/* 表示该类型下的所有子类型，type/sub-type。
-* Accept-Charset： 浏览器申明自己接收的字符集 
-* Accept-Encoding： 浏览器申明自己接收的编码方法，通常指定压缩方法，是否支持压缩，支持什么压缩方法（gzip，deflate） 
-* Accept-Language：浏览器申明自己接收的语言 
+* Accept-Charset： 浏览器申明自己接收的字符集
+* Accept-Encoding： 浏览器申明自己接收的编码方法，通常指定压缩方法，是否支持压缩，支持什么压缩方法（gzip，deflate）
+* Accept-Language：浏览器申明自己接收的语言
 
 >语言跟字符集的区别：中文是语言，中文有多种字符集，比如big5，gb2312，gbk等等。
 
 * Accept-Ranges：WEB服务器表明自己是否接受获取其某个实体的一部分（比如文件的一部分）的请求。bytes：表示接受，none：表示不接受。
 * Age：当代理服务器用自己缓存的实体去响应请求时，用该头部表明该实体从产生到现在经过多长时间了。
 * Authorization：当客户端接收到来自WEB服务器的 WWW-Authenticate 响应时，用该头部来回应自己的身份验证信息给WEB服务器。
-* Cache-Control：请求：no-cache（不要缓存的实体，要求现在从WEB服务器去取） 
-* max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象） 
-* max-stale：（可以接受过去的对象，但是过期时间必须小于 max-stale 值） 
-* min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象） 
+* Cache-Control：请求：no-cache（不要缓存的实体，要求现在从WEB服务器去取）
+* max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象）
+* max-stale：（可以接受过去的对象，但是过期时间必须小于 max-stale 值）
+* min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象）
 
->响应：public(可以用 Cached 内容回应任何用户) 
+>响应：public(可以用 Cached 内容回应任何用户)
 >
->private（只能用缓存内容回应先前请求该内容的那个用户） 
+>private（只能用缓存内容回应先前请求该内容的那个用户）
 >
->no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端） 
+>no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端）
 >
->max-age：（本响应包含的对象的过期时间） 
+>max-age：（本响应包含的对象的过期时间）
 >
 >ALL: no-store（不允许缓存）
 
-* Connection：请求：close（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，断开连接，不要等待本次连接的后续请求了）。 
+* Connection：请求：close（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，断开连接，不要等待本次连接的后续请求了）。
 
->keepalive（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，保持连接，等待本次连接的后续请求）。 
+>keepalive（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，保持连接，等待本次连接的后续请求）。
 >
->close（连接已经关闭）。 
+>close（连接已经关闭）。
 >
->keepalive（连接保持着，在等待本次连接的后续请求）。 
+>keepalive（连接保持着，在等待本次连接的后续请求）。
 >
 >Keep-Alive：如果浏览器请求保持连接，则该头部表明希望 WEB 服务器保持连接多长时间（秒）。例如：Keep-Alive：300
 
@@ -69,36 +71,36 @@ tags:
 
 
 {% highlight HTTP %}
-=============================================================================== 
-HTTP 请求消息头部实例： 
-Host：rss.sina.com.cn 
-User-Agent：Mozilla/5、0 (Windows; U; Windows NT 5、1; zh-CN; rv:1、8、1、14) Gecko/20080404 Firefox/2、0、0、14 
-Accept：text/xml,application/xml,application/xhtml+xml,text/html;q=0、9,text/plain;q=0、8,image/png,*/*;q=0、5 
-Accept-Language：zh-cn,zh;q=0、5 
-Accept-Encoding：gzip,deflate 
-Accept-Charset：gb2312,utf-8;q=0、7,*;q=0、7 
-Keep-Alive：300 
-Connection：keep-alive 
-Cookie：userId=C5bYpXrimdmsiQmsBPnE1Vn8ZQmdWSm3WRlEB3vRwTnRtW &lt;-- Cookie 
-If-Modified-Since：Sun, 01 Jun 2008 12:05:30 GMT 
-Cache-Control：max-age=0 
+===============================================================================
+HTTP 请求消息头部实例：
+Host：rss.sina.com.cn
+User-Agent：Mozilla/5、0 (Windows; U; Windows NT 5、1; zh-CN; rv:1、8、1、14) Gecko/20080404 Firefox/2、0、0、14
+Accept：text/xml,application/xml,application/xhtml+xml,text/html;q=0、9,text/plain;q=0、8,image/png,*/*;q=0、5
+Accept-Language：zh-cn,zh;q=0、5
+Accept-Encoding：gzip,deflate
+Accept-Charset：gb2312,utf-8;q=0、7,*;q=0、7
+Keep-Alive：300
+Connection：keep-alive
+Cookie：userId=C5bYpXrimdmsiQmsBPnE1Vn8ZQmdWSm3WRlEB3vRwTnRtW &lt;-- Cookie
+If-Modified-Since：Sun, 01 Jun 2008 12:05:30 GMT
+Cache-Control：max-age=0
 {% endhighlight %}
 
 
 {% highlight HTTP %}
-=============================================================================== 
-HTTP 响应消息头部实例： 
-Status：OK - 200 &lt;-- 响应状态码，表示 web 服务器处理的结果。 
-Date：Sun, 01 Jun 2008 12:35:47 GMT 
-Server：Apache/2、0、61 (Unix) 
-Last-Modified：Sun, 01 Jun 2008 12:35:30 GMT 
-Accept-Ranges：bytes 
-Content-Length：18616 
-Cache-Control：max-age=120 
-Expires：Sun, 01 Jun 2008 12:37:47 GMT 
-Content-Type：application/xml 
-Age：2 
-X-Cache：HIT from 236-41、D07071951、sina、com、cn &lt;-- 反向代理服务器使用的 HTTP 头部 
-Via：1.0 236-41.D07071951.sina.com.cn:80 (squid/2.6.STABLE13) 
+===============================================================================
+HTTP 响应消息头部实例：
+Status：OK - 200 &lt;-- 响应状态码，表示 web 服务器处理的结果。
+Date：Sun, 01 Jun 2008 12:35:47 GMT
+Server：Apache/2、0、61 (Unix)
+Last-Modified：Sun, 01 Jun 2008 12:35:30 GMT
+Accept-Ranges：bytes
+Content-Length：18616
+Cache-Control：max-age=120
+Expires：Sun, 01 Jun 2008 12:37:47 GMT
+Content-Type：application/xml
+Age：2
+X-Cache：HIT from 236-41、D07071951、sina、com、cn &lt;-- 反向代理服务器使用的 HTTP 头部
+Via：1.0 236-41.D07071951.sina.com.cn:80 (squid/2.6.STABLE13)
 Connection：close
 {% endhighlight %}

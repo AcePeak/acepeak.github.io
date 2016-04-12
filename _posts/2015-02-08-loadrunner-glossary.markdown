@@ -2,13 +2,14 @@
 layout: blogs_item
 title: LoadRunner实战系列（四）之术语篇
 author: AcePeak
-categories: [Internet]
-tags: 
-- 原生
-- Web
-- 测试
-- LoadRunner
-- 术语
+categories:
+  - 积累
+tags:
+  - 原创
+  - Web
+  - 测试
+  - LoadRunner
+  - 术语
 ---
 
 
@@ -221,5 +222,3 @@ Web Page Breakdown（页面分解总图）
 12)Downloader Component Size(KB)（已下载组件大小）
 
 ----“已下载组件大小”图显示每个已经下载的网页组建的大小。通过它可以直接看出哪些组件比较大并需要进一步进行优化以提高性能。
-
-

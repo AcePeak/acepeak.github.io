@@ -2,14 +2,14 @@
 layout: blogs_item
 title: C++ Template 习题
 author: AcePeak
-categories: [Desktop]
-tags: 
-- 原生
-- C++
-- Template
-- 试题
+categories:
+  - 积累
+tags:
+  - C++
+  - Template
+  - 试题
+  - 原创
 ---
-
 
 {% highlight C++ %}
 //
@@ -55,7 +55,7 @@ int main()
 template<int size , class T >
 void Show(T *d)
 {
-    for( int j=0;j<size;j++) 
+    for( int j=0;j<size;j++)
         cout<<d[j]<<' ';
 }
 {% endhighlight %}
@@ -65,7 +65,7 @@ What is the template function prototype invoked by Show<10>("abcdefghijklmn")? W
 
 3. the program's output is not right, please correct the following program with right semantics:
 
- 
+
 
 {% highlight C++ %}
 template<class T>
@@ -88,13 +88,13 @@ int main()
     cout<<maxEx(c3,c4)<<endl;                       //should be ZOO
 
  return 0;
-} 
+}
 {% endhighlight %}
 
 
 4.write the output of the following code.
 
- 
+
 
 {% highlight C++ %}
 template <class T> void f(T)                    // (d)
@@ -109,7 +109,7 @@ template <class T> void f(T*)                   // (f)
 {
     cout<<"f"<<endl;
 }
-template <> 
+template <>
 void f<double> (double)                         // (g)
 {
     cout<<"g"<<endl;
@@ -124,10 +124,10 @@ int main()
     bool b = true;
     int i = 1;
     double d = 3.14;
-    f(b);                   
-    f(i,42,d) ;             
-    f(&i) ;                 
-    f(d);                   
+    f(b);
+    f(i,42,d) ;
+    f(&i) ;
+    f(d);
 
  return 0;
 }
@@ -137,7 +137,7 @@ int main()
 5.Case:
 
 {% highlight C++ %}
-template <class Type> 
+template <class Type>
 class TwoNum
 {
 private:
@@ -151,7 +151,7 @@ public:
 
     Type Max() // 求a 和b的最大值
     {
-        return (a>b)?a:b; 
+        return (a>b)?a:b;
     }
     Type Min() // 求a 和b的最小值
     {
@@ -160,14 +160,14 @@ public:
 
     void Setab(Type& aa , Type& bb)
     {
-        a=aa; b=bb; 
+        a=aa; b=bb;
     }
 
     Type geta()
     {
         return a;
     }
-    
+
     Type getb()
     {
     return b;
@@ -191,7 +191,7 @@ int TwoNum<Type>::Compare()
     else
         return -1;
 }
-    
+
 #include <iostream.h>
 void main()
 {
@@ -254,7 +254,7 @@ class Container6;
 
 7．correct the class CList declaration (No need to implement the members.)
 
- 
+
 
 {% highlight C++ %}
 template <class elementType>
@@ -272,7 +272,7 @@ public:
     int remove(elemType<elemType> value);
     size_t size( )
     {
-        return _size; 
+        return _size;
     }
 private:
     ListItem<elemType> *front;
@@ -282,7 +282,7 @@ private:
 
 8.write the output for overload class template
 
- 
+
 
 {% highlight C++ %}
 template <class T> class mvector                // (a)
@@ -362,7 +362,7 @@ You can try to comment CVar class operator +/- to test whether your global funct
 {% highlight C++ %}
  template<typename Type>
     Void my_sort(Type* array, size_t size);
-//NOTE: 
+//NOTE:
 //* Maybe you have to implement another 2 function templates:
 
      template<typename Type>
@@ -413,12 +413,12 @@ using namespace std;
 void main()
 {
     Queue<int> iq(10);
-    
+
     for(int i=0; i < 10; i++)
         iq.add(i*5);
     iq--;
     iq += 50;
-    
+
     if (!iq.is_empty())
         cout << "Removed : " << iq.remove() << " Current Head : " << iq.head();
     cout << endl;
@@ -437,7 +437,7 @@ void main()
 The ourput is：
 Removed : 5 Current Head : 10
 There are 9 queue items: < 10 15 20 25 30 35 40 45 50 >
-10 15 20 25 30 35 40 45 50 
+10 15 20 25 30 35 40 45 50
 There are 0 queue items: < >
 
 2.design a class template CHash which algorithm is besed on buckets:
@@ -490,7 +490,7 @@ public:
 int main()
 {
     const int iNo = 22;
-    cout << "Cycle length of " << iNo << " is = " 
+    cout << "Cycle length of " << iNo << " is = "
         << CalculateCycle<iNo>::count << endl;
     return 0;
 }

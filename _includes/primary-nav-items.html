@@ -2,10 +2,16 @@
   <li class="{% if page.overview %}current{% endif %}">
     <a href="/">首页</a>
   </li>
-  <li class="{% if page.categories[0] == '博文' %}current{% endif %}">
-    <a href="/blogs/journal/">生活</span></a>
+  <li class="{% if page.categories[0] == '日记' %}current{% endif %}">
+    <a href="/life/">粗茶淡饭</a>
   </li>
-  <li class="{% if page.categories[0] != '博文' %}{% if page.author %}current{% endif %}{% endif %}">
-    <a href="/blogs/career/">工作</a>
+  <li class="{% if page.categories[0] == '积累' %}current{% endif %}">
+    <a href="/work/">深耕细作</a>
+  </li>
+  <li class="{% if page.categories[0] == '深度' %}current{% endif %}">
+    <a href="/think/">刨根问底</a>
+  </li>
+  <li class="{% if page.categories[0] == '系列' %}current{% endif %}">
+    <a href="/series/">融会贯通</a>
   </li>
 </ul>

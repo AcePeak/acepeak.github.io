@@ -2,19 +2,21 @@
 layout: blogs_item
 title: 广告特征工程+人工智能：特征历史数据指导特征计算（三）
 author: AcePeak
-categories: [广告平台]
-tags: 
-- 原生
-- DSP
-- 算法
+categories:
+  - 深度
+tags:
+  - 原创
+  - DSP
+  - DMP
+  - 算法
 ---
 
 > 系列列表：
-> 
+>
 > [广告特征工程+人工智能：在线程序化特征定义（一）]({{site.url}}/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/)
-> 
+>
 > [广告特征工程+人工智能：大数据结果引入并特征相关化（二）]({{site.url}}/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/)
-> 
+>
 > [广告特征工程+人工智能：特征历史数据指导特征计算（三）]({{site.url}}/blogs/2012/08/01/algorithm-ad-feature-history-teach/)
 
 #特征历史数据指导特征计算
@@ -22,7 +24,7 @@ tags:
 ##按照概率的计算方式
 
 假设用户A已经拥有如下标签：**F10男性**，**F12已婚**，**F16无子女**，**F20本科**
- 
+
 待投的广告有2个：**微型轿车**、**大中型轿车**
 
 那么我们将市场平均概率与该人的相应实际情况进行比较，也就是市场概率即此人的购车期望与此人的目前实际情况进行比较，涉及到期望的数据为：
@@ -66,8 +68,3 @@ P(F10,F12,F16,F20,F2)=1-^P
 
 
 ##时间的影响
-
-
-
-
-

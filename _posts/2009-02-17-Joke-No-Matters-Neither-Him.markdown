@@ -2,9 +2,10 @@
 layout: blogs_item
 title: 没事，他也没有
 author: AcePeak
-categories: [博文]
-tags: 
-- 原生
+categories:
+  - 日记
+tags:
+  - 原创
 ---
 
 今天打完球离开公司的时候和Steven，杨J一起走，因为公司有免费饮料所以他们一人拿了一瓶。

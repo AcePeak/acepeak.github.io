@@ -2,9 +2,11 @@
 layout: blogs_item
 title: 广告主如何选择合适自己的DSP？
 author: AcePeak
-categories: [广告平台]
-tags: 
-- DSP
+categories:
+  - 积累
+tags:
+  - DSP
+  - 转载
 ---
 
 #DSP筛选标准

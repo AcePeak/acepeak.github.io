@@ -2,10 +2,12 @@
 layout: blogs_item
 title: 你不需要 Hadoop做数据分析的10个理由 —— 使用之前必须测试其他替代品
 author: AcePeak
-categories: [Internet]
-tags: 
-- Hadoop
-- 大数据
+categories:
+  - 积累
+tags:
+  - Hadoop
+  - 大数据
+  - 转载
 ---
 
 `原文出处： [oschina](http://www.oschina.net/translate/hadoop-when-to-use)

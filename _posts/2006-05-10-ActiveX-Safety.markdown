@@ -2,14 +2,14 @@
 layout: blogs_item
 title: 剖析ActiveX控件安全问题
 author: AcePeak
-categories: [Desktop]
-tags: 
-- 原生
-- C++
-- ActiveX
-- Safety
+categories:
+  - 深度
+tags:
+  - C++
+  - ActiveX
+  - Safety
+  - 原创
 ---
-
 
 ##1、介绍
 
@@ -24,7 +24,7 @@ tags:
 
 ActiveX控件是一种极其危险的提供功能的方法（目前正在被MS逐渐冷落），因为它是一种组建对象模型（COM）的对象，只要电脑的用户可以完成的任务，它都可以完成。比如它可以存取注册表，可以随意访问本地文件系统等等。一个网页上面的控件一般有2种不安全的状态，一种是脚本的不安全，一种是初始化的不安全。当用户将一个压缩解压缩控件指向一个远程被压缩的包含特洛伊木马的系统文件并且需要控件来解压缩这个文件时，系统安全会被打破。这个状态就是初始化的不安全。从代码的角度来讲，如果控件从IPersist派生，也就是说控件实现了永久性，那么就会触发unsafe for initializing。而在脚本程序安全执行以前，一个控件依赖于特定的系统设置，那么在允许这段代码运行之前，控件的开发人员需要提供一些必要的代码。从代码的角度来讲，如果控件从IDispatch派生，也就是说控件支持脚本，那么就会触发unsafe for scripting。
 
-从用户下载一个ActiveX控件开始，这个控件甚至可能很容易被攻击，因为网络上任何网络程序都可以使用它，无论是出于友好的目的还是恶意的目的。因此IE浏览器（本文只探讨IE内核的浏览器）总是试图弹出一个对话框来告诉你，这个控件可能是不安全的。这几乎总是一个很好的预防网络攻击的好方法，但是对于那些我们认为总是安全的控件，我们仍然要总是接受这种IE产生的干扰，这就使人厌烦了。其实当身为程序员的你写这样的安全控件时，这样的问题是很容易解决的。 
+从用户下载一个ActiveX控件开始，这个控件甚至可能很容易被攻击，因为网络上任何网络程序都可以使用它，无论是出于友好的目的还是恶意的目的。因此IE浏览器（本文只探讨IE内核的浏览器）总是试图弹出一个对话框来告诉你，这个控件可能是不安全的。这几乎总是一个很好的预防网络攻击的好方法，但是对于那些我们认为总是安全的控件，我们仍然要总是接受这种IE产生的干扰，这就使人厌烦了。其实当身为程序员的你写这样的安全控件时，这样的问题是很容易解决的。
 
 
 ##3、解决方法
@@ -36,18 +36,18 @@ ActiveX控件是一种极其危险的提供功能的方法（目前正在被MS�
 数字签名是一种使控件足够安全的方法，它通过特定的密钥来加密控件的使用，使得使用控件的对象能够根据密钥是否相符来检测控件是否足够安全。通常，拥有自己的可发布的数字签名是要Money的，本文是一篇技术文章，对此并不深入探讨，下面主要介绍代码方面的安全化。
 
 ###3.2、继承IObjectSafety接口
-IObjectSafety接口是在头文件"objsafe.h"中定义的接口，定义如下： 
+IObjectSafety接口是在头文件"objsafe.h"中定义的接口，定义如下：
 
 {% highlight C++ %}
 IObjectSafety : public IUnknown
 {
     public:
-    virtual HRESULT STDMETHODCALLTYPE GetInterfaceSafetyOptions( 
+    virtual HRESULT STDMETHODCALLTYPE GetInterfaceSafetyOptions(
     /* [in] */ REFIID riid,
     /* [out] */ DWORD *pdwSupportedOptions,
     /* [out] */ DWORD *pdwEnabledOptions) = 0;
 
-    virtual HRESULT STDMETHODCALLTYPE SetInterfaceSafetyOptions( 
+    virtual HRESULT STDMETHODCALLTYPE SetInterfaceSafetyOptions(
     /* [in] */ REFIID riid,
     /* [in] */ DWORD dwOptionSetMask,
     /* [in] */ DWORD dwEnabledOptions) = 0;
@@ -57,13 +57,13 @@ IObjectSafety : public IUnknown
 其中参数意义如下：
 
 {% highlight C++ %}
-//riid                Interface identifier for the object to be made safe. 
+//riid                Interface identifier for the object to be made safe.
 //
-//dwOptionSetMask     Options to be changed. 
+//dwOptionSetMask     Options to be changed.
 //
-//dwEnabledOptions    Settings for the options that are to be changed. This can be one of the following values. 
+//dwEnabledOptions    Settings for the options that are to be changed. This can be one of the following values.
 //                    INTERFACESAFE_FOR_UNTRUSTED_CALLER
-//                        Indicates the interface identified by riid should be made safe for scripting. 
+//                        Indicates the interface identified by riid should be made safe for scripting.
 //                    INTERFACESAFE_FOR_UNTRUSTED_DATA
 //                        Indicates the interface identified by riid should be made safe for untrusted data during initialization.
 {% endhighlight %}
@@ -102,7 +102,7 @@ class YourClass :
 
 {% highlight C++ %}
 BEGIN_COM_MAP(CCGrid)
-    
+
     COM_INTERFACE_ENTRY(IObjectSafety)
 END_COM_MAP()
 {% endhighlight %}
@@ -121,10 +121,10 @@ OK，大功告成。这也是一种很简单的方法。
 {% highlight C++ %}
 [
     coclass/progid/vi_prgid,            //必须至少有其中一个
-    
+
     implements_category("CATID_SafeForScripting"),
     implements_category("CATID_SafeForInitializing"),
-    
+
 ]
 {% endhighlight %}
 
@@ -139,7 +139,7 @@ OK，大功告成。这也是一种很简单的方法。
 coclass YourCtrl
 {
     [default] interface ,
-        [default,source] dispinterface 
+        [default,source] dispinterface
 }
 {% endhighlight %}
 
@@ -291,7 +291,7 @@ STDAPI DllRegisterServer(void)
         return hr;
 
     // 标记控件脚本安全
-    // 创建脚本安全组件种类 
+    // 创建脚本安全组件种类
     hr = CreateComponentCategory(CATID_SafeForScripting, L"Controls safely scriptable!");
     if (FAILED(hr))
         return hr;
@@ -329,7 +329,7 @@ STDAPI DllUnregisterServer(void)
 
     //////////////////////////
     return NOERROR;
-} 
+}
 {% endhighlight %}
 
 
@@ -348,16 +348,16 @@ ActiveX SDK头文件ObjSafe.H 已经为类别CATID_SafeForInitializing和CATID_S
 
 {% highlight C++ %}
    REGEDIT4
-       
+
    [HKEY_CLASSES_ROOT\CLSID\{20048BB3-DB68-11CF-9CAF-00AA006CB425}\Implemented Categories]
-       
+
    [HKEY_CLASSES_ROOT\CLSID\{20048BB3-DB68-11CF-9CAF-00AA006CB425}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}]
-       
+
    [HKEY_CLASSES_ROOT\CLSID\{20048BB3-DB68-11CF-9CAF-00AA006CB425}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}]
 {% endhighlight %}
 
 
-将以上代码拷贝到一个*.reg中去，保存后执行就可以将GUID为{20048BB3-DB68-11CF-9CAF-00AA006CB425}的控件类注册为安全控件。有时候注册表中不一定有那两个类别，因此我们还需要自己来描述这两个重要的类别： 
+将以上代码拷贝到一个*.reg中去，保存后执行就可以将GUID为{20048BB3-DB68-11CF-9CAF-00AA006CB425}的控件类注册为安全控件。有时候注册表中不一定有那两个类别，因此我们还需要自己来描述这两个重要的类别：
 
 {% highlight C++ %}
 REGEDIT4
@@ -406,7 +406,7 @@ REGEDIT4
 > * 不要滥用与用户有关的活是用户提供的数据；
 > * 做大量的测试。
 
-这份表还远没有结束，但这些至少都是必要的。还有一点很重要，就是千万不要把本来实际上不安全的控件注册为安全的，尽管这很诱人（比如说你没有控件的源代码）。无论控件做什么事情的，一旦控件被标注为安全的，那么所有的网页都会省略对这个控件的安全检测。到目前为止，还没有方法能把一个控件标注为仅对特定网页是安全的。标注不安全控件为安全空间的一个简单安全的选择就是写一个包含了不安全控件的新安全控件。只要确保新安全控件的初始化，方法和属性都是安全的就行了。 
+这份表还远没有结束，但这些至少都是必要的。还有一点很重要，就是千万不要把本来实际上不安全的控件注册为安全的，尽管这很诱人（比如说你没有控件的源代码）。无论控件做什么事情的，一旦控件被标注为安全的，那么所有的网页都会省略对这个控件的安全检测。到目前为止，还没有方法能把一个控件标注为仅对特定网页是安全的。标注不安全控件为安全空间的一个简单安全的选择就是写一个包含了不安全控件的新安全控件。只要确保新安全控件的初始化，方法和属性都是安全的就行了。
 
 ##4、总结
 

@@ -2,19 +2,21 @@
 layout: blogs_item
 title: 网络通信IO多路复用之Select
 author: AcePeak
-categories: [Internet]
-tags: 
-- C++
+categories:
+  - 积累
+tags:
+  - C++
+  - 转载
 ---
 
 > 系列列表：
-> 
+>
 > [网络通信IO多路复用之Select【1】]({{site.url}}/blogs/2012/05/18/net-select/)
-> 
+>
 > [网络通信IO多路复用之Poll【2】]({{site.url}}/blogs/2012/05/19/net-poll/)
-> 
+>
 > [网络通信IO多路复用之ePoll【3】]({{site.url}}/blogs/2012/05/20/net-epoll/)
-> 
+>
 > [网络通信IO多路复用之总结【4】]({{site.url}}/blogs/2012/05/21/net-select-poll-epoll/)
 
 
@@ -57,7 +59,7 @@ int select(int maxfdp1,fd_set *readset,fd_set *writeset,fd_set *exceptset,const 
 void FD_ZERO(fd_set *fdset);           //清空集合
 void FD_SET(int fd, fd_set *fdset);   //将一个给定的文件描述符加入集合之中
 void FD_CLR(int fd, fd_set *fdset);   //将一个给定的文件描述符从集合中删除
-int FD_ISSET(int fd, fd_set *fdset);   // 检查集合中指定的文件描述符是否可以读写 
+int FD_ISSET(int fd, fd_set *fdset);   // 检查集合中指定的文件描述符是否可以读写
 {% endhighlight %}
 
 （3）timeout告知内核等待所指定描述字中的任何一个就绪可花多少时间。其timeval结构用于指定这段时间的秒数和微秒数。

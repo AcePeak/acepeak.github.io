@@ -2,10 +2,12 @@
 layout: blogs_item
 title: markdown语法支持的syntax高亮
 author: AcePeak
-categories: [Internet]
-tags: 
-- Jekyll
-- Liquid
+categories:
+  - 积累
+tags:
+  - Jekyll
+  - Liquid
+  - 转载
 ---
 
 > http://pygments.org/docs/lexers/

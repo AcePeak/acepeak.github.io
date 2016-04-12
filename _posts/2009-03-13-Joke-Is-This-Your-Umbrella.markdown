@@ -2,9 +2,10 @@
 layout: blogs_item
 title: 这把伞是你的吗？
 author: AcePeak
-categories: [博文]
-tags: 
-- 原生
+categories:
+  - 日记
+tags:
+  - 原创
 ---
 
 话说昨天晚上浦东看房子看得比较晚也比较累，在浦电路等地铁的时候把伞放地下玩了玩手机。
