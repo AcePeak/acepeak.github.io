@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2047,7 +2047,7 @@ that you’ll want to know about.</p>
 
 <p>Before we dive in, go ahead and fetch the latest version of Jekyll:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem update jekyll</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>gem update jekyll</code></pre></figure>
 
 <div class="note feature">
   <h5>Diving in</h5>
@@ -2058,19 +2058,19 @@ that you’ll want to know about.</p>
 
 <h3 id="the-jekyll-command">The Jekyll Command</h3>
 
-<p>For better clarity, Jekyll now accepts the commands <code>build</code> and <code>serve</code>.
-Whereas before you might simply run the command <code>jekyll</code> to generate a site
-and <code>jekyll --server</code> to view it locally, now use the subcommands <code>jekyll build</code>
-and <code>jekyll serve</code> to do the same. And if you want Jekyll to automatically
-rebuild each time a file changes, just add the <code>--watch</code> flag at the end.</p>
+<p>For better clarity, Jekyll now accepts the commands <code class="highlighter-rouge">build</code> and <code class="highlighter-rouge">serve</code>.
+Whereas before you might simply run the command <code class="highlighter-rouge">jekyll</code> to generate a site
+and <code class="highlighter-rouge">jekyll --server</code> to view it locally, now use the subcommands <code class="highlighter-rouge">jekyll build</code>
+and <code class="highlighter-rouge">jekyll serve</code> to do the same. And if you want Jekyll to automatically
+rebuild each time a file changes, just add the <code class="highlighter-rouge">--watch</code> flag at the end.</p>
 
 <div class="note info">
   <h5>Watching and Serving</h5>
   <p>With the new subcommands, the way sites are previewed locally
-   changed a bit. Instead of specifying <code>server: true</code> in the site’s
-   configuration file, use <code>jekyll serve</code>. The same hold’s true for
-   <code>watch: true</code>. Instead, use the <code>--watch</code> flag with either <code>jekyll serve</code>
-    or <code>jekyll build</code>.</p>
+   changed a bit. Instead of specifying <code class="highlighter-rouge">server: true</code> in the site’s
+   configuration file, use <code class="highlighter-rouge">jekyll serve</code>. The same hold’s true for
+   <code class="highlighter-rouge">watch: true</code>. Instead, use the <code class="highlighter-rouge">--watch</code> flag with either <code class="highlighter-rouge">jekyll serve</code>
+    or <code class="highlighter-rouge">jekyll build</code>.</p>
 </div>
 
 <h3 id="absolute-permalinks">Absolute Permalinks</h3>
@@ -2081,14 +2081,14 @@ will become <strong>opt-out</strong>, meaning Jekyll will default to using absol
 instead of relative permalinks.</p>
 
 <ul>
-  <li>To use absolute permalinks, set <code>relative_permalinks: false</code> in your configuration file.</li>
-  <li>To continue using relative permalinks, set <code>relative_permalinks: true</code> in your configuration file.</li>
+  <li>To use absolute permalinks, set <code class="highlighter-rouge">relative_permalinks: false</code> in your configuration file.</li>
+  <li>To continue using relative permalinks, set <code class="highlighter-rouge">relative_permalinks: true</code> in your configuration file.</li>
 </ul>
 
 <div class="note warning" id="absolute-permalinks-warning">
   <h5>Absolute permalinks will be default in v2.0 and on</h5>
   <p>
-    Starting with Jekyll v2.0, <code>relative_permalinks</code> will default to <code>false</code>,
+    Starting with Jekyll v2.0, <code class="highlighter-rouge">relative_permalinks</code> will default to <code class="highlighter-rouge">false</code>,
     meaning all pages will be built using the absolute permalink behaviour.
     The switch will still exist until v2.0.
   </p>
@@ -2098,17 +2098,17 @@ instead of relative permalinks.</p>
 
 <p>Jekyll now lets you write draft posts, and allows you to easily preview how
 they will look prior to publishing. To start a draft, simply create a folder
-called <code>_drafts</code> in your site’s source directory (e.g., alongside <code>_posts</code>),
+called <code class="highlighter-rouge">_drafts</code> in your site’s source directory (e.g., alongside <code class="highlighter-rouge">_posts</code>),
 and add a new markdown file to it. To preview your new post, simply run the
-<code>jekyll serve</code> command with the <code>--drafts</code> flag.</p>
+<code class="highlighter-rouge">jekyll serve</code> command with the <code class="highlighter-rouge">--drafts</code> flag.</p>
 
 <div class="note info">
   <h5>Drafts don’t have dates</h5>
   <p>
     Unlike posts, drafts don’t have a date, since they haven’t
     been published yet. Rather than naming your draft something like
-    <code>2013-07-01-my-draft-post.md</code>, simply name the file what you’d like your
-    post to eventually be titled, here <code>my-draft-post.md</code>.</p>
+    <code class="highlighter-rouge">2013-07-01-my-draft-post.md</code>, simply name the file what you’d like your
+    post to eventually be titled, here <code class="highlighter-rouge">my-draft-post.md</code>.</p>
 </div>
 
 <h3 id="custom-config-file">Custom Config File</h3>
@@ -2116,32 +2116,32 @@ and add a new markdown file to it. To preview your new post, simply run the
 <p>Rather than passing individual flags via the command line, you can now pass an
 entire custom Jekyll config file. This helps to distinguish between
 environments, or lets you programmatically override user-specified defaults.
-Simply add the <code>--config</code> flag to the <code>jekyll</code> command, followed by the path
+Simply add the <code class="highlighter-rouge">--config</code> flag to the <code class="highlighter-rouge">jekyll</code> command, followed by the path
 to one or more config files (comma-delimited, no spaces).</p>
 
 <h4 id="as-a-result-the-following-command-line-flags-are-now-deprecated">As a result, the following command line flags are now deprecated:</h4>
 
 <ul>
-  <li><code>--no-server</code></li>
-  <li><code>--no-auto</code></li>
-  <li><code>--auto</code> (now <code>--watch</code>)</li>
-  <li><code>--server</code></li>
-  <li><code>--url=</code></li>
-  <li><code>--maruku</code>, <code>--rdiscount</code>, and <code>--redcarpet</code></li>
-  <li><code>--pygments</code></li>
-  <li><code>--permalink=</code></li>
-  <li><code>--paginate</code></li>
+  <li><code class="highlighter-rouge">--no-server</code></li>
+  <li><code class="highlighter-rouge">--no-auto</code></li>
+  <li><code class="highlighter-rouge">--auto</code> (now <code class="highlighter-rouge">--watch</code>)</li>
+  <li><code class="highlighter-rouge">--server</code></li>
+  <li><code class="highlighter-rouge">--url=</code></li>
+  <li><code class="highlighter-rouge">--maruku</code>, <code class="highlighter-rouge">--rdiscount</code>, and <code class="highlighter-rouge">--redcarpet</code></li>
+  <li><code class="highlighter-rouge">--pygments</code></li>
+  <li><code class="highlighter-rouge">--permalink=</code></li>
+  <li><code class="highlighter-rouge">--paginate</code></li>
 </ul>
 
 <div class="note info">
   <h5>The config flag explicitly specifies your configuration file(s)</h5>
-  <p>If you use the <code>--config</code> flag, Jekyll will ignore your
-    <code>_config.yml</code> file. Want to merge a custom configuration with the normal
+  <p>If you use the <code class="highlighter-rouge">--config</code> flag, Jekyll will ignore your
+    <code class="highlighter-rouge">_config.yml</code> file. Want to merge a custom configuration with the normal
     configuration? No problem. Jekyll will accept more than one custom config
     file via the command line. Config files cascade from right to left, such
-    that if I run <code>jekyll serve --config _config.yml,_config-dev.yml</code>,
-    the values in the config files on the right (<code>_config-dev.yml</code>) overwrite
-    those on the left (<code>_config.yml</code>) when both contain the same key.</p>
+    that if I run <code class="highlighter-rouge">jekyll serve --config _config.yml,_config-dev.yml</code>,
+    the values in the config files on the right (<code class="highlighter-rouge">_config-dev.yml</code>) overwrite
+    those on the left (<code class="highlighter-rouge">_config.yml</code>) when both contain the same key.</p>
 </div>
 
 <h3 id="new-config-file-options">New Config File Options</h3>
@@ -2151,25 +2151,25 @@ should check to see if any of these are present in your pre-1.0 config file, and
 if so, make sure that you’re using them properly:</p>
 
 <ul>
-  <li><code>excerpt_separator</code></li>
-  <li><code>host</code></li>
-  <li><code>include</code></li>
-  <li><code>keep_files</code></li>
-  <li><code>layouts</code></li>
-  <li><code>show_drafts</code></li>
-  <li><code>timezone</code></li>
-  <li><code>url</code></li>
+  <li><code class="highlighter-rouge">excerpt_separator</code></li>
+  <li><code class="highlighter-rouge">host</code></li>
+  <li><code class="highlighter-rouge">include</code></li>
+  <li><code class="highlighter-rouge">keep_files</code></li>
+  <li><code class="highlighter-rouge">layouts</code></li>
+  <li><code class="highlighter-rouge">show_drafts</code></li>
+  <li><code class="highlighter-rouge">timezone</code></li>
+  <li><code class="highlighter-rouge">url</code></li>
 </ul>
 
 <h3 id="baseurl">Baseurl</h3>
 
 <p>Often, you’ll want the ability to run a Jekyll site in multiple places, such as
 previewing locally before pushing to GitHub Pages. Jekyll 1.0 makes that
-easier with the new <code>--baseurl</code> flag. To take advantage of this feature, first
-add the production <code>baseurl</code> to your site’s <code>_config.yml</code> file. Then,
-throughout the site, simply prefix relative URLs with <code>{{ site.baseurl }}</code>.
-When you’re ready to preview your site locally, pass along the <code>--baseurl</code> flag
-with your local baseurl (most likely <code>/</code>) to <code>jekyll serve</code> and Jekyll will
+easier with the new <code class="highlighter-rouge">--baseurl</code> flag. To take advantage of this feature, first
+add the production <code class="highlighter-rouge">baseurl</code> to your site’s <code class="highlighter-rouge">_config.yml</code> file. Then,
+throughout the site, simply prefix relative URLs with <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">site.baseurl</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code>.
+When you’re ready to preview your site locally, pass along the <code class="highlighter-rouge">--baseurl</code> flag
+with your local baseurl (most likely <code class="highlighter-rouge">/</code>) to <code class="highlighter-rouge">jekyll serve</code> and Jekyll will
 swap in whatever you’ve passed along, ensuring all your links work as you’d
 expect in both environments.</p>
 
@@ -2178,10 +2178,10 @@ expect in both environments.</p>
   <p>If you use the method described above, please remember
   that the URLs for all posts and pages contain a leading slash. Therefore,
   concatenating the site baseurl and the post/page url where
-  <code>site.baseurl = /</code> and <code>post.url = /2013/06/05/my-fun-post/</code> will
+  <code class="highlighter-rouge">site.baseurl = /</code> and <code class="highlighter-rouge">post.url = /2013/06/05/my-fun-post/</code> will
   result in two leading slashes, which will break links. It is thus
-  suggested that prefixing with <code>site.baseurl</code> only be used when the
-  <code>baseurl</code> is something other than the default of <code>/</code>.</p>
+  suggested that prefixing with <code class="highlighter-rouge">site.baseurl</code> only be used when the
+  <code class="highlighter-rouge">baseurl</code> is something other than the default of <code class="highlighter-rouge">/</code>.</p>
 </div>
 
           <div class="section-nav">
@@ -2216,8 +2216,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -2288,8 +2286,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -2358,8 +2354,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -2430,8 +2424,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -2501,8 +2493,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -2571,8 +2561,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -2651,8 +2639,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -2721,8 +2707,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -2793,8 +2777,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -2863,8 +2845,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -2935,8 +2915,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3005,8 +2983,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -3077,8 +3053,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3148,8 +3122,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3218,8 +3190,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -3298,8 +3268,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3368,8 +3336,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -3440,8 +3406,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3511,8 +3475,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3581,8 +3543,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -3661,8 +3621,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3732,8 +3690,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3802,8 +3758,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -3882,8 +3836,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -3952,8 +3904,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -4024,8 +3974,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -4094,8 +4042,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   
@@ -4174,8 +4120,6 @@ expect in both environments.</p>
   
 
   
-    
-  
 
   
     
@@ -4244,8 +4188,6 @@ expect in both environments.</p>
 
   
 
-  
-    
   
 
   

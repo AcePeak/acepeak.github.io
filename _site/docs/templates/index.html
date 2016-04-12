@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2295,13 +2295,13 @@ common tasks easier.</p>
 <h3 id="includes">Includes</h3>
 
 <p>If you have small page fragments that you wish to include in multiple places on
-your site, you can use the <code>include</code> tag.</p>
+your site, you can use the <code class="highlighter-rouge">include</code> tag.</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="kp">include</span> <span class="n">footer</span><span class="o">.</span><span class="n">html</span> <span class="o">%</span><span class="p">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="sx">% include </span><span class="n">footer</span><span class="p">.</span><span class="nf">html</span> <span class="sx">%}</span></code></pre></figure>
 
-<p>Jekyll expects all include files to be placed in an <code>_includes</code> directory at the
+<p>Jekyll expects all include files to be placed in an <code class="highlighter-rouge">_includes</code> directory at the
 root of your source directory. This will embed the contents of
-<code>&lt;source&gt;/_includes/footer.html</code> into the calling file.</p>
+<code class="highlighter-rouge">&lt;source&gt;/_includes/footer.html</code> into the calling file.</p>
 
 <div class="note">
   <h5>ProTip™: Use variables as file name</h5>
@@ -2316,25 +2316,25 @@ root of your source directory. This will embed the contents of
 
 <p>You can also pass parameters to an include:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="kp">include</span> <span class="n">footer</span><span class="o">.</span><span class="n">html</span> <span class="n">param</span><span class="o">=</span><span class="s2">&quot;value&quot;</span> <span class="o">%</span><span class="p">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="sx">% include </span><span class="n">footer</span><span class="p">.</span><span class="nf">html</span> <span class="n">param</span><span class="o">=</span><span class="s2">"value"</span> <span class="o">%</span><span class="p">}</span></code></pre></figure>
 
 <p>These parameters are available via Liquid in the include:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="kp">include</span><span class="o">.</span><span class="n">param</span> <span class="p">}}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{{</span> <span class="kp">include</span><span class="p">.</span><span class="nf">param</span> <span class="p">}}</span></code></pre></figure>
 
 <h4 id="including-files-relative-to-another-file">Including files relative to another file</h4>
 
 <p>You can also choose to include file fragments relative to the current file:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="o">%</span> <span class="n">include_relative</span> <span class="n">somedir</span><span class="o">/</span><span class="n">footer</span><span class="o">.</span><span class="n">html</span> <span class="o">%</span><span class="p">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">{</span><span class="sx">% include_relative </span><span class="n">somedir</span><span class="o">/</span><span class="n">footer</span><span class="p">.</span><span class="nf">html</span> <span class="sx">%}</span></code></pre></figure>
 
-<p>You won’t need to place your included content within the <code>_includes</code> directory. Instead,
+<p>You won’t need to place your included content within the <code class="highlighter-rouge">_includes</code> directory. Instead,
 the inclusion is specifically relative to the file where the tag is being used. For example,
-if <code>_posts/2014-09-03-my-file.markdown</code> uses the <code>include_relative</code> tag, the included file
-must be within the <code>_posts</code> directory, or one of it’s subdirectories. You cannot include
+if <code class="highlighter-rouge">_posts/2014-09-03-my-file.markdown</code> uses the <code class="highlighter-rouge">include_relative</code> tag, the included file
+must be within the <code class="highlighter-rouge">_posts</code> directory, or one of it’s subdirectories. You cannot include
 files in other locations.</p>
 
-<p>All the other capabilities of the <code>include</code> tag are available to the <code>include_relative</code> tag,
+<p>All the other capabilities of the <code class="highlighter-rouge">include</code> tag are available to the <code class="highlighter-rouge">include_relative</code> tag,
 such as using variables.</p>
 
 <h3 id="code-snippet-highlighting">Code snippet highlighting</h3>
@@ -2342,7 +2342,7 @@ such as using variables.</p>
 <p>Jekyll has built in support for syntax highlighting of <a href="http://pygments.org/languages/">over 100
 languages</a> thanks to
 <a href="http://pygments.org/">Pygments</a>. To use Pygments, you must have Python installed
-on your system and set <code>highlighter</code> to <code>pygments</code> in your site’s configuration
+on your system and set <code class="highlighter-rouge">highlighter</code> to <code class="highlighter-rouge">pygments</code> in your site’s configuration
 file.</p>
 
 <p>Alternatively, you can use <a href="https://github.com/jayferd/rouge">Rouge</a> to highlight
@@ -2352,13 +2352,13 @@ on your system!</p>
 
 <p>To render a code block with syntax highlighting, surround your code as follows:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">{% highlight ruby %}
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{% highlight ruby %}
 def foo
-  puts &#39;foo&#39;
+  puts 'foo'
 end
-{% endhighlight %}</code></pre></div>
+{% endhighlight %}</code></pre></figure>
 
-<p>The argument to the <code>highlight</code> tag (<code>ruby</code> in the example above) is the
+<p>The argument to the <code class="highlighter-rouge">highlight</code> tag (<code class="highlighter-rouge">ruby</code> in the example above) is the
 language identifier. To find the appropriate identifier to use for the language
 you want to highlight, look for the “short name” on the <a href="http://pygments.org/docs/lexers/">Pygments’ Lexers
 page</a> or the <a href="https://github.com/jayferd/rouge/wiki/List-of-supported-languages-and-lexers">Rouge
@@ -2366,16 +2366,16 @@ wiki</a>.</p>
 
 <h4 id="line-numbers">Line numbers</h4>
 
-<p>There is a second argument to <code>highlight</code> called <code>linenos</code> that is optional.
-Including the <code>linenos</code> argument will force the highlighted code to include line
+<p>There is a second argument to <code class="highlighter-rouge">highlight</code> called <code class="highlighter-rouge">linenos</code> that is optional.
+Including the <code class="highlighter-rouge">linenos</code> argument will force the highlighted code to include line
 numbers. For instance, the following code block would include line numbers next
 to each line:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">{% highlight ruby linenos %}
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{% highlight ruby linenos %}
 def foo
-  puts &#39;foo&#39;
+  puts 'foo'
 end
-{% endhighlight %}</code></pre></div>
+{% endhighlight %}</code></pre></figure>
 
 <h4 id="stylesheets-for-syntax-highlighting">Stylesheets for syntax highlighting</h4>
 
@@ -2383,37 +2383,37 @@ end
 stylesheet. For an example stylesheet you can look at
 <a href="https://github.com/mojombo/tpw/tree/master/css/syntax.css">syntax.css</a>. These
 are the same styles as used by GitHub and you are free to use them for your own
-site. If you use <code>linenos</code>, you might want to include an additional CSS class
-definition for the <code>.lineno</code> class in <code>syntax.css</code> to distinguish the line
+site. If you use <code class="highlighter-rouge">linenos</code>, you might want to include an additional CSS class
+definition for the <code class="highlighter-rouge">.lineno</code> class in <code class="highlighter-rouge">syntax.css</code> to distinguish the line
 numbers from the highlighted code.</p>
 
 <h3 id="post-url">Post URL</h3>
 
-<p>If you would like to include a link to a post on your site, the <code>post_url</code> tag
+<p>If you would like to include a link to a post on your site, the <code class="highlighter-rouge">post_url</code> tag
 will generate the correct permalink URL for the post you specify.</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">{% post_url 2010-07-21-name-of-post %}</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{% post_url 2010-07-21-name-of-post %}</code></pre></figure>
 
 <p>If you organize your posts in subdirectories, you need to include subdirectory
 path to the post:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">{% post_url /subdir/2010-07-21-name-of-post %}</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{% post_url /subdir/2010-07-21-name-of-post %}</code></pre></figure>
 
-<p>There is no need to include the file extension when using the <code>post_url</code> tag.</p>
+<p>There is no need to include the file extension when using the <code class="highlighter-rouge">post_url</code> tag.</p>
 
 <p>You can also use this tag to create a link to a post in Markdown as follows:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">[Name of Link]({% post_url 2010-07-21-name-of-post %})</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">[Name of Link]({% post_url 2010-07-21-name-of-post %})</code></pre></figure>
 
 <h3 id="gist">Gist</h3>
 
-<p>Use the <code>gist</code> tag to easily embed a GitHub Gist onto your site. This works with public or secret gists:</p>
+<p>Use the <code class="highlighter-rouge">gist</code> tag to easily embed a GitHub Gist onto your site. This works with public or secret gists:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">{% gist parkr/931c1c8d465a04042403 %}</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{% gist parkr/931c1c8d465a04042403 %}</code></pre></figure>
 
 <p>You may also optionally specify the filename in the gist to display:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">{% gist parkr/931c1c8d465a04042403 jekyll-private-gist.markdown %}</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{% gist parkr/931c1c8d465a04042403 jekyll-private-gist.markdown %}</code></pre></figure>
 
 
           <div class="section-nav">
@@ -2448,8 +2448,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -2520,8 +2518,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -2590,8 +2586,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -2662,8 +2656,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -2733,8 +2725,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -2803,8 +2793,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -2883,8 +2871,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -2953,8 +2939,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -3025,8 +3009,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3095,8 +3077,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -3167,8 +3147,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3237,8 +3215,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -3309,8 +3285,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3380,8 +3354,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3450,8 +3422,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -3530,8 +3500,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3600,8 +3568,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -3672,8 +3638,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3743,8 +3707,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3813,8 +3775,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -3893,8 +3853,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -3964,8 +3922,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -4034,8 +3990,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -4114,8 +4068,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -4184,8 +4136,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -4256,8 +4206,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -4326,8 +4274,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   
@@ -4406,8 +4352,6 @@ path to the post:</p>
   
 
   
-    
-  
 
   
     
@@ -4476,8 +4420,6 @@ path to the post:</p>
 
   
 
-  
-    
   
 
   

@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2049,7 +2049,7 @@ copies files and directories, this is easy to do.</p>
 <h2 id="homepage">Homepage</h2>
 
 <p>Just about every web server configuration you come across will look for an HTML
-file called <code>index.html</code> (by convention) in the site’s root folder and display
+file called <code class="highlighter-rouge">index.html</code> (by convention) in the site’s root folder and display
 that as the homepage. Unless the web server you’re using is configured to look
 for some different filename as the default, this file will turn into the
 homepage of your Jekyll-generated site.</p>
@@ -2084,37 +2084,37 @@ directory with a suitable name for the page you want to create. For a site with
 a homepage, an about page, and a contact page, here’s what the root directory
 and associated URLs might look like:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">.
-<span class="p">|</span>-- _config.yml
-<span class="p">|</span>-- _includes/
-<span class="p">|</span>-- _layouts/
-<span class="p">|</span>-- _posts/
-<span class="p">|</span>-- _site/
-<span class="p">|</span>-- about.html    <span class="c"># =&gt; http://example.com/about.html</span>
-<span class="p">|</span>-- index.html    <span class="c"># =&gt; http://example.com/</span>
-└── contact.html  <span class="c"># =&gt; http://example.com/contact.html</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">.
+|-- _config.yml
+|-- _includes/
+|-- _layouts/
+|-- _posts/
+|-- _site/
+|-- about.html    <span class="c"># =&gt; http://example.com/about.html</span>
+|-- index.html    <span class="c"># =&gt; http://example.com/</span>
+└── contact.html  <span class="c"># =&gt; http://example.com/contact.html</span></code></pre></figure>
 
 <h3 id="named-folders-containing-index-html-files">Named folders containing index HTML files</h3>
 
 <p>There is nothing wrong with the above method, however some people like to keep
 their URLs free from things like filename extensions. To achieve clean URLs for
 pages using Jekyll, you simply need to create a folder for each top-level page
-you want, and then place an <code>index.html</code> file in each page’s folder. This way
+you want, and then place an <code class="highlighter-rouge">index.html</code> file in each page’s folder. This way
 the page URL ends up being the folder name, and the web server will serve up the
-respective <code>index.html</code> file. Here’s an example of what this structure might
+respective <code class="highlighter-rouge">index.html</code> file. Here’s an example of what this structure might
 look like:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">.
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">.
 ├── _config.yml
 ├── _includes/
 ├── _layouts/
 ├── _posts/
 ├── _site/
 ├── about/
-<span class="p">|</span>   └── index.html  <span class="c"># =&gt; http://example.com/about/</span>
+|   └── index.html  <span class="c"># =&gt; http://example.com/about/</span>
 ├── contact/
-<span class="p">|</span>   └── index.html  <span class="c"># =&gt; http://example.com/contact/</span>
-└── index.html      <span class="c"># =&gt; http://example.com/</span></code></pre></div>
+|   └── index.html  <span class="c"># =&gt; http://example.com/contact/</span>
+└── index.html      <span class="c"># =&gt; http://example.com/</span></code></pre></figure>
 
 <p>This approach may not suit everyone, but for people who like clean URLs it’s
 simple and it works. In the end the decision is yours!</p>
@@ -2151,8 +2151,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -2223,8 +2221,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -2293,8 +2289,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -2365,8 +2359,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -2436,8 +2428,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -2506,8 +2496,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -2586,8 +2574,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -2656,8 +2642,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -2728,8 +2712,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -2798,8 +2780,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -2870,8 +2850,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -2940,8 +2918,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -3012,8 +2988,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3083,8 +3057,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3153,8 +3125,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -3233,8 +3203,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3303,8 +3271,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -3375,8 +3341,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3446,8 +3410,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3516,8 +3478,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -3596,8 +3556,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3667,8 +3625,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3737,8 +3693,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -3817,8 +3771,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -3887,8 +3839,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -3959,8 +3909,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -4029,8 +3977,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   
@@ -4109,8 +4055,6 @@ simple and it works. In the end the decision is yours!</p>
   
 
   
-    
-  
 
   
     
@@ -4179,8 +4123,6 @@ simple and it works. In the end the decision is yours!</p>
 
   
 
-  
-    
   
 
   

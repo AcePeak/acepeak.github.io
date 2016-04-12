@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2043,21 +2043,21 @@
         <article>
           <h1>Assets</h1>
           <p>Jekyll provides built-in support for Sass and CoffeeScript. In order to use
-them, create a file with the proper extension name (one of <code>.sass</code>, <code>.scss</code>,
-or <code>.coffee</code>) and start the file with two lines of triple dashes, like this:</p>
+them, create a file with the proper extension name (one of <code class="highlighter-rouge">.sass</code>, <code class="highlighter-rouge">.scss</code>,
+or <code class="highlighter-rouge">.coffee</code>) and start the file with two lines of triple dashes, like this:</p>
 
-<div class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="nt">---</span>
+<figure class="highlight"><pre><code class="language-sass" data-lang="sass"><span class="nt">---</span>
 <span class="nt">---</span>
 
-<span class="c1">// start content</span>
-<span class="nc">.my-definition</span>
-  <span class="na">font-size</span><span class="o">:</span> <span class="mi">1</span><span class="mf">.2</span><span class="kt">em</span></code></pre></div>
+<span class="c1">// start content
+</span><span class="nc">.my-definition</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1</span><span class="mi">.2em</span></code></pre></figure>
 
 <p>Jekyll treats these files the same as a regular page, in that the output file
 will be placed in the same directory that it came from. For instance, if you
-have a file named <code>css/styles.scss</code> in your site’s source folder, Jekyll
+have a file named <code class="highlighter-rouge">css/styles.scss</code> in your site’s source folder, Jekyll
 will process it and put it in your site’s destination folder under
-<code>css/styles.css</code>.</p>
+<code class="highlighter-rouge">css/styles.css</code>.</p>
 
 <div class="note info">
   <h5>Jekyll processes all Liquid filters and tags in asset files</h5>
@@ -2072,20 +2072,20 @@ will process it and put it in your site’s destination folder under
 
 <p>Jekyll allows you to customize your Sass conversion in certain ways.</p>
 
-<p>Place all your partials in your <code>sass_dir</code>, which defaults to
-<code>&lt;source&gt;/_sass</code>. Place your main SCSS or Sass files in the place you want
-them to be in the output file, such as <code>&lt;source&gt;/css</code>. For an example, take
+<p>Place all your partials in your <code class="highlighter-rouge">sass_dir</code>, which defaults to
+<code class="highlighter-rouge">&lt;source&gt;/_sass</code>. Place your main SCSS or Sass files in the place you want
+them to be in the output file, such as <code class="highlighter-rouge">&lt;source&gt;/css</code>. For an example, take
 a look at <a href="https://github.com/jekyll/jekyll-sass-converter/tree/master/example">this example site using Sass support in Jekyll</a>.</p>
 
-<p>If you are using Sass <code>@import</code> statements, you’ll need to ensure that your
-<code>sass_dir</code> is set to the base directory that contains your Sass files. You
+<p>If you are using Sass <code class="highlighter-rouge">@import</code> statements, you’ll need to ensure that your
+<code class="highlighter-rouge">sass_dir</code> is set to the base directory that contains your Sass files. You
 can do that thusly:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">sass</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">sass_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">_sass</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">sass</span><span class="pi">:</span>
+    <span class="s">sass_dir</span><span class="pi">:</span> <span class="s">_sass</span></code></pre></figure>
 
-<p>The Sass converter will default the <code>sass_dir</code> configuration option to
-<code>_sass</code>.</p>
+<p>The Sass converter will default the <code class="highlighter-rouge">sass_dir</code> configuration option to
+<code class="highlighter-rouge">_sass</code>.</p>
 
 <div class="note info">
   <h5>The <code>sass_dir</code> is only used by Sass</h5>
@@ -2100,11 +2100,11 @@ can do that thusly:</p>
   </p>
 </div>
 
-<p>You may also specify the output style with the <code>style</code> option in your
-<code>_config.yml</code> file:</p>
+<p>You may also specify the output style with the <code class="highlighter-rouge">style</code> option in your
+<code class="highlighter-rouge">_config.yml</code> file:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">sass</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">style</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">:compressed</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">sass</span><span class="pi">:</span>
+    <span class="s">style</span><span class="pi">:</span> <span class="s">:compressed</span></code></pre></figure>
 
 <p>These are passed to Sass, so any output style options Sass supports are valid
 here, too.</p>
@@ -2141,8 +2141,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -2213,8 +2211,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -2283,8 +2279,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -2355,8 +2349,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -2426,8 +2418,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -2496,8 +2486,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -2576,8 +2564,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -2646,8 +2632,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -2718,8 +2702,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -2788,8 +2770,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -2860,8 +2840,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -2930,8 +2908,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -3002,8 +2978,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3073,8 +3047,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3143,8 +3115,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -3223,8 +3193,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3293,8 +3261,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -3365,8 +3331,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3436,8 +3400,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3506,8 +3468,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -3586,8 +3546,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3657,8 +3615,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3727,8 +3683,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -3807,8 +3761,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -3877,8 +3829,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -3949,8 +3899,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -4019,8 +3967,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   
@@ -4099,8 +4045,6 @@ here, too.</p>
   
 
   
-    
-  
 
   
     
@@ -4169,8 +4113,6 @@ here, too.</p>
 
   
 
-  
-    
   
 
   

@@ -1,12 +1,12 @@
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 relative_permalinks: false
 permalink: /blogs/:year/:month/:day/:title/
 excerpt_separator: ""
 encoding: UTF-8
 
-gauges_id: 
-google_analytics_id: 
+gauges_id:
+google_analytics_id:
 cnzz_id: 1253874436
 jiathis_id: 1995809
 

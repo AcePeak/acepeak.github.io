@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2044,7 +2044,7 @@
           <h1>GitHub Pages</h1>
           <p><a href="http://pages.github.com">GitHub Pages</a> are public web pages for users,
 organizations, and repositories, that are freely hosted on GitHub’s
-<code>github.io</code> domain or on a custom domain name of your choice. GitHub Pages are
+<code class="highlighter-rouge">github.io</code> domain or on a custom domain name of your choice. GitHub Pages are
 powered by Jekyll behind the scenes, so in addition to supporting regular HTML
 content, they’re also a great way to host your Jekyll-powered website for free.</p>
 
@@ -2068,13 +2068,13 @@ few minor details.</p>
     following to your <code>Gemfile</code>:
 
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
 
-<span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
-<span class="nb">require</span> <span class="s1">&#39;open-uri&#39;</span>
-<span class="n">versions</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;https://pages.github.com/versions.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'open-uri'</span>
+<span class="n">versions</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">'https://pages.github.com/versions.json'</span><span class="p">).</span><span class="nf">read</span><span class="p">)</span>
 
-<span class="n">gem</span> <span class="s1">&#39;github-pages&#39;</span><span class="p">,</span> <span class="n">versions</span><span class="o">[</span><span class="s1">&#39;github-pages&#39;</span><span class="o">]</span></code></pre></div>
+<span class="n">gem</span> <span class="s1">'github-pages'</span><span class="p">,</span> <span class="n">versions</span><span class="p">[</span><span class="s1">'github-pages'</span><span class="p">]</span></code></pre></figure>
 
 
     This will ensure that when you run <code>bundle install</code>, you
@@ -2088,9 +2088,9 @@ few minor details.</p>
 only the GitHub Pages files. This repository must be named after the account
 name. For example, <a href="https://github.com/mojombo/mojombo.github.io">@mojombo’s user page
 repository</a> has the name
-<code>mojombo.github.io</code>.</p>
+<code class="highlighter-rouge">mojombo.github.io</code>.</p>
 
-<p>Content from the <code>master</code> branch of your repository will be used to build and
+<p>Content from the <code class="highlighter-rouge">master</code> branch of your repository will be used to build and
 publish the GitHub Pages site, so make sure your Jekyll site is stored there.</p>
 
 <div class="note info">
@@ -2106,9 +2106,9 @@ publish the GitHub Pages site, so make sure your Jekyll site is stored there.</p
 
 <p>Unlike user and organization Pages, Project Pages are kept in the same
 repository as the project they are for, except that the website content is
-stored in a specially named <code>gh-pages</code> branch. The content of this branch will
+stored in a specially named <code class="highlighter-rouge">gh-pages</code> branch. The content of this branch will
 be rendered using Jekyll, and the output will become available under a subpath
-of your user pages subdomain, such as <code>username.github.io/project</code> (unless a
+of your user pages subdomain, such as <code class="highlighter-rouge">username.github.io/project</code> (unless a
 custom domain is specified—see below).</p>
 
 <p>The Jekyll project repository itself is a perfect example of this branch
@@ -2126,30 +2126,30 @@ Github Pages <a href="https://help.github.com/articles/troubleshooting-github-pa
 
 <h3 id="project-page-url-structure">Project Page URL Structure</h3>
 
-<p>Sometimes it’s nice to preview your Jekyll site before you push your <code>gh-pages</code>
+<p>Sometimes it’s nice to preview your Jekyll site before you push your <code class="highlighter-rouge">gh-pages</code>
 branch to GitHub. However, the subdirectory-like URL structure GitHub uses for
 Project Pages complicates the proper resolution of URLs. Here is an approach to
-utilizing the GitHub Project Page URL structure (<code>username.github.io/project-name/</code>)
+utilizing the GitHub Project Page URL structure (<code class="highlighter-rouge">username.github.io/project-name/</code>)
 whilst maintaining the ability to preview your Jekyll site locally.</p>
 
 <ol>
-  <li>In <code>_config.yml</code>, set the <code>baseurl</code> option to <code>/project-name</code> – note the
+  <li>In <code class="highlighter-rouge">_config.yml</code>, set the <code class="highlighter-rouge">baseurl</code> option to <code class="highlighter-rouge">/project-name</code> – note the
 leading slash and the <strong>absence</strong> of a trailing slash.</li>
   <li>When referencing JS or CSS files, do it like this:
-<code>{{ site.baseurl }}/path/to/css.css</code> – note the slash
+<code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">site.baseurl</span><span class="w"> </span><span class="p">}</span><span class="err">}/path/to/css.css</span></code> – note the slash
 immediately following the variable (just before “path”).</li>
   <li>When doing permalinks or internal links, do it like this:
-<code>{{ site.baseurl }}{{ post.url }}</code> – note that there
+<code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">site.baseurl</span><span class="w"> </span><span class="p">}</span><span class="err">}</span><span class="p">{</span><span class="err">{</span><span class="w"> </span><span class="err">post.url</span><span class="w"> </span><span class="p">}</span><span class="err">}</span></code> – note that there
 is <strong>no</strong> slash between the two variables.</li>
   <li>Finally, if you’d like to preview your site before committing/deploying using
-<code>jekyll serve</code>, be sure to pass an <strong>empty string</strong> to the <code>--baseurl</code> option,
-so that you can view everything at <code>localhost:4000</code> normally (without
-<code>/project-name</code> at the beginning): <code>jekyll serve --baseurl ''</code></li>
+<code class="highlighter-rouge">jekyll serve</code>, be sure to pass an <strong>empty string</strong> to the <code class="highlighter-rouge">--baseurl</code> option,
+so that you can view everything at <code class="highlighter-rouge">localhost:4000</code> normally (without
+<code class="highlighter-rouge">/project-name</code> at the beginning): <code class="highlighter-rouge">jekyll serve --baseurl ''</code></li>
 </ol>
 
 <p>This way you can preview your site locally from the site root on localhost,
 but when GitHub generates your pages from the gh-pages branch all the URLs
-will start with <code>/project-name</code> and resolve properly.</p>
+will start with <code class="highlighter-rouge">/project-name</code> and resolve properly.</p>
 
 <div class="note">
   <h5>GitHub Pages Documentation, Help, and Support</h5>
@@ -2192,8 +2192,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -2264,8 +2262,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -2334,8 +2330,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -2406,8 +2400,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -2477,8 +2469,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -2547,8 +2537,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -2627,8 +2615,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -2697,8 +2683,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -2769,8 +2753,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -2839,8 +2821,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -2911,8 +2891,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -2981,8 +2959,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -3053,8 +3029,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3124,8 +3098,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3194,8 +3166,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -3274,8 +3244,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3344,8 +3312,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -3416,8 +3382,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3487,8 +3451,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3557,8 +3519,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -3637,8 +3597,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3708,8 +3666,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3778,8 +3734,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -3858,8 +3812,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -3928,8 +3880,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -4000,8 +3950,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -4070,8 +4018,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   
@@ -4150,8 +4096,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
   
 
   
-    
-  
 
   
     
@@ -4220,8 +4164,6 @@ will start with <code>/project-name</code> and resolve properly.</p>
 
   
 
-  
-    
   
 
   

@@ -53,7 +53,7 @@ user permission xxx
 
 {% highlight bash %}
 //example: change 2794; maxCommitChange 2794; upgrade 23;
-p4 -p localhost:1666 -u ace -C utf8 counter -f change 2794
-p4 -p localhost:1666 -u ace -C utf8 counter -f maxCommitChange 2794
-p4 -p localhost:1666 -u ace -C utf8 counter -f upgrade 23
+p4 -p localhost:1666 -u ace -P %PASSWORD% -C utf8 counter -f change 3914
+p4 -p localhost:1666 -u ace -P %PASSWORD% -C utf8 counter -f maxCommitChange 3914
+p4 -p localhost:1666 -u ace -P %PASSWORD% -C utf8 counter -f upgrade 23
 {% endhighlight %}

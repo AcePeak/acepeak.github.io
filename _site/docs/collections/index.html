@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2055,45 +2055,45 @@
 
 <h3 id="step-1-tell-jekyll-to-read-in-your-collection">Step 1: Tell Jekyll to read in your collection</h3>
 
-<p>Add the following to your site’s <code>_config.yml</code> file, replacing <code>my_collection</code> with the name of your collection:</p>
+<p>Add the following to your site’s <code class="highlighter-rouge">_config.yml</code> file, replacing <code class="highlighter-rouge">my_collection</code> with the name of your collection:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">collections</span><span class="p-Indicator">:</span>
-<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">my_collection</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">collections</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">my_collection</span></code></pre></figure>
 
 <p>You can optionally specify metadata for your collection in the configuration:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">collections</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">my_collection</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">foo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">bar</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">collections</span><span class="pi">:</span>
+  <span class="s">my_collection</span><span class="pi">:</span>
+    <span class="s">foo</span><span class="pi">:</span> <span class="s">bar</span></code></pre></figure>
 
 <h3 id="step-2-add-your-content">Step 2: Add your content</h3>
 
-<p>Create a corresponding folder (e.g. <code>&lt;source&gt;/_my_collection</code>) and add documents.
-YAML Front Matter is read in as data if it exists, if not, then everything is just stuck in the Document’s <code>content</code> attribute.</p>
+<p>Create a corresponding folder (e.g. <code class="highlighter-rouge">&lt;source&gt;/_my_collection</code>) and add documents.
+YAML Front Matter is read in as data if it exists, if not, then everything is just stuck in the Document’s <code class="highlighter-rouge">content</code> attribute.</p>
 
-<p>Note: the folder must be named identically to the collection you defined in your <code>_config.yml</code> file, with the addition of the preceding <code>_</code> character.</p>
+<p>Note: the folder must be named identically to the collection you defined in your <code class="highlighter-rouge">_config.yml</code> file, with the addition of the preceding <code class="highlighter-rouge">_</code> character.</p>
 
 <h3 id="step-3-optionally-render-your-collections-documents-into-independent-files">Step 3: Optionally render your collection’s documents into independent files</h3>
 
-<p>If you’d like Jekyll to create a public-facing, rendered version of each document in your collection, set the <code>output</code> key to <code>true</code> in your collection metadata in your <code>_config.yml</code>:</p>
+<p>If you’d like Jekyll to create a public-facing, rendered version of each document in your collection, set the <code class="highlighter-rouge">output</code> key to <code class="highlighter-rouge">true</code> in your collection metadata in your <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">collections</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">my_collection</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">output</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">collections</span><span class="pi">:</span>
+  <span class="s">my_collection</span><span class="pi">:</span>
+    <span class="s">output</span><span class="pi">:</span> <span class="s">true</span></code></pre></figure>
 
 <p>This will produce a file for each document in the collection.
-For example, if you have <code>_my_collection/some_subdir/some_doc.md</code>,
+For example, if you have <code class="highlighter-rouge">_my_collection/some_subdir/some_doc.md</code>,
 it will be rendered using Liquid and the Markdown converter of your
-choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.html</code>.</p>
+choice and written out to <code class="highlighter-rouge">&lt;dest&gt;/my_collection/some_subdir/some_doc.html</code>.</p>
 
-<p>As for posts with <a href="../permalinks/">Permalinks</a>, document URL can be customized by setting a <code>permalink</code> metadata to the collection:</p>
+<p>As for posts with <a href="../permalinks/">Permalinks</a>, document URL can be customized by setting a <code class="highlighter-rouge">permalink</code> metadata to the collection:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">collections</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">my_collection</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">output</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-    <span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/awesome/:path/</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">collections</span><span class="pi">:</span>
+  <span class="s">my_collection</span><span class="pi">:</span>
+    <span class="s">output</span><span class="pi">:</span> <span class="s">true</span>
+    <span class="s">permalink</span><span class="pi">:</span> <span class="s">/awesome/:path/</span></code></pre></figure>
 
-<p>For example, if you have <code>_my_collection/some_subdir/some_doc.md</code>, it will be written out to <code>&lt;dest&gt;/awesome/some_subdir/some_doc/index.html</code>.</p>
+<p>For example, if you have <code class="highlighter-rouge">_my_collection/some_subdir/some_doc.md</code>, it will be written out to <code class="highlighter-rouge">&lt;dest&gt;/awesome/some_subdir/some_doc/index.html</code>.</p>
 
 <div class="mobile-side-scroller">
 <table>
@@ -2152,9 +2152,9 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
 <h3 id="collections">Collections</h3>
 
-<p>Each collection is accessible via the <code>site</code> Liquid variable. For example, if you want to access the <code>albums</code> collection found in <code>_albums</code>, you’d use <code>site.albums</code>. Each collection is itself an array of documents (e.g. <code>site.albums</code> is an array of documents, much like <code>site.pages</code> and <code>site.posts</code>). See below for how to access attributes of those documents.</p>
+<p>Each collection is accessible via the <code class="highlighter-rouge">site</code> Liquid variable. For example, if you want to access the <code class="highlighter-rouge">albums</code> collection found in <code class="highlighter-rouge">_albums</code>, you’d use <code class="highlighter-rouge">site.albums</code>. Each collection is itself an array of documents (e.g. <code class="highlighter-rouge">site.albums</code> is an array of documents, much like <code class="highlighter-rouge">site.pages</code> and <code class="highlighter-rouge">site.posts</code>). See below for how to access attributes of those documents.</p>
 
-<p>The collections are also available under <code>site.collections</code>, with the metadata you specified in your <code>_config.yml</code> (if present) and the following information:</p>
+<p>The collections are also available under <code class="highlighter-rouge">site.collections</code>, with the metadata you specified in your <code class="highlighter-rouge">_config.yml</code> (if present) and the following information:</p>
 
 <div class="mobile-side-scroller">
 <table>
@@ -2334,8 +2334,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -2404,8 +2402,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -2476,8 +2472,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -2546,8 +2540,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -2618,8 +2610,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -2688,8 +2678,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -2768,8 +2756,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -2838,8 +2824,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -2910,8 +2894,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -2980,8 +2962,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -3052,8 +3032,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3122,8 +3100,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -3194,8 +3170,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3265,8 +3239,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3335,8 +3307,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -3415,8 +3385,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3485,8 +3453,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -3557,8 +3523,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3628,8 +3592,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3698,8 +3660,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -3778,8 +3738,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3849,8 +3807,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -3919,8 +3875,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -3999,8 +3953,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -4069,8 +4021,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -4141,8 +4091,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -4211,8 +4159,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   
@@ -4291,8 +4237,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
   
 
   
-    
-  
 
   
     
@@ -4361,8 +4305,6 @@ choice and written out to <code>&lt;dest&gt;/my_collection/some_subdir/some_doc.
 
   
 
-  
-    
   
 
   

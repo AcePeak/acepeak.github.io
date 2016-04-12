@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2051,7 +2051,7 @@ and web-based CMS systems, this will be a welcome change!</p>
 
 <h2 id="the-posts-folder">The Posts Folder</h2>
 
-<p>As explained on the <a href="../structure/">directory structure</a> page, the <code>_posts</code>
+<p>As explained on the <a href="../structure/">directory structure</a> page, the <code class="highlighter-rouge">_posts</code>
 folder is where your blog posts will live. These files can be either
 <a href="http://daringfireball.net/projects/markdown/">Markdown</a> or
 <a href="http://redcloth.org/textile">Textile</a> formatted text files, and as long as
@@ -2060,18 +2060,18 @@ source format into an HTML page that is part of your static site.</p>
 
 <h3 id="creating-post-files">Creating Post Files</h3>
 
-<p>To create a new post, all you need to do is create a new file in the <code>_posts</code>
+<p>To create a new post, all you need to do is create a new file in the <code class="highlighter-rouge">_posts</code>
 directory. How you name files in this folder is important. Jekyll requires blog
 post files to be named according to the following format:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">YEAR-MONTH-DAY-title.MARKUP</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">YEAR-MONTH-DAY-title.MARKUP</code></pre></figure>
 
-<p>Where <code>YEAR</code> is a four-digit number, <code>MONTH</code> and <code>DAY</code> are both two-digit
-numbers, and <code>MARKUP</code> is the file extension representing the format used in the
+<p>Where <code class="highlighter-rouge">YEAR</code> is a four-digit number, <code class="highlighter-rouge">MONTH</code> and <code class="highlighter-rouge">DAY</code> are both two-digit
+numbers, and <code class="highlighter-rouge">MARKUP</code> is the file extension representing the format used in the
 file. For example, the following are examples of valid post filenames:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">2011-12-31-new-years-eve-is-awesome.md
-2012-09-12-how-to-write-a-blog.textile</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">2011-12-31-new-years-eve-is-awesome.md
+2012-09-12-how-to-write-a-blog.textile</code></pre></figure>
 
 <div class="note">
   <h5>ProTip™: Link to other posts</h5>
@@ -2114,21 +2114,21 @@ where to store these files in your site is something everyone will face.</p>
 
 <p>Because of Jekyll’s flexibility, there are many solutions to how to do this. One
 common solution is to create a folder in the root of the project directory
-called something like <code>assets</code> or <code>downloads</code>, into which any images, downloads
+called something like <code class="highlighter-rouge">assets</code> or <code class="highlighter-rouge">downloads</code>, into which any images, downloads
 or other resources are placed. Then, from within any post, they can be linked to
 using the site’s root as the path for the asset to include. Again, this will
 depend on the way your site’s (sub)domain and path are configured, but here some
-examples (in Markdown) of how you could do this using the <code>site.url</code> variable in
+examples (in Markdown) of how you could do this using the <code class="highlighter-rouge">site.url</code> variable in
 a post.</p>
 
 <p>Including an image asset in a post:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">… which is shown in the screenshot below:
-![My helpful screenshot]({{ site.url }}/assets/screenshot.jpg)</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">… which is shown in the screenshot below:
+![My helpful screenshot]({{ site.url }}/assets/screenshot.jpg)</code></pre></figure>
 
 <p>Linking to a PDF for readers to download:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">… you can [get the PDF]({{ site.url }}/assets/mydoc.pdf) directly.</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">… you can [get the PDF]({{ site.url }}/assets/mydoc.pdf) directly.</code></pre></figure>
 
 <div class="note">
   <h5>ProTip™: Link using just the site root URL</h5>
@@ -2148,50 +2148,50 @@ you have a list of posts somewhere. Creating an index of posts on another page
 language</a> and its tags. Here’s a basic example of how
 to create a list of links to your blog posts:</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul&gt;</span>
   {% for post in site.posts %}
     <span class="nt">&lt;li&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ post.url }}&quot;</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ post.url }}"</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
     <span class="nt">&lt;/li&gt;</span>
   {% endfor %}
-<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+<span class="nt">&lt;/ul&gt;</span></code></pre></figure>
 
 <p>Of course, you have full control over how (and where) you display your posts,
 and how you structure your site. You should read more about <a href="../templates/">how templates
 work</a> with Jekyll if you want to know more.</p>
 
-<p>Note that the <code>post</code> variable only exists inside the <code>for</code> loop above. If
+<p>Note that the <code class="highlighter-rouge">post</code> variable only exists inside the <code class="highlighter-rouge">for</code> loop above. If
 you wish to access the currently-rendering page/posts’s variables (the
-variables of the post/page that has the <code>for</code> loop in it), use the <code>page</code>
+variables of the post/page that has the <code class="highlighter-rouge">for</code> loop in it), use the <code class="highlighter-rouge">page</code>
 variable instead.</p>
 
 <h2 id="post-excerpts">Post excerpts</h2>
 
 <p>Each post automatically takes the first block of text, from the beginning of the content
-to the first occurrence of <code>excerpt_separator</code>, and sets it as the <code>post.excerpt</code>.
+to the first occurrence of <code class="highlighter-rouge">excerpt_separator</code>, and sets it as the <code class="highlighter-rouge">post.excerpt</code>.
 Take the above example of an index of posts. Perhaps you want to include
 a little hint about the post’s content by adding the first paragraph of each of your
 posts:</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul&gt;</span>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul&gt;</span>
   {% for post in site.posts %}
     <span class="nt">&lt;li&gt;</span>
-      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ post.url }}&quot;</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"{{ post.url }}"</span><span class="nt">&gt;</span>{{ post.title }}<span class="nt">&lt;/a&gt;</span>
       {{ post.excerpt }}
     <span class="nt">&lt;/li&gt;</span>
   {% endfor %}
-<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+<span class="nt">&lt;/ul&gt;</span></code></pre></figure>
 
-<p>Because Jekyll grabs the first paragraph you will not need to wrap the excerpt in <code>p</code> tags,
+<p>Because Jekyll grabs the first paragraph you will not need to wrap the excerpt in <code class="highlighter-rouge">p</code> tags,
 which is already done for you. These tags can be removed with the following if you’d prefer:</p>
 
-<div class="highlight"><pre><code class="language-html" data-lang="html">{{ post.excerpt | remove: &#39;<span class="nt">&lt;p&gt;</span>&#39; | remove: &#39;<span class="nt">&lt;/p&gt;</span>&#39; }}</code></pre></div>
+<figure class="highlight"><pre><code class="language-html" data-lang="html">{{ post.excerpt | remove: '<span class="nt">&lt;p&gt;</span>' | remove: '<span class="nt">&lt;/p&gt;</span>' }}</code></pre></figure>
 
 <p>If you don’t like the automatically-generated post excerpt, it can be overridden by adding
-<code>excerpt</code> to your post’s YAML Front Matter. Completely disable it by setting
-your <code>excerpt_separator</code> to <code>""</code>.</p>
+<code class="highlighter-rouge">excerpt</code> to your post’s YAML Front Matter. Completely disable it by setting
+your <code class="highlighter-rouge">excerpt_separator</code> to <code class="highlighter-rouge">""</code>.</p>
 
-<p>Also, as with any output generated by Liquid tags, you can pass the <code>| strip_html</code> flag to remove any html tags in the output. This is particularly helpful if you wish to output a post excerpt as a <code>meta="description"</code> tag within the post <code>head</code>, or anywhere else having html tags along with the content is not desirable.</p>
+<p>Also, as with any output generated by Liquid tags, you can pass the <code class="highlighter-rouge">| strip_html</code> flag to remove any html tags in the output. This is particularly helpful if you wish to output a post excerpt as a <code class="highlighter-rouge">meta="description"</code> tag within the post <code class="highlighter-rouge">head</code>, or anywhere else having html tags along with the content is not desirable.</p>
 
 <h2 id="highlighting-code-snippets">Highlighting code snippets</h2>
 
@@ -2199,7 +2199,7 @@ your <code>excerpt_separator</code> to <code>""</code>.</p>
 either Pygments or Rouge, and including a code snippet in any post is easy. Just
 use the dedicated Liquid tag as follows:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">{% highlight ruby %}
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{% highlight ruby %}
 def show
   @widget = Widget(params[:id])
   respond_to do |format|
@@ -2207,17 +2207,17 @@ def show
     format.json { render json: @widget }
   end
 end
-{% endhighlight %}</code></pre></div>
+{% endhighlight %}</code></pre></figure>
 
 <p>And the output will look like this:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">show</span>
-  <span class="vi">@widget</span> <span class="o">=</span> <span class="no">Widget</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">show</span>
+  <span class="vi">@widget</span> <span class="o">=</span> <span class="no">Widget</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
-    <span class="nb">format</span><span class="o">.</span><span class="n">html</span> <span class="c1"># show.html.erb</span>
-    <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@widget</span> <span class="p">}</span>
+    <span class="nb">format</span><span class="p">.</span><span class="nf">html</span> <span class="c1"># show.html.erb</span>
+    <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="vi">@widget</span> <span class="p">}</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span></code></pre></figure>
 
 <div class="note">
   <h5>ProTip™: Show line numbers</h5>
@@ -2265,8 +2265,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -2337,8 +2335,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -2407,8 +2403,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -2479,8 +2473,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -2550,8 +2542,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -2620,8 +2610,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -2700,8 +2688,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -2770,8 +2756,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -2842,8 +2826,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -2912,8 +2894,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -2984,8 +2964,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3054,8 +3032,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -3126,8 +3102,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3197,8 +3171,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3267,8 +3239,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -3347,8 +3317,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3417,8 +3385,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -3489,8 +3455,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3560,8 +3524,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3630,8 +3592,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -3710,8 +3670,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3781,8 +3739,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -3851,8 +3807,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -3931,8 +3885,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -4001,8 +3953,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -4073,8 +4023,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -4143,8 +4091,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   
@@ -4223,8 +4169,6 @@ variables</a> in your posts and elsewhere on your site.</p>
   
 
   
-    
-  
 
   
     
@@ -4293,8 +4237,6 @@ variables</a> in your posts and elsewhere on your site.</p>
 
   
 
-  
-    
   
 
   

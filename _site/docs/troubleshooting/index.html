@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2061,62 +2061,62 @@ Jekyll community can make everyone’s experience better.</p>
 the header files for compiling extension modules for ruby 1.9.1. This
 can be done on Ubuntu or Debian by running:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install ruby1.9.1-dev</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install ruby1.9.1-dev</code></pre></figure>
 
 <p>On Red Hat, CentOS, and Fedora systems you can do this by running:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo yum install ruby-devel</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo yum install ruby-devel</code></pre></figure>
 
 <p>On <a href="http://nearlyfreespeech.net/">NearlyFreeSpeech</a> you need to run the
 following commands before installing Jekyll:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">GEM_HOME</span><span class="o">=</span>/home/private/gems
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">export </span><span class="nv">GEM_HOME</span><span class="o">=</span>/home/private/gems
 <span class="nb">export </span><span class="nv">GEM_PATH</span><span class="o">=</span>/home/private/gems:/usr/local/lib/ruby/gems/1.8/
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/private/gems/bin
-<span class="nb">export </span><span class="nv">RB_USER_INSTALL</span><span class="o">=</span><span class="s1">&#39;true&#39;</span></code></pre></div>
+<span class="nb">export </span><span class="nv">RB_USER_INSTALL</span><span class="o">=</span><span class="s1">'true'</span></code></pre></figure>
 
 <p>On OSX, you may need to update RubyGems:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo gem update --system</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo gem update --system</code></pre></figure>
 
 <p>If you still have issues, you may need to <a href="http://www.zlu.me/ruby/os%20x/gem/mountain%20lion/2012/02/21/install-native-ruby-gem-in-mountain-lion-preview.html">use XCode to install Command Line
 Tools</a>
 that will allow you to install native gems using the following command:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo gem install jekyll</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo gem install jekyll</code></pre></figure>
 
 <p>To install RubyGems on Gentoo:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo emerge -av dev-ruby/rubygems</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo emerge -av dev-ruby/rubygems</code></pre></figure>
 
 <p>On Windows, you may need to install <a href="https://wiki.github.com/oneclick/rubyinstaller/development-kit">RubyInstaller
 DevKit</a>.</p>
 
 <h3 id="could-not-find-a-javascript-runtime-execjsruntimeunavailable">Could not find a JavaScript runtime. (ExecJS::RuntimeUnavailable)</h3>
 
-<p>This error can occur during the installation of <code>jekyll-coffeescript</code> when
+<p>This error can occur during the installation of <code class="highlighter-rouge">jekyll-coffeescript</code> when
 you don’t have a proper JavaScript runtime. To solve this, either install
-<code>execjs</code> and <code>therubyracer</code> gems, or install <code>nodejs</code>. Check out
+<code class="highlighter-rouge">execjs</code> and <code class="highlighter-rouge">therubyracer</code> gems, or install <code class="highlighter-rouge">nodejs</code>. Check out
 <a href="https://github.com/jekyll/jekyll/issues/2327">issue #2327</a> for more info.</p>
 
 <h2 id="problems-running-jekyll">Problems running Jekyll</h2>
 
-<p>On Debian or Ubuntu, you may need to add <code>/var/lib/gems/1.8/bin/</code> to your path
-in order to have the <code>jekyll</code> executable be available in your Terminal.</p>
+<p>On Debian or Ubuntu, you may need to add <code class="highlighter-rouge">/var/lib/gems/1.8/bin/</code> to your path
+in order to have the <code class="highlighter-rouge">jekyll</code> executable be available in your Terminal.</p>
 
 <h2 id="base-url-problems">Base-URL Problems</h2>
 
 <p>If you are using base-url option like:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">jekyll serve --baseurl <span class="s1">&#39;/blog&#39;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">jekyll serve --baseurl <span class="s1">'/blog'</span></code></pre></figure>
 
 <p>… then make sure that you access the site at:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">http://localhost:4000/blog/index.html</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">http://localhost:4000/blog/index.html</code></pre></figure>
 
 <p>It won’t work to just access:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">http://localhost:4000/blog</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">http://localhost:4000/blog</code></pre></figure>
 
 <h2 id="configuration-problems">Configuration problems</h2>
 
@@ -2129,7 +2129,7 @@ is as follows:</p>
   <li>Defaults</li>
 </ol>
 
-<p>That is: defaults are overridden by options specified in <code>_config.yml</code>,
+<p>That is: defaults are overridden by options specified in <code class="highlighter-rouge">_config.yml</code>,
 and flags specified at the command-line will override all other settings
 specified elsewhere.</p>
 
@@ -2144,29 +2144,29 @@ problems.</p>
 <p>If your link has characters that need to be escaped, you need to use
 this syntax:</p>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">![Alt text](http://yuml.me/diagram/class/[Project]-&gt;[Task])</code></pre></div>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">![Alt text](http://yuml.me/diagram/class/[Project]-&gt;[Task])</code></pre></figure>
 
-<p>If you have an empty tag, i.e. <code>&lt;script src="js.js"&gt;&lt;/script&gt;</code>, Maruku
-transforms this into <code>&lt;script src="js.js" /&gt;</code>. This causes problems in
+<p>If you have an empty tag, i.e. <code class="highlighter-rouge">&lt;script src="js.js"&gt;&lt;/script&gt;</code>, Maruku
+transforms this into <code class="highlighter-rouge">&lt;script src="js.js" /&gt;</code>. This causes problems in
 Firefox and possibly other browsers and is <a href="http://www.w3.org/TR/xhtml1/#C_3">discouraged in
 XHTML.</a> An easy fix is to put a space
 between the opening and closing tags.</p>
 
 <h3 id="liquid">Liquid</h3>
 
-<p>The latest version, version 2.0, seems to break the use of <code>{{</code> in
-templates. Unlike previous versions, using <code>{{</code> in 2.0 triggers the
+<p>The latest version, version 2.0, seems to break the use of <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span></code> in
+templates. Unlike previous versions, using <code class="highlighter-rouge"><span class="p">{</span><span class="err">{</span></code> in 2.0 triggers the
 following error:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="s1">&#39;{{&#39;</span> was not properly terminated with regexp: /<span class="se">\}\}</span>/  <span class="o">(</span>Liquid::SyntaxError<span class="o">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="s1">'{{'</span> was not properly terminated with regexp: /<span class="se">\}\}</span>/  <span class="o">(</span>Liquid::SyntaxError<span class="o">)</span></code></pre></figure>
 
 <h3 id="excerpts">Excerpts</h3>
 
 <p>Since v1.0.0, Jekyll has had automatically-generated post excerpts. Since
 v1.1.0, Jekyll also passes these excerpts through Liquid, which can cause
 strange errors where references don’t exist or a tag hasn’t been closed. If you
-run into these errors, try setting <code>excerpt_separator: ""</code> in your
-<code>_config.yml</code>, or set it to some nonsense string.</p>
+run into these errors, try setting <code class="highlighter-rouge">excerpt_separator: ""</code> in your
+<code class="highlighter-rouge">_config.yml</code>, or set it to some nonsense string.</p>
 
 <div class="note">
   <h5>Please report issues you encounter!</h5>
@@ -2209,8 +2209,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -2281,8 +2279,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -2351,8 +2347,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -2423,8 +2417,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -2494,8 +2486,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -2564,8 +2554,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -2644,8 +2632,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -2714,8 +2700,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -2786,8 +2770,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -2856,8 +2838,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -2928,8 +2908,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -2998,8 +2976,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -3070,8 +3046,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3141,8 +3115,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3211,8 +3183,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -3291,8 +3261,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3361,8 +3329,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -3433,8 +3399,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3504,8 +3468,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3574,8 +3536,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -3654,8 +3614,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3725,8 +3683,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3795,8 +3751,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -3875,8 +3829,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -3945,8 +3897,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -4017,8 +3967,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -4087,8 +4035,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   
@@ -4167,8 +4113,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
   
 
   
-    
-  
 
   
     
@@ -4237,8 +4181,6 @@ run into these errors, try setting <code>excerpt_separator: ""</code> in your
 
   
 
-  
-    
   
 
   

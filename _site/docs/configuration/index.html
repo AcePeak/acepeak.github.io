@@ -6,7 +6,7 @@
   <meta name="keywords" content="西山居,李立峰,西山居士,互联网,移动互联网,移动会员卡,虚拟现实,增强现实,移动广告,数字营销,团队管理">
   <meta name="description" content="李立峰，男，1984年生人，号西山居士，英文名Ace，生于山西，熟于上海，以技术出身，以产品出魂，以理想还原本心，巍巍乎志在高山，洋洋乎志在流水，为做出上亿人使用的产品而不断努力！">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="generator" content="Jekyll v2.5.3">
+  <meta name="generator" content="Jekyll v3.1.2">
   <link rel="alternate" type="application/rss+xml" title="西山居" href="/feed.xml">
   <link rel="alternate" type="application/atom+xml" title="西山居" href="https://github.com/AcePeak/commits/master.atom">
   <link rel="stylesheet" href="/css/screen.css">
@@ -2044,8 +2044,8 @@
           <h1>Configuration</h1>
           <p>Jekyll allows you to concoct your sites in any way you can dream up, and it’s
 thanks to the powerful and flexible configuration options that this is possible.
-These options can either be specified in a <code>_config.yml</code> file placed in your
-site’s root directory, or can be specified as flags for the <code>jekyll</code> executable
+These options can either be specified in a <code class="highlighter-rouge">_config.yml</code> file placed in your
+site’s root directory, or can be specified as flags for the <code class="highlighter-rouge">jekyll</code> executable
 in the terminal.</p>
 
 <h2 id="configuration-settings">Configuration Settings</h2>
@@ -2298,8 +2298,8 @@ in the terminal.</p>
 
 <h3 id="serve-command-options">Serve Command Options</h3>
 
-<p>In addition to the options below, the <code>serve</code> sub-command can accept any of the options
-for the <code>build</code> sub-command, which are then applied to the site build which occurs right
+<p>In addition to the options below, the <code class="highlighter-rouge">serve</code> sub-command can accept any of the options
+for the <code class="highlighter-rouge">build</code> sub-command, which are then applied to the site build which occurs right
 before your site is served.</p>
 
 <div class="mobile-side-scroller">
@@ -2378,94 +2378,94 @@ before your site is served.</p>
 
 <p>Often times, you will find that you are repeating a lot of configuration options. Setting the same layout in each file, adding the same category - or categories - to a post, etc. You can even add custom variables like author names, which might be the same for the majority of posts on your blog.</p>
 
-<p>Instead of repeating this configuration each time you create a new post or page, Jekyll provides a way to set these defaults in the site configuration. To do this, you can specify  site-wide defaults using the <code>defaults</code> key in the <code>_config.yml</code> file in your projects root directory.</p>
+<p>Instead of repeating this configuration each time you create a new post or page, Jekyll provides a way to set these defaults in the site configuration. To do this, you can specify  site-wide defaults using the <code class="highlighter-rouge">defaults</code> key in the <code class="highlighter-rouge">_config.yml</code> file in your projects root directory.</p>
 
-<p>The <code>defaults</code> key holds an array of scope/values pairs that define what defaults should be set for a particular file path, and optionally, a file type in that path.</p>
+<p>The <code class="highlighter-rouge">defaults</code> key holds an array of scope/values pairs that define what defaults should be set for a particular file path, and optionally, a file type in that path.</p>
 
-<p>Let’s say that you want to add a default layout to all pages and posts in your site. You would add this to your <code>_config.yml</code> file:</p>
+<p>Let’s say that you want to add a default layout to all pages and posts in your site. You would add this to your <code class="highlighter-rouge">_config.yml</code> file:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span>
-    <span class="l-Scalar-Plain">scope</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">path</span><span class="p-Indicator">:</span> <span class="s">&quot;&quot;</span> <span class="c1"># an empty string here means all files in the project</span>
-    <span class="l-Scalar-Plain">values</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&quot;default&quot;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="s">scope</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># an empty string here means all files in the project</span>
+    <span class="s">values</span><span class="pi">:</span>
+      <span class="s">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">default"</span></code></pre></figure>
 
-<p>Here, we are scoping the <code>values</code> to any file that exists in the scopes path. Since the path is set as an empty string, it will apply to <strong>all files</strong> in your project. You probably don’t want to set a layout on every file in your project - like css files, for example - so you can also specify a <code>type</code> value under the <code>scope</code> key.</p>
+<p>Here, we are scoping the <code class="highlighter-rouge">values</code> to any file that exists in the scopes path. Since the path is set as an empty string, it will apply to <strong>all files</strong> in your project. You probably don’t want to set a layout on every file in your project - like css files, for example - so you can also specify a <code class="highlighter-rouge">type</code> value under the <code class="highlighter-rouge">scope</code> key.</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span>
-    <span class="l-Scalar-Plain">scope</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">path</span><span class="p-Indicator">:</span> <span class="s">&quot;&quot;</span> <span class="c1"># an empty string here means all files in the project</span>
-      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="s">&quot;posts&quot;</span> <span class="c1"># previously `post` in Jekyll 2.2.</span>
-    <span class="l-Scalar-Plain">values</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&quot;default&quot;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="s">scope</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># an empty string here means all files in the project</span>
+      <span class="s">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">posts"</span> <span class="c1"># previously `post` in Jekyll 2.2.</span>
+    <span class="s">values</span><span class="pi">:</span>
+      <span class="s">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">default"</span></code></pre></figure>
 
-<p>Now, this will only set the layout for files where the type is <code>posts</code>.
-The different types that are available to you are <code>pages</code>, <code>posts</code>, <code>drafts</code> or any collection in your site. While <code>type</code> is optional, you must specify a value for <code>path</code> when creating a <code>scope/values</code> pair.</p>
+<p>Now, this will only set the layout for files where the type is <code class="highlighter-rouge">posts</code>.
+The different types that are available to you are <code class="highlighter-rouge">pages</code>, <code class="highlighter-rouge">posts</code>, <code class="highlighter-rouge">drafts</code> or any collection in your site. While <code class="highlighter-rouge">type</code> is optional, you must specify a value for <code class="highlighter-rouge">path</code> when creating a <code class="highlighter-rouge">scope/values</code> pair.</p>
 
-<p>As mentioned earlier, you can set multiple scope/values pairs for <code>defaults</code>.</p>
+<p>As mentioned earlier, you can set multiple scope/values pairs for <code class="highlighter-rouge">defaults</code>.</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span>
-    <span class="l-Scalar-Plain">scope</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">path</span><span class="p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="s">&quot;posts&quot;</span>
-    <span class="l-Scalar-Plain">values</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&quot;my-site&quot;</span>
-  <span class="p-Indicator">-</span>
-    <span class="l-Scalar-Plain">scope</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">path</span><span class="p-Indicator">:</span> <span class="s">&quot;projects&quot;</span>
-      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="s">&quot;pages&quot;</span>
-    <span class="l-Scalar-Plain">values</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&quot;project&quot;</span> <span class="c1"># overrides previous default layout</span>
-      <span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="s">&quot;Mr.</span><span class="nv"> </span><span class="s">Hyde&quot;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="s">scope</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="s">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">posts"</span>
+    <span class="s">values</span><span class="pi">:</span>
+      <span class="s">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">my-site"</span>
+  <span class="pi">-</span>
+    <span class="s">scope</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">projects"</span>
+      <span class="s">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pages"</span>
+    <span class="s">values</span><span class="pi">:</span>
+      <span class="s">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">project"</span> <span class="c1"># overrides previous default layout</span>
+      <span class="s">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Mr.</span><span class="nv"> </span><span class="s">Hyde"</span></code></pre></figure>
 
-<p>With these defaults, all posts would use the <code>my-site</code> layout. Any html files that exist in the <code>projects/</code> folder will use the <code>project</code> layout, if it exists. Those files will also have the <code>page.author</code> <a href="../variables/">liquid variable</a> set to <code>Mr. Hyde</code> as well as have the category for the page set to <code>project</code>.</p>
+<p>With these defaults, all posts would use the <code class="highlighter-rouge">my-site</code> layout. Any html files that exist in the <code class="highlighter-rouge">projects/</code> folder will use the <code class="highlighter-rouge">project</code> layout, if it exists. Those files will also have the <code class="highlighter-rouge">page.author</code> <a href="../variables/">liquid variable</a> set to <code class="highlighter-rouge">Mr. Hyde</code> as well as have the category for the page set to <code class="highlighter-rouge">project</code>.</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">collections</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">my_collection</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">output</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">collections</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">my_collection</span><span class="pi">:</span>
+    <span class="s">output</span><span class="pi">:</span> <span class="s">true</span>
 
-<span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span>
-    <span class="l-Scalar-Plain">scope</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">path</span><span class="p-Indicator">:</span> <span class="s">&quot;&quot;</span>
-      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="s">&quot;my_collection&quot;</span> <span class="c1"># a collection in your site, in plural form</span>
-    <span class="l-Scalar-Plain">values</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&quot;default&quot;</span></code></pre></div>
+<span class="s">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="s">scope</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="s">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">my_collection"</span> <span class="c1"># a collection in your site, in plural form</span>
+    <span class="s">values</span><span class="pi">:</span>
+      <span class="s">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">default"</span></code></pre></figure>
 
-<p>In this example the <code>layout</code> is set to <code>default</code> inside the <a href="../collections">collection</a> with the name <code>my_collection</code>.</p>
+<p>In this example the <code class="highlighter-rouge">layout</code> is set to <code class="highlighter-rouge">default</code> inside the <a href="../collections">collection</a> with the name <code class="highlighter-rouge">my_collection</code>.</p>
 
 <h3 id="precedence">Precedence</h3>
 
-<p>Jekyll will apply all of the configuration settings you specify in the <code>defaults</code> section of your <code>_config.yml</code> file. However, you can choose to override settings from other scope/values pair by specifying a more specific path for the scope.</p>
+<p>Jekyll will apply all of the configuration settings you specify in the <code class="highlighter-rouge">defaults</code> section of your <code class="highlighter-rouge">_config.yml</code> file. However, you can choose to override settings from other scope/values pair by specifying a more specific path for the scope.</p>
 
-<p>You can see that in the last example above. First, we set the default layout to <code>my-site</code>. Then, using a more specific path, we set the default layout for files in the <code>projects/</code> path to <code>project</code>. This can be done with any value that you would set in the page or post front matter.</p>
+<p>You can see that in the last example above. First, we set the default layout to <code class="highlighter-rouge">my-site</code>. Then, using a more specific path, we set the default layout for files in the <code class="highlighter-rouge">projects/</code> path to <code class="highlighter-rouge">project</code>. This can be done with any value that you would set in the page or post front matter.</p>
 
-<p>Finally, if you set defaults in the site configuration by adding a <code>defaults</code> section to your <code>_config.yml</code> file, you can override those settings in a post or page file. All you need to do is specify the settings in the post or page front matter. For example:</p>
+<p>Finally, if you set defaults in the site configuration by adding a <code class="highlighter-rouge">defaults</code> section to your <code class="highlighter-rouge">_config.yml</code> file, you can override those settings in a post or page file. All you need to do is specify the settings in the post or page front matter. For example:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># In _config.yml</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># In _config.yml</span>
 <span class="nn">...</span>
-<span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span>
-    <span class="l-Scalar-Plain">scope</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">path</span><span class="p-Indicator">:</span> <span class="s">&quot;projects&quot;</span>
-      <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="s">&quot;pages&quot;</span>
-    <span class="l-Scalar-Plain">values</span><span class="p-Indicator">:</span>
-      <span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&quot;project&quot;</span>
-      <span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="s">&quot;Mr.</span><span class="nv"> </span><span class="s">Hyde&quot;</span>
-      <span class="l-Scalar-Plain">category</span><span class="p-Indicator">:</span> <span class="s">&quot;project&quot;</span>
-<span class="nn">...</span></code></pre></div>
+<span class="s">defaults</span><span class="pi">:</span>
+  <span class="pi">-</span>
+    <span class="s">scope</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">projects"</span>
+      <span class="s">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pages"</span>
+    <span class="s">values</span><span class="pi">:</span>
+      <span class="s">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">project"</span>
+      <span class="s">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Mr.</span><span class="nv"> </span><span class="s">Hyde"</span>
+      <span class="s">category</span><span class="pi">:</span> <span class="s2">"</span><span class="s">project"</span>
+<span class="nn">...</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># In projects/foo_project.md</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># In projects/foo_project.md</span>
 <span class="nn">---</span>
-<span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="s">&quot;John</span><span class="nv"> </span><span class="s">Smith&quot;</span>
-<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="s">&quot;foobar&quot;</span>
+<span class="s">author</span><span class="pi">:</span> <span class="s2">"</span><span class="s">John</span><span class="nv"> </span><span class="s">Smith"</span>
+<span class="s">layout</span><span class="pi">:</span> <span class="s2">"</span><span class="s">foobar"</span>
 <span class="nn">---</span>
-<span class="l-Scalar-Plain">The post text goes here...</span></code></pre></div>
+<span class="s">The post text goes here...</span></code></pre></figure>
 
-<p>The <code>projects/foo_project.md</code> would have the <code>layout</code> set to <code>foobar</code> instead of <code>project</code> and the <code>author</code> set to <code>John Smith</code> instead of <code>Mr. Hyde</code> when the site is built.</p>
+<p>The <code class="highlighter-rouge">projects/foo_project.md</code> would have the <code class="highlighter-rouge">layout</code> set to <code class="highlighter-rouge">foobar</code> instead of <code class="highlighter-rouge">project</code> and the <code class="highlighter-rouge">author</code> set to <code class="highlighter-rouge">John Smith</code> instead of <code class="highlighter-rouge">Mr. Hyde</code> when the site is built.</p>
 
 <h2 id="default-configuration">Default Configuration</h2>
 
@@ -2482,89 +2482,89 @@ configuration file or on the command-line, Jekyll will run using these options.<
   </p>
 </div>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Where things are</span>
-<span class="l-Scalar-Plain">source</span><span class="p-Indicator">:</span>      <span class="l-Scalar-Plain">.</span>
-<span class="l-Scalar-Plain">destination</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">./_site</span>
-<span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span>     <span class="l-Scalar-Plain">./_plugins</span>
-<span class="l-Scalar-Plain">layouts</span><span class="p-Indicator">:</span>     <span class="l-Scalar-Plain">./_layouts</span>
-<span class="l-Scalar-Plain">data_source</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">./_data</span>
-<span class="l-Scalar-Plain">collections</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">null</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Where things are</span>
+<span class="s">source</span><span class="pi">:</span>      <span class="s">.</span>
+<span class="s">destination</span><span class="pi">:</span> <span class="s">./_site</span>
+<span class="s">plugins</span><span class="pi">:</span>     <span class="s">./_plugins</span>
+<span class="s">layouts</span><span class="pi">:</span>     <span class="s">./_layouts</span>
+<span class="s">data_source</span><span class="pi">:</span> <span class="s">./_data</span>
+<span class="s">collections</span><span class="pi">:</span> <span class="s">null</span>
 
 <span class="c1"># Handling Reading</span>
-<span class="l-Scalar-Plain">safe</span><span class="p-Indicator">:</span>         <span class="l-Scalar-Plain">false</span>
-<span class="l-Scalar-Plain">include</span><span class="p-Indicator">:</span>      <span class="p-Indicator">[</span><span class="s">&quot;.htaccess&quot;</span><span class="p-Indicator">]</span>
-<span class="l-Scalar-Plain">exclude</span><span class="p-Indicator">:</span>      <span class="p-Indicator">[]</span>
-<span class="l-Scalar-Plain">keep_files</span><span class="p-Indicator">:</span>   <span class="p-Indicator">[</span><span class="s">&quot;.git&quot;</span><span class="p-Indicator">,</span> <span class="s">&quot;.svn&quot;</span><span class="p-Indicator">]</span>
-<span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span>     <span class="s">&quot;utf-8&quot;</span>
-<span class="l-Scalar-Plain">markdown_ext</span><span class="p-Indicator">:</span> <span class="s">&quot;markdown,mkdown,mkdn,mkd,md&quot;</span>
-<span class="l-Scalar-Plain">textile_ext</span><span class="p-Indicator">:</span>  <span class="s">&quot;textile&quot;</span>
+<span class="s">safe</span><span class="pi">:</span>         <span class="s">false</span>
+<span class="s">include</span><span class="pi">:</span>      <span class="pi">[</span><span class="s2">"</span><span class="s">.htaccess"</span><span class="pi">]</span>
+<span class="s">exclude</span><span class="pi">:</span>      <span class="pi">[]</span>
+<span class="s">keep_files</span><span class="pi">:</span>   <span class="pi">[</span><span class="s2">"</span><span class="s">.git"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">.svn"</span><span class="pi">]</span>
+<span class="s">encoding</span><span class="pi">:</span>     <span class="s2">"</span><span class="s">utf-8"</span>
+<span class="s">markdown_ext</span><span class="pi">:</span> <span class="s2">"</span><span class="s">markdown,mkdown,mkdn,mkd,md"</span>
+<span class="s">textile_ext</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">textile"</span>
 
 <span class="c1"># Filtering Content</span>
-<span class="l-Scalar-Plain">show_drafts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">null</span>
-<span class="l-Scalar-Plain">limit_posts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">0</span>
-<span class="l-Scalar-Plain">future</span><span class="p-Indicator">:</span>      <span class="l-Scalar-Plain">true</span>
-<span class="l-Scalar-Plain">unpublished</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="s">show_drafts</span><span class="pi">:</span> <span class="s">null</span>
+<span class="s">limit_posts</span><span class="pi">:</span> <span class="s">0</span>
+<span class="s">future</span><span class="pi">:</span>      <span class="s">true</span>
+<span class="s">unpublished</span><span class="pi">:</span> <span class="s">false</span>
 
 <span class="c1"># Plugins</span>
-<span class="l-Scalar-Plain">whitelist</span><span class="p-Indicator">:</span> <span class="p-Indicator">[]</span>
-<span class="l-Scalar-Plain">gems</span><span class="p-Indicator">:</span>      <span class="p-Indicator">[]</span>
+<span class="s">whitelist</span><span class="pi">:</span> <span class="pi">[]</span>
+<span class="s">gems</span><span class="pi">:</span>      <span class="pi">[]</span>
 
 <span class="c1"># Conversion</span>
-<span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">kramdown</span>
-<span class="l-Scalar-Plain">highlighter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pygments</span>
-<span class="l-Scalar-Plain">lsi</span><span class="p-Indicator">:</span>         <span class="l-Scalar-Plain">false</span>
-<span class="l-Scalar-Plain">excerpt_separator</span><span class="p-Indicator">:</span> <span class="s">&quot;\n\n&quot;</span>
+<span class="s">markdown</span><span class="pi">:</span>    <span class="s">kramdown</span>
+<span class="s">highlighter</span><span class="pi">:</span> <span class="s">pygments</span>
+<span class="s">lsi</span><span class="pi">:</span>         <span class="s">false</span>
+<span class="s">excerpt_separator</span><span class="pi">:</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s">"</span>
 
 <span class="c1"># Serving</span>
-<span class="l-Scalar-Plain">detach</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">false</span>
-<span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">4000</span>
-<span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">0.0.0.0</span>
-<span class="l-Scalar-Plain">baseurl</span><span class="p-Indicator">:</span> <span class="s">&quot;&quot;</span> <span class="c1"># does not include hostname</span>
+<span class="s">detach</span><span class="pi">:</span>  <span class="s">false</span>
+<span class="s">port</span><span class="pi">:</span>    <span class="s">4000</span>
+<span class="s">host</span><span class="pi">:</span>    <span class="s">0.0.0.0</span>
+<span class="s">baseurl</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span> <span class="c1"># does not include hostname</span>
 
 <span class="c1"># Backwards-compatibility</span>
-<span class="l-Scalar-Plain">relative_permalinks</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+<span class="s">relative_permalinks</span><span class="pi">:</span> <span class="s">false</span>
 
 <span class="c1"># Outputting</span>
-<span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span>     <span class="l-Scalar-Plain">date</span>
-<span class="l-Scalar-Plain">paginate_path</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/page:num</span>
-<span class="l-Scalar-Plain">timezone</span><span class="p-Indicator">:</span>      <span class="l-Scalar-Plain">null</span>
+<span class="s">permalink</span><span class="pi">:</span>     <span class="s">date</span>
+<span class="s">paginate_path</span><span class="pi">:</span> <span class="s">/page:num</span>
+<span class="s">timezone</span><span class="pi">:</span>      <span class="s">null</span>
 
-<span class="l-Scalar-Plain">quiet</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">false</span>
-<span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span> <span class="p-Indicator">[]</span>
+<span class="s">quiet</span><span class="pi">:</span>    <span class="s">false</span>
+<span class="s">defaults</span><span class="pi">:</span> <span class="pi">[]</span>
 
 <span class="c1"># Markdown Processors</span>
-<span class="l-Scalar-Plain">maruku</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">use_tex</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">false</span>
-  <span class="l-Scalar-Plain">use_divs</span><span class="p-Indicator">:</span>   <span class="l-Scalar-Plain">false</span>
-  <span class="l-Scalar-Plain">png_engine</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">blahtex</span>
-  <span class="l-Scalar-Plain">png_dir</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">images/latex</span>
-  <span class="l-Scalar-Plain">png_url</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">/images/latex</span>
-  <span class="l-Scalar-Plain">fenced_code_blocks</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+<span class="s">maruku</span><span class="pi">:</span>
+  <span class="s">use_tex</span><span class="pi">:</span>    <span class="s">false</span>
+  <span class="s">use_divs</span><span class="pi">:</span>   <span class="s">false</span>
+  <span class="s">png_engine</span><span class="pi">:</span> <span class="s">blahtex</span>
+  <span class="s">png_dir</span><span class="pi">:</span>    <span class="s">images/latex</span>
+  <span class="s">png_url</span><span class="pi">:</span>    <span class="s">/images/latex</span>
+  <span class="s">fenced_code_blocks</span><span class="pi">:</span> <span class="s">true</span>
 
-<span class="l-Scalar-Plain">rdiscount</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[]</span>
+<span class="s">rdiscount</span><span class="pi">:</span>
+  <span class="s">extensions</span><span class="pi">:</span> <span class="pi">[]</span>
 
-<span class="l-Scalar-Plain">redcarpet</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">extensions</span><span class="p-Indicator">:</span> <span class="p-Indicator">[]</span>
+<span class="s">redcarpet</span><span class="pi">:</span>
+  <span class="s">extensions</span><span class="pi">:</span> <span class="pi">[]</span>
 
-<span class="l-Scalar-Plain">kramdown</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">auto_ids</span><span class="p-Indicator">:</span>      <span class="l-Scalar-Plain">true</span>
-  <span class="l-Scalar-Plain">footnote_nr</span><span class="p-Indicator">:</span>   <span class="l-Scalar-Plain">1</span>
-  <span class="l-Scalar-Plain">entity_output</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">as_char</span>
-  <span class="l-Scalar-Plain">toc_levels</span><span class="p-Indicator">:</span>    <span class="l-Scalar-Plain">1..6</span>
-  <span class="l-Scalar-Plain">smart_quotes</span><span class="p-Indicator">:</span>  <span class="l-Scalar-Plain">lsquo,rsquo,ldquo,rdquo</span>
-  <span class="l-Scalar-Plain">use_coderay</span><span class="p-Indicator">:</span>   <span class="l-Scalar-Plain">false</span>
+<span class="s">kramdown</span><span class="pi">:</span>
+  <span class="s">auto_ids</span><span class="pi">:</span>      <span class="s">true</span>
+  <span class="s">footnote_nr</span><span class="pi">:</span>   <span class="s">1</span>
+  <span class="s">entity_output</span><span class="pi">:</span> <span class="s">as_char</span>
+  <span class="s">toc_levels</span><span class="pi">:</span>    <span class="s">1..6</span>
+  <span class="s">smart_quotes</span><span class="pi">:</span>  <span class="s">lsquo,rsquo,ldquo,rdquo</span>
+  <span class="s">use_coderay</span><span class="pi">:</span>   <span class="s">false</span>
 
-  <span class="l-Scalar-Plain">coderay</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">coderay_wrap</span><span class="p-Indicator">:</span>              <span class="l-Scalar-Plain">div</span>
-    <span class="l-Scalar-Plain">coderay_line_numbers</span><span class="p-Indicator">:</span>      <span class="l-Scalar-Plain">inline</span>
-    <span class="l-Scalar-Plain">coderay_line_number_start</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
-    <span class="l-Scalar-Plain">coderay_tab_width</span><span class="p-Indicator">:</span>         <span class="l-Scalar-Plain">4</span>
-    <span class="l-Scalar-Plain">coderay_bold_every</span><span class="p-Indicator">:</span>        <span class="l-Scalar-Plain">10</span>
-    <span class="l-Scalar-Plain">coderay_css</span><span class="p-Indicator">:</span>               <span class="l-Scalar-Plain">style</span>
+  <span class="s">coderay</span><span class="pi">:</span>
+    <span class="s">coderay_wrap</span><span class="pi">:</span>              <span class="s">div</span>
+    <span class="s">coderay_line_numbers</span><span class="pi">:</span>      <span class="s">inline</span>
+    <span class="s">coderay_line_number_start</span><span class="pi">:</span> <span class="s">1</span>
+    <span class="s">coderay_tab_width</span><span class="pi">:</span>         <span class="s">4</span>
+    <span class="s">coderay_bold_every</span><span class="pi">:</span>        <span class="s">10</span>
+    <span class="s">coderay_css</span><span class="pi">:</span>               <span class="s">style</span>
 
-<span class="l-Scalar-Plain">redcloth</span><span class="p-Indicator">:</span>
-  <span class="l-Scalar-Plain">hard_breaks</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span></code></pre></div>
+<span class="s">redcloth</span><span class="pi">:</span>
+  <span class="s">hard_breaks</span><span class="pi">:</span> <span class="s">true</span></code></pre></figure>
 
 <h2 id="markdown-options">Markdown Options</h2>
 
@@ -2572,67 +2572,69 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
 <h3 id="redcarpet">Redcarpet</h3>
 
-<p>Redcarpet can be configured by providing an <code>extensions</code> sub-setting, whose value should be an array of strings. Each string should be the name of one of the <code>Redcarpet::Markdown</code> class’s extensions; if present in the array, it will set the corresponding extension to <code>true</code>.</p>
+<p>Redcarpet can be configured by providing an <code class="highlighter-rouge">extensions</code> sub-setting, whose value should be an array of strings. Each string should be the name of one of the <code class="highlighter-rouge">Redcarpet::Markdown</code> class’s extensions; if present in the array, it will set the corresponding extension to <code class="highlighter-rouge">true</code>.</p>
 
 <p>Jekyll handles two special Redcarpet extensions:</p>
 
 <ul>
-  <li><code>no_fenced_code_blocks</code> — By default, Jekyll sets the <code>fenced_code_blocks</code> extension (for delimiting code blocks with triple tildes or triple backticks) to <code>true</code>, probably because GitHub’s eager adoption of them is starting to make them inescapable. Redcarpet’s normal <code>fenced_code_blocks</code> extension is inert when used with Jekyll; instead, you can use this inverted version of the extension for disabling fenced code.</li>
+  <li><code class="highlighter-rouge">no_fenced_code_blocks</code> — By default, Jekyll sets the <code class="highlighter-rouge">fenced_code_blocks</code> extension (for delimiting code blocks with triple tildes or triple backticks) to <code class="highlighter-rouge">true</code>, probably because GitHub’s eager adoption of them is starting to make them inescapable. Redcarpet’s normal <code class="highlighter-rouge">fenced_code_blocks</code> extension is inert when used with Jekyll; instead, you can use this inverted version of the extension for disabling fenced code.</li>
 </ul>
 
 <p>Note that you can also specify a language for highlighting after the first delimiter:</p>
 
-<pre><code>    ```ruby
+<div class="highlighter-rouge"><pre class="highlight"><code>    ```ruby
     # ...ruby code
     ```
 </code></pre>
+</div>
 
-<p>With both fenced code blocks and highlighter enabled, this will statically highlight the code; without any syntax highlighter, it will add a <code>class="LANGUAGE"</code> attribute to the <code>&lt;code&gt;</code> element, which can be used as a hint by various JavaScript code highlighting libraries.</p>
+<p>With both fenced code blocks and highlighter enabled, this will statically highlight the code; without any syntax highlighter, it will add a <code class="highlighter-rouge">class="LANGUAGE"</code> attribute to the <code class="highlighter-rouge">&lt;code&gt;</code> element, which can be used as a hint by various JavaScript code highlighting libraries.</p>
 
 <ul>
-  <li><code>smart</code> — This pseudo-extension turns on SmartyPants, which converts straight quotes to curly quotes and runs of hyphens to em (<code>---</code>) and en (<code>--</code>) dashes.</li>
+  <li><code class="highlighter-rouge">smart</code> — This pseudo-extension turns on SmartyPants, which converts straight quotes to curly quotes and runs of hyphens to em (<code class="highlighter-rouge">---</code>) and en (<code class="highlighter-rouge">--</code>) dashes.</li>
 </ul>
 
-<p>All other extensions retain their usual names from Redcarpet, and no renderer options aside from <code>smart</code> can be specified in Jekyll. <a href="https://github.com/vmg/redcarpet/blob/v2.2.2/README.markdown#and-its-like-really-simple-to-use">A list of available extensions can be found in the Redcarpet README file.</a> Make sure you’re looking at the README for the right version of Redcarpet: Jekyll currently uses v2.2.x, and extensions like <code>footnotes</code> and <code>highlight</code> weren’t added until after version 3.0.0. The most commonly used extensions are:</p>
+<p>All other extensions retain their usual names from Redcarpet, and no renderer options aside from <code class="highlighter-rouge">smart</code> can be specified in Jekyll. <a href="https://github.com/vmg/redcarpet/blob/v2.2.2/README.markdown#and-its-like-really-simple-to-use">A list of available extensions can be found in the Redcarpet README file.</a> Make sure you’re looking at the README for the right version of Redcarpet: Jekyll currently uses v2.2.x, and extensions like <code class="highlighter-rouge">footnotes</code> and <code class="highlighter-rouge">highlight</code> weren’t added until after version 3.0.0. The most commonly used extensions are:</p>
 
 <ul>
-  <li><code>tables</code></li>
-  <li><code>no_intra_emphasis</code></li>
-  <li><code>autolink</code></li>
+  <li><code class="highlighter-rouge">tables</code></li>
+  <li><code class="highlighter-rouge">no_intra_emphasis</code></li>
+  <li><code class="highlighter-rouge">autolink</code></li>
 </ul>
 
 <h3 id="kramdown">Kramdown</h3>
 
-<p>In addition to the defaults mentioned above, you can also turn on recognition of Github Flavored Markdown by passing an <code>input</code> option with a value of “GFM”.</p>
+<p>In addition to the defaults mentioned above, you can also turn on recognition of Github Flavored Markdown by passing an <code class="highlighter-rouge">input</code> option with a value of “GFM”.</p>
 
-<p>For example, in your <code>_config.yml</code>:</p>
+<p>For example, in your <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<pre><code>kramdown:
+<div class="highlighter-rouge"><pre class="highlight"><code>kramdown:
   input: GFM
 </code></pre>
+</div>
 
 <h3 id="custom-markdown-processors">Custom Markdown Processors</h3>
 
-<p>If you’re interested in creating a custom markdown processor, you’re in luck! Create a new class in the <code>Jekyll::Converters::Markdown</code> namespace:</p>
+<p>If you’re interested in creating a custom markdown processor, you’re in luck! Create a new class in the <code class="highlighter-rouge">Jekyll::Converters::Markdown</code> namespace:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Jekyll</span><span class="o">::</span><span class="no">Converters</span><span class="o">::</span><span class="no">Markdown</span><span class="o">::</span><span class="no">MyCustomProcessor</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Jekyll</span><span class="o">::</span><span class="no">Converters</span><span class="o">::</span><span class="no">Markdown</span><span class="o">::</span><span class="no">MyCustomProcessor</span>
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-    <span class="nb">require</span> <span class="s1">&#39;funky_markdown&#39;</span>
+    <span class="nb">require</span> <span class="s1">'funky_markdown'</span>
     <span class="vi">@config</span> <span class="o">=</span> <span class="n">config</span>
   <span class="k">rescue</span> <span class="no">LoadError</span>
-    <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s1">&#39;You are missing a library required for Markdown. Please run:&#39;</span>
-    <span class="no">STDERR</span><span class="o">.</span><span class="n">puts</span> <span class="s1">&#39;  $ [sudo] gem install funky_markdown&#39;</span>
-    <span class="k">raise</span> <span class="no">FatalException</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Missing dependency: funky_markdown&quot;</span><span class="p">)</span>
+    <span class="no">STDERR</span><span class="p">.</span><span class="nf">puts</span> <span class="s1">'You are missing a library required for Markdown. Please run:'</span>
+    <span class="no">STDERR</span><span class="p">.</span><span class="nf">puts</span> <span class="s1">'  $ [sudo] gem install funky_markdown'</span>
+    <span class="k">raise</span> <span class="no">FatalException</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Missing dependency: funky_markdown"</span><span class="p">)</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-    <span class="o">::</span><span class="no">FunkyMarkdown</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span>
+    <span class="o">::</span><span class="no">FunkyMarkdown</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">content</span><span class="p">).</span><span class="nf">convert</span>
   <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span></code></pre></figure>
 
-<p>Once you’ve created your class and have it properly setup either as a plugin in the <code>_plugins</code> folder or as a gem, specify it in your <code>_config.yml</code>:</p>
+<p>Once you’ve created your class and have it properly setup either as a plugin in the <code class="highlighter-rouge">_plugins</code> folder or as a gem, specify it in your <code class="highlighter-rouge">_config.yml</code>:</p>
 
-<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">MyCustomProcessor</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">markdown</span><span class="pi">:</span> <span class="s">MyCustomProcessor</span></code></pre></figure>
 
 
           <div class="section-nav">
@@ -2667,8 +2669,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -2739,8 +2739,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -2809,8 +2807,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -2881,8 +2877,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -2952,8 +2946,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3022,8 +3014,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -3102,8 +3092,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3172,8 +3160,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -3244,8 +3230,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3314,8 +3298,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -3386,8 +3368,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3456,8 +3436,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -3528,8 +3506,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3599,8 +3575,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3669,8 +3643,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -3749,8 +3721,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3819,8 +3789,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -3891,8 +3859,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -3962,8 +3928,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -4032,8 +3996,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -4112,8 +4074,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -4183,8 +4143,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -4253,8 +4211,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -4333,8 +4289,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -4403,8 +4357,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -4475,8 +4427,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -4545,8 +4495,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
@@ -4625,8 +4573,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
   
 
   
-    
-  
 
   
     
@@ -4695,8 +4641,6 @@ configuration file or on the command-line, Jekyll will run using these options.<
 
   
 
-  
-    
   
 
   
