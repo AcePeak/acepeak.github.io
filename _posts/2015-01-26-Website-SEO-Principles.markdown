@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验（一）之原则篇
+title: SEO经验系列之一：原则
 author: AcePeak
 categories:
   - 积累
@@ -8,6 +8,16 @@ tags:
   - SEO
   - 转载
 ---
+
+> 系列列表：
+>
+> [SEO经验系列之一：原则]({% post_url 2015-01-26-Website-SEO-Principles %})
+>
+> [SEO经验系列之二：PHP技术]({% post_url 2015-01-27-Website-SEO-PHPTech %})
+>
+> [SEO经验系列之三：改版]({% post_url 2015-01-28-Website-SEO-Refactor %})
+>
+> [SEO经验系列之四：工具]({% post_url 2015-01-29-Website-SEO-Tools %})
 
 #一、域名如何选择对SEO最佳。
 

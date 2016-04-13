@@ -10,6 +10,14 @@ tags:
   - 原创
 ---
 
+> 系列列表：
+>
+> [【翻译】对话：究竟谁才是可移植的程序员？]({% post_url 2005-11-19-Translation-Dialog-Portable-Design %})
+>
+> [【翻译】对话：接触指针]({% post_url 2005-11-28-Translation-Dialog-Touching-Pointers %})
+>
+> [【翻译】对话：换个名字]({% post_url 2005-12-20-Translation-Dialog-Change-Name %})
+
 “嗨，小鬼。”Jeannine走过来坐在我对面，我现在很邋遢。“听说消息了吗？”
 
 我扫了一眼时间确认一下，我并不打算再跟她聊半个小时以上。“嗨，二等公民。不，还不是。无论如何，他们仍在值班。你今天这么早就不值班了？”

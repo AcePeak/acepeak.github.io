@@ -15,7 +15,7 @@ layout: default
           </h2>
           <span class="post-category">
             <span class="label">
-              {{ page.categories | array_to_sentence_string }}
+              {{ page.tags | join:', ' }}
             </span>
           </span>
           <div class="post-meta">

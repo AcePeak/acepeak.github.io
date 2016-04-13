@@ -1,16 +1,26 @@
 ---
 layout: blogs_item
-title: LoadRunner实战系列（四）之术语篇
+title: LoadRunner实战系列之四：术语
 author: AcePeak
 categories:
   - 积累
 tags:
-  - 原创
+  - 转载
   - Web
   - 测试
   - LoadRunner
   - 术语
 ---
+
+> 系列列表：
+>
+> [LoadRunner实战系列之一：安装]({% post_url 2015-02-05-loadrunner-install %})
+>
+> [LoadRunner实战系列之二：流程]({% post_url 2015-02-06-loadrunner-operation %})
+>
+> [LoadRunner实战系列之三：脚本]({% post_url 2015-02-07-loadrunner-scripts %})
+>
+> [LoadRunner实战系列之四：术语]({% post_url 2015-02-08-loadrunner-glossary %})
 
 
 ##术语篇

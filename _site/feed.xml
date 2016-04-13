@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Tue, 12 Apr 2016 19:34:43 +0800</pubDate>
-    <lastBuildDate>Tue, 12 Apr 2016 19:34:43 +0800</lastBuildDate>
+    <pubDate>Wed, 13 Apr 2016 11:32:13 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Apr 2016 11:32:13 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v3.1.2</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -2598,7 +2598,7 @@ p4 -p localhost:1666 -u ace -P %PASSWORD% -C utf8 counter -f upgrade 23&lt;/code
     </item>
     
     <item>
-      <title>HTTP请求头系列（3）-Cookies</title>
+      <title>HTTP请求头系列之三：Cookies</title>
       <link>http://lilifeng.net/blogs/2015/08/05/http-header-cookies/</link>
       <pubDate>Wed, 05 Aug 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -2616,11 +2616,11 @@ p4 -p localhost:1666 -u ace -P %PASSWORD% -C utf8 counter -f upgrade 23&lt;/code
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/03/http-header-overall/&quot;&gt;HTTP请求头系列之一：总览&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列之二：P3P&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列之三：Cookies&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Cookie相关的Http头&lt;/p&gt;
@@ -2693,7 +2693,7 @@ Cookie头由客户端发送，包含在HTTP请求的头部中。注意，只有c
     </item>
     
     <item>
-      <title>HTTP请求头系列（2）-P3P</title>
+      <title>HTTP请求头系列之二：P3P</title>
       <link>http://lilifeng.net/blogs/2015/08/04/http-header-P3P/</link>
       <pubDate>Tue, 04 Aug 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -2711,11 +2711,11 @@ Cookie头由客户端发送，包含在HTTP请求的头部中。注意，只有c
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;对于IE来说(默认安全级别下)，iframe、img、link等标签都是只发送session cookie（又叫 第一方cookie），拦截本地cookie发送（又叫第三方cookie）。当这些标签跨域引用一个页面，实际上是发起了一次GET请求。&lt;/p&gt;
@@ -2810,7 +2810,7 @@ Server: CC-Galaxy/1.3.18&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
     </item>
     
     <item>
-      <title>HTTP请求头系列（1）-总览</title>
+      <title>HTTP请求头系列之一：总览</title>
       <link>http://lilifeng.net/blogs/2015/08/03/http-header-overall/</link>
       <pubDate>Mon, 03 Aug 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -2828,11 +2828,11 @@ Server: CC-Galaxy/1.3.18&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/03/http-header-overall/&quot;&gt;HTTP请求头系列（1）-总览&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/04/http-header-P3P/&quot;&gt;HTTP请求头系列（2）-P3P&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/05/http-header-cookies/&quot;&gt;HTTP请求头系列（3）-Cookies&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;先来看一个现成的http请求头：&lt;/p&gt;
@@ -3053,11 +3053,11 @@ sdch是Chrome自己定义的压缩方法。
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;#特征历史数据指导特征计算&lt;/p&gt;
@@ -3101,7 +3101,7 @@ P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F12,F16,F20&lt;span class=&qu
     </item>
     
     <item>
-      <title>广告特征工程+人工智能：大数据结果引入并特征相关化（二）</title>
+      <title>广告特征工程系列之二：大数据结果引入并特征相关化（二）</title>
       <link>http://lilifeng.net/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/</link>
       <pubDate>Thu, 30 Jul 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -3121,11 +3121,11 @@ P&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;F10,F12,F16,F20&lt;span class=&qu
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;#大数据结果引入并特征相关化&lt;/p&gt;
@@ -3644,7 +3644,7 @@ from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&q
     </item>
     
     <item>
-      <title>广告特征工程+人工智能：在线程序化特征定义（一）</title>
+      <title>广告特征工程系列之一：在线程序化特征定义（一）</title>
       <link>http://lilifeng.net/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/</link>
       <pubDate>Tue, 28 Jul 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -3664,11 +3664,11 @@ from &lt;span class=&quot;nv&quot;&gt;$SOURCE&lt;/span&gt;, at &lt;span class=&q
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;#在线程序化特征定义&lt;/p&gt;
@@ -4469,7 +4469,7 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
     </item>
     
     <item>
-      <title>网络通信IO多路复用之总结【4】</title>
+      <title>网络通信IO多路复用之四：总结</title>
       <link>http://lilifeng.net/blogs/2015/05/21/net-select-poll-epoll/</link>
       <pubDate>Thu, 21 May 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -4485,13 +4485,13 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/18/net-select/&quot;&gt;网络通信IO多路复用之Select【1】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/18/net-select/&quot;&gt;网络通信IO多路复用之一：Select&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/19/net-poll/&quot;&gt;网络通信IO多路复用之Poll【2】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/19/net-poll/&quot;&gt;网络通信IO多路复用之二：Poll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之ePoll【3】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之三：ePoll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之总结【4】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之四：总结&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;select，poll，epoll都是IO多路复用的机制。I/O多路复用就通过一种机制，可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但select，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。&lt;/p&gt;
@@ -4577,7 +4577,7 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
     </item>
     
     <item>
-      <title>网络通信IO多路复用之ePoll【3】</title>
+      <title>网络通信IO多路复用之三：ePoll</title>
       <link>http://lilifeng.net/blogs/2015/05/20/net-epoll/</link>
       <pubDate>Wed, 20 May 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -4593,13 +4593,13 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/18/net-select/&quot;&gt;网络通信IO多路复用之Select【1】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/18/net-select/&quot;&gt;网络通信IO多路复用之一：Select&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/19/net-poll/&quot;&gt;网络通信IO多路复用之Poll【2】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/19/net-poll/&quot;&gt;网络通信IO多路复用之二：Poll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之ePoll【3】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之三：ePoll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之总结【4】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之四：总结&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;#1、基本知识&lt;/p&gt;
@@ -5015,7 +5015,7 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
     </item>
     
     <item>
-      <title>网络通信IO多路复用之Poll</title>
+      <title>网络通信IO多路复用之二：Poll</title>
       <link>http://lilifeng.net/blogs/2015/05/19/net-poll/</link>
       <pubDate>Tue, 19 May 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -5031,13 +5031,13 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/18/net-select/&quot;&gt;网络通信IO多路复用之Select【1】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/18/net-select/&quot;&gt;网络通信IO多路复用之一：Select&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/19/net-poll/&quot;&gt;网络通信IO多路复用之Poll【2】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/19/net-poll/&quot;&gt;网络通信IO多路复用之二：Poll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之ePoll【3】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之三：ePoll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之总结【4】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之四：总结&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;#1、基本知识&lt;/p&gt;
@@ -5356,7 +5356,7 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
     </item>
     
     <item>
-      <title>网络通信IO多路复用之Select</title>
+      <title>网络通信IO多路复用之一：Select</title>
       <link>http://lilifeng.net/blogs/2015/05/18/net-select/</link>
       <pubDate>Mon, 18 May 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -5372,13 +5372,13 @@ footer = *entity-header&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/18/net-select/&quot;&gt;网络通信IO多路复用之Select【1】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/18/net-select/&quot;&gt;网络通信IO多路复用之一：Select&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/19/net-poll/&quot;&gt;网络通信IO多路复用之Poll【2】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/19/net-poll/&quot;&gt;网络通信IO多路复用之二：Poll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之ePoll【3】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/20/net-epoll/&quot;&gt;网络通信IO多路复用之三：ePoll&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之总结【4】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/05/21/net-select-poll-epoll/&quot;&gt;网络通信IO多路复用之四：总结&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;#1、基本概念&lt;/p&gt;
@@ -10653,12 +10653,12 @@ d点：超过负载，系统崩溃&lt;/p&gt;
     </item>
     
     <item>
-      <title>LoadRunner实战系列（四）之术语篇</title>
+      <title>LoadRunner实战系列之四：术语</title>
       <link>http://lilifeng.net/blogs/2015/02/08/loadrunner-glossary/</link>
       <pubDate>Sun, 08 Feb 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
       
-      <category>原创</category>
+      <category>转载</category>
       
       <category>Web</category>
       
@@ -10672,7 +10672,19 @@ d点：超过负载，系统崩溃&lt;/p&gt;
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/08/loadrunner-glossary/</guid>
-      <description>&lt;p&gt;##术语篇&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/05/loadrunner-install/&quot;&gt;LoadRunner实战系列之一：安装&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/06/loadrunner-operation/&quot;&gt;LoadRunner实战系列之二：流程&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/07/loadrunner-scripts/&quot;&gt;LoadRunner实战系列之三：脚本&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/08/loadrunner-glossary/&quot;&gt;LoadRunner实战系列之四：术语&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;##术语篇&lt;/p&gt;
 
 &lt;p&gt;Transactions（用户事务分析）&lt;/p&gt;
 
@@ -10849,7 +10861,7 @@ d点：超过负载，系统崩溃&lt;/p&gt;
     </item>
     
     <item>
-      <title>LoadRunner实战系列（三）之脚本篇</title>
+      <title>LoadRunner实战系列之三：脚本</title>
       <link>http://lilifeng.net/blogs/2015/02/07/loadrunner-scripts/</link>
       <pubDate>Sat, 07 Feb 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -10866,7 +10878,19 @@ d点：超过负载，系统崩溃&lt;/p&gt;
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/07/loadrunner-scripts/</guid>
-      <description>&lt;p&gt;##脚本篇&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/05/loadrunner-install/&quot;&gt;LoadRunner实战系列之一：安装&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/06/loadrunner-operation/&quot;&gt;LoadRunner实战系列之二：流程&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/07/loadrunner-scripts/&quot;&gt;LoadRunner实战系列之三：脚本&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/08/loadrunner-glossary/&quot;&gt;LoadRunner实战系列之四：术语&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;##脚本篇&lt;/p&gt;
 
 &lt;p&gt;1.HTTP的GET请求&lt;/p&gt;
 
@@ -11042,7 +11066,7 @@ d点：超过负载，系统崩溃&lt;/p&gt;
     </item>
     
     <item>
-      <title>LoadRunner实战系列（二）之流程篇</title>
+      <title>LoadRunner实战系列之二：流程</title>
       <link>http://lilifeng.net/blogs/2015/02/06/loadrunner-operation/</link>
       <pubDate>Fri, 06 Feb 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -11059,7 +11083,19 @@ d点：超过负载，系统崩溃&lt;/p&gt;
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/06/loadrunner-operation/</guid>
-      <description>&lt;p&gt;##流程篇&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/05/loadrunner-install/&quot;&gt;LoadRunner实战系列之一：安装&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/06/loadrunner-operation/&quot;&gt;LoadRunner实战系列之二：流程&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/07/loadrunner-scripts/&quot;&gt;LoadRunner实战系列之三：脚本&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/08/loadrunner-glossary/&quot;&gt;LoadRunner实战系列之四：术语&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;##流程篇&lt;/p&gt;
 
 &lt;p&gt;首先打开Virtual User Generator（VuGen）；&lt;/p&gt;
 
@@ -11098,7 +11134,7 @@ d点：超过负载，系统崩溃&lt;/p&gt;
     </item>
     
     <item>
-      <title>LoadRunner实战系列（一）之安装篇</title>
+      <title>LoadRunner实战系列之一：安装</title>
       <link>http://lilifeng.net/blogs/2015/02/05/loadrunner-install/</link>
       <pubDate>Thu, 05 Feb 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -11115,7 +11151,19 @@ d点：超过负载，系统崩溃&lt;/p&gt;
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/02/05/loadrunner-install/</guid>
-      <description>&lt;p&gt;LoadRunner 是一种预测系统行为和性能的工业标准级负载测试工具。通过以模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner 能够对整个企业架构进行测试。通过使用LoadRunner，企业能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。目前企业的网络应用环境都必须支持大量用户，网络体系架构中含各类应用环境且由不同供应商提供软件和硬件产品。难以预知的用户负载和愈来愈复杂的应用环境使公司时时担心会发生用户响应速度过慢， 系统崩溃等问题。这些都不可避免地导致公司收益的损失。Mercury Interactive 的 LoadRunner 能让企业保护自己的收入来源，无需购置额外硬件而最大限度地利用现有的IT 资源，并确保终端用户在应用系统的各个环节中对其测试应用的质量，可靠性和可扩展性都有良好的评价。LoadRunner是一种适用于各种体系架构的自动负载测试工具，它能预测系统行为并优化系统性能。LoadRunner的测试对象是整个企业的系统，它通过模拟实际用户的操作行为和实行实时性能监测，来帮助您更快的查找和发现问题。此外，LoadRunner能支持广范的协议和技术，为您的特殊环境提供特殊的解决方案。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/05/loadrunner-install/&quot;&gt;LoadRunner实战系列之一：安装&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/06/loadrunner-operation/&quot;&gt;LoadRunner实战系列之二：流程&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/07/loadrunner-scripts/&quot;&gt;LoadRunner实战系列之三：脚本&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/02/08/loadrunner-glossary/&quot;&gt;LoadRunner实战系列之四：术语&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;LoadRunner 是一种预测系统行为和性能的工业标准级负载测试工具。通过以模拟上千万用户实施并发负载及实时性能监测的方式来确认和查找问题，LoadRunner 能够对整个企业架构进行测试。通过使用LoadRunner，企业能最大限度地缩短测试时间，优化性能和加速应用系统的发布周期。目前企业的网络应用环境都必须支持大量用户，网络体系架构中含各类应用环境且由不同供应商提供软件和硬件产品。难以预知的用户负载和愈来愈复杂的应用环境使公司时时担心会发生用户响应速度过慢， 系统崩溃等问题。这些都不可避免地导致公司收益的损失。Mercury Interactive 的 LoadRunner 能让企业保护自己的收入来源，无需购置额外硬件而最大限度地利用现有的IT 资源，并确保终端用户在应用系统的各个环节中对其测试应用的质量，可靠性和可扩展性都有良好的评价。LoadRunner是一种适用于各种体系架构的自动负载测试工具，它能预测系统行为并优化系统性能。LoadRunner的测试对象是整个企业的系统，它通过模拟实际用户的操作行为和实行实时性能监测，来帮助您更快的查找和发现问题。此外，LoadRunner能支持广范的协议和技术，为您的特殊环境提供特殊的解决方案。&lt;/p&gt;
 
 &lt;p&gt;##安装篇&lt;/p&gt;
 
@@ -11290,7 +11338,7 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
     </item>
     
     <item>
-      <title>【转】SEO经验（四）之工具篇</title>
+      <title>SEO经验系列之四：工具</title>
       <link>http://lilifeng.net/blogs/2015/01/29/Website-SEO-Tools/</link>
       <pubDate>Thu, 29 Jan 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -11303,7 +11351,19 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/29/Website-SEO-Tools/</guid>
-      <description>&lt;p&gt;SEO工作者经常需要一些SEO工具的辅助，比如网站收录查询、PR查询等等，以便节省自己的时间，让SEO变得更加轻松。那么，常用的SEO工具都有哪些呢？月光博客今天就介绍一些常用的SEO工具网址，并将其进行分类，希望对大家的SEO工作有所帮助。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/26/Website-SEO-Principles/&quot;&gt;SEO经验系列之一：原则&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/27/Website-SEO-PHPTech/&quot;&gt;SEO经验系列之二：PHP技术&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/28/Website-SEO-Refactor/&quot;&gt;SEO经验系列之三：改版&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/29/Website-SEO-Tools/&quot;&gt;SEO经验系列之四：工具&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;SEO工作者经常需要一些SEO工具的辅助，比如网站收录查询、PR查询等等，以便节省自己的时间，让SEO变得更加轻松。那么，常用的SEO工具都有哪些呢？月光博客今天就介绍一些常用的SEO工具网址，并将其进行分类，希望对大家的SEO工作有所帮助。&lt;/p&gt;
 
 &lt;p&gt;#网站管理员工具&lt;/p&gt;
 
@@ -11446,7 +11506,7 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
     </item>
     
     <item>
-      <title>【转】SEO经验（三）之改版篇</title>
+      <title>SEO经验系列之三：改版</title>
       <link>http://lilifeng.net/blogs/2015/01/28/Website-SEO-Refactor/</link>
       <pubDate>Wed, 28 Jan 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -11459,7 +11519,19 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/28/Website-SEO-Refactor/</guid>
-      <description>&lt;p&gt;当网站运营一段时间后，你想扩大规模或希望获得更好的效果时，我们就会对网站进改版。对现有结构去做任何改动，都有可能会对搜索引擎产生一定的影响，那怎样才能让损失降到最低，在这里给出了以下需要注意的事项，供参考。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/26/Website-SEO-Principles/&quot;&gt;SEO经验系列之一：原则&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/27/Website-SEO-PHPTech/&quot;&gt;SEO经验系列之二：PHP技术&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/28/Website-SEO-Refactor/&quot;&gt;SEO经验系列之三：改版&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/29/Website-SEO-Tools/&quot;&gt;SEO经验系列之四：工具&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当网站运营一段时间后，你想扩大规模或希望获得更好的效果时，我们就会对网站进改版。对现有结构去做任何改动，都有可能会对搜索引擎产生一定的影响，那怎样才能让损失降到最低，在这里给出了以下需要注意的事项，供参考。&lt;/p&gt;
 
 &lt;p&gt;一、持有搜索引擎优化概念&lt;/p&gt;
 
@@ -11492,7 +11564,7 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
     </item>
     
     <item>
-      <title>【转】SEO经验（二）之PHP技术篇</title>
+      <title>SEO经验系列之二：PHP技术</title>
       <link>http://lilifeng.net/blogs/2015/01/27/Website-SEO-PHPTech/</link>
       <pubDate>Tue, 27 Jan 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -11505,7 +11577,19 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/27/Website-SEO-PHPTech/</guid>
-      <description>&lt;p&gt;现在SEO基本上已经是在广泛的应用了，php程序的企业网站也越来越多，其实我之前一直喜欢用asp的，但是发现很多国外的空间现在不支持asp，所以也就研究了一下php，网站建好，当然也想要有一个好的网站排名，带来流量和销量，本文我和大家总结一下在apache服务器下PHP网站的几个seo建议吧!&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/26/Website-SEO-Principles/&quot;&gt;SEO经验系列之一：原则&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/27/Website-SEO-PHPTech/&quot;&gt;SEO经验系列之二：PHP技术&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/28/Website-SEO-Refactor/&quot;&gt;SEO经验系列之三：改版&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/29/Website-SEO-Tools/&quot;&gt;SEO经验系列之四：工具&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;现在SEO基本上已经是在广泛的应用了，php程序的企业网站也越来越多，其实我之前一直喜欢用asp的，但是发现很多国外的空间现在不支持asp，所以也就研究了一下php，网站建好，当然也想要有一个好的网站排名，带来流量和销量，本文我和大家总结一下在apache服务器下PHP网站的几个seo建议吧!&lt;/p&gt;
 
 &lt;p&gt;PHP(超文本预处理器)是一种开源脚本语言。它吸收了很多常用语音的语法和特点，是目前大多数网站所采用的WEB开发语言。PHP网站的SEO优化策略包括关键词优化、网站地图优化、URL地址静态化和URL重写优化等。但是在这些优化的时候必须遵循各大搜索引擎公司的搜索原则，否则会被认为在SEO作弊，那样不但不会给网站带来人气和流量，还会影响网站被收录。&lt;/p&gt;
 
@@ -11544,7 +11628,7 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
     </item>
     
     <item>
-      <title>【转】SEO经验（一）之原则篇</title>
+      <title>SEO经验系列之一：原则</title>
       <link>http://lilifeng.net/blogs/2015/01/26/Website-SEO-Principles/</link>
       <pubDate>Mon, 26 Jan 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -11557,7 +11641,19 @@ All you need to do is call the plugin inside a &lt;code class=&quot;highlighter-
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2015/01/26/Website-SEO-Principles/</guid>
-      <description>&lt;p&gt;#一、域名如何选择对SEO最佳。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/26/Website-SEO-Principles/&quot;&gt;SEO经验系列之一：原则&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/27/Website-SEO-PHPTech/&quot;&gt;SEO经验系列之二：PHP技术&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/28/Website-SEO-Refactor/&quot;&gt;SEO经验系列之三：改版&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/01/29/Website-SEO-Tools/&quot;&gt;SEO经验系列之四：工具&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;#一、域名如何选择对SEO最佳。&lt;/p&gt;
 
 &lt;p&gt;1、选择原则：新站选择域名，千万不要贪图老域名，不要听那些广告吹嘘的老域名有多少多少好处！新站绝对不要有任何历史背景的新域名，也不要选灰色词语、尤其是有黑色历史的旧网站。&lt;/p&gt;
 
@@ -13700,7 +13796,7 @@ Three
     </item>
     
     <item>
-      <title>网络广告术语之平台类型</title>
+      <title>网络广告术语系列之四：平台类型</title>
       <link>http://lilifeng.net/blogs/2014/12/30/Advertise-glossary-platform/</link>
       <pubDate>Tue, 30 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -13712,10 +13808,22 @@ Three
       <category>广告平台</category>
       
       
-      <category>积累</category>
+      <category>深度</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/30/Advertise-glossary-platform/</guid>
-      <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RTB(Real Time Bidding): 实时竞价&lt;/code&gt;&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/27/Advertise-glossary-general/&quot;&gt;网络广告术语系列之一：一般术语&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/28/Advertise-glossary-adform/&quot;&gt;网络广告术语系列之二：广告形式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/29/Advertise-glossary-pay-form/&quot;&gt;网络广告术语系列之三：付费模式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/30/Advertise-glossary-platform/&quot;&gt;网络广告术语系列之四：平台类型&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RTB(Real Time Bidding): 实时竞价&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;是一种利用第三方技术在数以百万计的网站上针对每一个用户展示行为进行评估以及出价的竞价技术。实时竞价允许广告买家根据活动目标、目标人群以及费用门槛等因素对每一个广告及每次广告展示的费用进行竞价。一旦竞价成功，广告就会立刻出现在出版商的网站中。这种允许进行动态交易的技术被业内称为 “投标人”，而且可以嵌入相关平台中。
 RTB模式与传统的展示型广告市场购买方式相区别，传统的展示型广告购买方式有CPM（cost per 1000 impressions - 按照每1000个展示曝光进行付费）、CPC（cost perclick - 按照每个点击进行付费）、Monthly Flat（广告位包月）、Daily Flat（广告位包天），而RTB就是在每一个广告展示曝光的基础上进行竞价。&lt;/p&gt;
@@ -13775,7 +13883,7 @@ RTB模式与传统的展示型广告市场购买方式相区别，传统的展�
     </item>
     
     <item>
-      <title>网络广告术语之付费模式</title>
+      <title>网络广告术语系列之三：付费模式</title>
       <link>http://lilifeng.net/blogs/2014/12/29/Advertise-glossary-pay-form/</link>
       <pubDate>Mon, 29 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -13787,10 +13895,22 @@ RTB模式与传统的展示型广告市场购买方式相区别，传统的展�
       <category>广告平台</category>
       
       
-      <category>积累</category>
+      <category>深度</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/29/Advertise-glossary-pay-form/</guid>
-      <description>&lt;p&gt;##PBI(Pay By Impressions): 按展现计费&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/27/Advertise-glossary-general/&quot;&gt;网络广告术语系列之一：一般术语&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/28/Advertise-glossary-adform/&quot;&gt;网络广告术语系列之二：广告形式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/29/Advertise-glossary-pay-form/&quot;&gt;网络广告术语系列之三：付费模式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/30/Advertise-glossary-platform/&quot;&gt;网络广告术语系列之四：平台类型&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;##PBI(Pay By Impressions): 按展现计费&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CPM(Cost Per Mille): 千次展现费用&lt;/code&gt;&lt;/p&gt;
 
@@ -13846,7 +13966,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     </item>
     
     <item>
-      <title>网络广告术语之广告形式</title>
+      <title>网络广告术语系列之二：广告形式</title>
       <link>http://lilifeng.net/blogs/2014/12/28/Advertise-glossary-adform/</link>
       <pubDate>Sun, 28 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -13858,10 +13978,22 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>广告平台</category>
       
       
-      <category>积累</category>
+      <category>深度</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/28/Advertise-glossary-adform/</guid>
-      <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Banner: 横幅广告&lt;/code&gt;&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/27/Advertise-glossary-general/&quot;&gt;网络广告术语系列之一：一般术语&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/28/Advertise-glossary-adform/&quot;&gt;网络广告术语系列之二：广告形式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/29/Advertise-glossary-pay-form/&quot;&gt;网络广告术语系列之三：付费模式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/30/Advertise-glossary-platform/&quot;&gt;网络广告术语系列之四：平台类型&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Banner: 横幅广告&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;最早的网络广告形式。横幅广告，一个表现商家广告内容的图片，放置在广告商的页面上，是互联网广告中最基本的广告形式。按照互动广告局（Interactive Advertising Bureau）的规范，468×60像素的称为全横幅广告（Full Banner），234×60像素的称为半横幅广告（Half Banner），120×240像素的称为垂直旗帜广告（Vertical Banner）。一般位于页面的最上方，具有较强的视觉冲击力 。现在很多网站都把banner也叫做顶部通栏，或者是顶部小通栏。但是目前横幅/旗帜已经在网站中投放的位置比较随意了，不局限于顶部。&lt;/p&gt;
 
@@ -14002,7 +14134,7 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
     </item>
     
     <item>
-      <title>网络广告术语之一般术语</title>
+      <title>网络广告术语系列之一：一般术语</title>
       <link>http://lilifeng.net/blogs/2014/12/27/Advertise-glossary-general/</link>
       <pubDate>Sat, 27 Dec 2014 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -14014,10 +14146,22 @@ eCPM = 收入/网页展示次数×1000&lt;/p&gt;
       <category>广告平台</category>
       
       
-      <category>积累</category>
+      <category>深度</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2014/12/27/Advertise-glossary-general/</guid>
-      <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Campaign: 广告活动&lt;/code&gt;&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/27/Advertise-glossary-general/&quot;&gt;网络广告术语系列之一：一般术语&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/28/Advertise-glossary-adform/&quot;&gt;网络广告术语系列之二：广告形式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/29/Advertise-glossary-pay-form/&quot;&gt;网络广告术语系列之三：付费模式&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2014/12/30/Advertise-glossary-platform/&quot;&gt;网络广告术语系列之四：平台类型&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Campaign: 广告活动&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Advertising Campaign(广告活动) 指在某一特定市场上为实现某一目标所集中进行的大规模的广告活动, 可以是通过平面印刷品、电视电台、落地活动、互联网及社交平台、移动端等作为载体进行传播更可以是组合, 是广告策略的一种体现。&lt;/p&gt;
 
@@ -14569,7 +14713,7 @@ Connection：close&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
     </item>
     
     <item>
-      <title>Apache中实现C++ Module【2】</title>
+      <title>Apache开发C++ Module之二：Makefile</title>
       <link>http://lilifeng.net/blogs/2012/05/02/apache-cpp-mod-2/</link>
       <pubDate>Wed, 02 May 2012 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -14587,8 +14731,9 @@ Connection：close&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/01/apache-cpp-mod/&quot;&gt;Apache中实现C++ Module【1】&lt;/a&gt;
-&lt;a href=&quot;/blogs/2012/05/02/apache-cpp-mod-2/&quot;&gt;Apache中实现C++ Module【2】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/01/apache-cpp-mod/&quot;&gt;Apache开发C++ Module之一：HelloWorld&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/02/apache-cpp-mod-2/&quot;&gt;Apache开发C++ Module之二：Makefile&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;1 创建.dep文件&lt;/p&gt;
@@ -14638,7 +14783,7 @@ clean:
     </item>
     
     <item>
-      <title>Apache中实现C++ Module【1】</title>
+      <title>Apache开发C++ Module之一：HelloWorld</title>
       <link>http://lilifeng.net/blogs/2012/05/01/apache-cpp-mod/</link>
       <pubDate>Tue, 01 May 2012 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -14656,8 +14801,9 @@ clean:
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/01/apache-cpp-mod/&quot;&gt;Apache中实现C++ Module【1】&lt;/a&gt;
-&lt;a href=&quot;/blogs/2012/05/02/apache-cpp-mod-2/&quot;&gt;Apache中实现C++ Module【2】&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/01/apache-cpp-mod/&quot;&gt;Apache开发C++ Module之一：HelloWorld&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2012/05/02/apache-cpp-mod-2/&quot;&gt;Apache开发C++ Module之二：Makefile&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;1 首先在&lt;a href=&quot;/blogs/2012/04/29/apache-install/&quot;&gt;Linux系统安装Apache&lt;/a&gt;&lt;/p&gt;
@@ -15154,7 +15300,15 @@ curl http://localhost&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <category>日记</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/05/07/Run-Run-Continue/</guid>
-      <description>&lt;p&gt;“嘭~~~”，随着每天早上1楼施工发出的200分贝铁锤和电钻噪声在大概7点钟左右准时响起，我被从睡梦中赶了出来，躺在了一个狭小房间的床上。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2009/04/11/Run-Run/&quot;&gt;奔跑，奔跑&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2009/05/07/Run-Run-Continue/&quot;&gt;奔跑续&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;“嘭~~~”，随着每天早上1楼施工发出的200分贝铁锤和电钻噪声在大概7点钟左右准时响起，我被从睡梦中赶了出来，躺在了一个狭小房间的床上。&lt;/p&gt;
 
 &lt;p&gt;思考，辗转，回笼。无奈1楼施工是一个不间断的闹钟，而且是距离比较远，自己没有控制权的闹钟。于是，思考，辗转，回笼，死循环。。。
 1/2小时,1/4小时…直到数列达到稳定,我终于彻底清醒.&lt;/p&gt;
@@ -15469,7 +15623,15 @@ curl http://localhost&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
       <category>日记</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2009/04/11/Run-Run/</guid>
-      <description>&lt;p&gt;有段时间没来写一段日志了，今天加班，天气良好，写一些最近的感受吧。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2009/04/11/Run-Run/&quot;&gt;奔跑，奔跑&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2009/05/07/Run-Run-Continue/&quot;&gt;奔跑续&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;有段时间没来写一段日志了，今天加班，天气良好，写一些最近的感受吧。&lt;/p&gt;
 
 &lt;p&gt;自从搬来浦东，每天早上7点左右被窗外路旁隆隆的运货卡车声，激动的孩提玩耍声，高亢的水果摊主吆喝声，震撼的楼下钻机声这类自然闹钟弄醒，然后试图用被子将我的五官全都蒙住，哪怕自己喘不上气也不想被搅了我的美梦。然而那些声响居然此起彼伏，错落有致，抑扬顿挫，无比和谐，使得我不得不对这些声音以及声音的主人，以及声音主人的祖先肃然起敬，也就只好肃然起床了。感觉就像是运动员赛跑时的哨声，别人已经跑出去了，我能傻站着不动吗？&lt;/p&gt;
 
@@ -17797,7 +17959,17 @@ IObjectSafety接口是在头文件”objsafe.h”中定义的接口，定义如�
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2005/12/20/Translation-Dialog-Change-Name/</guid>
-      <description>&lt;p&gt;仅仅挂起100公里的距离，小行星就迅速占满了我们的视线。它的表面看起来就像碎过又用冰粘起来的杯子。很多的冰河在交错的小山脊间静静的流淌。木卫二，荒凉而美丽的地方。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/11/19/Translation-Dialog-Portable-Design/&quot;&gt;【翻译】对话：究竟谁才是可移植的程序员？&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/&quot;&gt;【翻译】对话：接触指针&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/12/20/Translation-Dialog-Change-Name/&quot;&gt;【翻译】对话：换个名字&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;仅仅挂起100公里的距离，小行星就迅速占满了我们的视线。它的表面看起来就像碎过又用冰粘起来的杯子。很多的冰河在交错的小山脊间静静的流淌。木卫二，荒凉而美丽的地方。&lt;/p&gt;
 
 &lt;p&gt;这时喇叭响起，“请大家登机，三号舱和七号舱。”然后又安静下来了。&lt;/p&gt;
 
@@ -18014,7 +18186,17 @@ IObjectSafety接口是在头文件”objsafe.h”中定义的接口，定义如�
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/</guid>
-      <description>&lt;p&gt;“哎呀！”&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/11/19/Translation-Dialog-Portable-Design/&quot;&gt;【翻译】对话：究竟谁才是可移植的程序员？&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/&quot;&gt;【翻译】对话：接触指针&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/12/20/Translation-Dialog-Change-Name/&quot;&gt;【翻译】对话：换个名字&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;“哎呀！”&lt;/p&gt;
 
 &lt;p&gt;这是我一小时内第七次受挫了。显然Wendy很讨厌我这样。“看就看吧，朋友，安静一会行不行？”她的声音飘出了隔间。貌似比她先前的反应好些。&lt;/p&gt;
 
@@ -18190,7 +18372,17 @@ IObjectSafety接口是在头文件”objsafe.h”中定义的接口，定义如�
       <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2005/11/19/Translation-Dialog-Portable-Design/</guid>
-      <description>&lt;p&gt;“嗨，小鬼。”Jeannine走过来坐在我对面，我现在很邋遢。“听说消息了吗？”&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+  &lt;p&gt;系列列表：&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/11/19/Translation-Dialog-Portable-Design/&quot;&gt;【翻译】对话：究竟谁才是可移植的程序员？&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/11/28/Translation-Dialog-Touching-Pointers/&quot;&gt;【翻译】对话：接触指针&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;/blogs/2005/12/20/Translation-Dialog-Change-Name/&quot;&gt;【翻译】对话：换个名字&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;“嗨，小鬼。”Jeannine走过来坐在我对面，我现在很邋遢。“听说消息了吗？”&lt;/p&gt;
 
 &lt;p&gt;我扫了一眼时间确认一下，我并不打算再跟她聊半个小时以上。“嗨，二等公民。不，还不是。无论如何，他们仍在值班。你今天这么早就不值班了？”&lt;/p&gt;
 

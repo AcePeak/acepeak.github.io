@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 网络通信IO多路复用之总结【4】
+title: 网络通信IO多路复用之四：总结
 author: AcePeak
 categories:
   - 积累
@@ -11,13 +11,13 @@ tags:
 
 > 系列列表：
 >
-> [网络通信IO多路复用之Select【1】]({{site.url}}/blogs/2012/05/18/net-select/)
+> [网络通信IO多路复用之一：Select]({% post_url 2015-05-18-net-select %})
 >
-> [网络通信IO多路复用之Poll【2】]({{site.url}}/blogs/2012/05/19/net-poll/)
+> [网络通信IO多路复用之二：Poll]({% post_url 2015-05-19-net-poll %})
 >
-> [网络通信IO多路复用之ePoll【3】]({{site.url}}/blogs/2012/05/20/net-epoll/)
+> [网络通信IO多路复用之三：ePoll]({% post_url 2015-05-20-net-epoll %})
 >
-> [网络通信IO多路复用之总结【4】]({{site.url}}/blogs/2012/05/21/net-select-poll-epoll/)
+> [网络通信IO多路复用之四：总结]({% post_url 2015-05-21-net-select-poll-epoll %})
 
 
 select，poll，epoll都是IO多路复用的机制。I/O多路复用就通过一种机制，可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。但select，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。

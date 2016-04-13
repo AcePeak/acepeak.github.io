@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验（二）之PHP技术篇
+title: SEO经验系列之二：PHP技术
 author: AcePeak
 categories:
   - 积累
@@ -8,6 +8,16 @@ tags:
   - SEO
   - 转载
 ---
+
+> 系列列表：
+>
+> [SEO经验系列之一：原则]({% post_url 2015-01-26-Website-SEO-Principles %})
+>
+> [SEO经验系列之二：PHP技术]({% post_url 2015-01-27-Website-SEO-PHPTech %})
+>
+> [SEO经验系列之三：改版]({% post_url 2015-01-28-Website-SEO-Refactor %})
+>
+> [SEO经验系列之四：工具]({% post_url 2015-01-29-Website-SEO-Tools %})
 
 现在SEO基本上已经是在广泛的应用了，php程序的企业网站也越来越多，其实我之前一直喜欢用asp的，但是发现很多国外的空间现在不支持asp，所以也就研究了一下php，网站建好，当然也想要有一个好的网站排名，带来流量和销量，本文我和大家总结一下在apache服务器下PHP网站的几个seo建议吧!
 

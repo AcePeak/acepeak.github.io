@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 网络通信IO多路复用之ePoll【3】
+title: 网络通信IO多路复用之三：ePoll
 author: AcePeak
 categories:
   - 积累
@@ -11,13 +11,13 @@ tags:
 
 > 系列列表：
 >
-> [网络通信IO多路复用之Select【1】]({{site.url}}/blogs/2012/05/18/net-select/)
+> [网络通信IO多路复用之一：Select]({% post_url 2015-05-18-net-select %})
 >
-> [网络通信IO多路复用之Poll【2】]({{site.url}}/blogs/2012/05/19/net-poll/)
+> [网络通信IO多路复用之二：Poll]({% post_url 2015-05-19-net-poll %})
 >
-> [网络通信IO多路复用之ePoll【3】]({{site.url}}/blogs/2012/05/20/net-epoll/)
+> [网络通信IO多路复用之三：ePoll]({% post_url 2015-05-20-net-epoll %})
 >
-> [网络通信IO多路复用之总结【4】]({{site.url}}/blogs/2012/05/21/net-select-poll-epoll/)
+> [网络通信IO多路复用之四：总结]({% post_url 2015-05-21-net-select-poll-epoll %})
 
 
 #1、基本知识

@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: HTTP请求头系列（1）-总览
+title: HTTP请求头系列之一：总览
 author: AcePeak
 categories:
   - 积累
@@ -12,11 +12,11 @@ tags:
 
 > 系列列表：
 >
-> [HTTP请求头系列（1）-总览]({{site.url}}/blogs/2012/08/03/http-header-overall/)
+> [HTTP请求头系列（1）-总览]({% post_url 2015-08-03-http-header-overall %})
 >
-> [HTTP请求头系列（2）-P3P]({{site.url}}/blogs/2012/08/04/http-header-P3P/)
+> [HTTP请求头系列（2）-P3P]({% post_url 2015-08-04-http-header-P3P %})
 >
-> [HTTP请求头系列（3）-Cookies]({{site.url}}/blogs/2012/08/05/http-header-cookies/)
+> [HTTP请求头系列（3）-Cookies]({% post_url 2015-08-05-http-header-cookies %})
 
 
 先来看一个现成的http请求头：

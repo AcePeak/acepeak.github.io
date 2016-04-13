@@ -11,6 +11,14 @@ tags:
   - 原创
 ---
 
+> 系列列表：
+>
+> [【翻译】对话：究竟谁才是可移植的程序员？]({% post_url 2005-11-19-Translation-Dialog-Portable-Design %})
+>
+> [【翻译】对话：接触指针]({% post_url 2005-11-28-Translation-Dialog-Touching-Pointers %})
+>
+> [【翻译】对话：换个名字]({% post_url 2005-12-20-Translation-Dialog-Change-Name %})
+
 仅仅挂起100公里的距离，小行星就迅速占满了我们的视线。它的表面看起来就像碎过又用冰粘起来的杯子。很多的冰河在交错的小山脊间静静的流淌。木卫二，荒凉而美丽的地方。
 
 这时喇叭响起，“请大家登机，三号舱和七号舱。”然后又安静下来了。

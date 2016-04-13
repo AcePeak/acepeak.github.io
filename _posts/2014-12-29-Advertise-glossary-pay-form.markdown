@@ -1,15 +1,25 @@
 ---
 layout: blogs_item
-title: '网络广告术语之付费模式'
+title: 网络广告术语系列之三：付费模式
 author: AcePeak
 categories:
-  - 积累
+  - 深度
 tags:
   - 术语
   - 原创
   - 广告平台
 ---
 
+
+> 系列列表：
+>
+> [网络广告术语系列之一：一般术语]({% post_url 2014-12-27-Advertise-glossary-general %})
+>
+> [网络广告术语系列之二：广告形式]({% post_url 2014-12-28-Advertise-glossary-adform %})
+>
+> [网络广告术语系列之三：付费模式]({% post_url 2014-12-29-Advertise-glossary-pay-form %})
+>
+> [网络广告术语系列之四：平台类型]({% post_url 2014-12-30-Advertise-glossary-platform %})
 
 ##PBI(Pay By Impressions): 按展现计费
 

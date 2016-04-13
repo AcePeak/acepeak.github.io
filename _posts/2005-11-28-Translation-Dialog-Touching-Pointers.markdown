@@ -10,6 +10,14 @@ tags:
   - 原创
 ---
 
+> 系列列表：
+>
+> [【翻译】对话：究竟谁才是可移植的程序员？]({% post_url 2005-11-19-Translation-Dialog-Portable-Design %})
+>
+> [【翻译】对话：接触指针]({% post_url 2005-11-28-Translation-Dialog-Touching-Pointers %})
+>
+> [【翻译】对话：换个名字]({% post_url 2005-12-20-Translation-Dialog-Change-Name %})
+
 “哎呀！”
 
 这是我一小时内第七次受挫了。显然Wendy很讨厌我这样。“看就看吧，朋友，安静一会行不行？”她的声音飘出了隔间。貌似比她先前的反应好些。

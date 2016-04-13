@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: Apache中实现C++ Module【2】
+title: Apache开发C++ Module之二：Makefile
 author: AcePeak
 categories:
   - 积累
@@ -12,8 +12,9 @@ tags:
 
 > 系列列表：
 >
-> [Apache中实现C++ Module【1】]({{site.url}}/blogs/2012/05/01/apache-cpp-mod/)
-> [Apache中实现C++ Module【2】]({{site.url}}/blogs/2012/05/02/apache-cpp-mod-2/)
+> [Apache开发C++ Module之一：HelloWorld]({% post_url 2012-05-01-apache-cpp-mod %})
+>
+> [Apache开发C++ Module之二：Makefile]({% post_url 2012-05-02-apache-cpp-mod-2 %})
 
 1 创建.dep文件
 

@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验（三）之改版篇
+title: SEO经验系列之三：改版
 author: AcePeak
 categories:
   - 积累
@@ -8,6 +8,16 @@ tags:
   - SEO
   - 转载
 ---
+
+> 系列列表：
+>
+> [SEO经验系列之一：原则]({% post_url 2015-01-26-Website-SEO-Principles %})
+>
+> [SEO经验系列之二：PHP技术]({% post_url 2015-01-27-Website-SEO-PHPTech %})
+>
+> [SEO经验系列之三：改版]({% post_url 2015-01-28-Website-SEO-Refactor %})
+>
+> [SEO经验系列之四：工具]({% post_url 2015-01-29-Website-SEO-Tools %})
 
 
 当网站运营一段时间后，你想扩大规模或希望获得更好的效果时，我们就会对网站进改版。对现有结构去做任何改动，都有可能会对搜索引擎产生一定的影响，那怎样才能让损失降到最低，在这里给出了以下需要注意的事项，供参考。

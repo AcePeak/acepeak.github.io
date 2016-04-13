@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: 【转】SEO经验（四）之工具篇
+title: SEO经验系列之四：工具
 author: AcePeak
 categories:
   - 积累
@@ -8,6 +8,16 @@ tags:
   - SEO
   - 转载
 ---
+
+> 系列列表：
+>
+> [SEO经验系列之一：原则]({% post_url 2015-01-26-Website-SEO-Principles %})
+>
+> [SEO经验系列之二：PHP技术]({% post_url 2015-01-27-Website-SEO-PHPTech %})
+>
+> [SEO经验系列之三：改版]({% post_url 2015-01-28-Website-SEO-Refactor %})
+>
+> [SEO经验系列之四：工具]({% post_url 2015-01-29-Website-SEO-Tools %})
 
 
 SEO工作者经常需要一些SEO工具的辅助，比如网站收录查询、PR查询等等，以便节省自己的时间，让SEO变得更加轻松。那么，常用的SEO工具都有哪些呢？月光博客今天就介绍一些常用的SEO工具网址，并将其进行分类，希望对大家的SEO工作有所帮助。

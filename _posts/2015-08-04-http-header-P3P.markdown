@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: HTTP请求头系列（2）-P3P
+title: HTTP请求头系列之二：P3P
 author: AcePeak
 categories:
   - 积累
@@ -13,11 +13,11 @@ tags:
 
 > 系列列表：
 >
-> [HTTP请求头系列（1）-总览]({{site.url}}/blogs/2012/08/03/http-header-overall/)
+> [HTTP请求头系列（1）-总览]({% post_url 2015-08-03-http-header-overall %})
 >
-> [HTTP请求头系列（2）-P3P]({{site.url}}/blogs/2012/08/04/http-header-P3P/)
+> [HTTP请求头系列（2）-P3P]({% post_url 2015-08-04-http-header-P3P %})
 >
-> [HTTP请求头系列（3）-Cookies]({{site.url}}/blogs/2012/08/05/http-header-cookies/)
+> [HTTP请求头系列（3）-Cookies]({% post_url 2015-08-05-http-header-cookies %})
 
 
 对于IE来说(默认安全级别下)，iframe、img、link等标签都是只发送session cookie（又叫 第一方cookie），拦截本地cookie发送（又叫第三方cookie）。当这些标签跨域引用一个页面，实际上是发起了一次GET请求。

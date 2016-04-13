@@ -13,11 +13,11 @@ tags:
 
 > 系列列表：
 >
-> [广告特征工程+人工智能：在线程序化特征定义（一）]({{site.url}}/blogs/2012/07/28/algorithm-ad-feature-online-feature-definition/)
+> [广告特征工程+人工智能：在线程序化特征定义（一）]({% post_url 2015-07-28-algorithm-ad-feature-online-feature-definition %})
 >
-> [广告特征工程+人工智能：大数据结果引入并特征相关化（二）]({{site.url}}/blogs/2012/07/30/algorithm-ad-feature-bigdata-reference-inputs/)
+> [广告特征工程+人工智能：大数据结果引入并特征相关化（二）]({% post_url 2015-07-30-algorithm-ad-feature-bigdata-reference-inputs %})
 >
-> [广告特征工程+人工智能：特征历史数据指导特征计算（三）]({{site.url}}/blogs/2012/08/01/algorithm-ad-feature-history-teach/)
+> [广告特征工程+人工智能：特征历史数据指导特征计算（三）]({% post_url 2015-08-01-algorithm-ad-feature-history-teach %})
 
 #特征历史数据指导特征计算
 
