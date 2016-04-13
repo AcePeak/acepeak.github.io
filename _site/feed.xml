@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 13 Apr 2016 12:31:12 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Apr 2016 12:31:12 +0800</lastBuildDate>
+    <pubDate>Wed, 13 Apr 2016 13:44:45 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Apr 2016 13:44:45 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v3.1.2</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -3035,7 +3035,7 @@ sdch是Chrome自己定义的压缩方法。
     </item>
     
     <item>
-      <title>广告特征工程+人工智能：特征历史数据指导特征计算（三）</title>
+      <title>告特征工程系列之三：特征历史数据指导特征计算</title>
       <link>http://lilifeng.net/blogs/2015/08/01/algorithm-ad-feature-history-teach/</link>
       <pubDate>Sat, 01 Aug 2015 00:00:00 +0800</pubDate>
       <dc:creator>AcePeak</dc:creator>
@@ -3055,11 +3055,11 @@ sdch是Chrome自己定义的压缩方法。
       <description>&lt;blockquote&gt;
   &lt;p&gt;系列列表：&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程+人工智能：在线程序化特征定义（一）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/28/algorithm-ad-feature-online-feature-definition/&quot;&gt;广告特征工程系列之一：在线程序化特征定义&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程+人工智能：大数据结果引入并特征相关化（二）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/07/30/algorithm-ad-feature-bigdata-reference-inputs/&quot;&gt;广告特征工程系列之二：大数据结果引入并特征相关化&lt;/a&gt;&lt;/p&gt;
 
-  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程+人工智能：特征历史数据指导特征计算（三）&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/blogs/2015/08/01/algorithm-ad-feature-history-teach/&quot;&gt;广告特征工程系列之三：特征历史数据指导特征计算&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;#特征历史数据指导特征计算&lt;/p&gt;
