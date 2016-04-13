@@ -3,10 +3,11 @@ layout: blogs_item
 title: Linux模块机制浅析
 author: AcePeak
 categories:
-  - Internet
+  - 积累
 tags:
   - linux
   - c++
+  - 转载
 ---
 
 Linux允许用户通过插入模块，实现干预内核的目的。一直以来，对linux的模块机制都不够清晰，因此本文对内核模块的加载机制进行简单地分析。

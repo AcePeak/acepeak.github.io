@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 13 Apr 2016 11:32:13 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Apr 2016 11:32:13 +0800</lastBuildDate>
+    <pubDate>Wed, 13 Apr 2016 11:38:58 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Apr 2016 11:38:58 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v3.1.2</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -35,8 +35,10 @@
       
       <category>c++</category>
       
+      <category>转载</category>
       
-      <category>Internet</category>
+      
+      <category>积累</category>
       
       <guid isPermaLink="true">http://lilifeng.net/blogs/2016/04/12/linux-module-load/</guid>
       <description>&lt;p&gt;Linux允许用户通过插入模块，实现干预内核的目的。一直以来，对linux的模块机制都不够清晰，因此本文对内核模块的加载机制进行简单地分析。&lt;/p&gt;
