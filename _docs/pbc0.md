@@ -56,41 +56,29 @@ tags:
 
 在牛津词典中，广告（Advertise）的解释如下：
 
->
 > describe or draw attention to (a product, service, or event) in a public medium in order to promote sales or attendance
->
 
 翻译过来就是：
 
->
 > 为了促进销售或参与，在公开媒介中，为一个产品、一项服务或一起事件做描述或吸引注意
->
 
 在Wikipedia中，广告的解释如下：
 
->
 > Advertising is a form of marketing communication used to persuade an audience to take or continue some action, usually with respect to a commercial offering, or political or ideological support.
->
 
 翻译过来就是：
 
->
 > 广告是用于劝服受众采取或继续某种行为的市场沟通的一种形式，常常与一种商业服务、政治观点或意识形态支持有关
->
 
 在百度百科中，广告的解释如下：
 
->
 > 广告是为了某种特定的需要，通过一定形式的媒体，公开而广泛地向公众传递信息的宣传手段。
->
 
 可以认为是对牛津词典中英文释义的直接翻译。
 
 而在一些广告学著作中，又有略微不同的解释，比较主流的一种解释如下：
 
->
 > 广告是由已确定的出资人通过各种媒介进行的有关产品（商品、服务和观点）的，通常是有偿性的、有组织的、综合的、劝服性的非人员的信息传播活动。
->
 
 
 可以看到无论是中文还是在英文中，在现代都拥有以下一些概念：

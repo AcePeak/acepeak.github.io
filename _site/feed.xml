@@ -11,8 +11,8 @@
     <title xml:lang="en">西山居士</title>
     <atom:link type="application/atom+xml" href="http://jekyllrb.com/feed.xml" rel="self"/>
     <link>http://lilifeng.net/</link>
-    <pubDate>Wed, 13 Apr 2016 13:44:45 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Apr 2016 13:44:45 +0800</lastBuildDate>
+    <pubDate>Fri, 15 Apr 2016 15:07:38 +0800</pubDate>
+    <lastBuildDate>Fri, 15 Apr 2016 15:07:38 +0800</lastBuildDate>
     <language>cn-CH</language>
     <generator>Jekyll v3.1.2</generator>
     <description>巍巍乎志在高山 洋洋乎志在流水</description>
@@ -24,6 +24,26 @@
       <width>456</width>
       <height>545</height>
     </image>
+    
+    <item>
+      <title>APP中也可以做Header Bidding：Preload Bidding</title>
+      <link>http://lilifeng.net/blogs/2016/04/13/app-preload-bidding/</link>
+      <pubDate>Wed, 13 Apr 2016 00:00:00 +0800</pubDate>
+      <dc:creator>AcePeak</dc:creator>
+      
+      <category>原创</category>
+      
+      <category>广告平台</category>
+      
+      
+      <category>深度</category>
+      
+      <guid isPermaLink="true">http://lilifeng.net/blogs/2016/04/13/app-preload-bidding/</guid>
+      <description>&lt;p&gt;2016年以来，Header Bidding在程序化购买市场上炒得沸沸扬扬，就好像哪个市场人，广告人不懂这个时髦的词汇就OUT了。&lt;/p&gt;
+
+&lt;p&gt;广告市场从来不缺少概念和对概念的极限包装，从最开始的&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Linux模块机制浅析</title>
