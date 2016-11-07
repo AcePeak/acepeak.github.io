@@ -1,6 +1,6 @@
 ---
 layout: blogs_item
-title: [转]揭秘！媒体资源交易中的黑盒究竟有哪些？
+title: 媒体资源交易中的黑盒究竟有哪些
 author: AcePeak
 categories:
   - 积累
